@@ -11,8 +11,8 @@ type State =
 
 
 type Action =
-    | { tag: 'UpdateAPIKeyInputText', key: string }
-    | { tag: 'ChangeAPIKey', key: string }
+    | { tag: 'UpdateAPIKeyInputText', apiKey: string }
+    | { tag: 'ChangeAPIKey', apiKey: string }
 
 
 export type Dispatch<T extends Action['tag'] = Action['tag']> = _Dispatch<Extract<Action, { tag: T }>>
@@ -31,7 +31,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 tag: 'Update',
                 state: {
                     page: 'APIKeyInput',
-                    key: action.key
+                    apiKey: action.apiKey
                 }
             }
         }
@@ -40,7 +40,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 tag: 'Update',
                 state: {
                     page: 'ChartEditor',
-                    key: action.key
+                    apiKey: action.apiKey
                 }
             }
         }
@@ -51,6 +51,6 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
 export function getInitialState(): State {
     return {
         page: 'APIKeyInput',
-        key: ''
+        apiKey: ''
     }
 }

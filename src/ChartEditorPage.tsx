@@ -7,7 +7,7 @@ type Props = {
 
 
 export type ChartEditorPageState = {
-    key: string
+    apiKey: string
 }
 
 

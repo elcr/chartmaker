@@ -27,11 +27,11 @@ export const App = () => {
     let content: JSX.Element
     switch (state.page) {
         case 'APIKeyInput': {
-            content = <APIKeyInputPage dispatch={dispatch} text={state.key}/>
+            content = <APIKeyInputPage dispatch={dispatch} apiKey={state.apiKey}/>
             break
         }
         case 'ChartEditor':
-            content = <ChartEditorPage key={state.key}/>
+            content = <ChartEditorPage key={state.apiKey}/>
     }
 
     return (

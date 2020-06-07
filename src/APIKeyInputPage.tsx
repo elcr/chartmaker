@@ -5,13 +5,11 @@ import { DispatchProps } from './reducer'
 
 
 export type APIKeyInputPageState = {
-    key: string
+    apiKey: string
 }
 
 
-type Props = DispatchProps<'UpdateAPIKeyInputText' | 'ChangeAPIKey'> & {
-    text: string
-}
+type Props = DispatchProps<'UpdateAPIKeyInputText' | 'ChangeAPIKey'> & APIKeyInputPageState
 
 
 const pageStyle = css({
@@ -31,18 +29,18 @@ const formStyle = css({
 })
 
 
-export const APIKeyInputPage: FC<Props> = ({ dispatch, text: key }) => {
+export const APIKeyInputPage: FC<Props> = ({ dispatch, apiKey }) => {
     function updateKey(event: ChangeEvent<HTMLInputElement>) {
         event.preventDefault()
         dispatch({
             tag: 'UpdateAPIKeyInputText',
-            key: event.currentTarget.value
+            apiKey: event.currentTarget.value
         })
     }
 
     function confirmKey(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        dispatch({ tag: 'ChangeAPIKey', key })
+        dispatch({ tag: 'ChangeAPIKey', apiKey })
     }
 
     return (

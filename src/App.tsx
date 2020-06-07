@@ -4,11 +4,11 @@ import { css } from 'emotion'
 import { useLocalStorageSideEffectReducer } from './hooks'
 import { getInitialState, reducer } from './reducer'
 import { Chart } from './components/Chart'
+import { Sidebar } from './components/Sidebar'
 
 
 const rootStyle = css({
     display: 'flex',
-    flexDirection: 'column',
     minHeight: '100vh',
     backgroundColor: 'black',
     color: 'white',
@@ -18,7 +18,7 @@ const rootStyle = css({
 
 
 export const App = () => {
-    const [ state,  ] = useLocalStorageSideEffectReducer(
+    const [ state, dispatch ] = useLocalStorageSideEffectReducer(
         'state',
         getInitialState,
         reducer
@@ -26,6 +26,9 @@ export const App = () => {
 
     return (
         <div className={rootStyle}>
+            <Sidebar dispatch={dispatch}
+                charts={state.charts}
+                activeChart={state.activeChart}/>
             <Chart {...state.activeChart}/>
         </div>
     )

@@ -3,7 +3,6 @@ const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const PreCSS = require('precss')
 const Autoprefixer = require('autoprefixer')
 
@@ -14,7 +13,7 @@ const sourceDirectory = path.join(__dirname, 'src')
 module.exports = {
     entry: path.join(sourceDirectory, 'index.tsx'),
     output: {
-        filename: '[name].[hash].js',
+        filename: '[name].js',
         path: path.join(__dirname, 'dist'),
         publicPath: '/'
     },
@@ -72,9 +71,8 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].[hash].css'
+            filename: '[name].css'
         }),
         new HTMLWebpackPlugin({
             filename: 'index.html',

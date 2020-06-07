@@ -12,7 +12,8 @@ const rootStyle = css({
     minHeight: '100vh',
     backgroundColor: 'black',
     color: 'white',
-    fontSize: '0.875rem'
+    fontSize: '0.875rem',
+    padding: '1rem'
 })
 
 
@@ -25,9 +26,7 @@ export const App = () => {
 
     return (
         <div className={rootStyle}>
-            <aside></aside>
-            <Chart albums={state.activeChart.albums}/>
-            <aside></aside>
+            <Chart {...state.activeChart}/>
         </div>
     )
 }

@@ -1,31 +1,77 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { Album } from '../reducer'
+import { Chart as ChartDetails } from '../reducer'
 import { AlbumRow } from './AlbumRow'
+import { TitleGroup } from './TitleGroup'
+import {
+    VERY_LARGE_ROW_SIZE_REM,
+    LARGE_ROW_SIZE_REM,
+    MEDIUM_ROW_SIZE_REM,
+    SMALL_ROW_SIZE_REM
+} from '../constants'
 
 
-type Props = {
-    albums: (Album | null)[]
-}
+type Props = ChartDetails
 
 
-const style = css({
+const outContainerStyle = css({
     padding: '1rem',
     border: '1px solid white',
-    marginTop: '1rem',
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+    flexDirection: 'column'
 })
 
 
-export const Chart: FC<Props> = ({ albums }) =>
-    <main className={style}>
-        <AlbumRow albums={albums} to={5} size={9}/>
-        <AlbumRow albums={albums} from={5} to={11} size={7.45}/>
-        <AlbumRow albums={albums} from={11} to={17} size={7.45}/>
-        <AlbumRow albums={albums} from={17} to={24} size={6.35}/>
-        <AlbumRow albums={albums} from={24} to={31} size={6.35}/>
-        <AlbumRow albums={albums} from={31} size={4.865}/>
-    </main>
+const innerContainerStyle = css({
+    display: 'flex'
+})
+
+
+const chartStyle = css({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginRight: '1rem'
+})
+
+
+export const Chart: FC<Props> = ({ albums, name }) => {
+    const groups = [
+        albums.slice(0, 5),
+        albums.slice(5, 11),
+        albums.slice(11, 17),
+        albums.slice(17, 24),
+        albums.slice(24, 31),
+        albums.slice(31)
+    ]
+    const titleGroups = groups.map((group, index) => {
+        const titles: string[] = []
+        for (const album of group) {
+            if (album === null) {
+                continue
+            }
+            titles.push(album.title)
+        }
+        return <TitleGroup key={index} titles={titles}/>
+    })
+
+    return (
+        <main className={outContainerStyle}>
+            <h1>{name}</h1>
+            <div className={innerContainerStyle}>
+                <div className={chartStyle}>
+                    <AlbumRow albums={groups[0]} sizeRem={VERY_LARGE_ROW_SIZE_REM}/>
+                    <AlbumRow albums={groups[1]} sizeRem={LARGE_ROW_SIZE_REM}/>
+                    <AlbumRow albums={groups[2]} sizeRem={LARGE_ROW_SIZE_REM}/>
+                    <AlbumRow albums={groups[3]} sizeRem={MEDIUM_ROW_SIZE_REM}/>
+                    <AlbumRow albums={groups[4]} sizeRem={MEDIUM_ROW_SIZE_REM}/>
+                    <AlbumRow albums={groups[5]} sizeRem={SMALL_ROW_SIZE_REM}/>
+                </div>
+                <div>
+                    {titleGroups}
+                </div>
+            </div>
+        </main>
+    )
+}

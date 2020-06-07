@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import { css, cx } from 'emotion'
-import { Album as Details } from '../reducer'
+import { Album as AlbumDetails } from '../reducer'
 
 
 type Props = {
-    details: Details | null
-    size: number
+    details: AlbumDetails | null
+    sizeRem: number
 }
 
 
@@ -15,12 +15,12 @@ const baseStyle = css({
 })
 
 
-export const Album: FC<Props> = ({ details, size }) => {
+export const Album: FC<Props> = ({ details, sizeRem }) => {
     const style = cx(
         baseStyle,
         css({
-            width: `${size}rem`,
-            height: `${size}rem`
+            width: `${sizeRem}rem`,
+            height: `${sizeRem}rem`
         })
     )
     const image = details === null

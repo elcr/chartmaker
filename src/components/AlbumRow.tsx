@@ -7,9 +7,7 @@ import { Album } from './Album'
 
 type Props = {
     albums: (AlbumDetails | null)[]
-    size: number
-    from?: number
-    to?: number
+    sizeRem: number
 }
 
 
@@ -18,12 +16,13 @@ const style = css({
 })
 
 
-export const AlbumRow: FC<Props> = ({ albums, from = 0, to = albums.length, size }) => {
-    const row: JSX.Element[] = []
-    for (let index = from; index < to; index++) {
-        const album = albums[index] ?? null
-        row.push(<Album key={index} details={album} size={size}/>)
-    }
+export const AlbumRow: FC<Props> = ({ albums, sizeRem }) => {
+    const row = albums.map((album, index) => {
+        const key = album === null
+            ? index
+            : `${index}-${album.title}`
+        return <Album key={key} details={album} sizeRem={sizeRem}/>
+    })
     return (
         <div className={style}>
             {row}

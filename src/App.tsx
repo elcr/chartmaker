@@ -3,8 +3,7 @@ import { css } from 'emotion'
 
 import { useLocalStorageSideEffectReducer } from './hooks'
 import { getInitialState, reducer } from './reducer'
-import { APIKeyInputPage } from './APIKeyInputPage'
-import { ChartEditorPage } from './ChartEditorPage'
+import { Chart } from './components/Chart'
 
 
 const rootStyle = css({
@@ -18,25 +17,17 @@ const rootStyle = css({
 
 
 export const App = () => {
-    const [ state, dispatch ] = useLocalStorageSideEffectReducer(
+    const [ state,  ] = useLocalStorageSideEffectReducer(
         'state',
         getInitialState,
         reducer
     )
 
-    let content: JSX.Element
-    switch (state.page) {
-        case 'APIKeyInput': {
-            content = <APIKeyInputPage dispatch={dispatch} apiKey={state.apiKey}/>
-            break
-        }
-        case 'ChartEditor':
-            content = <ChartEditorPage key={state.apiKey}/>
-    }
-
     return (
         <div className={rootStyle}>
-            {content}
+            <aside></aside>
+            <Chart albums={state.activeChart.albums}/>
+            <aside></aside>
         </div>
     )
 }

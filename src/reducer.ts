@@ -1,18 +1,29 @@
 import { Dispatch as _Dispatch } from 'react'
 
-import { APIKeyInputPageState } from './APIKeyInputPage'
-import { ChartEditorPageState } from './ChartEditorPage'
 import { SideEffectUpdate } from './hooks'
+import { CHART_SIZE } from './constants'
 
 
-type State =
-    | { page: 'APIKeyInput' } & APIKeyInputPageState
-    | { page: 'ChartEditor' } & ChartEditorPageState
+export type Album = {
+    title: string
+    imageURL: string
+}
+
+
+export type Chart = {
+    albums: (Album | null)[]
+}
+
+
+type State = {
+    apiKey: string
+    charts: Chart[]
+    activeChart: Chart
+}
 
 
 type Action =
-    | { tag: 'UpdateAPIKeyInputText', apiKey: string }
-    | { tag: 'ChangeAPIKey', apiKey: string }
+    | { tag: 'UpdateAPIKey', apiKey: string }
 
 
 export type Dispatch<T extends Action['tag'] = Action['tag']> = _Dispatch<Extract<Action, { tag: T }>>
@@ -23,34 +34,23 @@ export type DispatchProps<T extends Action['tag'] = Action['tag']> = {
 
 export function reducer(state: State, action: Action): SideEffectUpdate<State, Action> {
     switch (action.tag) {
-        case 'UpdateAPIKeyInputText': {
-            if (state.page !== 'APIKeyInput') {
-                return { tag: 'NoUpdate' }
-            }
+        case 'UpdateAPIKey':
             return {
                 tag: 'Update',
                 state: {
-                    page: 'APIKeyInput',
+                    ...state,
                     apiKey: action.apiKey
                 }
             }
-        }
-        case 'ChangeAPIKey': {
-            return {
-                tag: 'Update',
-                state: {
-                    page: 'ChartEditor',
-                    apiKey: action.apiKey
-                }
-            }
-        }
     }
 }
 
 
 export function getInitialState(): State {
+    const chart: Chart = { albums: Array(CHART_SIZE) }
     return {
-        page: 'APIKeyInput',
-        apiKey: ''
+        apiKey: '',
+        charts: [ chart ],
+        activeChart: chart
     }
 }

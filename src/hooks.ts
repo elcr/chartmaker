@@ -13,32 +13,6 @@ function useLazyReducer<TState, TAction>(
 }
 
 
-export function useLocalStorageReducer<TState, TAction>(
-    key: string,
-    fallback: () => TState,
-    reducer: Reducer<TState, TAction>
-) {
-    const [ state, dispatch ] = useLazyReducer(
-        reducer,
-        () => {
-            const value = localStorage.getItem(key)
-            return value === null
-                ? fallback()
-                : JSON.parse(value) as TState
-        }
-    )
-
-    useEffect(
-        () => {
-            localStorage.setItem(key, JSON.stringify(state))
-        },
-        [ state ]
-    )
-
-    return [ state, dispatch ] as const
-}
-
-
 export type SideEffect<TState, TAction> = (
     dispatch: Dispatch<TAction>,
     state: TState
@@ -69,10 +43,10 @@ type SideEffectArray<TState, TAction> = SideEffect<TState, TAction>[]
 type StateTuple<TState, TAction> = [ TState, SideEffectArray<TState, TAction> ]
 
 
-export function useSideEffectReducer<TState, TAction>(
-    initialState: () => TState,
-    reducer: SideEffectReducer<TState, TAction>,
-    useReducerHook = useLazyReducer
+export function useLocalStorageSideEffectReducer<TState, TAction>(
+    key: string,
+    initialStateFallback: () => TState,
+    reducer: SideEffectReducer<TState, TAction>
 ) {
     function innerReducer(
         [ state, sideEffects ]: StateTuple<TState, TAction>,
@@ -91,9 +65,22 @@ export function useSideEffectReducer<TState, TAction>(
         }
     }
 
-    const [ [ state, sideEffects ], dispatch ] = useReducerHook(
+    const [ [ state, sideEffects ], dispatch ] = useLazyReducer(
         innerReducer,
-        () => [ initialState(), [] ]
+        () => {
+            const json = localStorage.getItem(key)
+            const state: TState = json === null
+                ? initialStateFallback()
+                : JSON.parse(json)
+            return [ state, [] ]
+        }
+    )
+
+    useEffect(
+        () => {
+            localStorage.setItem(key, JSON.stringify(state))
+        },
+        [ state ]
     )
 
     useEffect(
@@ -106,18 +93,4 @@ export function useSideEffectReducer<TState, TAction>(
     )
 
     return [ state, dispatch ] as const
-}
-
-
-export function useLocalStorageSideEffectReducer<TState, TAction>(
-    key: string,
-    initialState: () => TState,
-    reducer: SideEffectReducer<TState, TAction>
-) {
-    return useSideEffectReducer(
-        initialState,
-        reducer,
-        (reducer, initialState) =>
-            useLocalStorageReducer(key, initialState, reducer)
-    )
 }

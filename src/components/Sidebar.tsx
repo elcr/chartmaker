@@ -5,6 +5,7 @@ import { ChartManager } from './ChartManager'
 import { DispatchProps } from '../reducer'
 import { Chart } from '../state'
 import { APIKeyInput } from './APIKeyInput'
+import { ImportExportButtons } from './ImportExportButtons'
 
 
 type Props = DispatchProps<
@@ -13,6 +14,8 @@ type Props = DispatchProps<
     | 'PromptToRenameActiveChart'
     | 'PromptToDeleteActiveChart'
     | 'UpdateAPIKey'
+    | 'PromptToSelectStateImportJSON'
+    | 'ExportState'
 > & {
     charts: Chart[]
     activeChart: Chart,
@@ -26,11 +29,9 @@ const style = css({
 })
 
 
-export const Sidebar: FC<Props> = props => {
-    return (
-        <aside className={style}>
-            <ChartManager {...props}/>
-            <APIKeyInput {...props}/>
-        </aside>
-    )
-}
+export const Sidebar: FC<Props> = props =>
+    <aside className={style}>
+        <ChartManager {...props}/>
+        <APIKeyInput {...props}/>
+        <ImportExportButtons {...props}/>
+    </aside>

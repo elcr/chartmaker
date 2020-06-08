@@ -2,6 +2,7 @@ import { Dispatch as _Dispatch } from 'react'
 
 import { SideEffectUpdate } from './hooks'
 import { Chart, State, createChart } from './state'
+import { readInputFileText, splitArrayAtIndex } from './utils'
 
 
 type Action =
@@ -14,6 +15,10 @@ type Action =
     | { tag: 'RenameActiveChart', name: string }
     | { tag: 'PromptToDeleteActiveChart' }
     | { tag: 'DeleteActiveChart' }
+    | { tag: 'PromptToSelectStateImportJSON' }
+    | { tag: 'ShowInvalidStateImportJSONMessage' }
+    | { tag: 'ImportState', state: State }
+    | { tag: 'ExportState' }
 
 
 export type ActionTag = Action['tag']
@@ -94,15 +99,12 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 ...state.activeChart,
                 name: action.name
             }
+            const [ before, after ] = splitArrayAtIndex(state.charts, activeIndex)
             return {
                 tag: 'Update',
                 state: {
                     ...state,
-                    charts: [
-                        ...state.charts.slice(0, activeIndex),
-                        chart,
-                        ...state.charts.slice(activeIndex + 1)
-                    ],
+                    charts: [ ...before, chart, ...after ],
                     activeChart: chart
                 }
             }
@@ -128,10 +130,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 activeChart = activeIndex === 0
                     ? state.charts[1]
                     : state.charts[activeIndex - 1]
-                charts = [
-                    ...state.charts.slice(0, activeIndex),
-                    ...state.charts.slice(activeIndex + 1)
-                ]
+                charts = splitArrayAtIndex(state.charts, activeIndex).flat()
             }
             return {
                 tag: 'Update',
@@ -142,5 +141,72 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 }
             }
         }
+        case 'PromptToSelectStateImportJSON':
+            return {
+                tag: 'SideEffect',
+                sideEffect: dispatch => {
+                    const input = document.createElement('input')
+                    input.style.display = 'none'
+                    input.setAttribute('type', 'file')
+                    input.accept = 'application/json'
+
+                    input.addEventListener('change', async () => {
+                        const file = input.files?.[0]
+                        try {
+                            if (file === undefined) {
+                                return
+                            }
+                            const json = await readInputFileText(file)
+                            const state: State = JSON.parse(json)
+                            dispatch({ tag: 'ImportState', state })
+                        }
+                        catch {
+                            dispatch({ tag: 'ShowInvalidStateImportJSONMessage' })
+                        }
+                    })
+
+                    // The input change event is never fired if the user closes
+                    // the dialog. This has no associated event, so there is no
+                    // reliable way to know when it happens.
+                    // However, the dialog opening causes the body to lose
+                    // focus, and upon closing the body gains focus again.
+                    // Listening for the body regaining focus like this is the
+                    // only reliable way to clean up the input element.
+                    // Also, this doesn't work with addEventListener for some
+                    // reason.
+                    document.body.onfocus = () => {
+                        input.remove()
+                        document.body.onfocus = null
+                    }
+
+                    // Doesn't seem to work on Firefox (???)
+                    input.click()
+                }
+            }
+        case 'ShowInvalidStateImportJSONMessage':
+            return {
+                tag: 'SideEffect',
+                sideEffect: () =>
+                    alert('Selected file is invalid')
+            }
+        case 'ImportState':
+            return {
+                tag: 'Update',
+                state: action.state
+            }
+        case 'ExportState':
+            return {
+                tag: 'SideEffect',
+                sideEffect: (_dispatch, state) => {
+                    const link = document.createElement('a')
+                    link.style.display = 'none'
+                    link.href = 'data:application/json;charset=utf-8,'
+                        + encodeURIComponent(JSON.stringify(state))
+                    link.download = 'state.json'
+                    link.click()
+                    // Can safely just remove straight away this time.
+                    link.remove()
+                }
+            }
     }
 }

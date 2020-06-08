@@ -11,7 +11,7 @@ import { SidebarGroup } from './SidebarGroup'
 
 
 type Props = DispatchProps<
-    | 'ChangeActiveChart'
+    | 'UpdateActiveChart'
     | 'PromptForNewChart'
     | 'PromptToRenameActiveChart'
     | 'PromptToDeleteActiveChart'

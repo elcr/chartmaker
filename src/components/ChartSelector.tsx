@@ -9,7 +9,7 @@ import { Label } from './Label'
 const id = 'chartSelector'
 
 
-type Props = DispatchProps<'ChangeActiveChart'> & {
+type Props = DispatchProps<'UpdateActiveChart'> & {
     charts: Chart[]
     activeChart: Chart
 }
@@ -30,7 +30,7 @@ export const ChartSelector: FC<Props> = ({ dispatch, charts, activeChart }) => {
         if (chart === undefined) {
             return
         }
-        dispatch({ tag: 'ChangeActiveChart', chart })
+        dispatch({ tag: 'UpdateActiveChart', chart })
     }
 
     const options = charts.map(chart =>

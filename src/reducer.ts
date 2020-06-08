@@ -7,7 +7,7 @@ import { readInputFileText, splitArrayAtIndex } from './utils'
 
 type Action =
     | { tag: 'UpdateAPIKey', apiKey: string }
-    | { tag: 'ChangeActiveChart', chart: Chart }
+    | { tag: 'UpdateActiveChart', chart: Chart }
     | { tag: 'PromptForNewChart' }
     | { tag: 'ShowChartNameTakenMessage' }
     | { tag: 'AddNewChart', name: string }
@@ -15,10 +15,10 @@ type Action =
     | { tag: 'RenameActiveChart', name: string }
     | { tag: 'PromptToDeleteActiveChart' }
     | { tag: 'DeleteActiveChart' }
-    | { tag: 'PromptToSelectStateImportJSON' }
-    | { tag: 'ShowInvalidStateImportJSONMessage' }
-    | { tag: 'ImportState', state: State }
-    | { tag: 'ExportState' }
+    | { tag: 'PromptToSelectImportJSON' }
+    | { tag: 'ShowInvalidImportJSONMessage' }
+    | { tag: 'UpdateAllState', state: State }
+    | { tag: 'PromptToExportState' }
 
 
 export type ActionTag = Action['tag']
@@ -38,7 +38,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     apiKey: action.apiKey
                 }
             }
-        case 'ChangeActiveChart':
+        case 'UpdateActiveChart':
             return {
                 tag: 'Update',
                 state: {
@@ -141,7 +141,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 }
             }
         }
-        case 'PromptToSelectStateImportJSON':
+        case 'PromptToSelectImportJSON':
             return {
                 tag: 'SideEffect',
                 sideEffect: dispatch => {
@@ -158,10 +158,10 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                             }
                             const json = await readInputFileText(file)
                             const state: State = JSON.parse(json)
-                            dispatch({ tag: 'ImportState', state })
+                            dispatch({ tag: 'UpdateAllState', state })
                         }
                         catch {
-                            dispatch({ tag: 'ShowInvalidStateImportJSONMessage' })
+                            dispatch({ tag: 'ShowInvalidImportJSONMessage' })
                         }
                     })
 
@@ -183,18 +183,18 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     input.click()
                 }
             }
-        case 'ShowInvalidStateImportJSONMessage':
+        case 'ShowInvalidImportJSONMessage':
             return {
                 tag: 'SideEffect',
                 sideEffect: () =>
                     alert('Selected file is invalid')
             }
-        case 'ImportState':
+        case 'UpdateAllState':
             return {
                 tag: 'Update',
                 state: action.state
             }
-        case 'ExportState':
+        case 'PromptToExportState':
             return {
                 tag: 'SideEffect',
                 sideEffect: (_dispatch, state) => {
@@ -204,7 +204,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                         + encodeURIComponent(JSON.stringify(state))
                     link.download = 'state.json'
                     link.click()
-                    // Can safely just remove straight away this time.
+                    // Can safely just remove straight away this time
                     link.remove()
                 }
             }

@@ -9,13 +9,13 @@ import { ImportExportButtons } from './ImportExportButtons'
 
 
 type Props = DispatchProps<
-    | 'ChangeActiveChart'
+    | 'UpdateActiveChart'
     | 'PromptForNewChart'
     | 'PromptToRenameActiveChart'
     | 'PromptToDeleteActiveChart'
     | 'UpdateAPIKey'
-    | 'PromptToSelectStateImportJSON'
-    | 'ExportState'
+    | 'PromptToSelectImportJSON'
+    | 'PromptToExportState'
 > & {
     charts: Chart[]
     activeChart: Chart,

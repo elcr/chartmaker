@@ -4,7 +4,7 @@ import { css } from 'emotion'
 import { DispatchProps } from '../reducer'
 
 
-type Props = DispatchProps<'PromptToSelectStateImportJSON'>
+type Props = DispatchProps<'PromptToSelectImportJSON'>
 
 
 const style = css({
@@ -13,12 +13,12 @@ const style = css({
 
 
 export const ImportStateButton: FC<Props> = ({ dispatch }) => {
-    function importState() {
-        dispatch({ tag: 'PromptToSelectStateImportJSON' })
+    function promptToSelectImportJSON() {
+        dispatch({ tag: 'PromptToSelectImportJSON' })
     }
 
     return (
-        <button className={style} onClick={importState}>
+        <button className={style} onClick={promptToSelectImportJSON}>
             Import charts
         </button>
     )

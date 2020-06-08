@@ -2,9 +2,10 @@ import React from 'react'
 import { css } from 'emotion'
 
 import { useLocalStorageSideEffectReducer } from './hooks'
-import { getInitialState, reducer } from './reducer'
+import { reducer } from './reducer'
 import { Chart } from './components/Chart'
 import { Sidebar } from './components/Sidebar'
+import { createInitialState } from './state'
 
 
 const rootStyle = css({
@@ -20,7 +21,7 @@ const rootStyle = css({
 export const App = () => {
     const [ state, dispatch ] = useLocalStorageSideEffectReducer(
         'state',
-        getInitialState,
+        createInitialState,
         reducer
     )
 

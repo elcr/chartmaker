@@ -2,10 +2,16 @@ import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import { ChartManager } from './ChartManager'
-import { DispatchProps, Chart } from '../reducer'
+import { DispatchProps } from '../reducer'
+import { Chart } from '../state'
 
 
-type Props = DispatchProps<'ChangeActiveChart' | 'PromptForNewChart'> & {
+type Props = DispatchProps<
+    | 'ChangeActiveChart'
+    | 'PromptForNewChart'
+    | 'PromptToRenameActiveChart'
+    | 'PromptToDeleteActiveChart'
+> & {
     charts: Chart[]
     activeChart: Chart
 }
@@ -13,7 +19,7 @@ type Props = DispatchProps<'ChangeActiveChart' | 'PromptForNewChart'> & {
 
 const style = css({
     marginRight: '1rem',
-    width: '10rem'
+    width: '15rem'
 })
 
 

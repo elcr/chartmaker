@@ -1,7 +1,8 @@
 import React, { FC, ChangeEvent } from 'react'
 import { css } from 'emotion'
 
-import { Chart, DispatchProps } from '../reducer'
+import { DispatchProps } from '../reducer'
+import { Chart } from '../state'
 
 
 type Props = DispatchProps<'ChangeActiveChart'> & {

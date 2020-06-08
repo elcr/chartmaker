@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { Album as AlbumDetails } from '../reducer'
+import { Album as AlbumDetails } from '../state'
 import { Album } from './Album'
 
 

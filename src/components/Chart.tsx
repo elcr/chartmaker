@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { Chart as ChartDetails } from '../reducer'
+import { Chart as ChartDetails } from '../state'
 import { AlbumRow } from './AlbumRow'
 import { TitleGroup } from './TitleGroup'
 import {

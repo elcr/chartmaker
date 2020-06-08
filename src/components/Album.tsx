@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { css, cx } from 'emotion'
-import { Album as AlbumDetails } from '../reducer'
+import { Album as AlbumDetails } from '../state'
 
 
 type Props = {

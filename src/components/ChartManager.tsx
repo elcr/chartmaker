@@ -7,6 +7,7 @@ import { NewChartButton } from './NewChartButton'
 import { RenameActiveChartButton } from './RenameActiveChartButton'
 import { DeleteActiveChartButton } from './DeleteActiveChartButton'
 import { Chart } from '../state'
+import { SidebarGroup } from './SidebarGroup'
 
 
 type Props = DispatchProps<
@@ -20,29 +21,19 @@ type Props = DispatchProps<
 }
 
 
-const containerStyle = css({
-    borderBottom: '1px solid white',
-    paddingBottom: '1rem',
-    marginBottom: '1rem'
-})
-
-
 const buttonsContainerStyle = css({
     display: 'flex'
 })
 
 
-export const ChartManager: FC<Props> = ({ dispatch, charts, activeChart }) => {
-    return (
-        <div className={containerStyle}>
-            <ChartSelector dispatch={dispatch}
-                charts={charts}
-                activeChart={activeChart}/>
-            <div className={buttonsContainerStyle}>
-                <NewChartButton dispatch={dispatch}/>
-                <RenameActiveChartButton dispatch={dispatch}/>
-                <DeleteActiveChartButton dispatch={dispatch}/>
-            </div>
+export const ChartManager: FC<Props> = ({ dispatch, charts, activeChart }) =>
+    <SidebarGroup>
+        <ChartSelector dispatch={dispatch}
+            charts={charts}
+            activeChart={activeChart}/>
+        <div className={buttonsContainerStyle}>
+            <NewChartButton dispatch={dispatch}/>
+            <RenameActiveChartButton dispatch={dispatch}/>
+            <DeleteActiveChartButton dispatch={dispatch}/>
         </div>
-    )
-}
+    </SidebarGroup>

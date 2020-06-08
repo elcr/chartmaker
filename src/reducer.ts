@@ -15,8 +15,8 @@ type Action =
     | { tag: 'PromptToDeleteActiveChart' }
     | { tag: 'DeleteActiveChart' }
 
-export type ActionTag = Action['tag']
 
+export type ActionTag = Action['tag']
 export type Dispatch<T extends ActionTag = ActionTag> = _Dispatch<Extract<Action, { tag: T }>>
 export type DispatchProps<T extends ActionTag = ActionTag> = {
     dispatch: Dispatch<T>

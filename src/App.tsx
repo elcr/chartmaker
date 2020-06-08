@@ -27,9 +27,7 @@ export const App = () => {
 
     return (
         <div className={rootStyle}>
-            <Sidebar dispatch={dispatch}
-                charts={state.charts}
-                activeChart={state.activeChart}/>
+            <Sidebar {...state} dispatch={dispatch}/>
             <Chart {...state.activeChart}/>
         </div>
     )

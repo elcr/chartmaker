@@ -3,6 +3,10 @@ import { css } from 'emotion'
 
 import { DispatchProps } from '../reducer'
 import { Chart } from '../state'
+import { Label } from './Label'
+
+
+const id = 'chartSelector'
 
 
 type Props = DispatchProps<'ChangeActiveChart'> & {
@@ -15,11 +19,6 @@ const containerStyle = css({
     display: 'flex',
     flexDirection: 'column',
     marginBottom: '0.5rem'
-})
-
-
-const labelStyle = css({
-    marginBottom: '0.25rem'
 })
 
 
@@ -42,10 +41,10 @@ export const ChartSelector: FC<Props> = ({ dispatch, charts, activeChart }) => {
 
     return (
         <div className={containerStyle}>
-            <label className={labelStyle} htmlFor='selectChart'>
+            <Label target={id}>
                 Active chart
-            </label>
-            <select id='selectChart'
+            </Label>
+            <select id={id}
                     value={activeChart.name}
                     onChange={updateActiveChart}>
                 {options}

@@ -1,8 +1,9 @@
 import { Dispatch as _Dispatch } from 'react'
 
 import { SideEffectUpdate } from './hooks'
-import { Chart, State, createChart, SearchState, Album } from './state'
+import { Chart, State, createChart, SearchState } from './state'
 import { readInputFileText, splitArrayAtIndex } from './utils'
+import { search } from './api'
 
 
 type Action =
@@ -29,51 +30,6 @@ export type ActionTag = Action['tag']
 export type Dispatch<T extends ActionTag = ActionTag> = _Dispatch<Extract<Action, { tag: T }>>
 export type DispatchProps<T extends ActionTag = ActionTag> = {
     dispatch: Dispatch<T>
-}
-
-
-type SearchResult = {
-    results: {
-        albummatches: {
-            album: {
-                name: string
-                artist: string
-                image: {
-                    '#text': string
-                    size: 'small' | 'medium' | 'large' | 'extralarge'
-                }[]
-            }[]
-        }
-    }
-}
-
-
-function isLastFMNullString(value: string): boolean {
-    // Although Last.fm offers a JSON API, it doesn't make use of any JSON
-    // types other than strings. Null values are represented by the string
-    // '(null)' or just an empty string. Why even bother with JSON then...?
-    return value === '' || value === '(null)'
-}
-
-
-function formatSearchResult(result: SearchResult): Album[] {
-    const albums: Album[] = []
-    for (const album of result.results.albummatches.album) {
-        if (isLastFMNullString(album.artist)
-                || isLastFMNullString(album.name)
-                || album.image.some(image => isLastFMNullString(image['#text']))) {
-            continue
-        }
-        albums.push({
-            artist: album.artist,
-            title: album.name,
-            image: {
-                smallURL: album.image[0]['#text'],
-                largeURL: album.image[album.image.length - 1]['#text']
-            }
-        })
-    }
-    return albums
 }
 
 
@@ -277,7 +233,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 return { tag: 'NoUpdate' }
             }
 
-            if (state.apiKey.length === 0) {
+            if (state.apiKey.trim().length === 0) {
                 return {
                     tag: 'Update',
                     state: {
@@ -303,61 +259,55 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     }
                 },
                 sideEffect: async (dispatch, state) => {
-                    const url = `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${state.search.query.trim()}&api_key=${state.apiKey}&format=json`
-
-                    let response: Response
-                    try {
-                        response = await fetch(url, {
-                            signal: controller.signal
-                        })
-                    }
-                    catch {
-                        dispatch({
-                            tag: 'UpdateSearchState',
-                            state: {
-                                tag: 'Error',
-                                query: state.search.query,
-                                message: 'Network error sending request to Last.fm'
-                            }
-                        })
-                        return
-                    }
-                    if (!response.ok) {
-                        dispatch({
-                            tag: 'UpdateSearchState',
-                            state: {
-                                tag: 'Error',
-                                query: state.search.query,
-                                message: `Last.fm request returned ${response.status}`
-                            }
-                        })
-                        return
-                    }
-
-                    let result: SearchResult
-                    try {
-                        result = await response.json()
-                    }
-                    catch {
-                        dispatch({
-                            tag: 'UpdateSearchState',
-                            state: {
-                                tag: 'Error',
-                                query: state.search.query,
-                                message: 'Invalid data returned from Last.fm'
-                            }
-                        })
-                        return
-                    }
-
-                    dispatch({
-                        tag: 'UpdateSearchState',
-                        state: {
-                            tag: 'Complete',
-                            query: state.search.query,
-                            albums: formatSearchResult(result)
-                        }
+                    const result = await search({
+                        key: state.apiKey,
+                        query: state.search.query,
+                        signal: controller.signal
                     })
+                    switch (result.tag) {
+                        case 'Ok': {
+                            dispatch({
+                                tag: 'UpdateSearchState',
+                                state: {
+                                    tag: 'Complete',
+                                    query: state.search.query,
+                                    albums: result.albums
+                                }
+                            })
+                            break
+                        }
+                        case 'StatusError': {
+                            dispatch({
+                                tag: 'UpdateSearchState',
+                                state: {
+                                    tag: 'Error',
+                                    query: state.search.query,
+                                    message: `Last.fm request returned ${result.status}`
+                                }
+                            })
+                            break
+                        }
+                        case 'JSONDecodeError': {
+                            dispatch({
+                                tag: 'UpdateSearchState',
+                                state: {
+                                    tag: 'Error',
+                                    query: state.search.query,
+                                    message: 'Invalid data returned from Last.fm'
+                                }
+                            })
+                            break
+                        }
+                        case 'NetworkError':
+                            dispatch({
+                                tag: 'UpdateSearchState',
+                                state: {
+                                    tag: 'Error',
+                                    query: state.search.query,
+                                    message: 'Network error sending request to Last.fm'
+                                }
+                            })
+                    }
                 }
             }
         }

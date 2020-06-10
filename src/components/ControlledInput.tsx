@@ -8,6 +8,7 @@ type Props = {
     placeholder?: string
     value: string
     onChange: (value: string) => void
+    disabled?: boolean
 }
 
 
@@ -17,10 +18,10 @@ const style = css({
 
 
 export const ControlledInput: FC<Props> = ({ onChange, ...props }) => {
-    function update(event: ChangeEvent<HTMLInputElement>) {
+    function controlledOnChange(event: ChangeEvent<HTMLInputElement>) {
         event.preventDefault()
         onChange(event.currentTarget.value)
     }
 
-    return <input {...props} className={style} onChange={update}/>
+    return <input {...props} className={style} onChange={controlledOnChange}/>
 }

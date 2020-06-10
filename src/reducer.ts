@@ -1,7 +1,7 @@
 import { Dispatch as _Dispatch } from 'react'
 
 import { SideEffectUpdate } from './hooks'
-import { Chart, State, createChart } from './state'
+import { Chart, State, createChart, SearchState, Album } from './state'
 import { readInputFileText, splitArrayAtIndex } from './utils'
 
 
@@ -19,12 +19,44 @@ type Action =
     | { tag: 'ShowInvalidImportJSONMessage' }
     | { tag: 'UpdateAllState', state: State }
     | { tag: 'PromptToExportState' }
+    | { tag: 'CancelSearchRequest' }
+    | { tag: 'SendSearchRequest' }
+    | { tag: 'UpdateSearchState', state: SearchState }
+    | { tag: 'UpdateSearchQuery', query: string }
 
 
 export type ActionTag = Action['tag']
 export type Dispatch<T extends ActionTag = ActionTag> = _Dispatch<Extract<Action, { tag: T }>>
 export type DispatchProps<T extends ActionTag = ActionTag> = {
     dispatch: Dispatch<T>
+}
+
+
+type SearchResult = {
+    results: {
+        albummatches: {
+            album: {
+                name: string
+                artist: string
+                image: {
+                    '#text': string
+                    size: 'small' | 'medium' | 'large' | 'extralarge'
+                }[]
+            }[]
+        }
+    }
+}
+
+
+function formatSearchResult(result: SearchResult): Album[] {
+    return result.results.albummatches.album.map(album => ({
+        artist: album.artist,
+        title: album.name,
+        image: {
+            smallURL: album.image[0]['#text'],
+            largeURL: album.image[album.image.length - 1]['#text']
+        }
+    }))
 }
 
 
@@ -174,10 +206,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     // only reliable way to clean up the input element.
                     // Also, this doesn't work with addEventListener for some
                     // reason.
-                    document.body.onfocus = () => {
-                        input.remove()
-                        document.body.onfocus = null
-                    }
+                    document.body.onfocus = () => input.remove()
 
                     // Doesn't seem to work on Firefox (???)
                     input.click()
@@ -208,5 +237,135 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     link.remove()
                 }
             }
+        case 'CancelSearchRequest': {
+            if (state.search.tag !== 'Loading') {
+                return { tag: 'NoUpdate' }
+            }
+            const controller = state.search.controller
+            return {
+                tag: 'UpdateWithSideEffect',
+                state: {
+                    ...state,
+                    search: {
+                        tag: 'Waiting',
+                        query: state.search.query
+                    }
+                },
+                sideEffect: () => controller.abort()
+            }
+        }
+        case 'SendSearchRequest': {
+            if (state.search.tag === 'Loading'
+                    || state.search.query.trim().length === 0) {
+                return { tag: 'NoUpdate' }
+            }
+
+            if (state.apiKey.length === 0) {
+                return {
+                    tag: 'Update',
+                    state: {
+                        ...state,
+                        search: {
+                            tag: 'Error',
+                            query: state.search.query,
+                            message: 'Last.fm API key required'
+                        }
+                    }
+                }
+            }
+
+            const controller = new AbortController()
+            return {
+                tag: 'UpdateWithSideEffect',
+                state: {
+                    ...state,
+                    search: {
+                        tag: 'Loading',
+                        query: state.search.query,
+                        controller
+                    }
+                },
+                sideEffect: async (dispatch, state) => {
+                    const url = `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${state.search.query.trim()}&api_key=${state.apiKey}&format=json`
+
+                    let response: Response
+                    try {
+                        response = await fetch(url, {
+                            signal: controller.signal
+                        })
+                    }
+                    catch {
+                        dispatch({
+                            tag: 'UpdateSearchState',
+                            state: {
+                                tag: 'Error',
+                                query: state.search.query,
+                                message: 'Network error sending request to Last.fm'
+                            }
+                        })
+                        return
+                    }
+                    if (!response.ok) {
+                        dispatch({
+                            tag: 'UpdateSearchState',
+                            state: {
+                                tag: 'Error',
+                                query: state.search.query,
+                                message: `Last.fm request returned ${response.status}`
+                            }
+                        })
+                        return
+                    }
+
+                    let result: SearchResult
+                    try {
+                        result = await response.json()
+                    }
+                    catch {
+                        dispatch({
+                            tag: 'UpdateSearchState',
+                            state: {
+                                tag: 'Error',
+                                query: state.search.query,
+                                message: 'Invalid data returned from Last.fm'
+                            }
+                        })
+                        return
+                    }
+
+                    dispatch({
+                        tag: 'UpdateSearchState',
+                        state: {
+                            tag: 'Complete',
+                            query: state.search.query,
+                            albums: formatSearchResult(result)
+                        }
+                    })
+                }
+            }
+        }
+        case 'UpdateSearchState':
+            return {
+                tag: 'Update',
+                state: {
+                    ...state,
+                    search: action.state
+                }
+            }
+        case 'UpdateSearchQuery': {
+            if (state.search.tag === 'Loading') {
+                return { tag: 'NoUpdate' }
+            }
+            return {
+                tag: 'Update',
+                state: {
+                    ...state,
+                    search: {
+                        ...state.search,
+                        query: action.query
+                    }
+                }
+            }
+        }
     }
 }

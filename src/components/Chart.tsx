@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { Chart as ChartDetails } from '../state'
+import { Chart as ChartDetails, formatAlbumTitle } from '../state'
 import { AlbumRow } from './AlbumRow'
 import { TitleGroup } from './TitleGroup'
 import {
@@ -51,7 +51,7 @@ export const Chart: FC<Props> = ({ albums, name }) => {
             if (album === null) {
                 continue
             }
-            titles.push(album.title)
+            titles.push(formatAlbumTitle(album))
         }
         return <TitleGroup key={index} titles={titles}/>
     })

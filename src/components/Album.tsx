@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { css, cx } from 'emotion'
-import { Album as AlbumDetails } from '../state'
+import { Album as AlbumDetails, formatAlbumTitle } from '../state'
 
 
 type Props = {
@@ -25,7 +25,7 @@ export const Album: FC<Props> = ({ details, sizeRem }) => {
     )
     const image = details === null
         ? null
-        : <img src={details.imageURL} alt={details.title}/>
+        : <img src={details.image.smallURL} alt={formatAlbumTitle(details)}/>
     return (
         <div className={style}>
             {image}

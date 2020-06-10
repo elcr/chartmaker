@@ -27,8 +27,13 @@ export const App = () => {
 
     return (
         <div className={rootStyle}>
-            <Sidebar {...state} dispatch={dispatch}/>
-            <Chart {...state.activeChart}/>
+            <Sidebar dispatch={dispatch}
+                charts={state.charts}
+                activeChart={state.activeChart}
+                apiKey={state.apiKey}
+                searchState={state.search}/>
+            <Chart name={state.activeChart.name}
+                albums={state.activeChart.albums}/>
         </div>
     )
 }

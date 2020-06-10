@@ -3,9 +3,11 @@ import { css } from 'emotion'
 
 import { ChartManager } from './ChartManager'
 import { DispatchProps } from '../reducer'
-import { Chart } from '../state'
+import { Chart, SearchState } from '../state'
 import { APIKeyInput } from './APIKeyInput'
 import { ImportExportButtons } from './ImportExportButtons'
+import { SearchBox } from './SearchBox'
+import { SearchResults } from './SearchResults'
 
 
 type Props = DispatchProps<
@@ -16,10 +18,14 @@ type Props = DispatchProps<
     | 'UpdateAPIKey'
     | 'PromptToSelectImportJSON'
     | 'PromptToExportState'
+    | 'UpdateSearchQuery'
+    | 'SendSearchRequest'
+    | 'CancelSearchRequest'
 > & {
     charts: Chart[]
     activeChart: Chart,
     apiKey: string
+    searchState: SearchState
 }
 
 
@@ -29,9 +35,18 @@ const style = css({
 })
 
 
-export const Sidebar: FC<Props> = props =>
-    <aside className={style}>
-        <ChartManager {...props}/>
-        <APIKeyInput {...props}/>
-        <ImportExportButtons {...props}/>
-    </aside>
+export const Sidebar: FC<Props> = ({ dispatch, charts, activeChart, apiKey, searchState }) => {
+    const searchResults = searchState.tag === 'Complete'
+        ? <SearchResults albums={searchState.albums}/>
+        : null
+
+    return (
+        <aside className={style}>
+            <ChartManager dispatch={dispatch} charts={charts} activeChart={activeChart}/>
+            <ImportExportButtons dispatch={dispatch}/>
+            <APIKeyInput dispatch={dispatch} apiKey={apiKey}/>
+            <SearchBox dispatch={dispatch} searchState={searchState}/>
+            {searchResults}
+        </aside>
+    )
+}

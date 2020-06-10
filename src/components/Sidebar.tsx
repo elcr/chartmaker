@@ -31,7 +31,7 @@ type Props = DispatchProps<
 
 const style = css({
     marginRight: '1rem',
-    width: '15rem'
+    width: '16rem'
 })
 
 

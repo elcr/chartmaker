@@ -1,6 +1,8 @@
 import React, { FC } from 'react'
 import { css, cx } from 'emotion'
+
 import { Album as AlbumDetails, formatAlbumTitle } from '../state'
+import { Image } from './Image'
 
 
 type Props = {
@@ -23,9 +25,15 @@ export const Album: FC<Props> = ({ details, sizeRem }) => {
             height: `${sizeRem}rem`
         })
     )
-    const image = details === null
-        ? null
-        : <img src={details.image.smallURL} alt={formatAlbumTitle(details)}/>
+    let image: JSX.Element | null = null
+    if (details !== null) {
+        const title = formatAlbumTitle(details)
+        image = (
+            <Image url={details.image.largeURL}
+                alt={title}
+                title={title}/>
+        )
+    }
     return (
         <div className={style}>
             {image}

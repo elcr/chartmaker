@@ -4,7 +4,7 @@ import { Album as AlbumDetails, formatAlbumTitle } from '../state'
 import { css } from 'emotion'
 import { SidebarGroup } from './SidebarGroup'
 import { Album } from './Album'
-import { SMALL_ROW_SIZE_REM } from '../constants'
+import { LARGE_ROW_SIZE_REM } from '../constants'
 
 
 type Props = {
@@ -14,14 +14,15 @@ type Props = {
 
 const style = css({
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'center'
 })
 
 
 export const SearchResults: FC<Props> = ({ albums }) => {
     const albumElements = albums.map(album => {
         const title = formatAlbumTitle(album)
-        return <Album key={title} details={album} sizeRem={SMALL_ROW_SIZE_REM}/>
+        return <Album key={title} details={album} sizeRem={LARGE_ROW_SIZE_REM}/>
     })
 
     return (

@@ -48,15 +48,32 @@ type SearchResult = {
 }
 
 
+function isLastFMNullString(value: string): boolean {
+    // Although Last.fm offers a JSON API, it doesn't make use of any JSON
+    // types other than strings. Null values are represented by the string
+    // '(null)' or just an empty string. Why even bother with JSON then...?
+    return value === '' || value === '(null)'
+}
+
+
 function formatSearchResult(result: SearchResult): Album[] {
-    return result.results.albummatches.album.map(album => ({
-        artist: album.artist,
-        title: album.name,
-        image: {
-            smallURL: album.image[0]['#text'],
-            largeURL: album.image[album.image.length - 1]['#text']
+    const albums: Album[] = []
+    for (const album of result.results.albummatches.album) {
+        if (isLastFMNullString(album.artist)
+                || isLastFMNullString(album.name)
+                || album.image.some(image => isLastFMNullString(image['#text']))) {
+            continue
         }
-    }))
+        albums.push({
+            artist: album.artist,
+            title: album.name,
+            image: {
+                smallURL: album.image[0]['#text'],
+                largeURL: album.image[album.image.length - 1]['#text']
+            }
+        })
+    }
+    return albums
 }
 
 

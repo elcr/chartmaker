@@ -1,24 +1,23 @@
-import { CHART_ALBUMS_COUNT } from './constants'
+import { CHART_ALBUMS_COUNT, DEFAULT_CHART_NAME } from './constants'
 
 
-export type Album = {
-    artist: string
-    title: string
-    image: {
-        smallURL: string
-        largeURL: string
+export type Album =
+    | {
+        placeholder: true
+        id: number
     }
-}
-
-
-export function formatAlbumTitle(album: Pick<Album, 'artist' | 'title'>) {
-    return `${album.artist} - ${album.title}`
-}
+    | {
+        placeholder: false
+        id: number
+        artist: string
+        title: string
+        url: string
+    }
 
 
 export type Chart = {
     name: string
-    albums: (Album | null)[]
+    albums: Album[]
 }
 
 
@@ -32,25 +31,47 @@ export type SearchState =
 export type State = {
     apiKey: string
     charts: Chart[]
-    activeChart: Chart
+    activeChartName: string
+    draggedAlbumID: number | null
+    searchDragTargetAlbumID: number | null
     search: SearchState
+    albumIDCounter: number
 }
 
 
-export function createChart(name = 'Untitled chart'): Chart {
-    return {
-        name,
-        albums: Array(CHART_ALBUMS_COUNT).fill(null)
+type CreateChartArguments = {
+    albumIDCounter?: number
+    name?: string
+}
+
+
+export function createChart({
+    albumIDCounter = 0,
+    name = DEFAULT_CHART_NAME
+}: CreateChartArguments = {}): [ number, Chart ] {
+    const albums: Album[] = []
+    for (let id = albumIDCounter + 1; id < albumIDCounter + CHART_ALBUMS_COUNT + 1; id++) {
+        albums.push({ placeholder: true, id })
     }
+    return [
+        albumIDCounter + CHART_ALBUMS_COUNT,
+        {
+            name,
+            albums
+        }
+    ]
 }
 
 
 export function createInitialState(): State {
-    const chart = createChart()
+    const [ albumIDCounter, chart ] = createChart()
     return {
         apiKey: '',
         charts: [ chart ],
-        activeChart: chart,
-        search: { tag: 'Waiting', query: '' }
+        activeChartName: chart.name,
+        draggedAlbumID: null,
+        searchDragTargetAlbumID: null,
+        search: { tag: 'Waiting', query: '' },
+        albumIDCounter
     }
 }

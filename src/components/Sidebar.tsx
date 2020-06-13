@@ -21,11 +21,14 @@ type Props = DispatchProps<
     | 'UpdateSearchQuery'
     | 'SendSearchRequest'
     | 'CancelSearchRequest'
+    | 'BeginDraggingAlbum'
+    | 'DropSearchAlbum'
 > & {
     charts: Chart[]
-    activeChart: Chart,
+    activeChartName: string,
     apiKey: string
     searchState: SearchState
+    draggedAlbumID: number | null
 }
 
 
@@ -35,14 +38,27 @@ const style = css({
 })
 
 
-export const Sidebar: FC<Props> = ({ dispatch, charts, activeChart, apiKey, searchState }) => {
+export const Sidebar: FC<Props> = ({
+    dispatch,
+    charts,
+    activeChartName,
+    apiKey,
+    searchState,
+    draggedAlbumID
+}) => {
     const searchResults = searchState.tag === 'Complete'
-        ? <SearchResults albums={searchState.albums}/>
+        ? (
+            <SearchResults dispatch={dispatch}
+                albums={searchState.albums}
+                draggedAlbumID={draggedAlbumID}/>
+        )
         : null
 
     return (
         <aside className={style}>
-            <ChartManager dispatch={dispatch} charts={charts} activeChart={activeChart}/>
+            <ChartManager dispatch={dispatch}
+                charts={charts}
+                activeChartName={activeChartName}/>
             <ImportExportButtons dispatch={dispatch}/>
             <APIKeyInput dispatch={dispatch} apiKey={apiKey}/>
             <SearchBox dispatch={dispatch} searchState={searchState}/>

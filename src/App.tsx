@@ -25,15 +25,24 @@ export const App = () => {
         reducer
     )
 
+    const activeChart = state.charts.find(chart =>
+        chart.name === state.activeChartName
+    )
+    const chart = activeChart === undefined
+        ? null
+        : <Chart dispatch={dispatch}
+            details={activeChart}
+            draggedAlbumID={state.draggedAlbumID}/>
+
     return (
         <div className={rootStyle}>
             <Sidebar dispatch={dispatch}
                 charts={state.charts}
-                activeChart={state.activeChart}
+                activeChartName={state.activeChartName}
                 apiKey={state.apiKey}
-                searchState={state.search}/>
-            <Chart name={state.activeChart.name}
-                albums={state.activeChart.albums}/>
+                searchState={state.search}
+                draggedAlbumID={state.draggedAlbumID}/>
+            {chart}
         </div>
     )
 }

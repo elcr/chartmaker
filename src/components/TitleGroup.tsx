@@ -14,8 +14,8 @@ const style = css({
 
 
 export const TitleGroup: FC<Props> = ({ titles }) => {
-    const titleElements = titles.map(title =>
-        <div key={title}>
+    const titleElements = titles.map((title, index) =>
+        <div key={index}>
             {title}
         </div>
     )

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { Chart as ChartDetails, formatAlbumTitle } from '../state'
+import { Chart as ChartDetails } from '../state'
 import { AlbumRow } from './AlbumRow'
 import { TitleGroup } from './TitleGroup'
 import {
@@ -10,9 +10,14 @@ import {
     MEDIUM_ROW_SIZE_REM,
     SMALL_ROW_SIZE_REM
 } from '../constants'
+import { DispatchProps } from '../reducer'
+import { formatAlbumTitle } from '../utils'
 
 
-type Props = ChartDetails
+type Props = DispatchProps<'BeginDraggingAlbum' | 'DragChartAlbum' | 'DropChartAlbum'> & {
+    details: ChartDetails
+    draggedAlbumID: number | null
+}
 
 
 const outContainerStyle = css({
@@ -36,7 +41,7 @@ const chartStyle = css({
 })
 
 
-export const Chart: FC<Props> = ({ albums, name }) => {
+export const Chart: FC<Props> = ({ dispatch, details: { albums, name }, draggedAlbumID }) => {
     const groups = [
         albums.slice(0, 5),
         albums.slice(5, 11),
@@ -48,7 +53,7 @@ export const Chart: FC<Props> = ({ albums, name }) => {
     const titleGroups = groups.map((group, index) => {
         const titles: string[] = []
         for (const album of group) {
-            if (album === null) {
+            if (album.placeholder) {
                 continue
             }
             titles.push(formatAlbumTitle(album))
@@ -61,12 +66,30 @@ export const Chart: FC<Props> = ({ albums, name }) => {
             <h1>{name}</h1>
             <div className={innerContainerStyle}>
                 <div className={chartStyle}>
-                    <AlbumRow albums={groups[0]} sizeRem={VERY_LARGE_ROW_SIZE_REM}/>
-                    <AlbumRow albums={groups[1]} sizeRem={LARGE_ROW_SIZE_REM}/>
-                    <AlbumRow albums={groups[2]} sizeRem={LARGE_ROW_SIZE_REM}/>
-                    <AlbumRow albums={groups[3]} sizeRem={MEDIUM_ROW_SIZE_REM}/>
-                    <AlbumRow albums={groups[4]} sizeRem={MEDIUM_ROW_SIZE_REM}/>
-                    <AlbumRow albums={groups[5]} sizeRem={SMALL_ROW_SIZE_REM}/>
+                    <AlbumRow dispatch={dispatch}
+                        albums={groups[0]}
+                        draggedAlbumID={draggedAlbumID}
+                        sizeRem={VERY_LARGE_ROW_SIZE_REM}/>
+                    <AlbumRow dispatch={dispatch}
+                        albums={groups[1]}
+                        draggedAlbumID={draggedAlbumID}
+                        sizeRem={LARGE_ROW_SIZE_REM}/>
+                    <AlbumRow dispatch={dispatch}
+                        albums={groups[2]}
+                        draggedAlbumID={draggedAlbumID}
+                        sizeRem={LARGE_ROW_SIZE_REM}/>
+                    <AlbumRow dispatch={dispatch}
+                        albums={groups[3]}
+                        draggedAlbumID={draggedAlbumID}
+                        sizeRem={MEDIUM_ROW_SIZE_REM}/>
+                    <AlbumRow dispatch={dispatch}
+                        albums={groups[4]}
+                        draggedAlbumID={draggedAlbumID}
+                        sizeRem={MEDIUM_ROW_SIZE_REM}/>
+                    <AlbumRow dispatch={dispatch}
+                        albums={groups[5]}
+                        draggedAlbumID={draggedAlbumID}
+                        sizeRem={SMALL_ROW_SIZE_REM}/>
                 </div>
                 <div>
                     {titleGroups}

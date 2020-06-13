@@ -1,6 +1,3 @@
-import { Album } from './state'
-
-
 type LastFMResult = {
     results: {
         albummatches: {
@@ -9,7 +6,6 @@ type LastFMResult = {
                 artist: string
                 image: {
                     '#text': string
-                    size: 'small' | 'medium' | 'large' | 'extralarge'
                 }[]
             }[]
         }
@@ -25,6 +21,13 @@ function isLastFMNullString(value: string): boolean {
 }
 
 
+type Album = {
+    artist: string
+    title: string
+    url: string
+}
+
+
 function formatLastFMResult(result: LastFMResult): Album[] {
     const albums: Album[] = []
     for (const album of result.results.albummatches.album) {
@@ -36,10 +39,7 @@ function formatLastFMResult(result: LastFMResult): Album[] {
         albums.push({
             artist: album.artist,
             title: album.name,
-            image: {
-                smallURL: album.image[0]['#text'],
-                largeURL: album.image[album.image.length - 1]['#text']
-            }
+            url: album.image[album.image.length - 1]['#text']
         })
     }
     return albums

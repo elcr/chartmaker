@@ -14,9 +14,8 @@ import { DispatchProps } from '../reducer'
 import { formatAlbumTitle } from '../utils'
 
 
-type Props = DispatchProps<'BeginDraggingAlbum' | 'DragChartAlbum' | 'DropChartAlbum'> & {
+type Props = DispatchProps<'DragChartAlbum' | 'DropSearchAlbum'> & {
     details: ChartDetails
-    draggedAlbumID: number | null
 }
 
 
@@ -41,7 +40,7 @@ const chartStyle = css({
 })
 
 
-export const Chart: FC<Props> = ({ dispatch, details: { albums, name }, draggedAlbumID }) => {
+export const Chart: FC<Props> = ({ dispatch, details: { albums, name } }) => {
     const groups = [
         albums.slice(0, 5),
         albums.slice(5, 11),
@@ -68,27 +67,21 @@ export const Chart: FC<Props> = ({ dispatch, details: { albums, name }, draggedA
                 <div className={chartStyle}>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[0]}
-                        draggedAlbumID={draggedAlbumID}
                         sizeRem={VERY_LARGE_ROW_SIZE_REM}/>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[1]}
-                        draggedAlbumID={draggedAlbumID}
                         sizeRem={LARGE_ROW_SIZE_REM}/>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[2]}
-                        draggedAlbumID={draggedAlbumID}
                         sizeRem={LARGE_ROW_SIZE_REM}/>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[3]}
-                        draggedAlbumID={draggedAlbumID}
                         sizeRem={MEDIUM_ROW_SIZE_REM}/>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[4]}
-                        draggedAlbumID={draggedAlbumID}
                         sizeRem={MEDIUM_ROW_SIZE_REM}/>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[5]}
-                        draggedAlbumID={draggedAlbumID}
                         sizeRem={SMALL_ROW_SIZE_REM}/>
                 </div>
                 <div>

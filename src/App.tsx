@@ -1,5 +1,7 @@
 import React from 'react'
 import { css } from 'emotion'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 import { useLocalStorageSideEffectReducer } from './hooks'
 import { reducer } from './reducer'
@@ -30,19 +32,18 @@ export const App = () => {
     )
     const chart = activeChart === undefined
         ? null
-        : <Chart dispatch={dispatch}
-            details={activeChart}
-            draggedAlbumID={state.draggedAlbumID}/>
+        : <Chart dispatch={dispatch} details={activeChart}/>
 
     return (
-        <div className={rootStyle}>
-            <Sidebar dispatch={dispatch}
-                charts={state.charts}
-                activeChartName={state.activeChartName}
-                apiKey={state.apiKey}
-                searchState={state.search}
-                draggedAlbumID={state.draggedAlbumID}/>
-            {chart}
-        </div>
+        <DndProvider backend={HTML5Backend}>
+            <div className={rootStyle}>
+                <Sidebar dispatch={dispatch}
+                    charts={state.charts}
+                    activeChartName={state.activeChartName}
+                    apiKey={state.apiKey}
+                    searchState={state.search}/>
+                {chart}
+            </div>
+        </DndProvider>
     )
 }

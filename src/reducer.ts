@@ -24,10 +24,8 @@ type Action =
     | { tag: 'SendSearchRequest' }
     | { tag: 'UpdateSearchState', state: SearchState }
     | { tag: 'UpdateSearchQuery', query: string }
-    | { tag: 'BeginDraggingAlbum', id: number }
-    | { tag: 'DragChartAlbum', targetID: number }
-    | { tag: 'DropChartAlbum' }
-    | { tag: 'DropSearchAlbum' }
+    | { tag: 'DragChartAlbum', sourceID: number, targetID: number }
+    | { tag: 'DropSearchAlbum', sourceID: number, targetID: number }
 
 
 export type ActionTag = Action['tag']
@@ -52,8 +50,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 tag: 'Update',
                 state: {
                     ...state,
-                    activeChartName: action.name,
-                    draggedAlbumID: null
+                    activeChartName: action.name
                 }
             }
         case 'PromptForNewChart':
@@ -88,7 +85,6 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     ...state,
                     charts: [ ...state.charts, chart ],
                     activeChartName: chart.name,
-                    draggedAlbumID: null,
                     albumIDCounter
                 }
             }
@@ -147,8 +143,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                         ...state,
                         charts: [ chart ],
                         activeChartName: chart.name,
-                        albumIDCounter,
-                        draggedAlbumID: null
+                        albumIDCounter
                     }
                 }
             }
@@ -171,8 +166,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 state: {
                     ...state,
                     charts,
-                    activeChartName: previousName,
-                    draggedAlbumID: null
+                    activeChartName: previousName
                 }
             }
         }
@@ -373,16 +367,60 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 }
             }
         }
-        case 'BeginDraggingAlbum':
+        case 'DragChartAlbum': {
+            const activeChartIndex = findIndex(state.charts, chart => chart.name === state.activeChartName)
+            if (activeChartIndex === null) {
+                return { tag: 'NoUpdate' }
+            }
+            const activeChart = state.charts[activeChartIndex]
+
+            const sourceIndex = findIndex(activeChart.albums, album => album.id === action.sourceID)
+            if (sourceIndex === null) {
+                return { tag: 'NoUpdate' }
+            }
+
+            const targetIndex = findIndex(activeChart.albums, album => album.id === action.targetID)
+            if (targetIndex === null) {
+                return { tag: 'NoUpdate' }
+            }
+
+            let albums: Album[]
+            if (sourceIndex < targetIndex) {
+                albums = [
+                    ...activeChart.albums.slice(0, sourceIndex),
+                    ...activeChart.albums.slice(sourceIndex + 1, targetIndex + 1),
+                    activeChart.albums[sourceIndex],
+                    ...activeChart.albums.slice(targetIndex + 1)
+                ]
+            }
+            else {
+                albums = [
+                    ...activeChart.albums.slice(0, targetIndex),
+                    activeChart.albums[sourceIndex],
+                    ...activeChart.albums.slice(targetIndex, sourceIndex),
+                    ...activeChart.albums.slice(sourceIndex + 1)
+                ]
+            }
+
             return {
                 tag: 'Update',
                 state: {
                     ...state,
-                    draggedAlbumID: action.id
+                    charts: [
+                        ...state.charts.slice(0, activeChartIndex),
+                        { ...activeChart, albums },
+                        ...state.charts.slice(activeChartIndex + 1)
+                    ]
                 }
             }
-        case 'DragChartAlbum': {
-            if (state.draggedAlbumID === null) {
+        }
+        case 'DropSearchAlbum': {
+            if (state.search.tag !== 'Complete') {
+                return { tag: 'NoUpdate' }
+            }
+
+            const source = state.search.albums.find(album => album.id === action.sourceID)
+            if (source === undefined) {
                 return { tag: 'NoUpdate' }
             }
 
@@ -397,96 +435,22 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 return { tag: 'NoUpdate' }
             }
 
-            const draggedIndex = findIndex(activeChart.albums, album => album.id === state.draggedAlbumID)
-            if (draggedIndex === null) {
-                return {
-                    tag: 'Update',
-                    state: {
-                        ...state,
-                        searchDragTargetAlbumID: action.targetID
-                    }
-                }
-            }
-
-            let albums: Album[]
-            if (draggedIndex < targetIndex) {
-                albums = [
-                    ...activeChart.albums.slice(0, draggedIndex),
-                    ...activeChart.albums.slice(draggedIndex + 1, targetIndex + 1),
-                    activeChart.albums[draggedIndex],
-                    ...activeChart.albums.slice(targetIndex + 1)
-                ]
-            }
-            else {
-                albums = [
-                    ...activeChart.albums.slice(0, targetIndex),
-                    activeChart.albums[draggedIndex],
-                    ...activeChart.albums.slice(targetIndex, draggedIndex),
-                    ...activeChart.albums.slice(draggedIndex + 1)
-                ]
-            }
-
             return {
                 tag: 'Update',
                 state: {
                     ...state,
-                    charts: [
-                        ...state.charts.slice(0, activeChartIndex),
-                        { ...activeChart, albums },
-                        ...state.charts.slice(activeChartIndex + 1)
-                    ],
-                    searchDragTargetAlbumID: action.targetID
-                }
-            }
-        }
-        case 'DropChartAlbum':
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    draggedAlbumID: null,
-                    searchDragTargetAlbumID: null
-                }
-            }
-        case 'DropSearchAlbum': {
-            if (state.search.tag !== 'Complete') {
-                return { tag: 'NoUpdate' }
-            }
-
-            const activeChartIndex = findIndex(state.charts, chart => chart.name === state.activeChartName)
-            if (activeChartIndex === null) {
-                return { tag: 'NoUpdate' }
-            }
-            const activeChart = state.charts[activeChartIndex]
-
-            const album = state.search.albums.find(album => album.id === state.draggedAlbumID)
-            if (album === undefined) {
-                return { tag: 'NoUpdate' }
-            }
-
-            const targetIndex = findIndex(activeChart.albums, album => album.id === state.searchDragTargetAlbumID)
-            if (targetIndex === null) {
-                return { tag: 'NoUpdate' }
-            }
-
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    draggedAlbumID: null,
                     charts: [
                         ...state.charts.slice(0, activeChartIndex),
                         {
                             ...activeChart,
                             albums: [
                                 ...activeChart.albums.slice(0, targetIndex),
-                                { ...album, id: state.albumIDCounter + 1 },
+                                { ...source, id: state.albumIDCounter + 1 },
                                 ...activeChart.albums.slice(targetIndex + 1)
                             ]
                         },
                         ...state.charts.slice(activeChartIndex + 1)
                     ],
-                    searchDragTargetAlbumID: null,
                     albumIDCounter: state.albumIDCounter + 1
                 }
             }

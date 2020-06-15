@@ -2,13 +2,12 @@ import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import { Album } from '../state'
-import { AlbumCover } from './AlbumCover'
 import { DispatchProps } from '../reducer'
+import { ChartAlbumCover } from './ChartAlbumCover'
 
 
-type Props = DispatchProps<'BeginDraggingAlbum' | 'DragChartAlbum' | 'DropChartAlbum'> & {
+type Props = DispatchProps<'DragChartAlbum' | 'DropSearchAlbum'> & {
     albums: Album[]
-    draggedAlbumID: number | null
     sizeRem: number
 }
 
@@ -18,29 +17,13 @@ const style = css({
 })
 
 
-export const AlbumRow: FC<Props> = ({ dispatch, albums, draggedAlbumID, sizeRem }) => {
-    function drop() {
-        dispatch({ tag: 'DropChartAlbum' })
-    }
-
-    const albumCovers = albums.map(album => {
-        function drag() {
-            dispatch({
-                tag: 'DragChartAlbum',
-                targetID: album.id
-            })
-        }
-
-        return (
-            <AlbumCover key={album.id}
-                dispatch={dispatch}
-                details={album}
-                sizeRem={sizeRem}
-                dragged={album.id === draggedAlbumID}
-                onDragEnter={drag}
-                onDragEnd={drop}/>
-        )
-    })
+export const AlbumRow: FC<Props> = ({ dispatch, albums, sizeRem }) => {
+    const albumCovers = albums.map(album =>
+        <ChartAlbumCover key={album.id}
+            dispatch={dispatch}
+            details={album}
+            sizeRem={sizeRem}/>
+    )
     return (
         <div className={style}>
             {albumCovers}

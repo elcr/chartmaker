@@ -1,18 +1,16 @@
-import React, { FC } from 'react'
+import React, { FC, RefObject } from 'react'
 import { css, cx } from 'emotion'
 
 import { Album } from '../state'
 import { Image } from './Image'
-import { DispatchProps } from '../reducer'
 import { formatAlbumTitle } from '../utils'
 
 
-type Props = DispatchProps<'BeginDraggingAlbum'> & {
+type Props = {
+    innerRef: RefObject<HTMLDivElement>
     details: Album
-    dragged: boolean
     sizeRem: number
-    onDragEnter?: () => void
-    onDragEnd: () => void
+    dragged: boolean
 }
 
 
@@ -27,14 +25,7 @@ const draggedStyle = css({
 })
 
 
-export const AlbumCover: FC<Props> = ({ dispatch, details, dragged, sizeRem, onDragEnter, onDragEnd }) => {
-    function beginDragging() {
-        dispatch({
-            tag: 'BeginDraggingAlbum',
-            id: details.id
-        })
-    }
-
+export const AlbumCover: FC<Props> = ({ innerRef, details, sizeRem, dragged }) => {
     const style = cx(
         baseStyle,
         dragged ? draggedStyle : null,
@@ -51,11 +42,7 @@ export const AlbumCover: FC<Props> = ({ dispatch, details, dragged, sizeRem, onD
     }
 
     return (
-        <div className={style}
-                draggable={!details.placeholder}
-                onDragStart={details.placeholder ? undefined : beginDragging}
-                onDragEnd={onDragEnd}
-                onDragEnter={onDragEnter}>
+        <div ref={innerRef} className={style}>
             {image}
         </div>
     )

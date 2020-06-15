@@ -25,7 +25,7 @@ type Props = DispatchProps<
     | 'DropSearchAlbum'
 > & {
     charts: Chart[]
-    activeChartName: string,
+    activeChartIndex: number,
     apiKey: string
     searchState: SearchState
 }
@@ -33,14 +33,15 @@ type Props = DispatchProps<
 
 const style = css({
     marginRight: '1rem',
-    width: '16rem'
+    width: '16rem',
+    flexShrink: 0
 })
 
 
 export const Sidebar: FC<Props> = ({
     dispatch,
     charts,
-    activeChartName,
+    activeChartIndex,
     apiKey,
     searchState
 }) => {
@@ -52,7 +53,7 @@ export const Sidebar: FC<Props> = ({
         <aside className={style}>
             <ChartManager dispatch={dispatch}
                 charts={charts}
-                activeChartName={activeChartName}/>
+                activeChartIndex={activeChartIndex}/>
             <ImportExportButtons dispatch={dispatch}/>
             <APIKeyInput dispatch={dispatch} apiKey={apiKey}/>
             <SearchBox dispatch={dispatch} searchState={searchState}/>

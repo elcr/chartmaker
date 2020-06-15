@@ -11,7 +11,7 @@ const id = 'chartSelector'
 
 type Props = DispatchProps<'UpdateActiveChart'> & {
     charts: Chart[]
-    activeChartName: string
+    activeChartIndex: number
 }
 
 
@@ -22,16 +22,16 @@ const containerStyle = css({
 })
 
 
-export const ChartSelector: FC<Props> = ({ dispatch, charts, activeChartName }) => {
+export const ChartSelector: FC<Props> = ({ dispatch, charts, activeChartIndex }) => {
     function updateActiveChart(event: ChangeEvent<HTMLSelectElement>) {
         dispatch({
             tag: 'UpdateActiveChart',
-            name: event.currentTarget.value
+            index: Number(event.currentTarget.value)
         })
     }
 
-    const options = charts.map(chart =>
-        <option key={chart.name} value={chart.name}>
+    const options = charts.map((chart, index) =>
+        <option key={chart.name} value={index}>
             {chart.name}
         </option>
     )
@@ -42,7 +42,7 @@ export const ChartSelector: FC<Props> = ({ dispatch, charts, activeChartName }) 
                 Active chart
             </Label>
             <select id={id}
-                    value={activeChartName}
+                    value={activeChartIndex}
                     onChange={updateActiveChart}>
                 {options}
             </select>

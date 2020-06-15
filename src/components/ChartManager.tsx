@@ -17,7 +17,7 @@ type Props = DispatchProps<
     | 'PromptToDeleteActiveChart'
 > & {
     charts: Chart[]
-    activeChartName: string
+    activeChartIndex: number
 }
 
 
@@ -26,11 +26,11 @@ const buttonsContainerStyle = css({
 })
 
 
-export const ChartManager: FC<Props> = ({ dispatch, charts, activeChartName }) =>
+export const ChartManager: FC<Props> = ({ dispatch, charts, activeChartIndex }) =>
     <SidebarGroup>
         <ChartSelector dispatch={dispatch}
             charts={charts}
-            activeChartName={activeChartName}/>
+            activeChartIndex={activeChartIndex}/>
         <div className={buttonsContainerStyle}>
             <NewChartButton dispatch={dispatch}/>
             <RenameActiveChartButton dispatch={dispatch}/>

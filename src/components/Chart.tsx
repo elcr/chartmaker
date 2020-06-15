@@ -15,7 +15,7 @@ import { formatAlbumTitle } from '../utils'
 
 
 type Props = DispatchProps<'BeginDraggingAlbum' | 'DragChartAlbum' | 'DropChartAlbum'> & {
-    details: ChartDetails
+    details: ChartDetails,
 }
 
 

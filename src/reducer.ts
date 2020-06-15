@@ -8,7 +8,7 @@ import { search } from './api'
 
 type Action =
     | { tag: 'UpdateAPIKey', apiKey: string }
-    | { tag: 'UpdateActiveChart', name: string }
+    | { tag: 'UpdateActiveChart', index: number }
     | { tag: 'PromptForNewChart' }
     | { tag: 'ShowChartNameTakenMessage' }
     | { tag: 'AddNewChart', name: string }
@@ -52,7 +52,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 tag: 'Update',
                 state: {
                     ...state,
-                    activeChartName: action.name,
+                    activeChartIndex: action.index,
                     draggedAlbumID: null
                 }
             }
@@ -82,12 +82,13 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 albumIDCounter: state.albumIDCounter,
                 name: action.name
             })
+            const charts = [ ...state.charts, chart ]
             return {
                 tag: 'Update',
                 state: {
                     ...state,
-                    charts: [ ...state.charts, chart ],
-                    activeChartName: chart.name,
+                    charts,
+                    activeChartIndex: charts.length - 1,
                     draggedAlbumID: null,
                     albumIDCounter
                 }
@@ -101,7 +102,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     if (name === undefined || name.length === 0) {
                         return
                     }
-                    if (state.charts.some(chart => chart.name !== state.activeChartName && chart.name === name)) {
+                    if (state.charts.some((chart, index) => index !== state.activeChartIndex && chart.name === name)) {
                         dispatch({ tag: 'ShowChartNameTakenMessage' })
                         return
                     }
@@ -109,21 +110,16 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 }
             }
         case 'RenameActiveChart': {
-            const activeChartIndex = findIndex(state.charts, chart => chart.name === state.activeChartName)
-            if (activeChartIndex === null) {
-                return { tag: 'NoUpdate' }
-            }
-            const activeChart = state.charts[activeChartIndex]
+            const activeChart = state.charts[state.activeChartIndex]
             return {
                 tag: 'Update',
                 state: {
                     ...state,
                     charts: [
-                        ...state.charts.slice(0, activeChartIndex),
+                        ...state.charts.slice(0, state.activeChartIndex),
                         { ...activeChart, name: action.name },
-                        ...state.charts.slice(activeChartIndex + 1)
-                    ],
-                    activeChartName: action.name
+                        ...state.charts.slice(state.activeChartIndex + 1)
+                    ]
                 }
             }
         }
@@ -146,32 +142,26 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     state: {
                         ...state,
                         charts: [ chart ],
-                        activeChartName: chart.name,
+                        activeChartIndex: 0,
                         albumIDCounter,
                         draggedAlbumID: null
                     }
                 }
             }
 
-            const index = findIndex(state.charts, chart => chart.name === state.activeChartName)
-            if (index === null) {
-                return { tag: 'NoUpdate' }
-            }
-
             const charts = [
-                ...state.charts.slice(0, index),
-                ...state.charts.slice(index + 1)
+                ...state.charts.slice(0, state.activeChartIndex),
+                ...state.charts.slice(state.activeChartIndex + 1)
             ]
-            const previousName = charts[index - 1] === undefined
-                ? charts[charts.length - 1].name
-                : charts[index - 1].name
 
             return {
                 tag: 'Update',
                 state: {
                     ...state,
                     charts,
-                    activeChartName: previousName,
+                    activeChartIndex: state.activeChartIndex - 1 < 0
+                        ? charts.length - 1
+                        : state.activeChartIndex  -1,
                     draggedAlbumID: null
                 }
             }
@@ -386,11 +376,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 return { tag: 'NoUpdate' }
             }
 
-            const activeChartIndex = findIndex(state.charts, chart => chart.name === state.activeChartName)
-            if (activeChartIndex === null) {
-                return { tag: 'NoUpdate' }
-            }
-            const activeChart = state.charts[activeChartIndex]
+            const activeChart = state.charts[state.activeChartIndex]
 
             const targetIndex = findIndex(activeChart.albums, album => album.id === action.targetID)
             if (targetIndex === null) {
@@ -431,9 +417,9 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 state: {
                     ...state,
                     charts: [
-                        ...state.charts.slice(0, activeChartIndex),
+                        ...state.charts.slice(0, state.activeChartIndex),
                         { ...activeChart, albums },
-                        ...state.charts.slice(activeChartIndex + 1)
+                        ...state.charts.slice(state.activeChartIndex + 1)
                     ],
                     searchDragTargetAlbumID: action.targetID
                 }
@@ -453,11 +439,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 return { tag: 'NoUpdate' }
             }
 
-            const activeChartIndex = findIndex(state.charts, chart => chart.name === state.activeChartName)
-            if (activeChartIndex === null) {
-                return { tag: 'NoUpdate' }
-            }
-            const activeChart = state.charts[activeChartIndex]
+            const activeChart = state.charts[state.activeChartIndex]
 
             const album = state.search.albums.find(album => album.id === state.draggedAlbumID)
             if (album === undefined) {
@@ -475,7 +457,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     ...state,
                     draggedAlbumID: null,
                     charts: [
-                        ...state.charts.slice(0, activeChartIndex),
+                        ...state.charts.slice(0, state.activeChartIndex),
                         {
                             ...activeChart,
                             albums: [
@@ -484,7 +466,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                                 ...activeChart.albums.slice(targetIndex + 1)
                             ]
                         },
-                        ...state.charts.slice(activeChartIndex + 1)
+                        ...state.charts.slice(state.activeChartIndex + 1)
                     ],
                     searchDragTargetAlbumID: null,
                     albumIDCounter: state.albumIDCounter + 1

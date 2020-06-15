@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, DragEvent } from 'react'
 import { css, cx } from 'emotion'
 
 import { Album } from '../state'
@@ -10,8 +10,8 @@ import { formatAlbumTitle } from '../utils'
 type Props = DispatchProps<'BeginDraggingAlbum'> & {
     details: Album
     sizeRem: number
-    onDragEnter?: () => void
-    onDragEnd: () => void
+    onDragEnter?: (event: DragEvent<HTMLDivElement>) => void
+    onDragEnd: (event: DragEvent<HTMLDivElement>) => void
 }
 
 
@@ -37,7 +37,7 @@ export const AlbumCover: FC<Props> = ({ dispatch, details, sizeRem, onDragEnter,
         })
     )
 
-    let image: JSX.Element | null = null
+    let image: JSX.Element | undefined
     if (!details.placeholder) {
         const title = formatAlbumTitle(details)
         image = <Image url={details.url} alt={title} title={title}/>
@@ -45,7 +45,7 @@ export const AlbumCover: FC<Props> = ({ dispatch, details, sizeRem, onDragEnter,
 
     return (
         <div className={style}
-                draggable={!details.placeholder}
+                draggable={details.placeholder ? undefined : true}
                 onDragStart={details.placeholder ? undefined : beginDragging}
                 onDragEnd={onDragEnd}
                 onDragEnter={onDragEnter}>

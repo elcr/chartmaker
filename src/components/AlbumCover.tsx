@@ -3,15 +3,16 @@ import { css, cx } from 'emotion'
 
 import { Album } from '../state'
 import { Image } from './Image'
-import { DispatchProps } from '../reducer'
 import { formatAlbumTitle } from '../utils'
 
 
-type Props = DispatchProps<'BeginDraggingAlbum'> & {
-    details: Album
+type Props = {
+    album: Album
     sizeRem: number
+    onDragStart: (event: DragEvent<HTMLDivElement>) => void
+    onDragOver?: (event: DragEvent<HTMLDivElement>) => void
     onDragEnter?: (event: DragEvent<HTMLDivElement>) => void
-    onDragEnd: (event: DragEvent<HTMLDivElement>) => void
+    onDrop?: (event: DragEvent<HTMLDivElement>) => void
 }
 
 
@@ -21,14 +22,7 @@ const baseStyle = css({
 })
 
 
-export const AlbumCover: FC<Props> = ({ dispatch, details, sizeRem, onDragEnter, onDragEnd }) => {
-    function beginDragging() {
-        dispatch({
-            tag: 'BeginDraggingAlbum',
-            id: details.id
-        })
-    }
-
+export const AlbumCover: FC<Props> = ({ album, sizeRem, onDragStart, onDragEnter, onDragOver, onDrop }) => {
     const style = cx(
         baseStyle,
         css({
@@ -38,17 +32,18 @@ export const AlbumCover: FC<Props> = ({ dispatch, details, sizeRem, onDragEnter,
     )
 
     let image: JSX.Element | undefined
-    if (!details.placeholder) {
-        const title = formatAlbumTitle(details)
-        image = <Image url={details.url} alt={title} title={title}/>
+    if (!album.placeholder) {
+        const title = formatAlbumTitle(album)
+        image = <Image url={album.url} alt={title} title={title}/>
     }
 
     return (
         <div className={style}
-                draggable={details.placeholder ? undefined : true}
-                onDragStart={details.placeholder ? undefined : beginDragging}
-                onDragEnd={onDragEnd}
-                onDragEnter={onDragEnter}>
+                draggable={!album.placeholder}
+                onDragStart={onDragStart}
+                onDragEnter={onDragEnter}
+                onDragOver={onDragOver}
+                onDrop={onDrop}>
             {image}
         </div>
     )

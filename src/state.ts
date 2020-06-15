@@ -32,8 +32,6 @@ export type State = {
     apiKey: string
     charts: Chart[]
     activeChartIndex: number
-    draggedAlbumID: number | null
-    searchDragTargetAlbumID: number | null
     search: SearchState
     albumIDCounter: number
 }
@@ -69,8 +67,6 @@ export function createInitialState(): State {
         apiKey: '',
         charts: [ chart ],
         activeChartIndex: 0,
-        draggedAlbumID: null,
-        searchDragTargetAlbumID: null,
         search: { tag: 'Waiting', query: '' },
         albumIDCounter
     }

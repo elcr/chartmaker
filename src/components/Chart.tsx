@@ -14,7 +14,7 @@ import { DispatchProps } from '../reducer'
 import { formatAlbumTitle } from '../utils'
 
 
-type Props = DispatchProps<'BeginDraggingAlbum' | 'DragChartAlbum' | 'DropChartAlbum'> & {
+type Props = DispatchProps<'DragChartAlbum' | 'DropSearchAlbum'> & {
     details: ChartDetails,
 }
 

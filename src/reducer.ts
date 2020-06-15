@@ -16,10 +16,10 @@ type Action =
     | { tag: 'RenameActiveChart', name: string }
     | { tag: 'PromptToDeleteActiveChart' }
     | { tag: 'DeleteActiveChart' }
-    | { tag: 'PromptToSelectImportJSON' }
-    | { tag: 'ShowInvalidImportJSONMessage' }
-    | { tag: 'UpdateAllState', state: State }
-    | { tag: 'PromptToExportState' }
+    | { tag: 'PromptToSelectJSONToImport' }
+    | { tag: 'ShowInvalidJSONImportMessage' }
+    | { tag: 'LoadState', state: State }
+    | { tag: 'PromptToExportStateJSON' }
     | { tag: 'CancelSearchRequest' }
     | { tag: 'SendSearchRequest' }
     | { tag: 'UpdateSearchState', state: SearchState }
@@ -176,7 +176,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 }
             }
         }
-        case 'PromptToSelectImportJSON':
+        case 'PromptToSelectJSONToImport':
             return {
                 tag: 'SideEffect',
                 sideEffect: dispatch => {
@@ -193,10 +193,10 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                             }
                             const json = await readInputFileText(file)
                             const state: State = JSON.parse(json)
-                            dispatch({ tag: 'UpdateAllState', state })
+                            dispatch({ tag: 'LoadState', state })
                         }
                         catch {
-                            dispatch({ tag: 'ShowInvalidImportJSONMessage' })
+                            dispatch({ tag: 'ShowInvalidJSONImportMessage' })
                         }
                     })
 
@@ -215,18 +215,18 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     input.click()
                 }
             }
-        case 'ShowInvalidImportJSONMessage':
+        case 'ShowInvalidJSONImportMessage':
             return {
                 tag: 'SideEffect',
                 sideEffect: () =>
                     alert('Selected file is invalid')
             }
-        case 'UpdateAllState':
+        case 'LoadState':
             return {
                 tag: 'Update',
                 state: action.state
             }
-        case 'PromptToExportState':
+        case 'PromptToExportStateJSON':
             return {
                 tag: 'SideEffect',
                 sideEffect: (_dispatch, state) => {
@@ -302,7 +302,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                                 id: state.albumIDCounter + index + 1
                             }))
                             dispatch({
-                                tag: 'UpdateAllState',
+                                tag: 'LoadState',
                                 state: {
                                     ...state,
                                     search: {

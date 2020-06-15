@@ -3,16 +3,16 @@ import React, { FC } from 'react'
 import { DispatchProps } from '../reducer'
 
 
-type Props = DispatchProps<'PromptToExportState'>
+type Props = DispatchProps<'PromptToExportStateJSON'>
 
 
 export const ExportStateButton: FC<Props> = ({ dispatch }) => {
-    function promptToExportState() {
-        dispatch({ tag: 'PromptToExportState' })
+    function PromptToExportStateJSON() {
+        dispatch({ tag: 'PromptToExportStateJSON' })
     }
 
     return (
-        <button onClick={promptToExportState}>
+        <button onClick={PromptToExportStateJSON}>
             Export charts
         </button>
     )

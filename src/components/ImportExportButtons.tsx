@@ -7,7 +7,7 @@ import { ImportStateButton } from './ImportStateButton'
 import { ExportStateButton } from './ExportStateButton'
 
 
-type Props = DispatchProps<'PromptToSelectImportJSON' | 'PromptToExportState'>
+type Props = DispatchProps<'PromptToSelectJSONToImport' | 'PromptToExportStateJSON'>
 
 
 const style = css({

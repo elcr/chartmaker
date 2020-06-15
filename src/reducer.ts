@@ -26,6 +26,9 @@ type Action =
     | { tag: 'UpdateSearchQuery', query: string }
     | { tag: 'DragChartAlbum', sourceID: number, targetID: number }
     | { tag: 'DropSearchAlbum', sourceID: number, targetID: number }
+    | { tag: 'PromptToRenameAlbum', id: number }
+    | { tag: 'RenameAlbum', id: number, name: string }
+    | { tag: 'DeleteAlbum', id: number }
 
 
 export type ActionTag = Action['tag']
@@ -94,7 +97,8 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
             return {
                 tag: 'SideEffect',
                 sideEffect: (dispatch, state) => {
-                    const name = prompt('Enter new chart name:')?.trim()
+                    const activeChart = state.charts[state.activeChartIndex]
+                    const name = prompt(`Enter new name for '${activeChart.name}':`)?.trim()
                     if (name === undefined || name.length === 0) {
                         return
                     }
@@ -438,6 +442,90 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                         ...state.charts.slice(state.activeChartIndex + 1)
                     ],
                     albumIDCounter: state.albumIDCounter + 1
+                }
+            }
+        }
+        case 'PromptToRenameAlbum':
+            return {
+                tag: 'SideEffect',
+                sideEffect: (dispatch, state) => {
+                    const album = state.charts[state.activeChartIndex]
+                        .albums
+                        .find(album => album.id === action.id)
+                    if (album === undefined || album.placeholder) {
+                        return
+                    }
+
+                    const name = prompt(`Enter new name for '${album.name}':`)?.trim()
+                    if (name === undefined || name.length === 0) {
+                        return
+                    }
+                    dispatch({
+                        tag: 'RenameAlbum',
+                        id: action.id,
+                        name
+                    })
+                }
+            }
+        case 'RenameAlbum': {
+            const activeChart = state.charts[state.activeChartIndex]
+
+            const index = findIndex(activeChart.albums, album => album.id === action.id)
+            if (index === null) {
+                return { tag: 'NoUpdate' }
+            }
+
+            const album = activeChart.albums[index]
+            if (album.placeholder) {
+                return { tag: 'NoUpdate' }
+            }
+
+            return {
+                tag: 'Update',
+                state: {
+                    ...state,
+                    charts: [
+                        ...state.charts.slice(0, state.activeChartIndex),
+                        {
+                            ...activeChart,
+                            albums: [
+                                ...activeChart.albums.slice(0, index),
+                                { ...album, name: action.name },
+                                ...activeChart.albums.slice(index + 1)
+                            ]
+                        },
+                        ...state.charts.slice(state.activeChartIndex + 1)
+                    ]
+                }
+            }
+        }
+        case 'DeleteAlbum': {
+            const activeChart = state.charts[state.activeChartIndex]
+
+            const index = findIndex(activeChart.albums, album => album.id === action.id)
+            if (index === null) {
+                return { tag: 'NoUpdate' }
+            }
+
+            return {
+                tag: 'Update',
+                state: {
+                    ...state,
+                    charts: [
+                        ...state.charts.slice(0, state.activeChartIndex),
+                        {
+                            ...activeChart,
+                            albums: [
+                                ...activeChart.albums.slice(0, index),
+                                {
+                                    id: action.id,
+                                    placeholder: true
+                                },
+                                ...activeChart.albums.slice(index + 1)
+                            ]
+                        },
+                        ...state.charts.slice(state.activeChartIndex + 1)
+                    ]
                 }
             }
         }

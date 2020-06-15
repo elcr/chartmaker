@@ -6,7 +6,12 @@ import { DispatchProps } from '../reducer'
 import { ChartAlbumCover } from './ChartAlbumCover'
 
 
-type Props = DispatchProps<'DragChartAlbum' | 'DropSearchAlbum'> & {
+type Props = DispatchProps<
+    | 'DragChartAlbum'
+    | 'DropSearchAlbum'
+    | 'PromptToRenameAlbum'
+    | 'DeleteAlbum'
+> & {
     albums: Album[]
     sizeRem: number
 }

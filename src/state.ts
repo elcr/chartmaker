@@ -9,8 +9,7 @@ export type Album =
     | {
         placeholder: false
         id: number
-        artist: string
-        title: string
+        name: string
         url: string
     }
 

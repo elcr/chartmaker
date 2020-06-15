@@ -1,11 +1,12 @@
 import React, { FC } from 'react'
-import { css } from 'emotion'
+import { css, cx } from 'emotion'
 
 
 type Props = {
     url: string
     alt?: string
     title?: string
+    className?: string
 }
 
 
@@ -14,5 +15,8 @@ const style = css({
 })
 
 
-export const Image: FC<Props> = ({ url, ...props }) =>
-    <img {...props} className={style} src={url} loading='lazy'/>
+export const Image: FC<Props> = ({ url, className, ...props }) =>
+    <img {...props}
+        className={cx(style, className)}
+        src={url}
+        loading='lazy'/>

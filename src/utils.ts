@@ -8,11 +8,6 @@ export function readInputFileText(file: File): Promise<string> {
 }
 
 
-export function formatAlbumTitle({ title, artist }: { artist: string, title: string }) {
-    return `${artist} - ${title}`
-}
-
-
 export function findIndex<T>(array: ReadonlyArray<T>, predicate: (item: T) => boolean): number | null {
     const index = array.findIndex(predicate)
     return index === -1 ? null : index

@@ -11,11 +11,15 @@ import {
     SMALL_ROW_SIZE_REM
 } from '../constants'
 import { DispatchProps } from '../reducer'
-import { formatAlbumTitle } from '../utils'
 
 
-type Props = DispatchProps<'DragChartAlbum' | 'DropSearchAlbum'> & {
-    details: ChartDetails,
+type Props = DispatchProps<
+    | 'DragChartAlbum'
+    | 'DropSearchAlbum'
+    | 'PromptToRenameAlbum'
+    | 'DeleteAlbum'
+> & {
+    details: ChartDetails
 }
 
 
@@ -55,7 +59,7 @@ export const Chart: FC<Props> = ({ dispatch, details: { albums, name } }) => {
             if (album.placeholder) {
                 continue
             }
-            titles.push(formatAlbumTitle(album))
+            titles.push(album.name)
         }
         return <TitleGroup key={index} titles={titles}/>
     })

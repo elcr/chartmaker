@@ -3,6 +3,8 @@ import React, { FC, DragEvent } from 'react'
 import { Album } from '../state'
 import { AlbumCover } from './AlbumCover'
 import { DispatchProps } from '../reducer'
+import { css } from 'emotion'
+import { AlbumActionButton } from './AlbumActionButton'
 
 
 const chartPattern = /^chart-(.+)$/
@@ -40,7 +42,19 @@ function dragOver(event: DragEvent<HTMLDivElement>) {
 }
 
 
-type Props = DispatchProps<'DragChartAlbum' | 'DropSearchAlbum'> & {
+const overlayStyle = css({
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '0.5rem'
+})
+
+
+type Props = DispatchProps<
+    | 'DragChartAlbum'
+    | 'DropSearchAlbum'
+    | 'PromptToRenameAlbum'
+    | 'DeleteAlbum'
+> & {
     album: Album
     sizeRem: number
 }
@@ -78,12 +92,44 @@ export const ChartAlbumCover: FC<Props> = ({ dispatch, album, sizeRem }) => {
         event.preventDefault()
     }
 
+    let buttons: JSX.Element | undefined
+    if (!album.placeholder) {
+        function rename() {
+            dispatch({
+                tag: 'PromptToRenameAlbum',
+                id: album.id
+            })
+        }
+
+        function remove() {
+            dispatch({
+                tag: 'DeleteAlbum',
+                id: album.id
+            })
+        }
+
+        buttons = (
+            <>
+                <AlbumActionButton colour='yellow' onClick={rename} title='Rename'>
+                    ✏️
+                </AlbumActionButton>
+                <AlbumActionButton colour='red' onClick={remove} title='Delete'>
+                    🗑️
+                </AlbumActionButton>
+            </>
+        )
+    }
+
+
     return (
         <AlbumCover album={album}
-            sizeRem={sizeRem}
-            onDragStart={dragStart}
-            onDragOver={dragOver}
-            onDragEnter={dragEnter}
-            onDrop={drop}/>
+                sizeRem={sizeRem}
+                onDragStart={dragStart}
+                onDragOver={dragOver}
+                onDragEnter={dragEnter}
+                onDrop={drop}
+                overlayClassName={overlayStyle}>
+            {buttons}
+        </AlbumCover>
     )
 }

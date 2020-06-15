@@ -52,8 +52,8 @@ export const AlbumCover: FC<Props> = ({ dispatch, details, dragged, sizeRem, onD
 
     return (
         <div className={style}
-                draggable
-                onDragStart={beginDragging}
+                draggable={!details.placeholder}
+                onDragStart={details.placeholder ? undefined : beginDragging}
                 onDragEnd={onDragEnd}
                 onDragEnter={onDragEnter}>
             {image}

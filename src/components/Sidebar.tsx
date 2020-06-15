@@ -21,6 +21,8 @@ type Props = DispatchProps<
     | 'UpdateSearchQuery'
     | 'SendSearchRequest'
     | 'CancelSearchRequest'
+    | 'BeginDraggingAlbum'
+    | 'DropSearchAlbum'
 > & {
     charts: Chart[]
     activeChartName: string,
@@ -43,7 +45,7 @@ export const Sidebar: FC<Props> = ({
     searchState
 }) => {
     const searchResults = searchState.tag === 'Complete'
-        ? <SearchResults albums={searchState.albums}/>
+        ? <SearchResults dispatch={dispatch} albums={searchState.albums}/>
         : null
 
     return (

@@ -3,11 +3,12 @@ import React, { FC } from 'react'
 import { Album } from '../state'
 import { css } from 'emotion'
 import { SidebarGroup } from './SidebarGroup'
+import { AlbumCover } from './AlbumCover'
 import { LARGE_ROW_SIZE_REM } from '../constants'
-import { SearchAlbumCover } from './SearchAlbumCover'
+import { DispatchProps } from '../reducer'
 
 
-type Props = {
+type Props = DispatchProps<'DropSearchAlbum' | 'BeginDraggingAlbum'> & {
     albums: Album[]
 }
 
@@ -19,11 +20,17 @@ const style = css({
 })
 
 
-export const SearchResults: FC<Props> = ({ albums }) => {
+export const SearchResults: FC<Props> = ({ dispatch, albums }) => {
+    function drop() {
+        dispatch({ tag: 'DropSearchAlbum' })
+    }
+
     const albumCovers = albums.map(album =>
-        <SearchAlbumCover key={album.id}
+        <AlbumCover key={album.id}
+            dispatch={dispatch}
             details={album}
-            sizeRem={LARGE_ROW_SIZE_REM}/>
+            sizeRem={LARGE_ROW_SIZE_REM}
+            onDragEnd={drop}/>
     )
 
     return (

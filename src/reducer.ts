@@ -1,6 +1,4 @@
-import { Dispatch as _Dispatch } from 'react'
-
-import { SideEffectUpdate } from './hooks'
+import { SideEffectUpdate, Dispatch as _Dispatch } from './hooks'
 import { State, createChart, SearchState, Album } from './state'
 import { readInputFileText, findIndex } from './utils'
 import { search } from './api'

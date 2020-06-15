@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { DispatchProps } from '../reducer'
@@ -26,12 +26,12 @@ const buttonsContainerStyle = css({
 })
 
 
-export const ChartManager: FC<Props> = ({ dispatch, charts, activeChartIndex }) =>
+export const ChartManager: FunctionComponent<Props> = ({ dispatch, charts, activeChartIndex }) =>
     <SidebarGroup>
         <ChartSelector dispatch={dispatch}
             charts={charts}
             activeChartIndex={activeChartIndex}/>
-        <div className={buttonsContainerStyle}>
+        <div class={buttonsContainerStyle}>
             <NewChartButton dispatch={dispatch}/>
             <RenameActiveChartButton dispatch={dispatch}/>
             <DeleteActiveChartButton dispatch={dispatch}/>

@@ -13,8 +13,6 @@
     "preact-compat": "^3.19.0"
   },
   "devDependencies": {
-    "@types/react": "^16.9.23",
-    "@types/react-dom": "^16.9.5",
     "autoprefixer": "^9.8.0",
     "bootstrap": "^4.4.1",
     "css-loader": "^3.5.3",

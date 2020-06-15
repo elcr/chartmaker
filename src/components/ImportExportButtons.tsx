@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { DispatchProps } from '../reducer'
@@ -15,9 +15,9 @@ const style = css({
 })
 
 
-export const ImportExportButtons: FC<Props> = ({ dispatch }) =>
+export const ImportExportButtons: FunctionComponent<Props> = ({ dispatch }) =>
     <SidebarGroup>
-        <div className={style}>
+        <div class={style}>
             <ImportStateButton dispatch={dispatch}/>
             <ExportStateButton dispatch={dispatch}/>
         </div>

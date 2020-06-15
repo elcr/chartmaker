@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css, cx } from 'emotion'
 
 
@@ -15,11 +15,14 @@ const baseStyle = css({
 })
 
 
-export const AlbumActionButton: FC<Props> = ({ colour, ...props }) => {
+export const AlbumActionButton: FunctionComponent<Props> = ({
+    colour,
+    ...props
+}) => {
     const style = cx(
         baseStyle,
         css({ color: colour })
     )
 
-    return <div {...props} className={style}/>
+    return <div {...props} class={style}/>
 }

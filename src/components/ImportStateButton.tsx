@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { DispatchProps } from '../reducer'
@@ -12,13 +12,13 @@ const style = css({
 })
 
 
-export const ImportStateButton: FC<Props> = ({ dispatch }) => {
+export const ImportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
     function PromptToSelectJSONToImport() {
         dispatch({ tag: 'PromptToSelectJSONToImport' })
     }
 
     return (
-        <button className={style} onClick={PromptToSelectJSONToImport}>
+        <button class={style} onClick={PromptToSelectJSONToImport}>
             Import charts
         </button>
     )

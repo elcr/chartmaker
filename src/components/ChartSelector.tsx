@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { DispatchProps } from '../reducer'
@@ -22,11 +22,11 @@ const containerStyle = css({
 })
 
 
-export const ChartSelector: FC<Props> = ({ dispatch, charts, activeChartIndex }) => {
-    function updateActiveChart(event: ChangeEvent<HTMLSelectElement>) {
+export const ChartSelector: FunctionComponent<Props> = ({ dispatch, charts, activeChartIndex }) => {
+    function updateActiveChart(event: Event) {
         dispatch({
             tag: 'UpdateActiveChart',
-            index: Number(event.currentTarget.value)
+            index: Number((event.currentTarget as any).value)
         })
     }
 
@@ -37,13 +37,13 @@ export const ChartSelector: FC<Props> = ({ dispatch, charts, activeChartIndex })
     )
 
     return (
-        <div className={containerStyle}>
+        <div class={containerStyle}>
             <Label target={id}>
                 Active chart
             </Label>
             <select id={id}
                     value={activeChartIndex}
-                    onChange={updateActiveChart}>
+                    onInput={updateActiveChart}>
                 {options}
             </select>
         </div>

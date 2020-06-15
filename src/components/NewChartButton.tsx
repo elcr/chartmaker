@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 
 import { DispatchProps } from '../reducer'
 
@@ -6,7 +6,7 @@ import { DispatchProps } from '../reducer'
 type Props = DispatchProps<'PromptForNewChart'>
 
 
-export const NewChartButton: FC<Props> = ({ dispatch }) => {
+export const NewChartButton: FunctionComponent<Props> = ({ dispatch }) => {
     function addNewChart() {
         dispatch({ tag: 'PromptForNewChart' })
     }

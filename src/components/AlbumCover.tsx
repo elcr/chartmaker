@@ -1,4 +1,4 @@
-import React, { FC, DragEvent } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css, cx } from 'emotion'
 
 import { Album } from '../state'
@@ -8,11 +8,11 @@ import { Image } from './Image'
 type Props = {
     album: Album
     sizeRem: number
-    onDragStart: (event: DragEvent<HTMLDivElement>) => void
-    onDragOver?: (event: DragEvent<HTMLDivElement>) => void
-    onDragEnter?: (event: DragEvent<HTMLDivElement>) => void
-    onDrop?: (event: DragEvent<HTMLDivElement>) => void
-    overlayClassName?: string
+    onDragStart: (event: DragEvent) => void
+    onDragOver?: (event: DragEvent) => void
+    onDragEnter?: (event: DragEvent) => void
+    onDrop?: (event: DragEvent) => void
+    overlayclass?: string
 }
 
 
@@ -38,7 +38,7 @@ const baseOverlayStyle = cx(
 )
 
 
-export const AlbumCover: FC<Props> = ({
+export const AlbumCover: FunctionComponent<Props> = ({
     album,
     sizeRem,
     onDragStart,
@@ -46,9 +46,9 @@ export const AlbumCover: FC<Props> = ({
     onDragOver,
     onDrop,
     children,
-    overlayClassName
+    overlayclass
 }) => {
-    const overlayStyle = cx(baseOverlayStyle, overlayClassName)
+    const overlayStyle = cx(baseOverlayStyle, overlayclass)
 
     const containerStyle = cx(
         baseContainerStyle,
@@ -64,20 +64,20 @@ export const AlbumCover: FC<Props> = ({
 
     const image = album.placeholder
         ? null
-        : <Image className={imageStyle}
+        : <Image class={imageStyle}
             url={album.url}
             alt={album.name}
             title={album.name}/>
 
     return (
-        <div className={containerStyle}
+        <div class={containerStyle}
                 draggable={!album.placeholder}
                 onDragStart={onDragStart}
                 onDragEnter={onDragEnter}
                 onDragOver={onDragOver}
                 onDrop={onDrop}>
             {image}
-            <div className={overlayStyle}>
+            <div class={overlayStyle}>
                 {children}
             </div>
         </div>

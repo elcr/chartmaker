@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 
@@ -11,7 +11,7 @@ const style = css({
 })
 
 
-export const SidebarGroup: FC = ({ children }) =>
-    <div className={style}>
+export const SidebarGroup: FunctionComponent = ({ children }) =>
+    <div class={style}>
         {children}
     </div>

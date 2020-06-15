@@ -1,4 +1,4 @@
-import React from 'react'
+import { h } from 'preact'
 import { css } from 'emotion'
 
 import { useLocalStorageSideEffectReducer } from './hooks'
@@ -26,7 +26,7 @@ export const App = () => {
     )
 
     return (
-        <div className={rootStyle}>
+        <div class={rootStyle}>
             <Sidebar dispatch={dispatch}
                 charts={state.charts}
                 activeChartIndex={state.activeChartIndex}

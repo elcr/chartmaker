@@ -1,4 +1,4 @@
-import React, { FC, FormEvent } from 'react'
+import { h, FunctionComponent } from 'preact'
 
 
 type Props = {
@@ -6,14 +6,14 @@ type Props = {
 }
 
 
-export const ControlledForm: FC<Props> = ({ children, onSubmit }) => {
-    function controlledOnSubmit(event: FormEvent<HTMLFormElement>) {
+export const ControlledForm: FunctionComponent<Props> = ({ children, onSubmit }) => {
+    function submit(event: Event) {
         event.preventDefault()
         onSubmit()
     }
 
     return (
-        <form onSubmit={controlledOnSubmit}>
+        <form onSubmit={submit}>
             {children}
         </form>
     )

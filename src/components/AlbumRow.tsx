@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { Album } from '../state'
@@ -22,7 +22,7 @@ const style = css({
 })
 
 
-export const AlbumRow: FC<Props> = ({ dispatch, albums, sizeRem }) => {
+export const AlbumRow: FunctionComponent<Props> = ({ dispatch, albums, sizeRem }) => {
     const albumCovers = albums.map(album =>
         <ChartAlbumCover key={album.id}
             dispatch={dispatch}
@@ -30,7 +30,7 @@ export const AlbumRow: FC<Props> = ({ dispatch, albums, sizeRem }) => {
             sizeRem={sizeRem}/>
     )
     return (
-        <div className={style}>
+        <div class={style}>
             {albumCovers}
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 
@@ -17,11 +17,11 @@ const style = css({
 })
 
 
-export const ControlledInput: FC<Props> = ({ onChange, ...props }) => {
-    function controlledOnChange(event: ChangeEvent<HTMLInputElement>) {
+export const ControlledInput: FunctionComponent<Props> = ({ onChange, ...props }) => {
+    function controlledOnChange(event: Event) {
         event.preventDefault()
-        onChange(event.currentTarget.value)
+        onChange((event.currentTarget as any).value)
     }
 
-    return <input {...props} className={style} onChange={controlledOnChange}/>
+    return <input {...props} class={style} onInput={controlledOnChange}/>
 }

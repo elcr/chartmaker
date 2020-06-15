@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 
 import { DispatchProps } from '../reducer'
 import { SidebarGroup } from './SidebarGroup'
@@ -14,7 +14,7 @@ type Props = DispatchProps<'UpdateAPIKey'> & {
 }
 
 
-export const APIKeyInput: FC<Props> = ({ dispatch, apiKey }) => {
+export const APIKeyInput: FunctionComponent<Props> = ({ dispatch, apiKey }) => {
     function updateAPIKey(apiKey: string) {
         dispatch({ tag: 'UpdateAPIKey', apiKey })
     }

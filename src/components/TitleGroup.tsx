@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 
@@ -13,14 +13,14 @@ const style = css({
 })
 
 
-export const TitleGroup: FC<Props> = ({ titles }) => {
+export const TitleGroup: FunctionComponent<Props> = ({ titles }) => {
     const titleElements = titles.map((title, index) =>
         <div key={index}>
             {title}
         </div>
     )
     return (
-        <div className={style}>
+        <div class={style}>
             {titleElements}
         </div>
     )

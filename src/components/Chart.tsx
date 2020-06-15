@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { Chart as ChartDetails } from '../state'
@@ -44,7 +44,7 @@ const chartStyle = css({
 })
 
 
-export const Chart: FC<Props> = ({ dispatch, details: { albums, name } }) => {
+export const Chart: FunctionComponent<Props> = ({ dispatch, details: { albums, name } }) => {
     const groups = [
         albums.slice(0, 5),
         albums.slice(5, 11),
@@ -65,10 +65,10 @@ export const Chart: FC<Props> = ({ dispatch, details: { albums, name } }) => {
     })
 
     return (
-        <main className={outContainerStyle}>
+        <main class={outContainerStyle}>
             <h1>{name}</h1>
-            <div className={innerContainerStyle}>
-                <div className={chartStyle}>
+            <div class={innerContainerStyle}>
+                <div class={chartStyle}>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[0]}
                         sizeRem={VERY_LARGE_ROW_SIZE_REM}/>

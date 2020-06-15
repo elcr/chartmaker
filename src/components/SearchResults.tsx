@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { Album } from '../state'
@@ -19,7 +19,7 @@ const style = css({
 })
 
 
-export const SearchResults: FC<Props> = ({ albums }) => {
+export const SearchResults: FunctionComponent<Props> = ({ albums }) => {
     const albumCovers = albums.map(album =>
         <SearchAlbumCover key={album.id}
             album={album}
@@ -28,7 +28,7 @@ export const SearchResults: FC<Props> = ({ albums }) => {
 
     return (
         <SidebarGroup>
-            <div className={style}>
+            <div class={style}>
                 {albumCovers}
             </div>
         </SidebarGroup>

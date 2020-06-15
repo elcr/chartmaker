@@ -1,4 +1,7 @@
-import { useEffect, useReducer, Dispatch, Reducer } from 'react'
+import { useEffect, useReducer, Reducer } from 'preact/hooks'
+
+
+export type Dispatch<TAction> = (action: TAction) => void
 
 
 function useLazyReducer<TState, TAction>(

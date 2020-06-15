@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 
@@ -12,7 +12,7 @@ const style = css({
 })
 
 
-export const Label: FC<Props> = ({ children, target }) =>
-    <label className={style} htmlFor={target}>
+export const Label: FunctionComponent<Props> = ({ children, target }) =>
+    <label class={style} for={target}>
         {children}
     </label>

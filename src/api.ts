@@ -22,8 +22,7 @@ function isLastFMNullString(value: string): boolean {
 
 
 type Album = {
-    artist: string
-    title: string
+    name: string
     url: string
 }
 
@@ -37,8 +36,7 @@ function formatLastFMResult(result: LastFMResult): Album[] {
             continue
         }
         albums.push({
-            artist: album.artist,
-            title: album.name,
+            name: `${album.artist} - ${album.name}`,
             url: album.image[album.image.length - 1]['#text']
         })
     }
@@ -60,8 +58,25 @@ type SearchResult =
     | { tag: 'NetworkError' }
 
 
+function joinURLQuery(base: string, query: Record<string, string>): string {
+    const joinedQuery = Object.entries(query)
+        .map(([ key, value ]) => {
+            const escapedKey = encodeURIComponent(key.trim())
+            const escapedValue = encodeURIComponent(value.trim())
+            return `${escapedKey}=${escapedValue}`
+        })
+        .join('&')
+    return `${base}?${joinedQuery}`
+}
+
+
 export async function search({ key, query, signal }: SearchArguments): Promise<SearchResult> {
-    const url = `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${query.trim()}&api_key=${key.trim()}&format=json`
+    const url = joinURLQuery('https://ws.audioscrobbler.com/2.0/', {
+        method: 'album.search',
+        format: 'json',
+        api_key: key,
+        album: query
+    })
 
     let response: Response
     try {

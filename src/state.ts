@@ -70,3 +70,13 @@ export function createInitialState(): State {
         albumIDCounter
     }
 }
+
+
+export function escapeState(state: State): State {
+    return {
+        ...state,
+        search: state.search.tag === 'Complete' || state.search.tag === 'Waiting'
+            ? state.search
+            : { tag: 'Waiting', query: state.search.query }
+    }
+}

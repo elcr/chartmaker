@@ -49,7 +49,8 @@ type StateTuple<TState, TAction> = [ TState, SideEffectArray<TState, TAction> ]
 export function useLocalStorageSideEffectReducer<TState, TAction>(
     key: string,
     initialStateFallback: () => TState,
-    reducer: SideEffectReducer<TState, TAction>
+    reducer: SideEffectReducer<TState, TAction>,
+    escapeState: (state: TState) => TState
 ) {
     function innerReducer(
         [ state, sideEffects ]: StateTuple<TState, TAction>,
@@ -81,7 +82,8 @@ export function useLocalStorageSideEffectReducer<TState, TAction>(
 
     useEffect(
         () => {
-            localStorage.setItem(key, JSON.stringify(state))
+            const escaped = escapeState(state)
+            localStorage.setItem(key, JSON.stringify(escaped))
         },
         [ state ]
     )

@@ -5,7 +5,7 @@ import { useLocalStorageSideEffectReducer } from './hooks'
 import { reducer } from './reducer'
 import { Chart } from './components/Chart'
 import { Sidebar } from './components/Sidebar'
-import { createInitialState } from './state'
+import { createInitialState, escapeState } from './state'
 
 
 const rootStyle = css({
@@ -22,7 +22,8 @@ export const App = () => {
     const [ state, dispatch ] = useLocalStorageSideEffectReducer(
         'state',
         createInitialState,
-        reducer
+        reducer,
+        escapeState
     )
 
     return (

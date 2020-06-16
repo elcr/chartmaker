@@ -1,5 +1,5 @@
 import { SideEffectUpdate, Dispatch as _Dispatch } from './hooks'
-import { State, createChart, SearchState, Album } from './state'
+import { State, createChart, SearchState, Album, escapeState } from './state'
 import { readInputFileText, findIndex } from './utils'
 import { search } from './api'
 
@@ -216,10 +216,11 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
             return {
                 tag: 'SideEffect',
                 sideEffect: (_dispatch, state) => {
+                    const json = JSON.stringify(escapeState(state))
                     const link = document.createElement('a')
                     link.style.display = 'none'
                     link.href = 'data:application/json;charset=utf-8,'
-                        + encodeURIComponent(JSON.stringify(state))
+                        + encodeURIComponent(json)
                     link.download = 'state.json'
                     link.click()
                     // Can safely just remove straight away this time

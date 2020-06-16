@@ -73,7 +73,10 @@ export function createInitialState(): State {
         apiKey: '',
         charts: [ chart ],
         activeChartIndex: 0,
-        search: { tag: 'Waiting', query: '' },
+        search: {
+            tag: 'Waiting',
+            query: ''
+        },
         albumIDCounter,
         screenshot: {
             loading: false,
@@ -86,8 +89,13 @@ export function createInitialState(): State {
 export function escapeState(state: State): State {
     return {
         ...state,
-        search: state.search.tag === 'Complete' || state.search.tag === 'Waiting'
-            ? state.search
-            : { tag: 'Waiting', query: state.search.query }
+        search: {
+            tag: 'Waiting',
+            query: state.search.query
+        },
+        screenshot: {
+            loading: false,
+            scale: state.screenshot.scale
+        }
     }
 }

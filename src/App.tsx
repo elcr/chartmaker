@@ -10,6 +10,7 @@ import { createInitialState, escapeState } from './state'
 
 const rootStyle = css({
     display: 'flex',
+    alignItems: 'start',
     minHeight: '100vh',
     backgroundColor: 'black',
     color: 'white',

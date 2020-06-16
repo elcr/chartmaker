@@ -9,6 +9,7 @@
   "author": "elcr",
   "license": "MIT",
   "dependencies": {
+    "html2canvas": "^1.0.0-rc.5",
     "preact": "^10.4.4",
     "preact-compat": "^3.19.0"
   },

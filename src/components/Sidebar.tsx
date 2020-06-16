@@ -30,9 +30,12 @@ type Props = DispatchProps<
 
 
 const style = css({
-    marginRight: '1rem',
-    width: '16rem',
-    flexShrink: 0
+    display: 'flex',
+    flexDirection: 'column',
+    flexShrink: 0,
+    width: '17rem',
+    height: 'calc(100vh - 2rem)',
+    marginRight: '1rem'
 })
 
 

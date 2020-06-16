@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { css, cx } from 'emotion'
+
 import { inputStyle } from '../style'
 
 
@@ -11,17 +11,11 @@ type Props = {
 }
 
 
-const style = cx(
-    inputStyle,
-    css({ width: '100%' })
-)
-
-
 export const ControlledInput: FunctionComponent<Props> = ({ onChange, ...props }) => {
     function controlledOnChange(event: Event) {
         event.preventDefault()
         onChange((event.currentTarget as any).value)
     }
 
-    return <input {...props} class={style} onInput={controlledOnChange}/>
+    return <input {...props} class={inputStyle} onInput={controlledOnChange}/>
 }

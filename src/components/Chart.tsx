@@ -1,4 +1,5 @@
 import { h, FunctionComponent } from 'preact'
+import { PropRef } from 'preact/hooks'
 import { css } from 'emotion'
 
 import { Chart as ChartDetails } from '../state'
@@ -22,6 +23,7 @@ type Props = DispatchProps<
     | 'DeleteAlbum'
 > & {
     details: ChartDetails
+    innerRef: PropRef<HTMLElement>
 }
 
 
@@ -46,7 +48,11 @@ const chartStyle = css({
 })
 
 
-export const Chart: FunctionComponent<Props> = ({ dispatch, details: { albums, name } }) => {
+export const Chart: FunctionComponent<Props> = ({
+    dispatch,
+    details: { albums, name },
+    innerRef
+}) => {
     const groups = [
         albums.slice(0, 5),
         albums.slice(5, 11),
@@ -63,11 +69,13 @@ export const Chart: FunctionComponent<Props> = ({ dispatch, details: { albums, n
             }
             titles.push(album.name)
         }
-        return <TitleGroup key={index} titles={titles}/>
+        return titles.length === 0
+            ? null
+            : <TitleGroup key={index} titles={titles}/>
     })
 
     return (
-        <main class={outContainerStyle}>
+        <main ref={innerRef} class={outContainerStyle}>
             <h1>{name}</h1>
             <div class={innerContainerStyle}>
                 <div class={chartStyle}>

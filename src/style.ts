@@ -1,4 +1,4 @@
-import { css } from 'emotion'
+import { css, cx } from 'emotion'
 
 
 export const BACKGROUND_COLOUR = 'black'
@@ -18,9 +18,17 @@ export const SIDEBAR_ITEM_PADDING_SIZE = '0.5rem'
 export const SIDEBAR_LABEL_PADDING_SIZE = '0.25rem'
 
 
-export const inputStyle = css({
+export const buttonStyle = css({
     background: BACKGROUND_COLOUR,
     color: TEXT_COLOUR,
     border: BORDER,
     padding: SIDEBAR_LABEL_PADDING_SIZE
 })
+
+
+export const inputStyle = cx(
+    buttonStyle,
+    css({
+        width: '100%'
+    })
+)

@@ -27,12 +27,19 @@ export type SearchState =
     | { tag: 'Error', query: string, message: string }
 
 
+export type ScreenshotState = {
+    loading: boolean,
+    scale: number
+}
+
+
 export type State = {
     apiKey: string
     charts: Chart[]
     activeChartIndex: number
     search: SearchState
     albumIDCounter: number
+    screenshot: ScreenshotState
 }
 
 
@@ -67,7 +74,11 @@ export function createInitialState(): State {
         charts: [ chart ],
         activeChartIndex: 0,
         search: { tag: 'Waiting', query: '' },
-        albumIDCounter
+        albumIDCounter,
+        screenshot: {
+            loading: false,
+            scale: 1
+        }
     }
 }
 

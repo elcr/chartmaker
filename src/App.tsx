@@ -1,5 +1,6 @@
 import { h } from 'preact'
 import { css } from 'emotion'
+import { useRef } from 'preact/hooks'
 
 import { useLocalStorageSideEffectReducer } from './hooks'
 import { reducer } from './reducer'
@@ -32,6 +33,7 @@ export const App = () => {
         escapeState,
         reducer
     )
+    const chartRef = useRef<HTMLElement>(null)
 
     return (
         <div class={rootStyle}>
@@ -39,8 +41,11 @@ export const App = () => {
                 charts={state.charts}
                 activeChartIndex={state.activeChartIndex}
                 apiKey={state.apiKey}
-                searchState={state.search}/>
-            <Chart dispatch={dispatch}
+                searchState={state.search}
+                screenshotState={state.screenshot}
+                chartRef={chartRef}/>
+            <Chart innerRef={chartRef}
+                dispatch={dispatch}
                 details={state.charts[state.activeChartIndex]}/>
         </div>
     )

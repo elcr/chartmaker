@@ -1,6 +1,6 @@
 import { SideEffectUpdate, Dispatch as _Dispatch } from './hooks'
 import { State, createChart, SearchState, Album, escapeState } from './state'
-import { readInputFileText, findIndex } from './utils'
+import { readInputFileText, findIndex, elementToURI, downloadURI } from './utils'
 import { search } from './api'
 
 
@@ -27,6 +27,9 @@ type Action =
     | { tag: 'PromptToRenameAlbum', id: number }
     | { tag: 'RenameAlbum', id: number, name: string }
     | { tag: 'DeleteAlbum', id: number }
+    | { tag: 'UpdateScreenshotLoading', loading: boolean }
+    | { tag: 'UpdateScreenshotScale', scale: number }
+    | { tag: 'TakeScreenshot', element: HTMLElement }
 
 
 export type ActionTag = Action['tag']
@@ -216,15 +219,13 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
             return {
                 tag: 'SideEffect',
                 sideEffect: (_dispatch, state) => {
-                    const json = JSON.stringify(escapeState(state))
-                    const link = document.createElement('a')
-                    link.style.display = 'none'
-                    link.href = 'data:application/json;charset=utf-8,'
-                        + encodeURIComponent(json)
-                    link.download = 'state.json'
-                    link.click()
-                    // Can safely just remove straight away this time
-                    link.remove()
+                    const uri = 'data:application/json;charset=utf-8,'
+                        + encodeURIComponent(
+                            JSON.stringify(
+                                escapeState(state)
+                            )
+                        )
+                    downloadURI(uri, 'state.json')
                 }
             }
         case 'CancelSearchRequest': {
@@ -525,6 +526,59 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                         },
                         ...state.charts.slice(state.activeChartIndex + 1)
                     ]
+                }
+            }
+        }
+        case 'UpdateScreenshotLoading': {
+            return {
+                tag: 'Update',
+                state: {
+                    ...state,
+                    screenshot: {
+                        ...state.screenshot,
+                        loading: action.loading
+                    }
+                }
+            }
+        }
+        case 'UpdateScreenshotScale': {
+            if (state.screenshot.loading) {
+                return { tag: 'NoUpdate' }
+            }
+            return {
+                tag: 'Update',
+                state: {
+                    ...state,
+                    screenshot: {
+                        ...state.screenshot,
+                        scale: action.scale
+                    }
+                }
+            }
+        }
+        case 'TakeScreenshot': {
+            if (state.screenshot.loading) {
+                return { tag: 'NoUpdate' }
+            }
+            return {
+                tag: 'UpdateWithSideEffect',
+                state: {
+                    ...state,
+                    screenshot: {
+                        ...state.screenshot,
+                        loading: true
+                    }
+                },
+                sideEffect: async (dispatch, state) => {
+                    const uri = await elementToURI(
+                        action.element,
+                        state.screenshot.scale
+                    )
+                    downloadURI(uri, 'chart.png')
+                    dispatch({
+                        tag: 'UpdateScreenshotLoading',
+                        loading: false
+                    })
                 }
             }
         }

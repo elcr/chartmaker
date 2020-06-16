@@ -21,7 +21,7 @@ export const ImportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
 
     return (
         <Button class={style} onClick={PromptToSelectJSONToImport}>
-            Import charts
+            Import state
         </Button>
     )
 }

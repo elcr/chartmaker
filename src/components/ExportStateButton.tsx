@@ -14,7 +14,7 @@ export const ExportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
 
     return (
         <Button onClick={PromptToExportStateJSON}>
-            Export charts
+            Export state
         </Button>
     )
 }

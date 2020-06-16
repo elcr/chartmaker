@@ -46,6 +46,7 @@ function dragOver(event: DragEvent) {
 const overlayStyle = css({
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'start',
     padding: ALBUM_BUTTONS_PADDING_SIZE
 })
 

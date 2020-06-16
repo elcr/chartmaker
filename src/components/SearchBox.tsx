@@ -52,8 +52,7 @@ export const SearchBox: FunctionComponent<Props> = ({ dispatch, searchState }) =
                 {errorMessage}
                 <ControlledInput id={id}
                     value={searchState.query}
-                    onChange={updateQuery}
-                    disabled={searchState.tag === 'Loading'}/>
+                    onChange={updateQuery}/>
             </ControlledForm>
         </SidebarGroup>
     )

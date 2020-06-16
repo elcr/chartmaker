@@ -9,10 +9,10 @@ type Props = {
 
 
 const style = css({
-    cursor: 'pointer',
-    userSelect: 'none'
+    background: 'none',
+    border: 'none'
 })
 
 
 export const AlbumActionButton: FunctionComponent<Props> = props =>
-    <div {...props} class={style}/>
+    <button {...props} class={style}/>

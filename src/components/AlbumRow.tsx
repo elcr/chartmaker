@@ -13,7 +13,7 @@ type Props = DispatchProps<
     | 'DeleteAlbum'
 > & {
     albums: Album[]
-    sizeRem: number
+    size: string
 }
 
 
@@ -22,12 +22,12 @@ const style = css({
 })
 
 
-export const AlbumRow: FunctionComponent<Props> = ({ dispatch, albums, sizeRem }) => {
+export const AlbumRow: FunctionComponent<Props> = ({ dispatch, albums, size }) => {
     const albumCovers = albums.map(album =>
         <ChartAlbumCover key={album.id}
             dispatch={dispatch}
             album={album}
-            sizeRem={sizeRem}/>
+            size={size}/>
     )
     return (
         <div class={style}>

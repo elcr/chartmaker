@@ -1,12 +1,14 @@
 import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
+import { BORDER, CONTAINER_PADDING_SIZE } from '../style'
+
 
 const style = css({
     ':not(:last-of-type)': {
-        borderBottom: '1px solid white',
-        paddingBottom: '1rem',
-        marginBottom: '1rem'
+        borderBottom: BORDER,
+        paddingBottom: CONTAINER_PADDING_SIZE,
+        marginBottom: CONTAINER_PADDING_SIZE
     },
     ':last-of-type': {
         overflowY: 'auto'

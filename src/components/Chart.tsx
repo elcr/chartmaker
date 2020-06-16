@@ -4,13 +4,15 @@ import { css } from 'emotion'
 import { Chart as ChartDetails } from '../state'
 import { AlbumRow } from './AlbumRow'
 import { TitleGroup } from './TitleGroup'
-import {
-    VERY_LARGE_ROW_SIZE_REM,
-    LARGE_ROW_SIZE_REM,
-    MEDIUM_ROW_SIZE_REM,
-    SMALL_ROW_SIZE_REM
-} from '../constants'
 import { DispatchProps } from '../reducer'
+import {
+    VERY_LARGE_ROW_SIZE,
+    LARGE_ROW_SIZE,
+    MEDIUM_ROW_SIZE,
+    SMALL_ROW_SIZE,
+    CONTAINER_PADDING_SIZE,
+    BORDER
+} from '../style'
 
 
 type Props = DispatchProps<
@@ -24,10 +26,10 @@ type Props = DispatchProps<
 
 
 const outContainerStyle = css({
-    padding: '1rem',
-    border: '1px solid white',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    padding: CONTAINER_PADDING_SIZE,
+    border: BORDER
 })
 
 
@@ -40,7 +42,7 @@ const chartStyle = css({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginRight: '1rem'
+    marginRight: CONTAINER_PADDING_SIZE
 })
 
 
@@ -71,22 +73,22 @@ export const Chart: FunctionComponent<Props> = ({ dispatch, details: { albums, n
                 <div class={chartStyle}>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[0]}
-                        sizeRem={VERY_LARGE_ROW_SIZE_REM}/>
+                        size={VERY_LARGE_ROW_SIZE}/>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[1]}
-                        sizeRem={LARGE_ROW_SIZE_REM}/>
+                        size={LARGE_ROW_SIZE}/>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[2]}
-                        sizeRem={LARGE_ROW_SIZE_REM}/>
+                        size={LARGE_ROW_SIZE}/>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[3]}
-                        sizeRem={MEDIUM_ROW_SIZE_REM}/>
+                        size={MEDIUM_ROW_SIZE}/>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[4]}
-                        sizeRem={MEDIUM_ROW_SIZE_REM}/>
+                        size={MEDIUM_ROW_SIZE}/>
                     <AlbumRow dispatch={dispatch}
                         albums={groups[5]}
-                        sizeRem={SMALL_ROW_SIZE_REM}/>
+                        size={SMALL_ROW_SIZE}/>
                 </div>
                 <div>
                     {titleGroups}

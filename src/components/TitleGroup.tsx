@@ -1,5 +1,6 @@
 import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
+import { CONTAINER_PADDING_SIZE } from '../style'
 
 
 type Props = {
@@ -8,8 +9,7 @@ type Props = {
 
 
 const style = css({
-    fontStyle: 'monospace',
-    marginBottom: '1rem'
+    marginBottom: CONTAINER_PADDING_SIZE
 })
 
 

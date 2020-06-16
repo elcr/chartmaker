@@ -49,8 +49,8 @@ type StateTuple<TState, TAction> = [ TState, SideEffectArray<TState, TAction> ]
 export function useLocalStorageSideEffectReducer<TState, TAction>(
     key: string,
     initialStateFallback: () => TState,
-    reducer: SideEffectReducer<TState, TAction>,
-    escapeState: (state: TState) => TState
+    escapeState: (state: TState) => TState,
+    reducer: SideEffectReducer<TState, TAction>
 ) {
     function innerReducer(
         [ state, sideEffects ]: StateTuple<TState, TAction>,

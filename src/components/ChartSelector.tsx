@@ -4,6 +4,8 @@ import { css } from 'emotion'
 import { DispatchProps } from '../reducer'
 import { Chart } from '../state'
 import { Label } from './Label'
+import { SIDEBAR_ITEM_PADDING_SIZE } from '../style'
+import { ControlledSelect } from './ControlledSelect'
 
 
 const id = 'chartSelector'
@@ -18,16 +20,13 @@ type Props = DispatchProps<'UpdateActiveChart'> & {
 const containerStyle = css({
     display: 'flex',
     flexDirection: 'column',
-    marginBottom: '0.5rem'
+    marginBottom: SIDEBAR_ITEM_PADDING_SIZE
 })
 
 
 export const ChartSelector: FunctionComponent<Props> = ({ dispatch, charts, activeChartIndex }) => {
-    function updateActiveChart(event: Event) {
-        dispatch({
-            tag: 'UpdateActiveChart',
-            index: Number((event.currentTarget as any).value)
-        })
+    function updateActiveChart(index: number) {
+        dispatch({ tag: 'UpdateActiveChart', index })
     }
 
     const options = charts.map((chart, index) =>
@@ -41,11 +40,11 @@ export const ChartSelector: FunctionComponent<Props> = ({ dispatch, charts, acti
             <Label target={id}>
                 Active chart
             </Label>
-            <select id={id}
+            <ControlledSelect id={id}
                     value={activeChartIndex}
-                    onInput={updateActiveChart}>
+                    onChange={updateActiveChart}>
                 {options}
-            </select>
+            </ControlledSelect>
         </div>
     )
 }

@@ -3,23 +3,24 @@ import { css, cx } from 'emotion'
 
 import { Album } from '../state'
 import { Image } from './Image'
+import { TEXT_COLOUR, ALBUM_PADDING_SIZE } from '../style'
 
 
 type Props = {
     album: Album
-    sizeRem: number
+    size: string
     onDragStart: (event: DragEvent) => void
     onDragOver?: (event: DragEvent) => void
     onDragEnter?: (event: DragEvent) => void
     onDrop?: (event: DragEvent) => void
-    overlayclass?: string
+    overlayClass?: string
 }
 
 
 const baseContainerStyle = css({
     position: 'relative',
-    backgroundColor: 'white',
-    margin: '0.15rem'
+    backgroundColor: TEXT_COLOUR,
+    margin: ALBUM_PADDING_SIZE
 })
 
 
@@ -40,21 +41,21 @@ const baseOverlayStyle = cx(
 
 export const AlbumCover: FunctionComponent<Props> = ({
     album,
-    sizeRem,
+    size,
     onDragStart,
     onDragEnter,
     onDragOver,
     onDrop,
     children,
-    overlayclass
+    overlayClass
 }) => {
-    const overlayStyle = cx(baseOverlayStyle, overlayclass)
+    const overlayStyle = cx(baseOverlayStyle, overlayClass)
 
     const containerStyle = cx(
         baseContainerStyle,
         css({
-            width: `${sizeRem}rem`,
-            height: `${sizeRem}rem`,
+            width: size,
+            height: size,
             [`:not(:hover) .${overlayStyle}`]: {
                 display: 'none'
             }
@@ -66,8 +67,7 @@ export const AlbumCover: FunctionComponent<Props> = ({
         ? null
         : <Image class={imageStyle}
             url={album.url}
-            alt={album.name}
-            title={album.name}/>
+            alt={album.name}/>
 
     return (
         <div class={containerStyle}
@@ -75,7 +75,8 @@ export const AlbumCover: FunctionComponent<Props> = ({
                 onDragStart={onDragStart}
                 onDragEnter={onDragEnter}
                 onDragOver={onDragOver}
-                onDrop={onDrop}>
+                onDrop={onDrop}
+                title={album.placeholder ? undefined : album.name}>
             {image}
             <div class={overlayStyle}>
                 {children}

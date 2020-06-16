@@ -1,20 +1,21 @@
 import { h, FunctionComponent } from 'preact'
-import { css } from 'emotion'
+import { css, cx } from 'emotion'
+import { inputStyle } from '../style'
 
 
 type Props = {
     id: string
     type?: 'text' | 'password'
-    placeholder?: string
     value: string
     onChange: (value: string) => void
     disabled?: boolean
 }
 
 
-const style = css({
-    width: '100%'
-})
+const style = cx(
+    inputStyle,
+    css({ width: '100%' })
+)
 
 
 export const ControlledInput: FunctionComponent<Props> = ({ onChange, ...props }) => {

@@ -1,6 +1,7 @@
 import { h, FunctionComponent } from 'preact'
 
 import { DispatchProps } from '../reducer'
+import { Button } from './Button'
 
 
 type Props = DispatchProps<'PromptToExportStateJSON'>
@@ -12,8 +13,8 @@ export const ExportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
     }
 
     return (
-        <button onClick={PromptToExportStateJSON}>
+        <Button onClick={PromptToExportStateJSON}>
             Export charts
-        </button>
+        </Button>
     )
 }

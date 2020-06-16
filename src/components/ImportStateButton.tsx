@@ -2,13 +2,15 @@ import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { DispatchProps } from '../reducer'
+import { Button } from './Button'
+import { SIDEBAR_ITEM_PADDING_SIZE } from '../style'
 
 
 type Props = DispatchProps<'PromptToSelectJSONToImport'>
 
 
 const style = css({
-    marginRight: '0.5rem'
+    marginRight: SIDEBAR_ITEM_PADDING_SIZE
 })
 
 
@@ -18,8 +20,8 @@ export const ImportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
     }
 
     return (
-        <button class={style} onClick={PromptToSelectJSONToImport}>
+        <Button class={style} onClick={PromptToSelectJSONToImport}>
             Import charts
-        </button>
+        </Button>
     )
 }

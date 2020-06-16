@@ -5,7 +5,6 @@ import { css, cx } from 'emotion'
 type Props = {
     url: string
     alt?: string
-    title?: string
     class?: string
 }
 

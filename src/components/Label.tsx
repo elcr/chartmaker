@@ -1,6 +1,8 @@
 import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
+import { SIDEBAR_LABEL_PADDING_SIZE } from '../style'
+
 
 type Props = {
     target: string
@@ -8,7 +10,7 @@ type Props = {
 
 
 const style = css({
-    marginBottom: '0.25rem'
+    marginBottom: SIDEBAR_LABEL_PADDING_SIZE
 })
 
 

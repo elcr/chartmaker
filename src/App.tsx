@@ -6,16 +6,22 @@ import { reducer } from './reducer'
 import { Chart } from './components/Chart'
 import { Sidebar } from './components/Sidebar'
 import { createInitialState, escapeState } from './state'
+import {
+    BACKGROUND_COLOUR,
+    TEXT_COLOUR,
+    FONT_SIZE,
+    CONTAINER_PADDING_SIZE
+} from './style'
 
 
 const rootStyle = css({
     display: 'flex',
     alignItems: 'start',
     minHeight: '100vh',
-    backgroundColor: 'black',
-    color: 'white',
-    fontSize: '0.875rem',
-    padding: '1rem'
+    background: BACKGROUND_COLOUR,
+    color: TEXT_COLOUR,
+    fontSize: FONT_SIZE,
+    padding: CONTAINER_PADDING_SIZE
 })
 
 
@@ -23,8 +29,8 @@ export const App = () => {
     const [ state, dispatch ] = useLocalStorageSideEffectReducer(
         'state',
         createInitialState,
-        reducer,
-        escapeState
+        escapeState,
+        reducer
     )
 
     return (

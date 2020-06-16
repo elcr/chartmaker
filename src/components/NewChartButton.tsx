@@ -1,6 +1,7 @@
 import { h, FunctionComponent } from 'preact'
 
 import { DispatchProps } from '../reducer'
+import { Button } from './Button'
 
 
 type Props = DispatchProps<'PromptForNewChart'>
@@ -12,8 +13,8 @@ export const NewChartButton: FunctionComponent<Props> = ({ dispatch }) => {
     }
 
     return (
-        <button onClick={addNewChart}>
+        <Button onClick={addNewChart}>
             New
-        </button>
+        </Button>
     )
 }

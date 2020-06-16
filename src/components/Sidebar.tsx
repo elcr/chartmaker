@@ -8,6 +8,7 @@ import { APIKeyInput } from './APIKeyInput'
 import { ImportExportButtons } from './ImportExportButtons'
 import { SearchBox } from './SearchBox'
 import { SearchResults } from './SearchResults'
+import { SIDEBAR_WIDTH, CONTAINER_PADDING_SIZE } from '../style'
 
 
 type Props = DispatchProps<
@@ -33,9 +34,9 @@ const style = css({
     display: 'flex',
     flexDirection: 'column',
     flexShrink: 0,
-    width: '17rem',
-    height: 'calc(100vh - 2rem)',
-    marginRight: '1rem'
+    width: SIDEBAR_WIDTH,
+    height: `calc(100vh - (${CONTAINER_PADDING_SIZE} * 2))`,
+    marginRight: CONTAINER_PADDING_SIZE
 })
 
 

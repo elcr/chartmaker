@@ -7,6 +7,7 @@ import { ControlledForm } from './ControlledForm'
 import { SidebarGroup } from './SidebarGroup'
 import { ControlledInput } from './ControlledInput'
 import { SearchState } from '../state'
+import { SIDEBAR_LABEL_PADDING_SIZE, ERROR_TEXT_COLOUR } from '../style'
 
 
 const id = 'search'
@@ -18,8 +19,8 @@ type Props = DispatchProps<'UpdateSearchQuery' | 'SendSearchRequest' | 'CancelSe
 
 
 const errorStyle = css({
-    color: 'red',
-    marginBottom: '0.25rem',
+    color: ERROR_TEXT_COLOUR,
+    marginBottom: SIDEBAR_LABEL_PADDING_SIZE,
     userSelect: 'none'
 })
 
@@ -52,7 +53,6 @@ export const SearchBox: FunctionComponent<Props> = ({ dispatch, searchState }) =
                 <ControlledInput id={id}
                     value={searchState.query}
                     onChange={updateQuery}
-                    placeholder='Artist or album name'
                     disabled={searchState.tag === 'Loading'}/>
             </ControlledForm>
         </SidebarGroup>

@@ -6,11 +6,11 @@ import { AlbumCover } from './AlbumCover'
 
 type Props = {
     album: Album
-    sizeRem: number
+    size: string
 }
 
 
-export const SearchAlbumCover: FunctionComponent<Props> = ({ album, sizeRem }) => {
+export const SearchAlbumCover: FunctionComponent<Props> = ({ album, size }) => {
     function dragStart(event: DragEvent) {
         event.dataTransfer!.setData(`search-${album.id}`, '')
         event.dataTransfer!.effectAllowed = 'copy'
@@ -18,7 +18,7 @@ export const SearchAlbumCover: FunctionComponent<Props> = ({ album, sizeRem }) =
 
     return (
         <AlbumCover album={album}
-            sizeRem={sizeRem}
+            size={size}
             onDragStart={dragStart}/>
     )
 }

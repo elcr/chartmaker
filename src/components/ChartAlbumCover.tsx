@@ -5,6 +5,7 @@ import { AlbumCover } from './AlbumCover'
 import { DispatchProps } from '../reducer'
 import { css } from 'emotion'
 import { AlbumActionButton } from './AlbumActionButton'
+import { ALBUM_BUTTONS_PADDING_SIZE } from '../style'
 
 
 const chartPattern = /^chart-(.+)$/
@@ -45,7 +46,7 @@ function dragOver(event: DragEvent) {
 const overlayStyle = css({
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '0.5rem'
+    padding: ALBUM_BUTTONS_PADDING_SIZE
 })
 
 
@@ -56,11 +57,11 @@ type Props = DispatchProps<
     | 'DeleteAlbum'
 > & {
     album: Album
-    sizeRem: number
+    size: string
 }
 
 
-export const ChartAlbumCover: FunctionComponent<Props> = ({ dispatch, album, sizeRem }) => {
+export const ChartAlbumCover: FunctionComponent<Props> = ({ dispatch, album, size }) => {
     function dragStart(event: DragEvent) {
         event.dataTransfer!.setData(`chart-${album.id}`, '')
         event.dataTransfer!.effectAllowed = 'copyMove'
@@ -110,10 +111,10 @@ export const ChartAlbumCover: FunctionComponent<Props> = ({ dispatch, album, siz
 
         buttons = (
             <Fragment>
-                <AlbumActionButton colour='yellow' onClick={rename} title='Rename'>
+                <AlbumActionButton onClick={rename} title='Rename'>
                     ✏️
                 </AlbumActionButton>
-                <AlbumActionButton colour='red' onClick={remove} title='Delete'>
+                <AlbumActionButton onClick={remove} title='Delete'>
                     🗑️
                 </AlbumActionButton>
             </Fragment>
@@ -123,12 +124,12 @@ export const ChartAlbumCover: FunctionComponent<Props> = ({ dispatch, album, siz
 
     return (
         <AlbumCover album={album}
-                sizeRem={sizeRem}
+                size={size}
                 onDragStart={dragStart}
                 onDragOver={dragOver}
                 onDragEnter={dragEnter}
                 onDrop={drop}
-                overlayclass={overlayStyle}>
+                overlayClass={overlayStyle}>
             {buttons}
         </AlbumCover>
     )

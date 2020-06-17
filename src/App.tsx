@@ -19,6 +19,7 @@ const rootStyle = css({
     display: 'flex',
     alignItems: 'start',
     minHeight: '100vh',
+    minWidth: 'max-content',
     background: BACKGROUND_COLOUR,
     color: TEXT_COLOUR,
     fontSize: FONT_SIZE,

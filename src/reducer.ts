@@ -1,6 +1,6 @@
 import { SideEffectUpdate, Dispatch as _Dispatch } from './hooks'
 import { State, createChart, SearchState, Album, escapeState } from './state'
-import { readInputFileText, findIndex, elementToURI, downloadURI } from './utils'
+import { readClientFileText, findIndex, elementToDataURI, downloadURI, readClientFile } from './utils'
 import { search } from './api'
 
 
@@ -168,40 +168,19 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
         case 'PromptToSelectJSONToImport':
             return {
                 tag: 'SideEffect',
-                sideEffect: dispatch => {
-                    const input = document.createElement('input')
-                    input.style.display = 'none'
-                    input.setAttribute('type', 'file')
-                    input.accept = 'application/json'
-
-                    input.addEventListener('change', async () => {
-                        const file = input.files?.[0]
-                        try {
-                            if (file === undefined) {
-                                return
-                            }
-                            const json = await readInputFileText(file)
-                            const state: State = JSON.parse(json)
-                            dispatch({ tag: 'LoadState', state })
+                sideEffect: async dispatch => {
+                    try {
+                        const file = await readClientFile('application/json')
+                        if (file === undefined) {
+                            return
                         }
-                        catch {
-                            dispatch({ tag: 'ShowInvalidJSONImportMessage' })
-                        }
-                    })
-
-                    // The input change event is never fired if the user closes
-                    // the dialog. This has no associated event, so there is no
-                    // reliable way to know when it happens.
-                    // However, the dialog opening causes the body to lose
-                    // focus, and upon closing the body gains focus again.
-                    // Listening for the body regaining focus like this is the
-                    // only reliable way to clean up the input element.
-                    // Also, this doesn't work with addEventListener for some
-                    // reason.
-                    document.body.onfocus = () => input.remove()
-
-                    // Doesn't seem to work on Firefox (???)
-                    input.click()
+                        const json = await readClientFileText(file)
+                        const state: State = JSON.parse(json)
+                        dispatch({ tag: 'LoadState', state })
+                    }
+                    catch {
+                        dispatch({ tag: 'ShowInvalidJSONImportMessage' })
+                    }
                 }
             }
         case 'ShowInvalidJSONImportMessage':
@@ -570,7 +549,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     }
                 },
                 sideEffect: async (dispatch, state) => {
-                    const uri = await elementToURI(
+                    const uri = await elementToDataURI(
                         action.element,
                         state.screenshot.scale
                     )

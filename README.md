@@ -1,6 +1,6 @@
 # Chartmaker
 
-A recreation of [Topsters 2](https://www.neverendingchartrendering.org/).
+A recreation of [Topsters 2](https://www.neverendingchartrendering.org/). Currently live [here](https://elcr.bitbucket.io/chartmaker/).
 
 I use the original a lot and I've always been concerned by its fragile closed source nature. Chartmaker is my answer to that: an open source recreation that is entirely client-side, served from a single HTML file.
 

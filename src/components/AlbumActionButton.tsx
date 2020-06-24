@@ -10,7 +10,8 @@ type Props = {
 
 const style = css({
     background: 'none',
-    border: 'none'
+    border: 0,
+    padding: 0
 })
 
 

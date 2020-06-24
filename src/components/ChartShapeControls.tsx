@@ -6,6 +6,7 @@ import { DispatchProps } from '../reducer'
 import { ControlledSlider } from './ControlledSlider'
 import { ControlledRadioButton } from './ControlledRadioButton'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '../style'
+import { MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '../constants'
 
 
 type Props = DispatchProps<'UpdateChartShape'> & {
@@ -68,18 +69,24 @@ export const ChartShapeControls: FunctionComponent<Props> = ({
             })
 
         rowsXSlider = (
-            <ControlledSlider min={1}
-                max={10}
-                step={1}
-                value={rowsX}
-                onChange={updateRowsX}/>
+            <ControlledSlider id='rows-x'
+                    min={1}
+                    max={MAX_COLLAGE_ROWS_X}
+                    step={1}
+                    value={rowsX}
+                    onChange={updateRowsX}>
+                X
+            </ControlledSlider>
         )
         rowsYSlider = (
-            <ControlledSlider min={1}
-                max={10}
-                step={1}
-                value={rowsY}
-                onChange={updateRowsY}/>
+            <ControlledSlider id='rows-y'
+                    min={1}
+                    max={MAX_COLLAGE_ROWS_Y}
+                    step={1}
+                    value={rowsY}
+                    onChange={updateRowsY}>
+                Y
+            </ControlledSlider>
         )
     }
 

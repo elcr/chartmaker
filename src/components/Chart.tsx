@@ -1,8 +1,13 @@
-import { h, FunctionComponent } from 'preact'
+import { h, FunctionComponent, JSX } from 'preact'
 import { PropRef } from 'preact/hooks'
 import { css } from 'emotion'
 
-import { Chart as ChartDetails } from '../state'
+import {
+    Chart as ChartDetails,
+    Album,
+    AlbumRow as AlbumRowDetails,
+    albumIsNamed
+} from '../state'
 import { AlbumRow } from './AlbumRow'
 import { TitleGroup } from './TitleGroup'
 import { DispatchProps } from '../reducer'
@@ -48,55 +53,101 @@ const chartStyle = css({
 })
 
 
+function top40Groups(albums: Album[]): AlbumRowDetails[] {
+    return [
+        {
+            albums: albums.slice(0, 5),
+            size: VERY_LARGE_ROW_SIZE
+        },
+        {
+            albums: albums.slice(5, 11),
+            size: LARGE_ROW_SIZE
+        },
+        {
+            albums: albums.slice(11, 17),
+            size: LARGE_ROW_SIZE
+        },
+        {
+            albums: albums.slice(17, 24),
+            size: MEDIUM_ROW_SIZE
+        },
+        {
+            albums: albums.slice(24, 31),
+            size: MEDIUM_ROW_SIZE
+        },
+        {
+            albums: albums.slice(31, 40),
+            size: SMALL_ROW_SIZE
+        }
+    ]
+}
+
+
+function collageGroups(albums: Album[], rowsX: number, rowsY: number): AlbumRowDetails[] {
+    const groups: AlbumRowDetails[] = []
+    for (let y = 0; y < rowsY; y++) {
+        groups.push({
+            albums: albums.slice(rowsX * y, (rowsX * y) + rowsX),
+            size: LARGE_ROW_SIZE
+        })
+    }
+    return groups
+}
+
+
 export const Chart: FunctionComponent<Props> = ({
     dispatch,
-    details: { albums, name },
+    details: { albums, name, shape },
     innerRef
 }) => {
-    const groups = [
-        albums.slice(0, 5),
-        albums.slice(5, 11),
-        albums.slice(11, 17),
-        albums.slice(17, 24),
-        albums.slice(24, 31),
-        albums.slice(31)
-    ]
-    const titleGroups = groups.map((group, index) => {
-        const titles: string[] = []
-        for (const album of group) {
-            if (album.placeholder) {
-                continue
-            }
-            titles.push(album.name)
+    const groups = shape.tag === 'Top40'
+        ? top40Groups(albums)
+        : collageGroups(albums, shape.rowsX, shape.rowsY)
+
+    const titles: JSX.Element[][] = [[]]
+    let lastSize = ''
+    const albumRows: JSX.Element[] = []
+    groups.forEach((group, index) => {
+        albumRows.push(
+            <AlbumRow {...group}
+                key={index}
+                dispatch={dispatch}/>
+        )
+
+        const namedAlbums = group.albums.filter(albumIsNamed)
+
+        if (group.size === lastSize) {
+            const oldTitles = titles[titles.length - 1]
+            const newTitles = namedAlbums.map((album, index) =>
+                <div key={oldTitles.length + index}>
+                    {album.name}
+                </div>
+            )
+            titles[titles.length - 1] = [ ...oldTitles, ...newTitles ]
         }
-        return titles.length === 0
-            ? null
-            : <TitleGroup key={index} titles={titles}/>
+        else {
+            const newTitles = namedAlbums.map((album, index) =>
+                <div key={index}>
+                    {album.name}
+                </div>
+            )
+            titles.push(newTitles)
+            lastSize = group.size
+        }
     })
+
+    const titleGroups = titles.map((group, index) =>
+        <TitleGroup key={index}>
+            {group}
+        </TitleGroup>
+    )
 
     return (
         <main ref={innerRef} class={outContainerStyle}>
             <h1>{name}</h1>
             <div class={innerContainerStyle}>
                 <div class={chartStyle}>
-                    <AlbumRow dispatch={dispatch}
-                        albums={groups[0]}
-                        size={VERY_LARGE_ROW_SIZE}/>
-                    <AlbumRow dispatch={dispatch}
-                        albums={groups[1]}
-                        size={LARGE_ROW_SIZE}/>
-                    <AlbumRow dispatch={dispatch}
-                        albums={groups[2]}
-                        size={LARGE_ROW_SIZE}/>
-                    <AlbumRow dispatch={dispatch}
-                        albums={groups[3]}
-                        size={MEDIUM_ROW_SIZE}/>
-                    <AlbumRow dispatch={dispatch}
-                        albums={groups[4]}
-                        size={MEDIUM_ROW_SIZE}/>
-                    <AlbumRow dispatch={dispatch}
-                        albums={groups[5]}
-                        size={SMALL_ROW_SIZE}/>
+                    {albumRows}
                 </div>
                 <div>
                     {titleGroups}

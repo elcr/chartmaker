@@ -1,30 +1,54 @@
 import { CHART_ALBUMS_COUNT, DEFAULT_CHART_NAME } from './constants'
 
 
-export type Album =
-    | {
-        placeholder: true
-        id: number
-    }
-    | {
-        placeholder: false
-        id: number
-        name: string
-        url: string
-    }
+type PlaceholderAlbum = {
+    placeholder: true
+    id: number
+}
+
+
+type NamedAlbum = {
+    placeholder: false
+    id: number
+    name: string
+    url: string
+}
+
+
+export type Album = PlaceholderAlbum | NamedAlbum
+
+
+export function albumIsNamed(album: Album): album is NamedAlbum {
+    return !album.placeholder
+}
+
+
+export type AlbumRow = {
+    albums: Album[]
+    size: string
+}
+
+
+export type ChartShape =
+    | { tag: 'Top40' }
+    | { tag: 'Collage', rowsX: number, rowsY: number }
 
 
 export type Chart = {
     name: string
     albums: Album[]
+    shape: ChartShape
 }
 
 
-export type SearchState =
-    | { tag: 'Waiting', query: string }
-    | { tag: 'Loading', query: string, controller: AbortController }
-    | { tag: 'Complete', query: string, albums: Album[] }
-    | { tag: 'Error', query: string, message: string }
+export type SearchState = (
+    | { tag: 'Waiting' }
+    | { tag: 'Loading', controller: AbortController }
+    | { tag: 'Complete', albums: Album[] }
+    | { tag: 'Error', message: string }
+) & {
+    query: string
+}
 
 
 export type ScreenshotState = {
@@ -46,12 +70,14 @@ export type State = {
 type CreateChartArguments = {
     albumIDCounter?: number
     name?: string
+    shape?: ChartShape
 }
 
 
 export function createChart({
     albumIDCounter = 0,
-    name = DEFAULT_CHART_NAME
+    name = DEFAULT_CHART_NAME,
+    shape = { tag: 'Top40' }
 }: CreateChartArguments = {}): [ number, Chart ] {
     const albums: Album[] = []
     for (let id = albumIDCounter + 1; id < albumIDCounter + CHART_ALBUMS_COUNT + 1; id++) {
@@ -61,7 +87,8 @@ export function createChart({
         albumIDCounter + CHART_ALBUMS_COUNT,
         {
             name,
-            albums
+            albums,
+            shape
         }
     ]
 }

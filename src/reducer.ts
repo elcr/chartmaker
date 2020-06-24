@@ -1,5 +1,11 @@
 import { SideEffectUpdate, Dispatch as _Dispatch } from './hooks'
-import { State, createChart, SearchState, Album, escapeState } from './state'
+import {
+    State,
+    createChart,
+    SearchState,
+    Album,
+    escapeState
+} from './state'
 import {
     readClientFileText,
     findIndex,
@@ -37,6 +43,7 @@ type Action =
     | { tag: 'UpdateScreenshotLoading', loading: boolean }
     | { tag: 'UpdateScreenshotScale', scale: number }
     | { tag: 'TakeScreenshot', element: HTMLElement }
+    | { tag: 'UpdateChartShape', collage: boolean, rowsX: number, rowsY: number }
 
 
 export type ActionTag = Action['tag']
@@ -564,5 +571,22 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 }
             }
         }
+        case 'UpdateChartShape':
+            return {
+                tag: 'Update',
+                state: {
+                    ...state,
+                    charts: [
+                        ...state.charts.slice(0, state.activeChartIndex),
+                        {
+                            ...state.charts[state.activeChartIndex],
+                            collage: action.collage,
+                            rowsX: action.rowsX,
+                            rowsY: action.rowsY
+                        },
+                        ...state.charts.slice(state.activeChartIndex + 1)
+                    ]
+                }
+            }
     }
 }

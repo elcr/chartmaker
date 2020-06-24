@@ -11,6 +11,7 @@ import { SearchBox } from './SearchBox'
 import { SearchResults } from './SearchResults'
 import { SIDEBAR_WIDTH, CONTAINER_PADDING_SIZE } from '../style'
 import { ScreenshotButtons } from './ScreenshotButtons'
+import { ChartShapeControls } from './ChartShapeControls'
 
 
 type Props = DispatchProps<
@@ -26,9 +27,10 @@ type Props = DispatchProps<
     | 'CancelSearchRequest'
     | 'UpdateScreenshotScale'
     | 'TakeScreenshot'
+    | 'UpdateChartShape'
 > & {
     charts: Chart[]
-    activeChartIndex: number,
+    activeChartIndex: number
     apiKey: string
     searchState: SearchState
     screenshotState: ScreenshotState
@@ -60,6 +62,8 @@ export const Sidebar: FunctionComponent<Props> = ({
         ? <SearchResults albums={searchState.albums}/>
         : null
 
+    const chart = charts[activeChartIndex]
+
     return (
         <aside class={style}>
             <ChartManager dispatch={dispatch}
@@ -69,6 +73,7 @@ export const Sidebar: FunctionComponent<Props> = ({
             <ScreenshotButtons dispatch={dispatch}
                 chartRef={chartRef}
                 screenshotState={screenshotState}/>
+            <ChartShapeControls {...chart} dispatch={dispatch}/>
             <APIKeyInput dispatch={dispatch} apiKey={apiKey}/>
             <SearchBox dispatch={dispatch} searchState={searchState}/>
             {searchResults}

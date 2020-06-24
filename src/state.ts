@@ -1,4 +1,9 @@
-import { CHART_ALBUMS_COUNT, DEFAULT_CHART_NAME } from './constants'
+import {
+    CHART_ALBUMS_COUNT,
+    DEFAULT_CHART_NAME,
+    DEFAULT_COLLAGE_ROWS_X,
+    DEFAULT_COLLAGE_ROWS_Y
+} from './constants'
 
 
 type PlaceholderAlbum = {
@@ -29,15 +34,12 @@ export type AlbumRow = {
 }
 
 
-export type ChartShape =
-    | { tag: 'Top40' }
-    | { tag: 'Collage', rowsX: number, rowsY: number }
-
-
 export type Chart = {
     name: string
     albums: Album[]
-    shape: ChartShape
+    collage: boolean
+    rowsX: number
+    rowsY: number
 }
 
 
@@ -70,14 +72,12 @@ export type State = {
 type CreateChartArguments = {
     albumIDCounter?: number
     name?: string
-    shape?: ChartShape
 }
 
 
 export function createChart({
     albumIDCounter = 0,
-    name = DEFAULT_CHART_NAME,
-    shape = { tag: 'Top40' }
+    name = DEFAULT_CHART_NAME
 }: CreateChartArguments = {}): [ number, Chart ] {
     const albums: Album[] = []
     for (let id = albumIDCounter + 1; id < albumIDCounter + CHART_ALBUMS_COUNT + 1; id++) {
@@ -88,7 +88,9 @@ export function createChart({
         {
             name,
             albums,
-            shape
+            collage: false,
+            rowsX: DEFAULT_COLLAGE_ROWS_X,
+            rowsY: DEFAULT_COLLAGE_ROWS_Y
         }
     ]
 }

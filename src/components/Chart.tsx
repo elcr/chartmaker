@@ -97,12 +97,12 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): AlbumRowD
 
 export const Chart: FunctionComponent<Props> = ({
     dispatch,
-    details: { albums, name, shape },
+    details: { albums, name, collage, rowsX, rowsY },
     innerRef
 }) => {
-    const groups = shape.tag === 'Top40'
-        ? top40Groups(albums)
-        : collageGroups(albums, shape.rowsX, shape.rowsY)
+    const groups = collage
+        ? collageGroups(albums, rowsX, rowsY)
+        : top40Groups(albums)
 
     const titles: JSX.Element[][] = [[]]
     let lastSize = ''

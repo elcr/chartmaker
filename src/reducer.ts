@@ -1,6 +1,13 @@
 import { SideEffectUpdate, Dispatch as _Dispatch } from './hooks'
 import { State, createChart, SearchState, Album, escapeState } from './state'
-import { readClientFileText, findIndex, elementToDataURI, downloadURI, readClientFile } from './utils'
+import {
+    readClientFileText,
+    findIndex,
+    elementToDataURI,
+    downloadURI,
+    openClientFile,
+    jsonToDataURI
+} from './utils'
 import { search } from './api'
 
 
@@ -170,7 +177,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 tag: 'SideEffect',
                 sideEffect: async dispatch => {
                     try {
-                        const file = await readClientFile('application/json')
+                        const file = await openClientFile('application/json')
                         if (file === undefined) {
                             return
                         }
@@ -198,12 +205,8 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
             return {
                 tag: 'SideEffect',
                 sideEffect: (_dispatch, state) => {
-                    const uri = 'data:application/json;charset=utf-8,'
-                        + encodeURIComponent(
-                            JSON.stringify(
-                                escapeState(state)
-                            )
-                        )
+                    const json = JSON.stringify(escapeState(state))
+                    const uri = jsonToDataURI(json)
                     downloadURI(uri, 'state.json')
                 }
             }

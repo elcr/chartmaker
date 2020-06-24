@@ -3,7 +3,7 @@ import html2canvas from 'html2canvas'
 import { BACKGROUND_COLOUR } from './style'
 
 
-export function readClientFile(accept: string): Promise<File | undefined> {
+export function openClientFile(accept: string): Promise<File | undefined> {
     return new Promise(resolve => {
         const input = document.createElement('input')
         input.style.display = 'none'
@@ -45,7 +45,7 @@ export function readClientFile(accept: string): Promise<File | undefined> {
 export function readClientFileText(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
         const reader = new FileReader()
-        reader.addEventListener('error', () => reject())
+        reader.addEventListener('error', reject)
         reader.addEventListener('load', () => resolve(reader.result as string))
         reader.readAsText(file, 'utf-8')
     })
@@ -69,15 +69,16 @@ export async function elementToDataURI(element: HTMLElement, scale: number) {
 }
 
 
+export function jsonToDataURI(json: string): string {
+    return 'data:application/json;charset=utf-8,' + encodeURIComponent(json)
+}
+
+
 export function downloadURI(uri: string, filename: string) {
     const link = document.createElement('a')
     link.style.display = 'none'
     link.href = uri
     link.download = filename
-    try {
-        link.click()
-    }
-    finally {
-        link.remove()
-    }
+    link.click()
+    link.remove()
 }

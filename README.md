@@ -8,7 +8,6 @@ The site is being developed in according to my own usage, so it's lacking elemen
 
 * No films option, only music
 * Users must supply their own Last.fm API key (because it's entirely client-side)
-* Only top 40, no collage option yet (this is high priority however)
 * No optional album titles, they're always on
 * No styling options (background, font, padding, etc)
 * No compatibility with mobile devices (original doesn't really have this either)

@@ -15,7 +15,7 @@ The site is being developed in according to my own usage, so it's lacking elemen
 
 It does however have some new features over the original:
 
-* Screenshot scaling option (though a bit buggy right now)
+* Screenshot scaling option
 * Can rename albums (no need put up with what Last.fm returns)
 * Chart title in the screenshot
 

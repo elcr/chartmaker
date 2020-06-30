@@ -13,7 +13,7 @@ export const SMALL_ROW_SIZE = '4.75rem'
 export const CONTAINER_PADDING_SIZE = '1rem'
 export const ALBUM_PADDING_SIZE = '0.15rem'
 export const ALBUM_BUTTONS_PADDING_SIZE = '0.5rem'
-export const SIDEBAR_WIDTH = '17rem'
+export const SIDEBAR_WIDTH = '18rem'
 export const SIDEBAR_ITEM_PADDING_SIZE = '0.5rem'
 export const SIDEBAR_LABEL_PADDING_SIZE = '0.25rem'
 

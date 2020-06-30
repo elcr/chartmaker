@@ -4,7 +4,8 @@ import {
     createChart,
     SearchState,
     Album,
-    escapeState
+    escapeState,
+    ChartShape
 } from './state'
 import {
     readClientFileText,
@@ -43,7 +44,7 @@ type Action =
     | { tag: 'UpdateScreenshotLoading', loading: boolean }
     | { tag: 'UpdateScreenshotScale', scale: number }
     | { tag: 'TakeScreenshot', element: HTMLElement }
-    | { tag: 'UpdateChartShape', collage: boolean, rowsX: number, rowsY: number }
+    | { tag: 'UpdateChartShape', shape: ChartShape, rowsX: number, rowsY: number }
 
 
 export type ActionTag = Action['tag']
@@ -580,7 +581,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                         ...state.charts.slice(0, state.activeChartIndex),
                         {
                             ...state.charts[state.activeChartIndex],
-                            collage: action.collage,
+                            shape: action.shape,
                             rowsX: action.rowsX,
                             rowsY: action.rowsY
                         },

@@ -84,8 +84,8 @@ function titleGroupsFromRows(rows: AlbumRow[]): TitleGroup[] {
 }
 
 
-function top40Groups(albums: Album[]): [ AlbumRow[], TitleGroup[] ] {
-    const rows: AlbumRow[] = [
+function top40Rows(albums: Album[]): AlbumRow[] {
+    return [
         {
             albums: albums.slice(0, 5),
             size: VERY_LARGE_ROW_SIZE
@@ -111,9 +111,66 @@ function top40Groups(albums: Album[]): [ AlbumRow[], TitleGroup[] ] {
             size: SMALL_ROW_SIZE
         }
     ]
-    const titles = titleGroupsFromRows(rows)
+}
 
-    return [ rows, titles ]
+
+function top42Rows(albums: Album[]): AlbumRow[] {
+    return [
+        {
+            albums: albums.slice(0, 5),
+            size: VERY_LARGE_ROW_SIZE
+        },
+        {
+            albums: albums.slice(5, 11),
+            size: LARGE_ROW_SIZE
+        },
+        {
+            albums: albums.slice(11, 17),
+            size: LARGE_ROW_SIZE
+        },
+        {
+            albums: albums.slice(17, 24),
+            size: MEDIUM_ROW_SIZE
+        },
+        {
+            albums: albums.slice(24, 31),
+            size: MEDIUM_ROW_SIZE
+        },
+        {
+            albums: albums.slice(31, 40),
+            size: SMALL_ROW_SIZE
+        }
+    ]
+}
+
+
+function top100Rows(albums: Album[]): AlbumRow[] {
+    return [
+        {
+            albums: albums.slice(0, 5),
+            size: VERY_LARGE_ROW_SIZE
+        },
+        {
+            albums: albums.slice(5, 11),
+            size: LARGE_ROW_SIZE
+        },
+        {
+            albums: albums.slice(11, 17),
+            size: LARGE_ROW_SIZE
+        },
+        {
+            albums: albums.slice(17, 24),
+            size: MEDIUM_ROW_SIZE
+        },
+        {
+            albums: albums.slice(24, 31),
+            size: MEDIUM_ROW_SIZE
+        },
+        {
+            albums: albums.slice(31, 40),
+            size: SMALL_ROW_SIZE
+        }
+    ]
 }
 
 
@@ -139,12 +196,27 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
 
 export const Chart: FunctionComponent<Props> = ({
     dispatch,
-    details: { albums, name, collage, rowsX, rowsY },
+    details: { albums, name, shape, rowsX, rowsY },
     innerRef
 }) => {
-    const [ rows, titles ] = collage
-        ? collageGroups(albums, rowsX, rowsY)
-        : top40Groups(albums)
+    let rows: AlbumRow[]
+    let titles: TitleGroup[]
+    if (shape.tag === 'Top') {
+        switch (shape.size) {
+            case 40:
+                rows = top40Rows(albums)
+                break
+            case 42:
+                rows = top42Rows(albums)
+                break
+            case 100:
+                rows = top100Rows(albums)
+        }
+        titles = titleGroupsFromRows(rows)
+    }
+    else {
+        [ rows, titles ] = collageGroups(albums, rowsX, rowsY)
+    }
 
     const rowElements = rows.map((row, index) =>
         <AlbumRow {...row}

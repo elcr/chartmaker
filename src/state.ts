@@ -28,10 +28,15 @@ export function albumIsNamed(album: Album): album is NamedAlbum {
 }
 
 
+export type ChartShape =
+    | { tag: 'Top', size: 40 | 42 | 100 }
+    | { tag: 'Collage' }
+
+
 export type Chart = {
     name: string
     albums: Album[]
-    collage: boolean
+    shape: ChartShape
     rowsX: number
     rowsY: number
 }
@@ -82,7 +87,7 @@ export function createChart({
         {
             name,
             albums,
-            collage: false,
+            shape: { tag: 'Top', size: 40 },
             rowsX: DEFAULT_COLLAGE_ROWS_X,
             rowsY: DEFAULT_COLLAGE_ROWS_Y
         }

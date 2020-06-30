@@ -1,8 +1,7 @@
-import { h, FunctionComponent } from 'preact'
+import { h, FunctionComponent, JSX } from 'preact'
 import { css, cx } from 'emotion'
 
 import { Album } from '../state'
-import { Image } from './Image'
 import { TEXT_COLOUR, ALBUM_PADDING_SIZE } from '../style'
 
 
@@ -29,6 +28,7 @@ const imageStyle = css({
     top: 0,
     left: 0,
     width: '100%',
+    maxWidth: '100%',
     height: '100%'
 })
 
@@ -50,7 +50,6 @@ export const AlbumCover: FunctionComponent<Props> = ({
     overlayClass
 }) => {
     const overlayStyle = cx(baseOverlayStyle, overlayClass)
-
     const containerStyle = cx(
         baseContainerStyle,
         css({
@@ -62,12 +61,15 @@ export const AlbumCover: FunctionComponent<Props> = ({
         })
     )
 
-
-    const image = album.placeholder
-        ? null
-        : <Image class={imageStyle}
-            url={album.url}
-            alt={album.name}/>
+    let image: JSX.Element | undefined
+    if (!album.placeholder) {
+        image = (
+            <img class={imageStyle}
+                src={album.url}
+                alt={album.name}
+                crossOrigin='anonymous'/>
+        )
+    }
 
     return (
         <div class={containerStyle}

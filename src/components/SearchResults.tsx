@@ -1,14 +1,14 @@
 import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
-import { Album } from '../state'
+import { NamedAlbum } from '../state'
 import { SidebarGroup } from './SidebarGroup'
 import { SearchAlbumCover } from './SearchAlbumCover'
 import { LARGE_ALBUM_SIZE } from '../style'
 
 
 type Props = {
-    albums: Album[]
+    albums: NamedAlbum[]
 }
 
 

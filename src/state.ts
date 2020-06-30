@@ -31,6 +31,7 @@ export const NamedAlbum = Record({
     name: String,
     url: String
 })
+export type NamedAlbum = Static<typeof NamedAlbum>
 
 
 const Album = Union(PlaceholderAlbum, NamedAlbum)
@@ -73,7 +74,7 @@ const SearchState = Union(
     }),
     Record({
         tag: Literal('Complete'),
-        albums: Array(Album)
+        albums: Array(NamedAlbum)
     }),
     Record({
         tag: Literal('Error'),

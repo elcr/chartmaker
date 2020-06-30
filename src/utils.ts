@@ -22,6 +22,7 @@ export function findIndex<T>(array: ReadonlyArray<T>, predicate: (item: T) => bo
 
 export async function elementToDataURI(element: HTMLElement, scale: number) {
     const canvas = await html2canvas(element, {
+        allowTaint: true,
         scale,
         useCORS: true,
         imageTimeout: 0,

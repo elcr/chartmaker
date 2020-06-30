@@ -5,7 +5,8 @@ import {
     SearchState,
     Album,
     escapeStateForExport,
-    ChartShape
+    ChartShape,
+    NamedAlbum
 } from './state'
 import {
     readFileText,
@@ -273,7 +274,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     })
                     switch (result.tag) {
                         case 'Ok': {
-                            const albums = result.albums.map((album, index) => ({
+                            const albums: NamedAlbum[] = result.albums.map((album, index) => ({
                                 ...album,
                                 placeholder: false,
                                 id: state.albumIDCounter + index + 1

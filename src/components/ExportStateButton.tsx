@@ -8,12 +8,12 @@ type Props = DispatchProps<'PromptToExportState'>
 
 
 export const ExportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
-    function PromptToExportState() {
+    function promptToExportState() {
         dispatch({ tag: 'PromptToExportState' })
     }
 
     return (
-        <Button onClick={PromptToExportState}>
+        <Button onClick={promptToExportState}>
             Export state
         </Button>
     )

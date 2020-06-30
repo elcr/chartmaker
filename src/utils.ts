@@ -4,44 +4,7 @@ import { BACKGROUND_COLOUR } from './style'
 import { Number as Number_, Array as Array_, Runtype } from 'runtypes'
 
 
-export function openClientFile(accept: string): Promise<File | undefined> {
-    return new Promise(resolve => {
-        const input = document.createElement('input')
-        input.type = 'file'
-        input.accept = accept
-
-        input.addEventListener('change', () => {
-            const file = input.files?.[0]
-            resolve(file)
-        })
-
-        // The input change event is never fired if the user closes the dialog.
-        // This has no associated event, so there is no reliable way to know
-        // when it happens. However, the dialog opening causes the body to lose
-        // focus, and upon closing the body gains focus again.
-        // Listening for the body regaining focus like this is the only
-        // reliable way to clean up the input element. This doesn't work with
-        // addEventListener for some reason.
-        // Also, the document focus event always fires before the input change
-        // event, so a timeout is needed before cleanup to stop the promise
-        // from resolving too early before the input's file can be read.
-        document.body.onfocus = () => {
-            setTimeout(
-                () => {
-                    resolve()
-                    input.remove()
-                    document.body.onfocus = null
-                },
-                100
-            )
-        }
-
-        input.click()
-    })
-}
-
-
-export function readClientFileText(file: File): Promise<string> {
+export function readFileText(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
         const reader = new FileReader()
         reader.addEventListener('error', reject)

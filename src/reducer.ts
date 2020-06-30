@@ -8,7 +8,7 @@ import {
     ChartShape
 } from './state'
 import {
-    readClientFileText,
+    readFileText,
     findIndex,
     elementToDataURI,
     downloadURI,
@@ -187,7 +187,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 tag: 'SideEffect',
                 sideEffect: async dispatch => {
                     try {
-                        const json = await readClientFileText(action.file)
+                        const json = await readFileText(action.file)
                         const parsed: unknown = JSON.parse(json)
                         const state = State.check(parsed)
                         dispatch({ tag: 'LoadState', state })

@@ -1,71 +1,108 @@
 import {
+    Record,
+    Literal,
+    String,
+    Union,
+    InstanceOf,
+    Array,
+    Boolean,
+    Static
+} from 'runtypes'
+
+import {
     CHART_ALBUMS_COUNT,
     DEFAULT_CHART_NAME,
     DEFAULT_COLLAGE_ROWS_X,
-    DEFAULT_COLLAGE_ROWS_Y
+    DEFAULT_COLLAGE_ROWS_Y,
+    MAX_SCREENSHOT_SCALE
 } from './constants'
+import { Integer, FixedSizeArray, IntegerRange } from './utils'
 
 
-type PlaceholderAlbum = {
-    placeholder: true
-    id: number
-}
+const PlaceholderAlbum = Record({
+    placeholder: Literal(true),
+    id: Integer
+})
 
 
-type NamedAlbum = {
-    placeholder: false
-    id: number
-    name: string
-    url: string
-}
+export const NamedAlbum = Record({
+    placeholder: Literal(false),
+    id: Integer,
+    name: String,
+    url: String
+})
 
 
-export type Album = PlaceholderAlbum | NamedAlbum
+const Album = Union(PlaceholderAlbum, NamedAlbum)
+export type Album = Static<typeof Album>
 
 
-export function albumIsNamed(album: Album): album is NamedAlbum {
-    return !album.placeholder
-}
+const ChartShape = Union(
+    Record({
+        tag: Literal('Top'),
+        size: Union(
+            Literal(40),
+            Literal(42),
+            Literal(100)
+        )
+    }),
+    Record({
+        tag: Literal('Collage')
+    })
+)
+export type ChartShape = Static<typeof ChartShape>
 
 
-export type ChartShape =
-    | { tag: 'Top', size: 40 | 42 | 100 }
-    | { tag: 'Collage' }
+const Chart = Record({
+    name: String,
+    albums: FixedSizeArray(Album, CHART_ALBUMS_COUNT),
+    shape: ChartShape,
+    rowsX: Integer,
+    rowsY: Integer
+})
+export type Chart = Static<typeof Chart>
 
 
-export type Chart = {
-    name: string
-    albums: Album[]
-    shape: ChartShape
-    rowsX: number
-    rowsY: number
-}
+const SearchState = Union(
+    Record({
+        tag: Literal('Waiting')
+    }),
+    Record({
+        tag: Literal('Loading'),
+        controller: InstanceOf(AbortController)
+    }),
+    Record({
+        tag: Literal('Complete'),
+        albums: Array(Album)
+    }),
+    Record({
+        tag: Literal('Error'),
+        message: String
+    })
+).And(
+    Record({
+        query: String
+    })
+)
+export type SearchState = Static<typeof SearchState>
 
 
-export type SearchState = (
-    | { tag: 'Waiting' }
-    | { tag: 'Loading', controller: AbortController }
-    | { tag: 'Complete', albums: Album[] }
-    | { tag: 'Error', message: string }
-) & {
-    query: string
-}
+const ScreenshotState = Record({
+    loading: Boolean,
+    scale: IntegerRange(1, MAX_SCREENSHOT_SCALE)
+})
+export type ScreenshotState = Static<typeof ScreenshotState>
 
 
-export type ScreenshotState = {
-    loading: boolean,
-    scale: number
-}
-
-
-export type State = {
-    apiKey: string
-    charts: Chart[]
-    activeChartIndex: number
-    search: SearchState
-    albumIDCounter: number
+export const State = Record({
+    apiKey: String,
+    charts: Array(Chart),
+    activeChartIndex: Integer,
+    search: SearchState,
+    albumIDCounter: Integer,
     screenshot: ScreenshotState
-}
+})
+export type State = Static<typeof State>
 
 
 type CreateChartArguments = {
@@ -114,7 +151,7 @@ export function createInitialState(): State {
 }
 
 
-export function escapeState(state: State): State {
+export function escapeStateForExport(state: State): State {
     return {
         ...state,
         search: {

@@ -6,7 +6,7 @@ import { useLocalStorageSideEffectReducer } from './hooks'
 import { reducer } from './reducer'
 import { Chart } from './components/Chart'
 import { Sidebar } from './components/Sidebar'
-import { createInitialState, escapeState } from './state'
+import { createInitialState, escapeStateForExport, State } from './state'
 import {
     BACKGROUND_COLOUR,
     TEXT_COLOUR,
@@ -28,12 +28,13 @@ const rootStyle = css({
 
 
 export const App = () => {
-    const [ state, dispatch ] = useLocalStorageSideEffectReducer(
-        'state',
+    const [ state, dispatch ] = useLocalStorageSideEffectReducer({
+        key: 'state',
+        type: State,
         createInitialState,
-        escapeState,
+        escapeState: escapeStateForExport,
         reducer
-    )
+    })
     const chartRef = useRef<HTMLElement>(null)
 
     return (

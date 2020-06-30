@@ -5,7 +5,7 @@ import { css } from 'emotion'
 import {
     Chart as ChartDetails,
     Album,
-    albumIsNamed
+    NamedAlbum
 } from '../state'
 import { AlbumRow } from './AlbumRow'
 import { TitleGroup } from './TitleGroup'
@@ -68,7 +68,7 @@ function titleGroupsFromRows(rows: AlbumRow[]): TitleGroup[] {
     let lastSize = ''
 
     for (const row of rows) {
-        const named = row.albums.filter(albumIsNamed)
+        const named = row.albums.filter(NamedAlbum.guard)
 
         if (row.size === lastSize) {
             for (const album of named) {
@@ -207,7 +207,7 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
             size: VERY_LARGE_ALBUM_SIZE
         })
         titles.push(
-            slice.filter(albumIsNamed)
+            slice.filter(NamedAlbum.guard)
                 .map(album => album.name)
         )
     }

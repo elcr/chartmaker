@@ -4,7 +4,7 @@ import {
     createChart,
     SearchState,
     Album,
-    escapeState,
+    escapeStateForExport,
     ChartShape
 } from './state'
 import {
@@ -190,7 +190,8 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                             return
                         }
                         const json = await readClientFileText(file)
-                        const state: State = JSON.parse(json)
+                        const parsed: unknown = JSON.parse(json)
+                        const state = State.check(parsed)
                         dispatch({ tag: 'LoadState', state })
                     }
                     catch {
@@ -213,7 +214,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
             return {
                 tag: 'SideEffect',
                 sideEffect: (_dispatch, state) => {
-                    const json = JSON.stringify(escapeState(state))
+                    const json = JSON.stringify(escapeStateForExport(state))
                     const uri = jsonToDataURI(json)
                     downloadURI(uri, 'state.json')
                 }

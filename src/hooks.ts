@@ -1,4 +1,5 @@
 import { useEffect, useReducer, Reducer } from 'preact/hooks'
+import { Runtype } from 'runtypes'
 
 
 export type Dispatch<TAction> = (action: TAction) => void
@@ -46,12 +47,26 @@ type SideEffectArray<TState, TAction> = SideEffect<TState, TAction>[]
 type StateTuple<TState, TAction> = [ TState, SideEffectArray<TState, TAction> ]
 
 
-export function useLocalStorageSideEffectReducer<TState, TAction>(
-    key: string,
-    initialStateFallback: () => TState,
+type HookArguments<TState, TRunType extends Runtype<TState>, TAction> = {
+    key: string
+    type: TRunType,
+    createInitialState: () => TState,
     escapeState: (state: TState) => TState,
     reducer: SideEffectReducer<TState, TAction>
-) {
+}
+
+
+export function useLocalStorageSideEffectReducer<
+    TState,
+    TRunType extends Runtype<TState>,
+    TAction
+>({
+    key,
+    type,
+    createInitialState,
+    escapeState,
+    reducer
+}: HookArguments<TState, TRunType, TAction>) {
     function innerReducer(
         [ state, sideEffects ]: StateTuple<TState, TAction>,
         action: TAction
@@ -73,10 +88,14 @@ export function useLocalStorageSideEffectReducer<TState, TAction>(
         innerReducer,
         () => {
             const json = localStorage.getItem(key)
-            const state: TState = json === null
-                ? initialStateFallback()
-                : JSON.parse(json)
-            return [ state, [] ]
+            if (json === null) {
+                return [ createInitialState(), [] ]
+            }
+            const state: unknown = JSON.parse(json)
+            if (type.guard(state)) {
+                return [ state, [] ]
+            }
+            return [ createInitialState(), [] ]
         }
     )
 

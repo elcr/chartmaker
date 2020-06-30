@@ -6,13 +6,14 @@ import { useLocalStorageSideEffectReducer } from './hooks'
 import { reducer } from './reducer'
 import { Chart } from './components/Chart'
 import { Sidebar } from './components/Sidebar'
-import { createInitialState, escapeStateForExport, State } from './state'
+import { createInitialState, escapeStateForExport } from './state'
 import {
     BACKGROUND_COLOUR,
     TEXT_COLOUR,
     FONT_SIZE,
     CONTAINER_PADDING_SIZE
 } from './style'
+import { State } from './types'
 
 
 const rootStyle = css({

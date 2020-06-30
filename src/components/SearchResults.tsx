@@ -1,7 +1,7 @@
 import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
-import { NamedAlbum } from '../state'
+import { NamedAlbum } from '../types'
 import { SidebarGroup } from './SidebarGroup'
 import { SearchAlbumCover } from './SearchAlbumCover'
 import { LARGE_ALBUM_SIZE } from '../style'

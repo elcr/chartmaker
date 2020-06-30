@@ -5,7 +5,7 @@ import { ControlledSlider } from './ControlledSlider'
 import { DispatchProps } from '../reducer'
 import { SidebarGroup } from './SidebarGroup'
 import { Button } from './Button'
-import { ScreenshotState } from '../state'
+import { ScreenshotState } from '../types'
 import { MAX_SCREENSHOT_SCALE } from '../constants'
 
 

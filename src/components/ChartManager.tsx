@@ -6,7 +6,7 @@ import { ChartSelector } from './ChartSelector'
 import { NewChartButton } from './NewChartButton'
 import { RenameActiveChartButton } from './RenameActiveChartButton'
 import { DeleteActiveChartButton } from './DeleteActiveChartButton'
-import { Chart } from '../state'
+import { Chart } from '../types'
 import { SidebarGroup } from './SidebarGroup'
 
 

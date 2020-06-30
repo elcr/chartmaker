@@ -1,25 +1,26 @@
 import { css, cx } from 'emotion'
+import { Colour, Border, Size } from './types'
 
 
-export const BACKGROUND_COLOUR = 'black'
-export const TEXT_COLOUR = 'white'
-export const ERROR_TEXT_COLOUR = 'red'
-export const BORDER = `1px solid ${TEXT_COLOUR}`
-export const FONT_SIZE = '0.875rem'
-export const TITLES_FONT_SIZE = '0.8rem'
-export const VERY_LARGE_ALBUM_SIZE = '11rem'
-export const LARGE_ALBUM_SIZE = '9.1rem'
-export const MEDIUM_ALBUM_SIZE = '7.7rem'
-export const SMALL_ALBUM_SIZE = '5.9rem'
-export const VERY_SMALL_ALBUM_SIZE = '5.25rem'
-export const TINY_ALBUM_SIZE = '3.65rem'
-export const CONTAINER_PADDING_SIZE = '1rem'
-export const TITLES_PADDING_SIZE = '0.5rem'
-export const ALBUM_PADDING_SIZE = '0.15rem'
-export const ALBUM_BUTTONS_PADDING_SIZE = '0.5rem'
-export const SIDEBAR_WIDTH = '18.5rem'
-export const SIDEBAR_ITEM_PADDING_SIZE = '0.5rem'
-export const SIDEBAR_LABEL_PADDING_SIZE = '0.25rem'
+export const BACKGROUND_COLOUR = 'black' as Colour
+export const TEXT_COLOUR = 'white' as Colour
+export const ERROR_TEXT_COLOUR = 'red' as Colour
+export const BORDER = `1px solid ${TEXT_COLOUR}` as Border
+export const FONT_SIZE = '0.875rem' as Size
+export const TITLES_FONT_SIZE = '0.8rem' as Size
+export const VERY_LARGE_ALBUM_SIZE = '11rem' as Size
+export const LARGE_ALBUM_SIZE = '9.1rem' as Size
+export const MEDIUM_ALBUM_SIZE = '7.7rem' as Size
+export const SMALL_ALBUM_SIZE = '5.9rem' as Size
+export const VERY_SMALL_ALBUM_SIZE = '5.25rem' as Size
+export const TINY_ALBUM_SIZE = '3.65rem' as Size
+export const CONTAINER_PADDING_SIZE = '1rem' as Size
+export const TITLES_PADDING_SIZE = '0.5rem' as Size
+export const ALBUM_PADDING_SIZE = '0.15rem' as Size
+export const ALBUM_BUTTONS_PADDING_SIZE = '0.5rem' as Size
+export const SIDEBAR_WIDTH = '18.5rem' as Size
+export const SIDEBAR_ITEM_PADDING_SIZE = '0.5rem' as Size
+export const SIDEBAR_LABEL_PADDING_SIZE = '0.25rem' as Size
 
 
 export const buttonStyle = css({

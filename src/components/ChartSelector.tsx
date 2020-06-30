@@ -2,7 +2,7 @@ import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { DispatchProps } from '../reducer'
-import { Chart } from '../state'
+import { Chart } from '../types'
 import { Label } from './Label'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '../style'
 import { ControlledSelect } from './ControlledSelect'

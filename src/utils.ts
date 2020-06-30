@@ -1,7 +1,6 @@
 import html2canvas from 'html2canvas'
 
 import { BACKGROUND_COLOUR } from './style'
-import { Number as Number_, Array as Array_, Runtype } from 'runtypes'
 
 
 export function readFileText(file: File): Promise<string> {
@@ -43,17 +42,4 @@ export function downloadURI(uri: string, filename: string) {
     link.download = filename
     link.click()
     link.remove()
-}
-
-
-export const Integer = Number_.withConstraint(Number.isSafeInteger)
-
-
-export function IntegerRange(minimum: number, maximum: number) {
-    return Integer.withConstraint(number => number >= minimum && number <= maximum)
-}
-
-
-export function FixedSizeArray<T extends Runtype>(element: T, size: number) {
-    return Array_(element).withConstraint(array => array.length === size)
 }

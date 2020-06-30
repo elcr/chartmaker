@@ -1,12 +1,7 @@
 import { SideEffectUpdate, Dispatch as _Dispatch } from './hooks'
 import {
-    State,
     createChart,
-    SearchState,
-    Album,
     escapeStateForExport,
-    ChartShape,
-    NamedAlbum
 } from './state'
 import {
     readFileText,
@@ -16,6 +11,7 @@ import {
     jsonToDataURI
 } from './utils'
 import { search } from './api'
+import { State, SearchState, ChartShape, NamedAlbum, Album } from './types'
 
 
 type Action =

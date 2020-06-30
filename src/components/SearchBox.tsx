@@ -6,7 +6,7 @@ import { DispatchProps } from '../reducer'
 import { ControlledForm } from './ControlledForm'
 import { SidebarGroup } from './SidebarGroup'
 import { ControlledInput } from './ControlledInput'
-import { SearchState } from '../state'
+import { SearchState } from '../types'
 import { SIDEBAR_LABEL_PADDING_SIZE, ERROR_TEXT_COLOUR } from '../style'
 
 

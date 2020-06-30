@@ -1,13 +1,13 @@
 import { h, FunctionComponent, JSX } from 'preact'
 import { css, cx } from 'emotion'
 
-import { Album } from '../state'
 import { TEXT_COLOUR, ALBUM_PADDING_SIZE } from '../style'
+import { Size, Album } from '../types'
 
 
 type Props = {
     album: Album
-    size: string
+    size: Size
     onDragStart: (event: DragEvent) => void
     onDragOver?: (event: DragEvent) => void
     onDragEnter?: (event: DragEvent) => void

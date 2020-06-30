@@ -1,12 +1,12 @@
 import { h, FunctionComponent } from 'preact'
 
-import { NamedAlbum } from '../state'
+import { NamedAlbum, Size } from '../types'
 import { AlbumCover } from './AlbumCover'
 
 
 type Props = {
     album: NamedAlbum
-    size: string
+    size: Size
 }
 
 

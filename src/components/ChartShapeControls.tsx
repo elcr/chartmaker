@@ -6,7 +6,7 @@ import { DispatchProps } from '../reducer'
 import { ControlledSlider } from './ControlledSlider'
 import { ControlledRadioButton } from './ControlledRadioButton'
 import { MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '../constants'
-import { ChartShape } from '../state'
+import { ChartShape } from '../types'
 
 
 type Props = DispatchProps<'UpdateChartShape'> & {

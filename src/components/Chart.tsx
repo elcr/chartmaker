@@ -5,8 +5,9 @@ import { css } from 'emotion'
 import {
     Chart as ChartDetails,
     Album,
-    NamedAlbum
-} from '../state'
+    NamedAlbum,
+    Size
+} from '../types'
 import { AlbumRow } from './AlbumRow'
 import { TitleGroup } from './TitleGroup'
 import { DispatchProps } from '../reducer'
@@ -56,7 +57,7 @@ const chartStyle = css({
 
 type AlbumRow = {
     albums: Album[]
-    size: string
+    size: Size
 }
 
 

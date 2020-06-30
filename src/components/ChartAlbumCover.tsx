@@ -1,9 +1,9 @@
 import { h, FunctionComponent, Fragment, VNode } from 'preact'
+import { css } from 'emotion'
 
-import { Album } from '../state'
+import { Album, Size } from '../types'
 import { AlbumCover } from './AlbumCover'
 import { DispatchProps } from '../reducer'
-import { css } from 'emotion'
 import { AlbumActionButton } from './AlbumActionButton'
 import { ALBUM_BUTTONS_PADDING_SIZE } from '../style'
 
@@ -58,7 +58,7 @@ type Props = DispatchProps<
     | 'DeleteAlbum'
 > & {
     album: Album
-    size: string
+    size: Size
 }
 
 

@@ -4,7 +4,7 @@ import { Ref } from 'preact/hooks'
 
 import { ChartManager } from './ChartManager'
 import { DispatchProps } from '../reducer'
-import { Chart, SearchState, ScreenshotState } from '../state'
+import { Chart, SearchState, ScreenshotState } from '../types'
 import { APIKeyInput } from './APIKeyInput'
 import { ImportExportButtons } from './ImportExportButtons'
 import { SearchBox } from './SearchBox'

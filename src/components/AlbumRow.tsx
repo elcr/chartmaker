@@ -1,7 +1,7 @@
 import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
-import { Album } from '../state'
+import { Album, Size } from '../types'
 import { DispatchProps } from '../reducer'
 import { ChartAlbumCover } from './ChartAlbumCover'
 
@@ -13,7 +13,7 @@ type Props = DispatchProps<
     | 'DeleteAlbum'
 > & {
     albums: Album[]
-    size: string
+    size: Size
 }
 
 

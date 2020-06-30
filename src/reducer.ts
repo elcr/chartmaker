@@ -12,7 +12,6 @@ import {
     findIndex,
     elementToDataURI,
     downloadURI,
-    openClientFile,
     jsonToDataURI
 } from './utils'
 import { search } from './api'
@@ -28,10 +27,10 @@ type Action =
     | { tag: 'RenameActiveChart', name: string }
     | { tag: 'PromptToDeleteActiveChart' }
     | { tag: 'DeleteActiveChart' }
-    | { tag: 'PromptToSelectJSONToImport' }
-    | { tag: 'ShowInvalidJSONImportMessage' }
+    | { tag: 'ImportStateFile', file: File }
+    | { tag: 'ShowInvalidStateImportMessage' }
     | { tag: 'LoadState', state: State }
-    | { tag: 'PromptToExportStateJSON' }
+    | { tag: 'PromptToExportState' }
     | { tag: 'CancelSearchRequest' }
     | { tag: 'SendSearchRequest' }
     | { tag: 'UpdateSearchState', state: SearchState }
@@ -133,7 +132,10 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     ...state,
                     charts: [
                         ...state.charts.slice(0, state.activeChartIndex),
-                        { ...activeChart, name: action.name },
+                        {
+                            ...activeChart,
+                            name: action.name
+                        },
                         ...state.charts.slice(state.activeChartIndex + 1)
                     ]
                 }
@@ -180,26 +182,22 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 }
             }
         }
-        case 'PromptToSelectJSONToImport':
+        case 'ImportStateFile':
             return {
                 tag: 'SideEffect',
                 sideEffect: async dispatch => {
                     try {
-                        const file = await openClientFile('application/json')
-                        if (file === undefined) {
-                            return
-                        }
-                        const json = await readClientFileText(file)
+                        const json = await readClientFileText(action.file)
                         const parsed: unknown = JSON.parse(json)
                         const state = State.check(parsed)
                         dispatch({ tag: 'LoadState', state })
                     }
                     catch {
-                        dispatch({ tag: 'ShowInvalidJSONImportMessage' })
+                        dispatch({ tag: 'ShowInvalidStateImportMessage' })
                     }
                 }
             }
-        case 'ShowInvalidJSONImportMessage':
+        case 'ShowInvalidStateImportMessage':
             return {
                 tag: 'SideEffect',
                 sideEffect: () =>
@@ -210,7 +208,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 tag: 'Update',
                 state: action.state
             }
-        case 'PromptToExportStateJSON':
+        case 'PromptToExportState':
             return {
                 tag: 'SideEffect',
                 sideEffect: (_dispatch, state) => {
@@ -397,7 +395,10 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                     ...state,
                     charts: [
                         ...state.charts.slice(0, state.activeChartIndex),
-                        { ...activeChart, albums },
+                        {
+                            ...activeChart,
+                            albums
+                        },
                         ...state.charts.slice(state.activeChartIndex + 1)
                     ]
                 }
@@ -430,7 +431,10 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                             ...activeChart,
                             albums: [
                                 ...activeChart.albums.slice(0, targetIndex),
-                                { ...source, id: state.albumIDCounter + 1 },
+                                {
+                                    ...source,
+                                    id: state.albumIDCounter + 1
+                                },
                                 ...activeChart.albums.slice(targetIndex + 1)
                             ]
                         },
@@ -485,7 +489,10 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                             ...activeChart,
                             albums: [
                                 ...activeChart.albums.slice(0, index),
-                                { ...album, name: action.name },
+                                {
+                                    ...album,
+                                    name: action.name
+                                },
                                 ...activeChart.albums.slice(index + 1)
                             ]
                         },

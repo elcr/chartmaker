@@ -7,8 +7,7 @@ import { Number as Number_, Array as Array_, Runtype } from 'runtypes'
 export function openClientFile(accept: string): Promise<File | undefined> {
     return new Promise(resolve => {
         const input = document.createElement('input')
-        input.style.display = 'none'
-        input.setAttribute('type', 'file')
+        input.type = 'file'
         input.accept = accept
 
         input.addEventListener('change', () => {
@@ -37,7 +36,6 @@ export function openClientFile(accept: string): Promise<File | undefined> {
             )
         }
 
-        // Doesn't seem to work on Firefox (???)
         input.click()
     })
 }
@@ -77,7 +75,6 @@ export function jsonToDataURI(json: string): string {
 
 export function downloadURI(uri: string, filename: string) {
     const link = document.createElement('a')
-    link.style.display = 'none'
     link.href = uri
     link.download = filename
     link.click()

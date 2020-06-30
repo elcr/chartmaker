@@ -8,8 +8,8 @@ import { ExportStateButton } from './ExportStateButton'
 
 
 type Props = DispatchProps<
-    | 'PromptToSelectJSONToImport'
-    | 'PromptToExportStateJSON'
+    | 'ImportStateFile'
+    | 'PromptToExportState'
 >
 
 

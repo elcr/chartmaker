@@ -1,27 +1,50 @@
-import { h, FunctionComponent } from 'preact'
+import { h, FunctionComponent, Fragment } from 'preact'
 import { css } from 'emotion'
+import { useRef } from 'preact/hooks'
 
 import { DispatchProps } from '../reducer'
 import { Button } from './Button'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '../style'
 
 
-type Props = DispatchProps<'PromptToSelectJSONToImport'>
+type Props = DispatchProps<'ImportStateFile'>
 
 
-const style = css({
+const inputStyle = css({
+    display: 'none'
+})
+
+
+const buttonStyle = css({
     marginRight: SIDEBAR_ITEM_PADDING_SIZE
 })
 
 
 export const ImportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
-    function PromptToSelectJSONToImport() {
-        dispatch({ tag: 'PromptToSelectJSONToImport' })
+    const inputRef = useRef<HTMLInputElement>()
+
+    function loadSelectedFile() {
+        const file = inputRef.current?.files?.[0]
+        if (file === undefined) {
+            return
+        }
+        dispatch({ tag: 'ImportStateFile', file })
+    }
+
+    function clickInput() {
+        inputRef.current?.click()
     }
 
     return (
-        <Button class={style} onClick={PromptToSelectJSONToImport}>
-            Import state
-        </Button>
+        <Fragment>
+            <input ref={inputRef}
+                class={inputStyle}
+                type='file'
+                accept='application/json'
+                onChange={loadSelectedFile}/>
+            <Button class={buttonStyle} onClick={clickInput}>
+                Import state
+            </Button>
+        </Fragment>
     )
 }

@@ -56,6 +56,7 @@ type SearchResult =
     | { tag: 'StatusError', status: number }
     | { tag: 'JSONDecodeError' }
     | { tag: 'NetworkError' }
+    | { tag: 'Cancelled' }
 
 
 function joinURLQuery(base: string, query: Record<string, string>): string {
@@ -83,7 +84,7 @@ export async function search({ key, query, signal }: SearchArguments): Promise<S
         response = await fetch(url, { signal })
     }
     catch {
-        return { tag: 'NetworkError' }
+        return { tag: signal.aborted ? 'Cancelled' : 'NetworkError' }
     }
     if (!response.ok) {
         return { tag: 'StatusError', status: response.status }

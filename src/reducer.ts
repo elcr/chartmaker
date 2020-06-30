@@ -325,6 +325,10 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                                     message: 'Network error sending request to Last.fm'
                                 }
                             })
+                        // 'Cancelled' is not handled because the only time the
+                        // request is cancelled is when another is sent, in
+                        // which case the search state is updated to 'Loading'
+                        // anyway
                     }
                 }
             }

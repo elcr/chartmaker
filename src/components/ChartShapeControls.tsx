@@ -108,7 +108,7 @@ export const ChartShapeControls: FunctionComponent<Props> = ({
                 <ControlledRadioButton id='top100'
                         checked={shape.tag === 'Top' && shape.size === 100}
                         onCheck={switchToTop100}>
-                    Top 40
+                    Top 100
                 </ControlledRadioButton>
                 <ControlledRadioButton id='collage'
                         checked={shape.tag === 'Collage'}

@@ -1,10 +1,11 @@
 import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
-import { CONTAINER_PADDING_SIZE } from '../style'
+import { TITLES_PADDING_SIZE, TITLES_FONT_SIZE } from '../style'
 
 
 const style = css({
-    marginBottom: CONTAINER_PADDING_SIZE
+    marginBottom: TITLES_PADDING_SIZE,
+    fontSize: TITLES_FONT_SIZE
 })
 
 

@@ -4,7 +4,7 @@ import { css } from 'emotion'
 import { Album } from '../state'
 import { SidebarGroup } from './SidebarGroup'
 import { SearchAlbumCover } from './SearchAlbumCover'
-import { LARGE_ROW_SIZE } from '../style'
+import { LARGE_ALBUM_SIZE } from '../style'
 
 
 type Props = {
@@ -23,7 +23,7 @@ export const SearchResults: FunctionComponent<Props> = ({ albums }) => {
     const albumCovers = albums.map(album =>
         <SearchAlbumCover key={album.id}
             album={album}
-            size={LARGE_ROW_SIZE}/>
+            size={LARGE_ALBUM_SIZE}/>
     )
 
     return (

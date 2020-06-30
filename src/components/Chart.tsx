@@ -11,11 +11,13 @@ import { AlbumRow } from './AlbumRow'
 import { TitleGroup } from './TitleGroup'
 import { DispatchProps } from '../reducer'
 import {
-    VERY_LARGE_ROW_SIZE,
-    LARGE_ROW_SIZE,
-    MEDIUM_ROW_SIZE,
-    SMALL_ROW_SIZE,
+    VERY_LARGE_ALBUM_SIZE,
+    LARGE_ALBUM_SIZE,
+    MEDIUM_ALBUM_SIZE,
+    SMALL_ALBUM_SIZE,
+    VERY_SMALL_ALBUM_SIZE,
     CONTAINER_PADDING_SIZE,
+    TINY_ALBUM_SIZE,
     BORDER
 } from '../style'
 
@@ -88,27 +90,27 @@ function top40Rows(albums: Album[]): AlbumRow[] {
     return [
         {
             albums: albums.slice(0, 5),
-            size: VERY_LARGE_ROW_SIZE
+            size: VERY_LARGE_ALBUM_SIZE
         },
         {
             albums: albums.slice(5, 11),
-            size: LARGE_ROW_SIZE
+            size: LARGE_ALBUM_SIZE
         },
         {
             albums: albums.slice(11, 17),
-            size: LARGE_ROW_SIZE
+            size: LARGE_ALBUM_SIZE
         },
         {
             albums: albums.slice(17, 24),
-            size: MEDIUM_ROW_SIZE
+            size: MEDIUM_ALBUM_SIZE
         },
         {
             albums: albums.slice(24, 31),
-            size: MEDIUM_ROW_SIZE
+            size: MEDIUM_ALBUM_SIZE
         },
         {
             albums: albums.slice(31, 40),
-            size: SMALL_ROW_SIZE
+            size: SMALL_ALBUM_SIZE
         }
     ]
 }
@@ -118,27 +120,27 @@ function top42Rows(albums: Album[]): AlbumRow[] {
     return [
         {
             albums: albums.slice(0, 5),
-            size: VERY_LARGE_ROW_SIZE
+            size: VERY_LARGE_ALBUM_SIZE
         },
         {
-            albums: albums.slice(5, 11),
-            size: LARGE_ROW_SIZE
+            albums: albums.slice(5, 10),
+            size: VERY_LARGE_ALBUM_SIZE
         },
         {
-            albums: albums.slice(11, 17),
-            size: LARGE_ROW_SIZE
+            albums: albums.slice(10, 16),
+            size: LARGE_ALBUM_SIZE
         },
         {
-            albums: albums.slice(17, 24),
-            size: MEDIUM_ROW_SIZE
+            albums: albums.slice(16, 22),
+            size: LARGE_ALBUM_SIZE
         },
         {
-            albums: albums.slice(24, 31),
-            size: MEDIUM_ROW_SIZE
+            albums: albums.slice(22, 32),
+            size: VERY_SMALL_ALBUM_SIZE
         },
         {
-            albums: albums.slice(31, 40),
-            size: SMALL_ROW_SIZE
+            albums: albums.slice(32, 42),
+            size: VERY_SMALL_ALBUM_SIZE
         }
     ]
 }
@@ -148,27 +150,47 @@ function top100Rows(albums: Album[]): AlbumRow[] {
     return [
         {
             albums: albums.slice(0, 5),
-            size: VERY_LARGE_ROW_SIZE
+            size: VERY_LARGE_ALBUM_SIZE
         },
         {
-            albums: albums.slice(5, 11),
-            size: LARGE_ROW_SIZE
+            albums: albums.slice(5, 10),
+            size: VERY_LARGE_ALBUM_SIZE
         },
         {
-            albums: albums.slice(11, 17),
-            size: LARGE_ROW_SIZE
+            albums: albums.slice(10, 16),
+            size: LARGE_ALBUM_SIZE
         },
         {
-            albums: albums.slice(17, 24),
-            size: MEDIUM_ROW_SIZE
+            albums: albums.slice(16, 22),
+            size: LARGE_ALBUM_SIZE
         },
         {
-            albums: albums.slice(24, 31),
-            size: MEDIUM_ROW_SIZE
+            albums: albums.slice(22, 28),
+            size: LARGE_ALBUM_SIZE
         },
         {
-            albums: albums.slice(31, 40),
-            size: SMALL_ROW_SIZE
+            albums: albums.slice(28, 38),
+            size: VERY_SMALL_ALBUM_SIZE
+        },
+        {
+            albums: albums.slice(38, 48),
+            size: VERY_SMALL_ALBUM_SIZE
+        },
+        {
+            albums: albums.slice(48, 58),
+            size: VERY_SMALL_ALBUM_SIZE
+        },
+        {
+            albums: albums.slice(58, 72),
+            size: TINY_ALBUM_SIZE
+        },
+        {
+            albums: albums.slice(72, 86),
+            size: TINY_ALBUM_SIZE
+        },
+        {
+            albums: albums.slice(86, 100),
+            size: TINY_ALBUM_SIZE
         }
     ]
 }
@@ -182,7 +204,7 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
         const slice = albums.slice(rowsX * y, (rowsX * y) + rowsX)
         rows.push({
             albums: slice,
-            size: VERY_LARGE_ROW_SIZE
+            size: VERY_LARGE_ALBUM_SIZE
         })
         titles.push(
             slice.filter(albumIsNamed)

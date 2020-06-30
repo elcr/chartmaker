@@ -28,12 +28,6 @@ export function albumIsNamed(album: Album): album is NamedAlbum {
 }
 
 
-export type AlbumRow = {
-    albums: Album[]
-    size: string
-}
-
-
 export type Chart = {
     name: string
     albums: Album[]

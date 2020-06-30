@@ -1,11 +1,10 @@
-import { h, FunctionComponent, JSX } from 'preact'
+import { h, FunctionComponent } from 'preact'
 import { PropRef } from 'preact/hooks'
 import { css } from 'emotion'
 
 import {
     Chart as ChartDetails,
     Album,
-    AlbumRow as AlbumRowDetails,
     albumIsNamed
 } from '../state'
 import { AlbumRow } from './AlbumRow'
@@ -53,8 +52,40 @@ const chartStyle = css({
 })
 
 
-function top40Groups(albums: Album[]): AlbumRowDetails[] {
-    return [
+type AlbumRow = {
+    albums: Album[]
+    size: string
+}
+
+
+type TitleGroup = string[]
+
+
+function titleGroupsFromRows(rows: AlbumRow[]): TitleGroup[] {
+    const titles: TitleGroup[] = []
+    let lastSize = ''
+
+    for (const row of rows) {
+        const named = row.albums.filter(albumIsNamed)
+
+        if (row.size === lastSize) {
+            for (const album of named) {
+                titles[titles.length - 1].push(album.name)
+            }
+        }
+        else {
+            const newTitles = named.map(album => album.name)
+            titles.push(newTitles)
+            lastSize = row.size
+        }
+    }
+
+    return titles
+}
+
+
+function top40Groups(albums: Album[]): [ AlbumRow[], TitleGroup[] ] {
+    const rows: AlbumRow[] = [
         {
             albums: albums.slice(0, 5),
             size: VERY_LARGE_ROW_SIZE
@@ -80,18 +111,29 @@ function top40Groups(albums: Album[]): AlbumRowDetails[] {
             size: SMALL_ROW_SIZE
         }
     ]
+    const titles = titleGroupsFromRows(rows)
+
+    return [ rows, titles ]
 }
 
 
-function collageGroups(albums: Album[], rowsX: number, rowsY: number): AlbumRowDetails[] {
-    const groups: AlbumRowDetails[] = []
+function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRow[], TitleGroup[] ] {
+    const rows: AlbumRow[] = []
+    const titles: TitleGroup[] = []
+
     for (let y = 0; y < rowsY; y++) {
-        groups.push({
-            albums: albums.slice(rowsX * y, (rowsX * y) + rowsX),
-            size: LARGE_ROW_SIZE
+        const slice = albums.slice(rowsX * y, (rowsX * y) + rowsX)
+        rows.push({
+            albums: slice,
+            size: VERY_LARGE_ROW_SIZE
         })
+        titles.push(
+            slice.filter(albumIsNamed)
+                .map(album => album.name)
+        )
     }
-    return groups
+
+    return [ rows, titles ]
 }
 
 
@@ -100,57 +142,37 @@ export const Chart: FunctionComponent<Props> = ({
     details: { albums, name, collage, rowsX, rowsY },
     innerRef
 }) => {
-    const groups = collage
+    const [ rows, titles ] = collage
         ? collageGroups(albums, rowsX, rowsY)
         : top40Groups(albums)
 
-    const titles: JSX.Element[][] = [[]]
-    let lastSize = ''
-    const albumRows: JSX.Element[] = []
-    groups.forEach((group, index) => {
-        albumRows.push(
-            <AlbumRow {...group}
-                key={index}
-                dispatch={dispatch}/>
-        )
-
-        const namedAlbums = group.albums.filter(albumIsNamed)
-
-        if (group.size === lastSize) {
-            const oldTitles = titles[titles.length - 1]
-            const newTitles = namedAlbums.map((album, index) =>
-                <div key={oldTitles.length + index}>
-                    {album.name}
-                </div>
-            )
-            titles[titles.length - 1] = [ ...oldTitles, ...newTitles ]
-        }
-        else {
-            const newTitles = namedAlbums.map((album, index) =>
-                <div key={index}>
-                    {album.name}
-                </div>
-            )
-            titles.push(newTitles)
-            lastSize = group.size
-        }
-    })
-
-    const titleGroups = titles.map((group, index) =>
-        <TitleGroup key={index}>
-            {group}
-        </TitleGroup>
+    const rowElements = rows.map((row, index) =>
+        <AlbumRow {...row}
+            key={index}
+            dispatch={dispatch}/>
     )
+    const titleElements = titles.map((titles, index) => {
+        const group = titles.map((title, index) =>
+            <div key={index}>
+                {title}
+            </div>
+        )
+        return (
+            <TitleGroup key={index}>
+                {group}
+            </TitleGroup>
+        )
+    })
 
     return (
         <main ref={innerRef} class={outContainerStyle}>
             <h1>{name}</h1>
             <div class={innerContainerStyle}>
                 <div class={chartStyle}>
-                    {albumRows}
+                    {rowElements}
                 </div>
                 <div>
-                    {titleGroups}
+                    {titleElements}
                 </div>
             </div>
         </main>

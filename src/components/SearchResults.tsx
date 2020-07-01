@@ -15,7 +15,7 @@ type Props = {
 const style = css({
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'center'
+    justifyContent: 'space-between'
 })
 
 

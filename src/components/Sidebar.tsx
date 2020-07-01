@@ -1,6 +1,5 @@
-import { h, FunctionComponent } from 'preact'
+import { h, FunctionComponent, JSX, RefObject } from 'preact'
 import { css } from 'emotion'
-import { Ref } from 'preact/hooks'
 
 import { ChartManager } from './ChartManager'
 import { DispatchProps } from '../reducer'
@@ -34,7 +33,7 @@ type Props = DispatchProps<
     apiKey: string
     searchState: SearchState
     screenshotState: ScreenshotState
-    chartRef: Ref<HTMLElement>
+    chartRef: RefObject<HTMLElement>
 }
 
 
@@ -57,12 +56,10 @@ export const Sidebar: FunctionComponent<Props> = ({
     screenshotState,
     chartRef
 }) => {
-    const searchResults = searchState.tag === 'Complete'
-        && searchState.albums.length > 0
-        ? <SearchResults albums={searchState.albums}/>
-        : null
-
-    const chart = charts[activeChartIndex]
+    let searchResults: JSX.Element | undefined
+    if (searchState.tag === 'Complete' && searchState.albums.length > 0) {
+        searchResults = <SearchResults albums={searchState.albums}/>
+    }
 
     return (
         <aside class={style}>
@@ -73,7 +70,8 @@ export const Sidebar: FunctionComponent<Props> = ({
             <ScreenshotButtons dispatch={dispatch}
                 chartRef={chartRef}
                 screenshotState={screenshotState}/>
-            <ChartShapeControls {...chart} dispatch={dispatch}/>
+            <ChartShapeControls {...charts[activeChartIndex]}
+                dispatch={dispatch}/>
             <APIKeyInput dispatch={dispatch} apiKey={apiKey}/>
             <SearchBox dispatch={dispatch} searchState={searchState}/>
             {searchResults}

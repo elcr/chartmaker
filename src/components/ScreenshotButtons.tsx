@@ -1,5 +1,4 @@
-import { h, FunctionComponent } from 'preact'
-import { Ref } from 'preact/hooks'
+import { h, FunctionComponent, RefObject } from 'preact'
 
 import { ControlledSlider } from './ControlledSlider'
 import { DispatchProps } from '../reducer'
@@ -11,7 +10,7 @@ import { MAX_SCREENSHOT_SCALE } from '../constants'
 
 type Props = DispatchProps<'UpdateScreenshotScale' | 'TakeScreenshot'> & {
     screenshotState: ScreenshotState
-    chartRef: Ref<HTMLElement>
+    chartRef: RefObject<HTMLElement>
 }
 
 
@@ -25,6 +24,9 @@ export const ScreenshotButtons: FunctionComponent<Props> = ({
     }
 
     function takeScreenshot() {
+        if (chartRef.current == null) {
+            return
+        }
         dispatch({
             tag: 'TakeScreenshot',
             element: chartRef.current

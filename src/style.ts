@@ -18,7 +18,7 @@ export const CONTAINER_PADDING_SIZE = '1rem' as Size
 export const TITLES_PADDING_SIZE = '0.5rem' as Size
 export const ALBUM_PADDING_SIZE = '0.15rem' as Size
 export const ALBUM_BUTTONS_PADDING_SIZE = '0.5rem' as Size
-export const SIDEBAR_WIDTH = '18.5rem' as Size
+export const SIDEBAR_WIDTH = '20rem' as Size
 export const SIDEBAR_ITEM_PADDING_SIZE = '0.5rem' as Size
 export const SIDEBAR_LABEL_PADDING_SIZE = '0.25rem' as Size
 

@@ -72,7 +72,8 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
             return {
                 tag: 'SideEffect',
                 sideEffect: (dispatch, state) => {
-                    const name = prompt('Enter new chart name:')?.trim()
+                    const activeChart = state.charts[state.activeChartIndex]
+                    const name = prompt('Enter new chart name:', activeChart.name)?.trim()
                     if (name === undefined || name.length === 0) {
                         return
                     }
@@ -110,7 +111,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 tag: 'SideEffect',
                 sideEffect: (dispatch, state) => {
                     const activeChart = state.charts[state.activeChartIndex]
-                    const name = prompt(`Enter new name for '${activeChart.name}':`)?.trim()
+                    const name = prompt('Enter new chart name:', activeChart.name)?.trim()
                     if (name === undefined || name.length === 0) {
                         return
                     }
@@ -452,7 +453,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                         return
                     }
 
-                    const name = prompt(`Enter new name for '${album.name}':`)?.trim()
+                    const name = prompt('Enter new album name:', album.name)?.trim()
                     if (name === undefined || name.length === 0) {
                         return
                     }

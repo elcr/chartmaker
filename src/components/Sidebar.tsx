@@ -5,11 +5,10 @@ import { ChartManager } from './ChartManager'
 import { DispatchProps } from '../reducer'
 import { Chart, SearchState, ScreenshotState } from '../types'
 import { APIKeyInput } from './APIKeyInput'
-import { ImportExportButtons } from './ImportExportButtons'
+import { ImportExportScreenshotButtons } from './ImportExportScreenshotButtons'
 import { SearchBox } from './SearchBox'
 import { SearchResults } from './SearchResults'
 import { SIDEBAR_WIDTH, CONTAINER_PADDING_SIZE } from '../style'
-import { ScreenshotButtons } from './ScreenshotButtons'
 import { ChartShapeControls } from './ChartShapeControls'
 
 
@@ -66,8 +65,7 @@ export const Sidebar: FunctionComponent<Props> = ({
             <ChartManager dispatch={dispatch}
                 charts={charts}
                 activeChartIndex={activeChartIndex}/>
-            <ImportExportButtons dispatch={dispatch}/>
-            <ScreenshotButtons dispatch={dispatch}
+            <ImportExportScreenshotButtons dispatch={dispatch}
                 chartRef={chartRef}
                 screenshotState={screenshotState}/>
             <ChartShapeControls {...charts[activeChartIndex]}

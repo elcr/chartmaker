@@ -1,5 +1,5 @@
 import { h, FunctionComponent } from 'preact'
-import { css } from 'emotion'
+import { css, cx } from 'emotion'
 
 import { BORDER, CONTAINER_PADDING_SIZE } from '../style'
 
@@ -9,14 +9,16 @@ const style = css({
         borderBottom: BORDER,
         paddingBottom: CONTAINER_PADDING_SIZE,
         marginBottom: CONTAINER_PADDING_SIZE
-    },
-    ':last-of-type': {
-        overflowY: 'auto'
     }
 })
 
 
-export const SidebarGroup: FunctionComponent = ({ children }) =>
-    <div class={style}>
+type Props = {
+    class?: string
+}
+
+
+export const SidebarGroup: FunctionComponent<Props> = ({ children, class: className }) =>
+    <div class={cx(style, className)}>
         {children}
     </div>

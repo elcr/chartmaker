@@ -12,10 +12,15 @@ type Props = {
 }
 
 
-const style = css({
+const containerStyle = css({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between'
+})
+
+
+const groupStyle = css({
+    overflowY: 'scroll'
 })
 
 
@@ -27,8 +32,8 @@ export const SearchResults: FunctionComponent<Props> = ({ albums }) => {
     )
 
     return (
-        <SidebarGroup>
-            <div class={style}>
+        <SidebarGroup class={groupStyle}>
+            <div class={containerStyle}>
                 {albumCovers}
             </div>
         </SidebarGroup>

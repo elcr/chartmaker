@@ -48,11 +48,9 @@ export const NamedAlbum = Record_({
     name: String,
     url: String
 })
-export type NamedAlbum = Static<typeof NamedAlbum>
 
 
 const Album = Union(PlaceholderAlbum, NamedAlbum)
-export type Album = Static<typeof Album>
 
 
 const ChartShape = Union(
@@ -68,7 +66,6 @@ const ChartShape = Union(
         tag: Literal('Collage')
     })
 )
-export type ChartShape = Static<typeof ChartShape>
 
 
 const Chart = Record_({
@@ -78,7 +75,6 @@ const Chart = Record_({
     rowsX: IntegerRange(1, MAX_COLLAGE_ROWS_X),
     rowsY: IntegerRange(1, MAX_COLLAGE_ROWS_Y)
 })
-export type Chart = Static<typeof Chart>
 
 
 const SearchState = Union(
@@ -102,14 +98,12 @@ const SearchState = Union(
         query: String
     })
 )
-export type SearchState = Static<typeof SearchState>
 
 
 const ScreenshotState = Record_({
     loading: Boolean,
     scale: IntegerRange(1, MAX_SCREENSHOT_SCALE)
 })
-export type ScreenshotState = Static<typeof ScreenshotState>
 
 
 export const State = Record_({
@@ -120,13 +114,20 @@ export const State = Record_({
     albumIDCounter: Integer,
     screenshot: ScreenshotState
 })
+
+
+export type NamedAlbum = Static<typeof NamedAlbum>
+export type Album = Static<typeof Album>
+export type ChartShape = Static<typeof ChartShape>
+export type Chart = Static<typeof Chart>
+export type SearchState = Static<typeof SearchState>
+export type ScreenshotState = Static<typeof ScreenshotState>
 export type State = Static<typeof State>
 
 
 type Branded<TBase, TBrand extends string> = TBase & {
     __brand: TBrand
 }
-
 
 export type Colour = Branded<string, 'Colour'>
 export type Border = Branded<string, 'Border'>

@@ -13,7 +13,11 @@ import { SIDEBAR_LABEL_PADDING_SIZE, ERROR_TEXT_COLOUR } from '../style'
 const id = 'search'
 
 
-type Props = DispatchProps<'UpdateSearchQuery' | 'SendSearchRequest' | 'CancelSearchRequest'> & {
+type Props = DispatchProps<
+    | 'UpdateSearchQuery'
+    | 'SendSearchRequest'
+    | 'CancelSearchRequest'
+> & {
     searchState: SearchState
 }
 
@@ -32,7 +36,10 @@ export const SearchBox: FunctionComponent<Props> = ({ dispatch, searchState }) =
     }
 
     function updateQuery(query: string) {
-        dispatch({ tag: 'UpdateSearchQuery', query })
+        dispatch({
+            tag: 'UpdateSearchQuery',
+            query
+        })
     }
 
     const errorMessage = searchState.tag === 'Error'

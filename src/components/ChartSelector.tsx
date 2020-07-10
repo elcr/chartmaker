@@ -26,7 +26,10 @@ const containerStyle = css({
 
 export const ChartSelector: FunctionComponent<Props> = ({ dispatch, charts, activeChartIndex }) => {
     function updateActiveChart(index: number) {
-        dispatch({ tag: 'UpdateActiveChart', index })
+        dispatch({
+            tag: 'UpdateActiveChart',
+            index
+        })
     }
 
     const options = charts.map((chart, index) =>

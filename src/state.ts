@@ -3,7 +3,8 @@ import {
     DEFAULT_CHART_NAME,
     CHART_ALBUMS_COUNT,
     DEFAULT_COLLAGE_ROWS_X,
-    DEFAULT_COLLAGE_ROWS_Y
+    DEFAULT_COLLAGE_ROWS_Y,
+    LOCAL_STORAGE_KEY
 } from './constants'
 
 
@@ -53,6 +54,18 @@ export function createInitialState(): State {
 }
 
 
+export function loadStateFromLocalStorage(): State | null {
+    const json = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if (json === null) {
+        return null
+    }
+    const state: unknown = JSON.parse(json)
+    return State.guard(state)
+        ? state
+        : null
+}
+
+
 export function escapeStateForExport(state: State): State {
     return {
         ...state,
@@ -65,4 +78,11 @@ export function escapeStateForExport(state: State): State {
             scale: state.screenshot.scale
         }
     }
+}
+
+
+export function saveStateToLocalStorage(state: State) {
+    const escaped = escapeStateForExport(state)
+    const json = JSON.stringify(escaped)
+    localStorage.setItem(LOCAL_STORAGE_KEY, json)
 }

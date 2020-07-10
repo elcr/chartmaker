@@ -1,19 +1,22 @@
 import { h } from 'preact'
 import { css } from 'emotion'
-import { useRef } from 'preact/hooks'
+import { useRef, useEffect } from 'preact/hooks'
+import { useSideEffectReducer } from 'react-use-side-effect-reducer'
 
-import { useLocalStorageSideEffectReducer } from './hooks'
 import { reducer } from './reducer'
 import { Chart } from './components/Chart'
 import { Sidebar } from './components/Sidebar'
-import { createInitialState, escapeStateForExport } from './state'
+import {
+    createInitialState,
+    loadStateFromLocalStorage,
+    saveStateToLocalStorage
+} from './state'
 import {
     BACKGROUND_COLOUR,
     TEXT_COLOUR,
     FONT_SIZE,
     CONTAINER_PADDING_SIZE
 } from './style'
-import { State } from './types'
 
 
 const rootStyle = css({
@@ -29,14 +32,15 @@ const rootStyle = css({
 
 
 export const App = () => {
-    const [ state, dispatch ] = useLocalStorageSideEffectReducer({
-        key: 'state',
-        type: State,
-        createInitialState,
-        escapeState: escapeStateForExport,
-        reducer
-    })
     const chartRef = useRef<HTMLElement>(null)
+    const [ state, dispatch ] = useSideEffectReducer(
+        () => loadStateFromLocalStorage() ?? createInitialState(),
+        reducer
+    )
+    useEffect(
+        () => saveStateToLocalStorage(state),
+        [ state ]
+    )
 
     return (
         <div class={rootStyle}>

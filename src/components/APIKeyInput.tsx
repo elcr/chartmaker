@@ -16,7 +16,10 @@ type Props = DispatchProps<'UpdateAPIKey'> & {
 
 export const APIKeyInput: FunctionComponent<Props> = ({ dispatch, apiKey }) => {
     function updateAPIKey(apiKey: string) {
-        dispatch({ tag: 'UpdateAPIKey', apiKey })
+        dispatch({
+            tag: 'UpdateAPIKey',
+            apiKey
+        })
     }
 
     return (

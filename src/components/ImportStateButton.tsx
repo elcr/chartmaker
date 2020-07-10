@@ -28,7 +28,10 @@ export const ImportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
         if (file === undefined) {
             return
         }
-        dispatch({ tag: 'ImportStateFile', file })
+        dispatch({
+            tag: 'ImportStateFile',
+            file
+        })
     }
 
     function clickInput() {

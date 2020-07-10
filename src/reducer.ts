@@ -1,8 +1,13 @@
-import { SideEffectUpdate, Dispatch as _Dispatch } from './hooks'
 import {
-    createChart,
-    escapeStateForExport,
-} from './state'
+    Dispatch as Dispatch_,
+    Update,
+    update,
+    sideEffect,
+    noUpdate,
+    updateWithSideEffect
+} from 'react-use-side-effect-reducer'
+
+import { createChart, escapeStateForExport, } from './state'
 import {
     readFileText,
     findIndex,
@@ -11,7 +16,13 @@ import {
     jsonToDataURI
 } from './utils'
 import { search } from './api'
-import { State, SearchState, ChartShape, NamedAlbum, Album } from './types'
+import {
+    State,
+    SearchState,
+    ChartShape,
+    NamedAlbum,
+    Album
+} from './types'
 
 
 type Action =
@@ -44,124 +55,106 @@ type Action =
 
 
 export type ActionTag = Action['tag']
-export type Dispatch<T extends ActionTag = ActionTag> = _Dispatch<Extract<Action, { tag: T }>>
+export type Dispatch<T extends ActionTag = ActionTag> = Dispatch_<Extract<Action, { tag: T }>>
 export type DispatchProps<T extends ActionTag = ActionTag> = {
     dispatch: Dispatch<T>
 }
 
 
-export function reducer(state: State, action: Action): SideEffectUpdate<State, Action> {
+export function reducer(state: State, action: Action): Update<State, Action> {
     switch (action.tag) {
         case 'UpdateAPIKey':
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    apiKey: action.apiKey
-                }
-            }
+            return update({
+                ...state,
+                apiKey: action.apiKey
+            })
+
         case 'UpdateActiveChart':
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    activeChartIndex: action.index
-                }
-            }
+            return update({
+                ...state,
+                activeChartIndex: action.index
+            })
+
         case 'PromptForNewChart':
-            return {
-                tag: 'SideEffect',
-                sideEffect: (dispatch, state) => {
-                    const activeChart = state.charts[state.activeChartIndex]
-                    const name = prompt('Enter new chart name:', activeChart.name)?.trim()
-                    if (name === undefined || name.length === 0) {
-                        return
-                    }
-                    if (state.charts.some(chart => chart.name === name)) {
-                        dispatch({ tag: 'ShowChartNameTakenMessage' })
-                        return
-                    }
-                    dispatch({ tag: 'AddNewChart', name })
+            return sideEffect((dispatch, state) => {
+                const activeChart = state.charts[state.activeChartIndex]
+                const name = prompt('Enter new chart name:', activeChart.name)?.trim()
+                if (name === undefined || name.length === 0) {
+                    return
                 }
-            }
+                if (state.charts.some(chart => chart.name === name)) {
+                    dispatch({ tag: 'ShowChartNameTakenMessage' })
+                    return
+                }
+                dispatch({ tag: 'AddNewChart', name })
+            })
+
         case 'ShowChartNameTakenMessage':
-            return {
-                tag: 'SideEffect',
-                sideEffect: () =>
-                    alert('A chart with that name already exists')
-            }
+            return sideEffect(() =>
+                alert('A chart with that name already exists')
+            )
+
         case 'AddNewChart': {
             const [ albumIDCounter, chart ] = createChart({
                 albumIDCounter: state.albumIDCounter,
                 name: action.name
             })
             const charts = [ ...state.charts, chart ]
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    charts,
-                    activeChartIndex: charts.length - 1,
-                    albumIDCounter
-                }
-            }
+            return update({
+                ...state,
+                charts,
+                activeChartIndex: charts.length - 1,
+                albumIDCounter
+            })
         }
+
         case 'PromptToRenameActiveChart':
-            return {
-                tag: 'SideEffect',
-                sideEffect: (dispatch, state) => {
-                    const activeChart = state.charts[state.activeChartIndex]
-                    const name = prompt('Enter new chart name:', activeChart.name)?.trim()
-                    if (name === undefined || name.length === 0) {
-                        return
-                    }
-                    if (state.charts.some((chart, index) => index !== state.activeChartIndex && chart.name === name)) {
-                        dispatch({ tag: 'ShowChartNameTakenMessage' })
-                        return
-                    }
-                    dispatch({ tag: 'RenameActiveChart', name })
+            return sideEffect((dispatch, state) => {
+                const activeChart = state.charts[state.activeChartIndex]
+                const name = prompt('Enter new chart name:', activeChart.name)?.trim()
+                if (name === undefined || name.length === 0) {
+                    return
                 }
-            }
+                if (state.charts.some((chart, index) => index !== state.activeChartIndex && chart.name === name)) {
+                    dispatch({ tag: 'ShowChartNameTakenMessage' })
+                    return
+                }
+                dispatch({ tag: 'RenameActiveChart', name })
+            })
+
         case 'RenameActiveChart': {
             const activeChart = state.charts[state.activeChartIndex]
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    charts: [
-                        ...state.charts.slice(0, state.activeChartIndex),
-                        {
-                            ...activeChart,
-                            name: action.name
-                        },
-                        ...state.charts.slice(state.activeChartIndex + 1)
-                    ]
-                }
-            }
+            return update({
+                ...state,
+                charts: [
+                    ...state.charts.slice(0, state.activeChartIndex),
+                    {
+                        ...activeChart,
+                        name: action.name
+                    },
+                    ...state.charts.slice(state.activeChartIndex + 1)
+                ]
+            })
         }
+
         case 'PromptToDeleteActiveChart':
-            return {
-                tag: 'SideEffect',
-                sideEffect: dispatch => {
-                    if (confirm('Really delete active chart? This cannot be undone')) {
-                        dispatch({ tag: 'DeleteActiveChart' })
-                    }
+            return sideEffect(dispatch => {
+                if (confirm('Really delete active chart? This cannot be undone')) {
+                    dispatch({ tag: 'DeleteActiveChart' })
                 }
-            }
+            })
+
         case 'DeleteActiveChart': {
             if (state.charts.length === 1) {
                 const [ albumIDCounter, chart ] = createChart({
                     albumIDCounter: state.albumIDCounter
                 })
-                return {
-                    tag: 'Update',
-                    state: {
-                        ...state,
-                        charts: [ chart ],
-                        activeChartIndex: 0,
-                        albumIDCounter
-                    }
-                }
+                return update({
+                    ...state,
+                    charts: [ chart ],
+                    activeChartIndex: 0,
+                    albumIDCounter
+                })
             }
 
             const charts = [
@@ -169,93 +162,80 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 ...state.charts.slice(state.activeChartIndex + 1)
             ]
 
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    charts,
-                    activeChartIndex: state.activeChartIndex - 1 < 0
-                        ? charts.length - 1
-                        : state.activeChartIndex  -1
-                }
-            }
+            return update({
+                ...state,
+                charts,
+                activeChartIndex: state.activeChartIndex - 1 < 0
+                    ? charts.length - 1
+                    : state.activeChartIndex  -1
+            })
         }
+
         case 'ImportStateFile':
-            return {
-                tag: 'SideEffect',
-                sideEffect: async dispatch => {
-                    try {
-                        const json = await readFileText(action.file)
-                        const parsed: unknown = JSON.parse(json)
-                        const state = State.check(parsed)
-                        dispatch({ tag: 'LoadState', state })
-                    }
-                    catch {
-                        dispatch({ tag: 'ShowInvalidStateImportMessage' })
-                    }
+            return sideEffect(async dispatch => {
+                try {
+                    const json = await readFileText(action.file)
+                    const parsed: unknown = JSON.parse(json)
+                    const state = State.check(parsed)
+                    dispatch({ tag: 'LoadState', state })
                 }
-            }
+                catch {
+                    dispatch({ tag: 'ShowInvalidStateImportMessage' })
+                }
+            })
+
         case 'ShowInvalidStateImportMessage':
-            return {
-                tag: 'SideEffect',
-                sideEffect: () =>
-                    alert('Selected file is invalid')
-            }
+            return sideEffect(() =>
+                alert('Selected file is invalid')
+            )
+
         case 'LoadState':
-            return {
-                tag: 'Update',
-                state: action.state
-            }
+            return update(action.state)
+
         case 'PromptToExportState':
-            return {
-                tag: 'SideEffect',
-                sideEffect: (_dispatch, state) => {
-                    const json = JSON.stringify(escapeStateForExport(state))
-                    const uri = jsonToDataURI(json)
-                    downloadURI(uri, 'state.json')
-                }
-            }
+            return sideEffect((_dispatch, state) => {
+                const json = JSON.stringify(escapeStateForExport(state))
+                const uri = jsonToDataURI(json)
+                downloadURI(uri, 'state.json')
+            })
+
         case 'CancelSearchRequest': {
             if (state.search.tag !== 'Loading') {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
             const controller = state.search.controller
-            return {
-                tag: 'UpdateWithSideEffect',
-                state: {
+            return updateWithSideEffect<State, Action>(
+                {
                     ...state,
                     search: {
                         tag: 'Waiting',
                         query: state.search.query
                     }
                 },
-                sideEffect: () => controller.abort()
-            }
+                () => controller.abort()
+            )
         }
+
         case 'SendSearchRequest': {
             if (state.search.tag === 'Loading'
                     || state.search.query.trim().length === 0) {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
 
             if (state.apiKey.trim().length === 0) {
-                return {
-                    tag: 'Update',
-                    state: {
-                        ...state,
-                        search: {
-                            tag: 'Error',
-                            query: state.search.query,
-                            message: 'Last.fm API key required'
-                        }
+                return update<State, Action>({
+                    ...state,
+                    search: {
+                        tag: 'Error',
+                        query: state.search.query,
+                        message: 'Last.fm API key required'
                     }
-                }
+                })
             }
 
             const controller = new AbortController()
-            return {
-                tag: 'UpdateWithSideEffect',
-                state: {
+            return updateWithSideEffect<State, Action>(
+                {
                     ...state,
                     search: {
                         tag: 'Loading',
@@ -263,7 +243,7 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                         controller
                     }
                 },
-                sideEffect: async (dispatch, state) => {
+                async (dispatch, state) => {
                     const result = await search({
                         key: state.apiKey,
                         query: state.search.query,
@@ -327,46 +307,43 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                         // anyway
                     }
                 }
-            }
+            )
         }
+
         case 'UpdateSearchState':
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    search: action.state
-                }
-            }
+            return update({
+                ...state,
+                search: action.state
+            })
+
         case 'UpdateSearchQuery': {
             if (state.search.tag === 'Loading') {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    search: {
-                        ...state.search,
-                        query: action.query
-                    }
+            return update<State, Action>({
+                ...state,
+                search: {
+                    ...state.search,
+                    query: action.query
                 }
-            }
+            })
         }
+
         case 'DragChartAlbum': {
             if (action.sourceID === action.targetID) {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
 
             const activeChart = state.charts[state.activeChartIndex]
 
             const sourceIndex = findIndex(activeChart.albums, album => album.id === action.sourceID)
             if (sourceIndex === null) {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
 
             const targetIndex = findIndex(activeChart.albums, album => album.id === action.targetID)
             if (targetIndex === null) {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
 
             let albums: Album[]
@@ -387,189 +364,174 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                 ]
             }
 
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    charts: [
-                        ...state.charts.slice(0, state.activeChartIndex),
-                        {
-                            ...activeChart,
-                            albums
-                        },
-                        ...state.charts.slice(state.activeChartIndex + 1)
-                    ]
-                }
-            }
+            return update({
+                ...state,
+                charts: [
+                    ...state.charts.slice(0, state.activeChartIndex),
+                    {
+                        ...activeChart,
+                        albums
+                    },
+                    ...state.charts.slice(state.activeChartIndex + 1)
+                ]
+            })
         }
+
         case 'DropSearchAlbum': {
             if (state.search.tag !== 'Complete') {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
 
             const activeChart = state.charts[state.activeChartIndex]
 
             const source = state.search.albums.find(album => album.id === action.sourceID)
             if (source === undefined) {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
 
             const targetIndex = findIndex(activeChart.albums, album => album.id === action.targetID)
             if (targetIndex === null) {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
 
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    charts: [
-                        ...state.charts.slice(0, state.activeChartIndex),
-                        {
-                            ...activeChart,
-                            albums: [
-                                ...activeChart.albums.slice(0, targetIndex),
-                                {
-                                    ...source,
-                                    id: state.albumIDCounter + 1
-                                },
-                                ...activeChart.albums.slice(targetIndex + 1)
-                            ]
-                        },
-                        ...state.charts.slice(state.activeChartIndex + 1)
-                    ],
-                    albumIDCounter: state.albumIDCounter + 1
-                }
-            }
+            return update({
+                ...state,
+                charts: [
+                    ...state.charts.slice(0, state.activeChartIndex),
+                    {
+                        ...activeChart,
+                        albums: [
+                            ...activeChart.albums.slice(0, targetIndex),
+                            {
+                                ...source,
+                                id: state.albumIDCounter + 1
+                            },
+                            ...activeChart.albums.slice(targetIndex + 1)
+                        ]
+                    },
+                    ...state.charts.slice(state.activeChartIndex + 1)
+                ],
+                albumIDCounter: state.albumIDCounter + 1
+            })
         }
-        case 'PromptToRenameAlbum':
-            return {
-                tag: 'SideEffect',
-                sideEffect: (dispatch, state) => {
-                    const album = state.charts[state.activeChartIndex]
-                        .albums
-                        .find(album => album.id === action.id)
-                    if (album === undefined || album.placeholder) {
-                        return
-                    }
 
-                    const name = prompt('Enter new album name:', album.name)?.trim()
-                    if (name === undefined || name.length === 0) {
-                        return
-                    }
-                    dispatch({
-                        tag: 'RenameAlbum',
-                        id: action.id,
-                        name
-                    })
+        case 'PromptToRenameAlbum':
+            return sideEffect((dispatch, state) => {
+                const album = state.charts[state.activeChartIndex]
+                    .albums
+                    .find(album => album.id === action.id)
+                if (album === undefined || album.placeholder) {
+                    return
                 }
-            }
+
+                const name = prompt('Enter new album name:', album.name)?.trim()
+                if (name === undefined || name.length === 0) {
+                    return
+                }
+                dispatch({
+                    tag: 'RenameAlbum',
+                    id: action.id,
+                    name
+                })
+            })
+
         case 'RenameAlbum': {
             const activeChart = state.charts[state.activeChartIndex]
 
             const index = findIndex(activeChart.albums, album => album.id === action.id)
             if (index === null) {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
 
             const album = activeChart.albums[index]
             if (album.placeholder) {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
 
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    charts: [
-                        ...state.charts.slice(0, state.activeChartIndex),
-                        {
-                            ...activeChart,
-                            albums: [
-                                ...activeChart.albums.slice(0, index),
-                                {
-                                    ...album,
-                                    name: action.name
-                                },
-                                ...activeChart.albums.slice(index + 1)
-                            ]
-                        },
-                        ...state.charts.slice(state.activeChartIndex + 1)
-                    ]
-                }
-            }
+            return update({
+                ...state,
+                charts: [
+                    ...state.charts.slice(0, state.activeChartIndex),
+                    {
+                        ...activeChart,
+                        albums: [
+                            ...activeChart.albums.slice(0, index),
+                            {
+                                ...album,
+                                name: action.name
+                            },
+                            ...activeChart.albums.slice(index + 1)
+                        ]
+                    },
+                    ...state.charts.slice(state.activeChartIndex + 1)
+                ]
+            })
         }
+
         case 'DeleteAlbum': {
             const activeChart = state.charts[state.activeChartIndex]
 
             const index = findIndex(activeChart.albums, album => album.id === action.id)
             if (index === null) {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
 
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    charts: [
-                        ...state.charts.slice(0, state.activeChartIndex),
-                        {
-                            ...activeChart,
-                            albums: [
-                                ...activeChart.albums.slice(0, index),
-                                {
-                                    id: action.id,
-                                    placeholder: true
-                                },
-                                ...activeChart.albums.slice(index + 1)
-                            ]
-                        },
-                        ...state.charts.slice(state.activeChartIndex + 1)
-                    ]
-                }
-            }
+            return update({
+                ...state,
+                charts: [
+                    ...state.charts.slice(0, state.activeChartIndex),
+                    {
+                        ...activeChart,
+                        albums: [
+                            ...activeChart.albums.slice(0, index),
+                            {
+                                id: action.id,
+                                placeholder: true
+                            },
+                            ...activeChart.albums.slice(index + 1)
+                        ]
+                    },
+                    ...state.charts.slice(state.activeChartIndex + 1)
+                ]
+            })
         }
+
         case 'UpdateScreenshotLoading': {
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    screenshot: {
-                        ...state.screenshot,
-                        loading: action.loading
-                    }
+            return update({
+                ...state,
+                screenshot: {
+                    ...state.screenshot,
+                    loading: action.loading
                 }
-            }
+            })
         }
+
         case 'UpdateScreenshotScale': {
             if (state.screenshot.loading) {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    screenshot: {
-                        ...state.screenshot,
-                        scale: action.scale
-                    }
+            return update({
+                ...state,
+                screenshot: {
+                    ...state.screenshot,
+                    scale: action.scale
                 }
-            }
+            })
         }
+
         case 'TakeScreenshot': {
             if (state.screenshot.loading) {
-                return { tag: 'NoUpdate' }
+                return noUpdate()
             }
-            return {
-                tag: 'UpdateWithSideEffect',
-                state: {
+            return updateWithSideEffect<State, Action>(
+                {
                     ...state,
                     screenshot: {
                         ...state.screenshot,
                         loading: true
                     }
                 },
-                sideEffect: async (dispatch, state) => {
+                async (dispatch, state) => {
                     const uri = await elementToDataURI(
                         action.element,
                         state.screenshot.scale
@@ -580,24 +542,22 @@ export function reducer(state: State, action: Action): SideEffectUpdate<State, A
                         loading: false
                     })
                 }
-            }
+            )
         }
+
         case 'UpdateChartShape':
-            return {
-                tag: 'Update',
-                state: {
-                    ...state,
-                    charts: [
-                        ...state.charts.slice(0, state.activeChartIndex),
-                        {
-                            ...state.charts[state.activeChartIndex],
-                            shape: action.shape,
-                            rowsX: action.rowsX,
-                            rowsY: action.rowsY
-                        },
-                        ...state.charts.slice(state.activeChartIndex + 1)
-                    ]
-                }
-            }
+            return update({
+                ...state,
+                charts: [
+                    ...state.charts.slice(0, state.activeChartIndex),
+                    {
+                        ...state.charts[state.activeChartIndex],
+                        shape: action.shape,
+                        rowsX: action.rowsX,
+                        rowsY: action.rowsY
+                    },
+                    ...state.charts.slice(state.activeChartIndex + 1)
+                ]
+            })
     }
 }

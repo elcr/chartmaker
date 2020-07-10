@@ -84,10 +84,17 @@ export async function search({ key, query, signal }: SearchArguments): Promise<S
         response = await fetch(url, { signal })
     }
     catch {
-        return { tag: signal.aborted ? 'Cancelled' : 'NetworkError' }
+        return {
+            tag: signal.aborted
+                ? 'Cancelled'
+                : 'NetworkError'
+        }
     }
     if (!response.ok) {
-        return { tag: 'StatusError', status: response.status }
+        return {
+            tag: 'StatusError',
+            status: response.status
+        }
     }
 
     let result: LastFMResult

@@ -8,7 +8,10 @@ import { ScreenshotState } from '../types'
 import { MAX_SCREENSHOT_SCALE } from '../constants'
 
 
-type Props = DispatchProps<'UpdateScreenshotScale' | 'TakeScreenshot'> & {
+type Props = DispatchProps<
+    | 'UpdateScreenshotScale'
+    | 'TakeScreenshot'
+> & {
     screenshotState: ScreenshotState
     chartRef: RefObject<HTMLElement>
 }

@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
+    "@types/react": "^16.9.41",
     "autoprefixer": "^9.8.4",
     "bootstrap": "^4.4.1",
     "css-loader": "^3.6.0",
@@ -23,6 +24,7 @@
     "preact": "^10.4.5",
     "preact-compat": "^3.19.0",
     "precss": "^4.0.0",
+    "react-use-side-effect-reducer": "https://github.com/elcr/react-use-side-effect-reducer.git",
     "runtypes": "^4.3.0",
     "sass-loader": "^9.0.2",
     "source-map-loader": "^1.0.1",

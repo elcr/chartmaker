@@ -22,8 +22,7 @@ module.exports = {
         extensions: [ '.ts', '.tsx', '.js' ],
         alias: {
             'react': 'preact/compat',
-            'react-dom': 'preact/compat',
-            'react-use-side-effect-reducer': 'react-use-side-effect-reducer/dist/es2015'
+            'react-dom': 'preact/compat'
         }
     },
     module: {

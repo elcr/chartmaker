@@ -4204,7 +4204,7 @@ react-is@^16.8.1:
 
 "react-use-side-effect-reducer@https://github.com/elcr/react-use-side-effect-reducer.git":
   version "0.1.0"
-  resolved "https://github.com/elcr/react-use-side-effect-reducer.git#6b1638530da8d72aebd0d1fdf39aff4d83e7a338"
+  resolved "https://github.com/elcr/react-use-side-effect-reducer.git#ce6bdab07039af20fa5f185e5e860d8f3fb10200"
   dependencies:
     react "^16.13.1"
     tslib "^2.0.0"

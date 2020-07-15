@@ -1,12 +1,12 @@
-import React, { FC } from 'react'
+import React, { FC, ComponentType } from 'react'
 import { css } from 'emotion'
 
 import { Album, Size } from '../types'
 import { DispatchProps } from '../reducer'
-import ChartAlbumCover from './ChartAlbumCover'
+import ChartAlbumCover, { ChartAlbumCoverProps } from './ChartAlbumCover'
 
 
-type Props = DispatchProps<
+export type AlbumRowProps = DispatchProps<
     | 'DragChartAlbum'
     | 'DropSearchAlbum'
     | 'PromptToRenameAlbum'
@@ -14,6 +14,7 @@ type Props = DispatchProps<
 > & {
     albums: Album[]
     size: Size
+    albumCoverComponent?: ComponentType<ChartAlbumCoverProps>
 }
 
 
@@ -22,9 +23,14 @@ const style = css({
 })
 
 
-const AlbumRow: FC<Props> = ({ dispatch, albums, size }) => {
+const AlbumRow: FC<AlbumRowProps> = ({
+    dispatch,
+    albums,
+    size,
+    albumCoverComponent: AlbumCoverComponent = ChartAlbumCover
+}) => {
     const albumCovers = albums.map(album =>
-        <ChartAlbumCover key={album.id}
+        <AlbumCoverComponent key={album.id}
             dispatch={dispatch}
             album={album}
             size={size}/>

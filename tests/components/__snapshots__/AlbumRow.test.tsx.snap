@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders album covers 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="test-album-cover"
+    >
+      Album: 
+      {"placeholder":true,"id":0}
+      Size: 
+      5rem
+    </div>
+    <div
+      class="test-album-cover"
+    >
+      Album: 
+      {"placeholder":true,"id":1}
+      Size: 
+      5rem
+    </div>
+    <div
+      class="test-album-cover"
+    >
+      Album: 
+      {"placeholder":true,"id":2}
+      Size: 
+      5rem
+    </div>
+    <div
+      class="test-album-cover"
+    >
+      Album: 
+      {"placeholder":true,"id":3}
+      Size: 
+      5rem
+    </div>
+    <div
+      class="test-album-cover"
+    >
+      Album: 
+      {"placeholder":true,"id":4}
+      Size: 
+      5rem
+    </div>
+  </div>
+</div>
+`;

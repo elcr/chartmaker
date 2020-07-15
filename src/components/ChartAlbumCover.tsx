@@ -51,7 +51,7 @@ const overlayStyle = css({
 })
 
 
-type Props = DispatchProps<
+export type ChartAlbumCoverProps = DispatchProps<
     | 'DragChartAlbum'
     | 'DropSearchAlbum'
     | 'PromptToRenameAlbum'
@@ -62,7 +62,7 @@ type Props = DispatchProps<
 }
 
 
-const ChartAlbumCover: FC<Props> = ({ dispatch, album, size }) => {
+const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({ dispatch, album, size }) => {
     function dragStart(event: DragEvent<HTMLDivElement>) {
         event.dataTransfer.setData(`chart-${album.id}`, '')
         event.dataTransfer.effectAllowed = 'copyMove'

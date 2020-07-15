@@ -25,7 +25,7 @@ import {
 } from './types'
 
 
-type Action =
+export type Action =
     | { tag: 'UpdateAPIKey', apiKey: string }
     | { tag: 'UpdateActiveChart', index: number }
     | { tag: 'PromptForNewChart' }

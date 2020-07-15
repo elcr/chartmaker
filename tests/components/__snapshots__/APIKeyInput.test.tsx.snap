@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders labelled input 1`] = `
+.emotion-1 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+.emotion-2:not(:last-of-type) {
+  border-bottom: 1px solid white;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.emotion-0 {
+  margin-bottom: 0.25rem;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-2"
+  >
+    <label
+      class="emotion-0"
+      for="apiKeyInput"
+    >
+      Last.fm API key
+    </label>
+    <input
+      class="emotion-1"
+      id="apiKeyInput"
+      type="password"
+      value="test api key"
+    />
+  </div>
+</div>
+`;

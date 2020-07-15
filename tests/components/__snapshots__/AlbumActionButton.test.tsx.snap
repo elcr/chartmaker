@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders as button 1`] = `
+.emotion-0 {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+<div
+  id="test-render-container"
+>
+  <button
+    class="emotion-0"
+    title="Test title"
+  >
+    Test label
+  </button>
+</div>
+`;

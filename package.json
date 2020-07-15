@@ -10,10 +10,9 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@testing-library/preact": "^2.0.0",
     "@types/jest": "^26.0.4",
     "@types/react": "^16.9.41",
-    "@types/react-test-renderer": "^16.9.2",
+    "@types/react-dom": "^16.9.8",
     "autoprefixer": "^9.8.4",
     "bootstrap": "^4.4.1",
     "css-loader": "^3.6.0",
@@ -29,19 +28,22 @@
     "preact": "^10.4.5",
     "preact-compat": "^3.19.0",
     "precss": "^4.0.0",
-    "react-test-renderer": "^16.13.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-use-side-effect-reducer": "https://github.com/elcr/react-use-side-effect-reducer.git",
     "runtypes": "^4.3.0",
     "sass-loader": "^9.0.2",
     "source-map-loader": "^1.0.1",
     "string-replace-loader": "^2.3.0",
     "style-loader": "^1.2.1",
+    "ts-jest": "^26.1.2",
     "ts-loader": "^8.0.0",
     "typescript": "^3.9.6",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "test": "jest"
   }
 }

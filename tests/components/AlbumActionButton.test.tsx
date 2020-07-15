@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import AlbumActionButton from '../../src/components/AlbumActionButton'
-import { setRenderContainer, clearRenderContainer, clickEvent, ignore } from '../utils'
+import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../utils'
 
 
 const container: MutableRefObject<HTMLElement | null> = createRef()
@@ -32,11 +32,7 @@ test('click event calls onClick prop', () => {
         container.current
     )
 
-    act(() => {
-        container.current
-            ?.firstChild
-            ?.dispatchEvent(clickEvent())
-    })
+    act(() => fireEvent('click', container.current?.firstChild))
 
     expect(mock).toHaveBeenCalledTimes(1)
 })

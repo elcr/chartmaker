@@ -1,5 +1,6 @@
 import { MutableRefObject } from 'react'
 import { unmountComponentAtNode } from 'react-dom'
+import { Simulate } from 'react-dom/test-utils'
 
 
 export function setRenderContainer(ref: MutableRefObject<HTMLElement | null>) {
@@ -18,13 +19,11 @@ export function clearRenderContainer(ref: MutableRefObject<HTMLElement | null>) 
 }
 
 
-export function clickEvent() {
-    return new MouseEvent('click', { bubbles: true })
-}
-
-
-export function dragEvent(type: 'dragstart' | 'dragenter' | 'dragover' | 'drop') {
-    return new Event(type, { bubbles: true })
+export function fireEvent(type: keyof typeof Simulate, element?: Element | ChildNode | null) {
+    if (element == null) {
+        throw new Error('element not found')
+    }
+    Simulate[type](element as Element)
 }
 
 

@@ -1,8 +1,8 @@
 import React, { createRef, MutableRefObject } from 'react'
 import { render } from 'react-dom'
-import { act, Simulate } from 'react-dom/test-utils'
+import { act } from 'react-dom/test-utils'
 
-import { setRenderContainer, clearRenderContainer, ignore } from '../utils'
+import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../utils'
 import APIKeyInput from '../../src/components/APIKeyInput'
 import { Action } from '../../src/reducer'
 
@@ -33,12 +33,12 @@ test('dispatches action on input change', () => {
     )
 
     act(() => {
-        const input = container.current?.querySelector('input') ?? null
-        if (input === null) {
+        const input = container.current?.querySelector('input')
+        if (input == null) {
             return
         }
         input.value = 'test new api key'
-        Simulate.change(input)
+        fireEvent('change', input)
     })
 
     expect(mock).toHaveBeenCalledTimes(1)

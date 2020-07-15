@@ -28,6 +28,7 @@ test('renders album covers', () => {
         placeholder: true,
         id: index
     }))
+
     render(
         <AlbumRow dispatch={ignore}
             albums={albums}
@@ -35,5 +36,6 @@ test('renders album covers', () => {
             albumCoverComponent={TestAlbumCover}/>,
         container.current
     )
+
     expect(container.current).toMatchSnapshot()
 })

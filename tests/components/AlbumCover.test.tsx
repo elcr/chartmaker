@@ -4,7 +4,7 @@ import { css } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
 import AlbumCover from '../../src/components/AlbumCover'
-import { setRenderContainer, clearRenderContainer, ignore, dragEvent } from '../utils'
+import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../utils'
 import { Album, Size } from '../../src/types'
 
 
@@ -37,6 +37,7 @@ test('renders without image for placeholder album', () => {
         </AlbumCover>,
         container.current
     )
+
     expect(container.current).toMatchSnapshot()
 })
 
@@ -50,6 +51,7 @@ test('renders with image for named album', () => {
         </AlbumCover>,
         container.current
     )
+
     expect(container.current).toMatchSnapshot()
 })
 
@@ -64,11 +66,12 @@ test('overlayClass prop merges styles', () => {
         </AlbumCover>,
         container.current
     )
+
     expect(container.current).toMatchSnapshot()
 })
 
 
-test('dragstart event calls onDragStart prop', () => {
+test('dragStart event calls onDragStart prop', () => {
     render(
         <AlbumCover album={namedAlbum}
                 size={'2rem' as Size}
@@ -77,16 +80,14 @@ test('dragstart event calls onDragStart prop', () => {
         </AlbumCover>,
         container.current
     )
-    act(() => {
-        container.current
-            ?.firstChild
-            ?.dispatchEvent(dragEvent('dragstart'))
-    })
+
+    act(() => fireEvent('dragStart', container.current?.firstChild))
+
     expect(dragMock).toHaveBeenCalledTimes(1)
 })
 
 
-test('dragenter event calls onDragEnter prop', () => {
+test('dragEnter event calls onDragEnter prop', () => {
     render(
         <AlbumCover album={namedAlbum}
                 size={'2rem' as Size}
@@ -96,16 +97,14 @@ test('dragenter event calls onDragEnter prop', () => {
         </AlbumCover>,
         container.current
     )
-    act(() => {
-        container.current
-            ?.firstChild
-            ?.dispatchEvent(dragEvent('dragenter'))
-    })
+
+    act(() => fireEvent('dragEnter', container.current?.firstChild))
+
     expect(dragMock).toHaveBeenCalledTimes(1)
 })
 
 
-test('dragover event calls onDragOver prop', () => {
+test('dragOver event calls onDragOver prop', () => {
     render(
         <AlbumCover album={namedAlbum}
                 size={'2rem' as Size}
@@ -115,11 +114,9 @@ test('dragover event calls onDragOver prop', () => {
         </AlbumCover>,
         container.current
     )
-    act(() => {
-        container.current
-            ?.firstChild
-            ?.dispatchEvent(dragEvent('dragover'))
-    })
+
+    act(() => fireEvent('dragOver', container.current?.firstChild))
+
     expect(dragMock).toHaveBeenCalledTimes(1)
 })
 
@@ -134,10 +131,8 @@ test('drop event calls onDrop prop', () => {
         </AlbumCover>,
         container.current
     )
-    act(() => {
-        container.current
-            ?.firstChild
-            ?.dispatchEvent(dragEvent('drop'))
-    })
+
+    act(() => fireEvent('drop', container.current?.firstChild))
+
     expect(dragMock).toHaveBeenCalledTimes(1)
 })

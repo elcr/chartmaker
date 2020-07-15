@@ -18,7 +18,10 @@ type Props = {
 }
 
 
-export const SidebarGroup: FunctionComponent<Props> = ({ children, class: className }) =>
+const SidebarGroup: FunctionComponent<Props> = ({ children, class: className }) =>
     <div class={cx(style, className)}>
         {children}
     </div>
+
+
+export default SidebarGroup

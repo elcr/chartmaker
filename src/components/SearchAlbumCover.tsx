@@ -1,7 +1,7 @@
 import { h, FunctionComponent } from 'preact'
 
 import { NamedAlbum, Size } from '../types'
-import { AlbumCover } from './AlbumCover'
+import AlbumCover from './AlbumCover'
 
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 }
 
 
-export const SearchAlbumCover: FunctionComponent<Props> = ({ album, size }) => {
+const SearchAlbumCover: FunctionComponent<Props> = ({ album, size }) => {
     function dragStart(event: DragEvent) {
         event.dataTransfer!.setData(`search-${album.id}`, '')
         event.dataTransfer!.effectAllowed = 'copy'
@@ -22,3 +22,6 @@ export const SearchAlbumCover: FunctionComponent<Props> = ({ album, size }) => {
             onDragStart={dragStart}/>
     )
 }
+
+
+export default SearchAlbumCover

@@ -1,14 +1,14 @@
 import { h, FunctionComponent, RefObject } from 'preact'
 import { css } from 'emotion'
 
-import { ControlledSlider } from './ControlledSlider'
+import ControlledSlider from './ControlledSlider'
 import { DispatchProps } from '../reducer'
-import { SidebarGroup } from './SidebarGroup'
-import { Button } from './Button'
+import SidebarGroup from './SidebarGroup'
+import Button from './Button'
 import { ScreenshotState } from '../types'
 import { MAX_SCREENSHOT_SCALE } from '../constants'
-import { ImportStateButton } from './ImportStateButton'
-import { ExportStateButton } from './ExportStateButton'
+import ImportStateButton from './ImportStateButton'
+import ExportStateButton from './ExportStateButton'
 
 
 type Props = DispatchProps<
@@ -33,7 +33,7 @@ const buttonContainerStyle = css({
 })
 
 
-export const ImportExportScreenshotButtons: FunctionComponent<Props> = ({
+const ImportExportScreenshotButtons: FunctionComponent<Props> = ({
     dispatch,
     screenshotState: { loading, scale },
     chartRef
@@ -75,3 +75,6 @@ export const ImportExportScreenshotButtons: FunctionComponent<Props> = ({
         </SidebarGroup>
     )
 }
+
+
+export default ImportExportScreenshotButtons

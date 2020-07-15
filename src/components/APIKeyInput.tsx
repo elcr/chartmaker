@@ -1,9 +1,9 @@
 import { h, FunctionComponent } from 'preact'
 
 import { DispatchProps } from '../reducer'
-import { SidebarGroup } from './SidebarGroup'
-import { Label } from './Label'
-import { ControlledInput } from './ControlledInput'
+import SidebarGroup from './SidebarGroup'
+import Label from './Label'
+import ControlledInput from './ControlledInput'
 
 
 const id = 'apiKeyInput'
@@ -14,7 +14,7 @@ type Props = DispatchProps<'UpdateAPIKey'> & {
 }
 
 
-export const APIKeyInput: FunctionComponent<Props> = ({ dispatch, apiKey }) => {
+const APIKeyInput: FunctionComponent<Props> = ({ dispatch, apiKey }) => {
     function updateAPIKey(apiKey: string) {
         dispatch({
             tag: 'UpdateAPIKey',
@@ -34,3 +34,6 @@ export const APIKeyInput: FunctionComponent<Props> = ({ dispatch, apiKey }) => {
         </SidebarGroup>
     )
 }
+
+
+export default APIKeyInput

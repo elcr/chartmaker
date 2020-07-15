@@ -1,13 +1,13 @@
 import { h, FunctionComponent } from 'preact'
 
 import { DispatchProps } from '../reducer'
-import { Button } from './Button'
+import Button from './Button'
 
 
 type Props = DispatchProps<'PromptForNewChart'>
 
 
-export const NewChartButton: FunctionComponent<Props> = ({ dispatch }) => {
+const NewChartButton: FunctionComponent<Props> = ({ dispatch }) => {
     function addNewChart() {
         dispatch({ tag: 'PromptForNewChart' })
     }
@@ -18,3 +18,6 @@ export const NewChartButton: FunctionComponent<Props> = ({ dispatch }) => {
         </Button>
     )
 }
+
+
+export default NewChartButton

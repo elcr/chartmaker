@@ -2,8 +2,8 @@ import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { NamedAlbum } from '../types'
-import { SidebarGroup } from './SidebarGroup'
-import { SearchAlbumCover } from './SearchAlbumCover'
+import SidebarGroup from './SidebarGroup'
+import SearchAlbumCover from './SearchAlbumCover'
 import { LARGE_ALBUM_SIZE } from '../style'
 
 
@@ -24,7 +24,7 @@ const groupStyle = css({
 })
 
 
-export const SearchResults: FunctionComponent<Props> = ({ albums }) => {
+const SearchResults: FunctionComponent<Props> = ({ albums }) => {
     const albumCovers = albums.map(album =>
         <SearchAlbumCover key={album.id}
             album={album}
@@ -39,3 +39,6 @@ export const SearchResults: FunctionComponent<Props> = ({ albums }) => {
         </SidebarGroup>
     )
 }
+
+
+export default SearchResults

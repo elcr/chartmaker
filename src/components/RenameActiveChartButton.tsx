@@ -2,7 +2,7 @@ import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { DispatchProps } from '../reducer'
-import { Button } from './Button'
+import Button from './Button'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '../style'
 
 
@@ -14,7 +14,7 @@ const style = css({
 })
 
 
-export const RenameActiveChartButton: FunctionComponent<Props> = ({ dispatch }) => {
+const RenameActiveChartButton: FunctionComponent<Props> = ({ dispatch }) => {
     function renameActiveChart() {
         dispatch({ tag: 'PromptToRenameActiveChart' })
     }
@@ -25,3 +25,6 @@ export const RenameActiveChartButton: FunctionComponent<Props> = ({ dispatch }) 
         </Button>
     )
 }
+
+
+export default RenameActiveChartButton

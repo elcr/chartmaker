@@ -11,5 +11,8 @@ type Props = {
 }
 
 
-export const Button: FunctionComponent<Props> = ({ class: className, ...props }) =>
+const Button: FunctionComponent<Props> = ({ class: className, ...props }) =>
     <button {...props} class={cx(buttonStyle, className)}/>
+
+
+export default Button

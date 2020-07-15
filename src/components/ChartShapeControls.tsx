@@ -1,10 +1,10 @@
 import { h, FunctionComponent, JSX } from 'preact'
 import { css } from 'emotion'
 
-import { SidebarGroup } from './SidebarGroup'
+import SidebarGroup from './SidebarGroup'
 import { DispatchProps } from '../reducer'
-import { ControlledSlider } from './ControlledSlider'
-import { ControlledRadioButton } from './ControlledRadioButton'
+import ControlledSlider from './ControlledSlider'
+import ControlledRadioButton from './ControlledRadioButton'
 import { MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '../constants'
 import { ChartShape } from '../types'
 
@@ -21,7 +21,7 @@ const style = css({
 })
 
 
-export const ChartShapeControls: FunctionComponent<Props> = ({
+const ChartShapeControls: FunctionComponent<Props> = ({
     dispatch,
     shape,
     rowsX,
@@ -121,3 +121,6 @@ export const ChartShapeControls: FunctionComponent<Props> = ({
         </SidebarGroup>
     )
 }
+
+
+export default ChartShapeControls

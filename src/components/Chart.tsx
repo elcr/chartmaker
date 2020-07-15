@@ -8,8 +8,8 @@ import {
     NamedAlbum,
     Size
 } from '../types'
-import { AlbumRow } from './AlbumRow'
-import { TitleGroup } from './TitleGroup'
+import AlbumRow from './AlbumRow'
+import TitleGroup from './TitleGroup'
 import { DispatchProps } from '../reducer'
 import {
     VERY_LARGE_ALBUM_SIZE,
@@ -217,7 +217,7 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
 }
 
 
-export const Chart: FunctionComponent<Props> = ({
+const Chart: FunctionComponent<Props> = ({
     dispatch,
     details: { albums, name, shape, rowsX, rowsY },
     innerRef
@@ -273,3 +273,6 @@ export const Chart: FunctionComponent<Props> = ({
         </main>
     )
 }
+
+
+export default Chart

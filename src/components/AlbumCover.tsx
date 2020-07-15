@@ -39,7 +39,7 @@ const baseOverlayStyle = cx(
 )
 
 
-export const AlbumCover: FunctionComponent<Props> = ({
+const AlbumCover: FunctionComponent<Props> = ({
     album,
     size,
     onDragStart,
@@ -86,3 +86,6 @@ export const AlbumCover: FunctionComponent<Props> = ({
         </div>
     )
 }
+
+
+export default AlbumCover

@@ -2,12 +2,12 @@ import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
 import { DispatchProps } from '../reducer'
-import { ChartSelector } from './ChartSelector'
-import { NewChartButton } from './NewChartButton'
-import { RenameActiveChartButton } from './RenameActiveChartButton'
-import { DeleteActiveChartButton } from './DeleteActiveChartButton'
+import ChartSelector from './ChartSelector'
+import NewChartButton from './NewChartButton'
+import RenameActiveChartButton from './RenameActiveChartButton'
+import DeleteActiveChartButton from './DeleteActiveChartButton'
 import { Chart } from '../types'
-import { SidebarGroup } from './SidebarGroup'
+import SidebarGroup from './SidebarGroup'
 
 
 type Props = DispatchProps<
@@ -26,7 +26,7 @@ const buttonsContainerStyle = css({
 })
 
 
-export const ChartManager: FunctionComponent<Props> = ({ dispatch, charts, activeChartIndex }) =>
+const ChartManager: FunctionComponent<Props> = ({ dispatch, charts, activeChartIndex }) =>
     <SidebarGroup>
         <ChartSelector dispatch={dispatch}
             charts={charts}
@@ -37,3 +37,6 @@ export const ChartManager: FunctionComponent<Props> = ({ dispatch, charts, activ
             <DeleteActiveChartButton dispatch={dispatch}/>
         </div>
     </SidebarGroup>
+
+
+export default ChartManager

@@ -10,7 +10,7 @@ type Props = {
 }
 
 
-export const ControlledSelect: FunctionComponent<Props> = ({ onChange, ...props }) => {
+const ControlledSelect: FunctionComponent<Props> = ({ onChange, ...props }) => {
     function change(event: Event) {
         event.preventDefault()
         const value = Number((event.currentTarget as any).value)
@@ -19,3 +19,6 @@ export const ControlledSelect: FunctionComponent<Props> = ({ onChange, ...props 
 
     return <select {...props} class={inputStyle} onInput={change}/>
 }
+
+
+export default ControlledSelect

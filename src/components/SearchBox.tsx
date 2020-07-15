@@ -1,11 +1,11 @@
 import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
-import { Label } from './Label'
+import Label from './Label'
 import { DispatchProps } from '../reducer'
-import { ControlledForm } from './ControlledForm'
-import { SidebarGroup } from './SidebarGroup'
-import { ControlledInput } from './ControlledInput'
+import ControlledForm from './ControlledForm'
+import SidebarGroup from './SidebarGroup'
+import ControlledInput from './ControlledInput'
 import { SearchState } from '../types'
 import { SIDEBAR_LABEL_PADDING_SIZE, ERROR_TEXT_COLOUR } from '../style'
 
@@ -29,7 +29,7 @@ const errorStyle = css({
 })
 
 
-export const SearchBox: FunctionComponent<Props> = ({ dispatch, searchState }) => {
+const SearchBox: FunctionComponent<Props> = ({ dispatch, searchState }) => {
     function sendSearchRequest() {
         dispatch({ tag: 'CancelSearchRequest' })
         dispatch({ tag: 'SendSearchRequest' })
@@ -64,3 +64,6 @@ export const SearchBox: FunctionComponent<Props> = ({ dispatch, searchState }) =
         </SidebarGroup>
     )
 }
+
+
+export default SearchBox

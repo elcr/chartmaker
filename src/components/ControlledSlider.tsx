@@ -2,7 +2,7 @@ import { h, FunctionComponent } from 'preact'
 
 import { inputStyle, SIDEBAR_ITEM_PADDING_SIZE } from '../style'
 import { css, cx } from 'emotion'
-import { Label } from './Label'
+import Label from './Label'
 
 
 type Props = {
@@ -27,7 +27,7 @@ const baseInputStyle = css({
 })
 
 
-export const ControlledSlider: FunctionComponent<Props> = ({
+const ControlledSlider: FunctionComponent<Props> = ({
     id,
     onChange,
     children,
@@ -59,3 +59,6 @@ export const ControlledSlider: FunctionComponent<Props> = ({
         </div>
     )
 }
+
+
+export default ControlledSlider

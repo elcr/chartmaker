@@ -2,9 +2,9 @@ import { h, FunctionComponent, Fragment, VNode } from 'preact'
 import { css } from 'emotion'
 
 import { Album, Size } from '../types'
-import { AlbumCover } from './AlbumCover'
+import AlbumCover from './AlbumCover'
 import { DispatchProps } from '../reducer'
-import { AlbumActionButton } from './AlbumActionButton'
+import AlbumActionButton from './AlbumActionButton'
 import { ALBUM_BUTTONS_PADDING_SIZE } from '../style'
 
 
@@ -62,7 +62,7 @@ type Props = DispatchProps<
 }
 
 
-export const ChartAlbumCover: FunctionComponent<Props> = ({ dispatch, album, size }) => {
+const ChartAlbumCover: FunctionComponent<Props> = ({ dispatch, album, size }) => {
     function dragStart(event: DragEvent) {
         event.dataTransfer!.setData(`chart-${album.id}`, '')
         event.dataTransfer!.effectAllowed = 'copyMove'
@@ -135,3 +135,6 @@ export const ChartAlbumCover: FunctionComponent<Props> = ({ dispatch, album, siz
         </AlbumCover>
     )
 }
+
+
+export default ChartAlbumCover

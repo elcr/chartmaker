@@ -14,7 +14,10 @@ const style = css({
 })
 
 
-export const Label: FunctionComponent<Props> = ({ children, target }) =>
+const Label: FunctionComponent<Props> = ({ children, target }) =>
     <label class={style} for={target}>
         {children}
     </label>
+
+
+export default Label

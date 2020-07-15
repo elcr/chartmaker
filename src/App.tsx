@@ -1,11 +1,11 @@
-import { h } from 'preact'
+import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 import { useRef, useEffect } from 'preact/hooks'
 import { useSideEffectReducer } from 'react-use-side-effect-reducer'
 
 import { reducer } from './reducer'
-import { Chart } from './components/Chart'
-import { Sidebar } from './components/Sidebar'
+import Chart from './components/Chart'
+import Sidebar from './components/Sidebar'
 import {
     createInitialState,
     loadStateFromLocalStorage,
@@ -31,7 +31,7 @@ const rootStyle = css({
 })
 
 
-export const App = () => {
+const App: FunctionComponent = () => {
     const chartRef = useRef<HTMLElement>(null)
     const [ state, dispatch ] = useSideEffectReducer(
         () => loadStateFromLocalStorage() ?? createInitialState(),
@@ -57,3 +57,6 @@ export const App = () => {
         </div>
     )
 }
+
+
+export default App

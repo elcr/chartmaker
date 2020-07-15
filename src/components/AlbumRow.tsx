@@ -3,7 +3,7 @@ import { css } from 'emotion'
 
 import { Album, Size } from '../types'
 import { DispatchProps } from '../reducer'
-import { ChartAlbumCover } from './ChartAlbumCover'
+import ChartAlbumCover from './ChartAlbumCover'
 
 
 type Props = DispatchProps<
@@ -22,7 +22,7 @@ const style = css({
 })
 
 
-export const AlbumRow: FunctionComponent<Props> = ({ dispatch, albums, size }) => {
+const AlbumRow: FunctionComponent<Props> = ({ dispatch, albums, size }) => {
     const albumCovers = albums.map(album =>
         <ChartAlbumCover key={album.id}
             dispatch={dispatch}
@@ -35,3 +35,6 @@ export const AlbumRow: FunctionComponent<Props> = ({ dispatch, albums, size }) =
         </div>
     )
 }
+
+
+export default AlbumRow

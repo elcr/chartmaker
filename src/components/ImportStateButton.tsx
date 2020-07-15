@@ -3,7 +3,7 @@ import { css } from 'emotion'
 import { useRef } from 'preact/hooks'
 
 import { DispatchProps } from '../reducer'
-import { Button } from './Button'
+import Button from './Button'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '../style'
 
 
@@ -20,7 +20,7 @@ const buttonStyle = css({
 })
 
 
-export const ImportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
+const ImportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
     const inputRef = useRef<HTMLInputElement>()
 
     function loadSelectedFile() {
@@ -51,3 +51,6 @@ export const ImportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
         </Fragment>
     )
 }
+
+
+export default ImportStateButton

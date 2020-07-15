@@ -1,15 +1,15 @@
 import { h, FunctionComponent, JSX, RefObject } from 'preact'
 import { css } from 'emotion'
 
-import { ChartManager } from './ChartManager'
+import ChartManager from './ChartManager'
 import { DispatchProps } from '../reducer'
 import { Chart, SearchState, ScreenshotState } from '../types'
-import { APIKeyInput } from './APIKeyInput'
-import { ImportExportScreenshotButtons } from './ImportExportScreenshotButtons'
-import { SearchBox } from './SearchBox'
-import { SearchResults } from './SearchResults'
+import APIKeyInput from './APIKeyInput'
+import ImportExportScreenshotButtons from './ImportExportScreenshotButtons'
+import SearchBox from './SearchBox'
+import SearchResults from './SearchResults'
 import { SIDEBAR_WIDTH, CONTAINER_PADDING_SIZE } from '../style'
-import { ChartShapeControls } from './ChartShapeControls'
+import ChartShapeControls from './ChartShapeControls'
 
 
 type Props = DispatchProps<
@@ -46,7 +46,7 @@ const style = css({
 })
 
 
-export const Sidebar: FunctionComponent<Props> = ({
+const Sidebar: FunctionComponent<Props> = ({
     dispatch,
     charts,
     activeChartIndex,
@@ -76,3 +76,6 @@ export const Sidebar: FunctionComponent<Props> = ({
         </aside>
     )
 }
+
+
+export default Sidebar

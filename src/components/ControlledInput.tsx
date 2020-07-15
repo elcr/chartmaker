@@ -11,7 +11,7 @@ type Props = {
 }
 
 
-export const ControlledInput: FunctionComponent<Props> = ({ onChange, ...props }) => {
+const ControlledInput: FunctionComponent<Props> = ({ onChange, ...props }) => {
     function controlledOnChange(event: Event) {
         event.preventDefault()
         onChange((event.currentTarget as any).value)
@@ -19,3 +19,6 @@ export const ControlledInput: FunctionComponent<Props> = ({ onChange, ...props }
 
     return <input {...props} class={inputStyle} onInput={controlledOnChange}/>
 }
+
+
+export default ControlledInput

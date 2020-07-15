@@ -1,7 +1,7 @@
 import { h, FunctionComponent } from 'preact'
 import { css } from 'emotion'
 
-import { Label } from './Label'
+import Label from './Label'
 import { SIDEBAR_LABEL_PADDING_SIZE, SIDEBAR_ITEM_PADDING_SIZE } from '../style'
 
 
@@ -29,7 +29,7 @@ const inputStyle = css({
 })
 
 
-export const ControlledRadioButton: FunctionComponent<Props> = ({
+const ControlledRadioButton: FunctionComponent<Props> = ({
     id,
     checked,
     onCheck,
@@ -45,3 +45,6 @@ export const ControlledRadioButton: FunctionComponent<Props> = ({
             {children}
         </Label>
     </div>
+
+
+export default ControlledRadioButton

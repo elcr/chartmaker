@@ -6,7 +6,7 @@ type Props = {
 }
 
 
-export const ControlledForm: FunctionComponent<Props> = ({ children, onSubmit }) => {
+const ControlledForm: FunctionComponent<Props> = ({ children, onSubmit }) => {
     function submit(event: Event) {
         event.preventDefault()
         onSubmit()
@@ -18,3 +18,6 @@ export const ControlledForm: FunctionComponent<Props> = ({ children, onSubmit })
         </form>
     )
 }
+
+
+export default ControlledForm

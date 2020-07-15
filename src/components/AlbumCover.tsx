@@ -22,7 +22,6 @@ const baseContainerStyle = css({
     margin: ALBUM_PADDING_SIZE
 })
 
-
 const imageStyle = css({
     position: 'absolute',
     top: 0,
@@ -32,8 +31,12 @@ const imageStyle = css({
     height: '100%'
 })
 
+// the overlay is given an additional non-emotion class so it can be used as a
+// selector in the container's style
+const overlaySelector = 'overlay'
 
 const baseOverlayStyle = cx(
+    overlaySelector,
     imageStyle,
     css({ zIndex: 10 })
 )
@@ -55,7 +58,7 @@ const AlbumCover: FC<Props> = ({
         css({
             width: size,
             height: size,
-            [`:not(:hover) .${overlayStyle}`]: {
+            [`:not(:hover) .${overlaySelector}`]: {
                 display: 'none'
             }
         })

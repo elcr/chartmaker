@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import AlbumActionButton from '../../src/components/AlbumActionButton'
-import { setRenderContainer, clearRenderContainer } from '../utils'
+import { setRenderContainer, clearRenderContainer, clickEvent, ignore } from '../utils'
 
 
 const container: MutableRefObject<HTMLElement | null> = createRef()
@@ -13,7 +13,7 @@ afterEach(() => clearRenderContainer(container))
 
 test('renders as button', () => {
     render(
-        <AlbumActionButton title='Test title' onClick={() => {}}>
+        <AlbumActionButton title='Test title' onClick={ignore}>
             Test label
         </AlbumActionButton>,
         container.current
@@ -35,7 +35,7 @@ test('click event calls onClick prop', () => {
     act(() => {
         container.current
             ?.firstChild
-            ?.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+            ?.dispatchEvent(clickEvent())
     })
 
     expect(mock).toHaveBeenCalledTimes(1)

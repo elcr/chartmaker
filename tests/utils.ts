@@ -16,3 +16,16 @@ export function clearRenderContainer(ref: MutableRefObject<HTMLElement | null>) 
     unmountComponentAtNode(ref.current)
     ref.current.remove()
 }
+
+
+export function clickEvent() {
+    return new MouseEvent('click', { bubbles: true })
+}
+
+
+export function dragEvent(type: 'dragstart' | 'dragenter' | 'dragover' | 'drop') {
+    return new Event(type, { bubbles: true })
+}
+
+
+export function ignore() {}

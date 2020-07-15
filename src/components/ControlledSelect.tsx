@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC, ChangeEvent } from 'react'
 
 import { inputStyle } from '../style'
 
@@ -10,14 +10,14 @@ type Props = {
 }
 
 
-const ControlledSelect: FunctionComponent<Props> = ({ onChange, ...props }) => {
-    function change(event: Event) {
+const ControlledSelect: FC<Props> = ({ onChange, ...props }) => {
+    function change(event: ChangeEvent<HTMLSelectElement>) {
         event.preventDefault()
-        const value = Number((event.currentTarget as any).value)
+        const value = Number(event.currentTarget.value)
         onChange(value)
     }
 
-    return <select {...props} class={inputStyle} onInput={change}/>
+    return <select {...props} className={inputStyle} onInput={change}/>
 }
 
 

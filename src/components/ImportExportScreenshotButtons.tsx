@@ -1,4 +1,4 @@
-import { h, FunctionComponent, RefObject } from 'preact'
+import React, { FC, RefObject } from 'react'
 import { css } from 'emotion'
 
 import ControlledSlider from './ControlledSlider'
@@ -33,7 +33,7 @@ const buttonContainerStyle = css({
 })
 
 
-const ImportExportScreenshotButtons: FunctionComponent<Props> = ({
+const ImportExportScreenshotButtons: FC<Props> = ({
     dispatch,
     screenshotState: { loading, scale },
     chartRef
@@ -63,11 +63,11 @@ const ImportExportScreenshotButtons: FunctionComponent<Props> = ({
                     step={1}>
                 Scale
             </ControlledSlider>
-            <div class={buttonContainerStyle}>
+            <div className={buttonContainerStyle}>
                 <Button onClick={takeScreenshot} disabled={loading}>
                     Screenshot
                 </Button>
-                <div class={stateButtonsContainerStyle}>
+                <div className={stateButtonsContainerStyle}>
                     <ImportStateButton dispatch={dispatch}/>
                     <ExportStateButton dispatch={dispatch}/>
                 </div>

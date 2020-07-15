@@ -1,4 +1,4 @@
-import { h, FunctionComponent, JSX } from 'preact'
+import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import SidebarGroup from './SidebarGroup'
@@ -21,7 +21,7 @@ const style = css({
 })
 
 
-const ChartShapeControls: FunctionComponent<Props> = ({
+const ChartShapeControls: FC<Props> = ({
     dispatch,
     shape,
     rowsX,
@@ -94,7 +94,7 @@ const ChartShapeControls: FunctionComponent<Props> = ({
 
     return (
         <SidebarGroup>
-            <div class={style}>
+            <div className={style}>
                 <ControlledRadioButton id='top40'
                         checked={shape.tag === 'Top' && shape.size === 40}
                         onCheck={switchToTop40}>

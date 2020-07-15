@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import Label from './Label'
@@ -29,7 +29,7 @@ const errorStyle = css({
 })
 
 
-const SearchBox: FunctionComponent<Props> = ({ dispatch, searchState }) => {
+const SearchBox: FC<Props> = ({ dispatch, searchState }) => {
     function sendSearchRequest() {
         dispatch({ tag: 'CancelSearchRequest' })
         dispatch({ tag: 'SendSearchRequest' })
@@ -44,7 +44,7 @@ const SearchBox: FunctionComponent<Props> = ({ dispatch, searchState }) => {
 
     const errorMessage = searchState.tag === 'Error'
         ? (
-            <div class={errorStyle}>
+            <div className={errorStyle}>
                 {searchState.message}
             </div>
         )

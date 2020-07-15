@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import { Album, Size } from '../types'
@@ -22,7 +22,7 @@ const style = css({
 })
 
 
-const AlbumRow: FunctionComponent<Props> = ({ dispatch, albums, size }) => {
+const AlbumRow: FC<Props> = ({ dispatch, albums, size }) => {
     const albumCovers = albums.map(album =>
         <ChartAlbumCover key={album.id}
             dispatch={dispatch}
@@ -30,7 +30,7 @@ const AlbumRow: FunctionComponent<Props> = ({ dispatch, albums, size }) => {
             size={size}/>
     )
     return (
-        <div class={style}>
+        <div className={style}>
             {albumCovers}
         </div>
     )

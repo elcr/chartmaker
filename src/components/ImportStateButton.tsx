@@ -1,6 +1,5 @@
-import { h, FunctionComponent, Fragment } from 'preact'
+import React, { FC, useRef } from 'react'
 import { css } from 'emotion'
-import { useRef } from 'preact/hooks'
 
 import { DispatchProps } from '../reducer'
 import Button from './Button'
@@ -20,8 +19,8 @@ const buttonStyle = css({
 })
 
 
-const ImportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
-    const inputRef = useRef<HTMLInputElement>()
+const ImportStateButton: FC<Props> = ({ dispatch }) => {
+    const inputRef = useRef<HTMLInputElement>(null)
 
     function loadSelectedFile() {
         const file = inputRef.current?.files?.[0]
@@ -39,16 +38,16 @@ const ImportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
     }
 
     return (
-        <Fragment>
+        <>
             <input ref={inputRef}
-                class={inputStyle}
+                className={inputStyle}
                 type='file'
                 accept='application/json'
                 onChange={loadSelectedFile}/>
-            <Button class={buttonStyle} onClick={clickInput}>
+            <Button className={buttonStyle} onClick={clickInput}>
                 Import state
             </Button>
-        </Fragment>
+        </>
     )
 }
 

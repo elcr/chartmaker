@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 
 import { DispatchProps } from '../reducer'
 import Button from './Button'
@@ -7,7 +7,7 @@ import Button from './Button'
 type Props = DispatchProps<'PromptToExportState'>
 
 
-const ExportStateButton: FunctionComponent<Props> = ({ dispatch }) => {
+const ExportStateButton: FC<Props> = ({ dispatch }) => {
     function promptToExportState() {
         dispatch({ tag: 'PromptToExportState' })
     }

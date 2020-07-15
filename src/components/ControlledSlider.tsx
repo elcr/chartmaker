@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC, ChangeEvent } from 'react'
 
 import { inputStyle, SIDEBAR_ITEM_PADDING_SIZE } from '../style'
 import { css, cx } from 'emotion'
@@ -27,31 +27,31 @@ const baseInputStyle = css({
 })
 
 
-const ControlledSlider: FunctionComponent<Props> = ({
+const ControlledSlider: FC<Props> = ({
     id,
     onChange,
     children,
     value,
     ...props
 }) => {
-    function change(event: Event) {
+    function change(event: ChangeEvent<HTMLInputElement>) {
         event.preventDefault()
-        const value = Number((event.currentTarget as any).value)
+        const value = Number(event.currentTarget.value)
         onChange(value)
     }
 
     const style = cx(baseInputStyle, inputStyle)
 
     return (
-        <div class={containerStyle}>
+        <div className={containerStyle}>
             <Label target={id}>
                 {children}
             </Label>
             <input {...props}
                 id={id}
-                class={style}
+                className={style}
                 type='range'
-                onInput={change}
+                onChange={change}
                 value={value}/>
             <Label target={id}>
                 {value}

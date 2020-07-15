@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import { DispatchProps } from '../reducer'
@@ -24,7 +24,7 @@ const containerStyle = css({
 })
 
 
-const ChartSelector: FunctionComponent<Props> = ({ dispatch, charts, activeChartIndex }) => {
+const ChartSelector: FC<Props> = ({ dispatch, charts, activeChartIndex }) => {
     function updateActiveChart(index: number) {
         dispatch({
             tag: 'UpdateActiveChart',
@@ -39,7 +39,7 @@ const ChartSelector: FunctionComponent<Props> = ({ dispatch, charts, activeChart
     )
 
     return (
-        <div class={containerStyle}>
+        <div className={containerStyle}>
             <Label target={id}>
                 Active chart
             </Label>

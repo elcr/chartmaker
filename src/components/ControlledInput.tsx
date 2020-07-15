@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC, ChangeEvent } from 'react'
 
 import { inputStyle } from '../style'
 
@@ -11,13 +11,15 @@ type Props = {
 }
 
 
-const ControlledInput: FunctionComponent<Props> = ({ onChange, ...props }) => {
-    function controlledOnChange(event: Event) {
+const ControlledInput: FC<Props> = ({ onChange, ...props }) => {
+    function controlledOnChange(event: ChangeEvent<HTMLInputElement>) {
         event.preventDefault()
-        onChange((event.currentTarget as any).value)
+        onChange(event.currentTarget.value)
     }
 
-    return <input {...props} class={inputStyle} onInput={controlledOnChange}/>
+    return <input {...props}
+        className={inputStyle}
+        onChange={controlledOnChange}/>
 }
 
 

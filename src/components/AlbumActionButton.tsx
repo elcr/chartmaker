@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 import { css } from 'emotion'
 
 
@@ -15,8 +15,8 @@ const style = css({
 })
 
 
-const AlbumActionButton: FunctionComponent<Props> = props =>
-    <button {...props} class={style}/>
+const AlbumActionButton: FC<Props> = props =>
+    <button {...props} className={style}/>
 
 
 export default AlbumActionButton

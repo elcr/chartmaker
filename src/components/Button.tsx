@@ -1,18 +1,18 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 import { cx } from 'emotion'
 
 import { buttonStyle } from '../style'
 
 
 type Props = {
-    class?: string
+    className?: string
     disabled?: boolean
     onClick?: () => void
 }
 
 
-const Button: FunctionComponent<Props> = ({ class: className, ...props }) =>
-    <button {...props} class={cx(buttonStyle, className)}/>
+const Button: FC<Props> = ({ className, ...props }) =>
+    <button {...props} className={cx(buttonStyle, className)}/>
 
 
 export default Button

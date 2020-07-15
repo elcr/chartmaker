@@ -1,11 +1,12 @@
 import 'bootstrap/scss/bootstrap-reboot.scss'
 
-import { h, render } from 'preact'
+import React from 'react'
+import { render } from 'react-dom'
 
 import App from './App'
 
 
 render(
     <App/>,
-    document.getElementById('react-root')!
+    document.getElementById('react-root')
 )

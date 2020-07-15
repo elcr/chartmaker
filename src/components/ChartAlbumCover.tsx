@@ -1,4 +1,4 @@
-import { h, FunctionComponent, Fragment, VNode } from 'preact'
+import React, { FC, DragEvent } from 'react'
 import { css } from 'emotion'
 
 import { Album, Size } from '../types'
@@ -13,10 +13,10 @@ const searchPattern = /^search-(.+)$/
 
 
 function getAlbumID(
-    event: DragEvent,
+    event: DragEvent<HTMLDivElement>,
     pattern: RegExp
 ): number | null {
-    for (const type of event.dataTransfer!.types) {
+    for (const type of event.dataTransfer.types) {
         const match = type.match(pattern)?.[1]
         const id = Number(match)
         if (!Number.isNaN(id)) {
@@ -27,15 +27,15 @@ function getAlbumID(
 }
 
 
-function dragOver(event: DragEvent) {
-    for (const type of event.dataTransfer!.types) {
+function dragOver(event: DragEvent<HTMLDivElement>) {
+    for (const type of event.dataTransfer.types) {
         if (chartPattern.test(type)) {
-            event.dataTransfer!.dropEffect = 'move'
+            event.dataTransfer.dropEffect = 'move'
             event.preventDefault()
             return
         }
         if (searchPattern.test(type)) {
-            event.dataTransfer!.dropEffect = 'copy'
+            event.dataTransfer.dropEffect = 'copy'
             event.preventDefault()
             return
         }
@@ -62,13 +62,13 @@ type Props = DispatchProps<
 }
 
 
-const ChartAlbumCover: FunctionComponent<Props> = ({ dispatch, album, size }) => {
-    function dragStart(event: DragEvent) {
-        event.dataTransfer!.setData(`chart-${album.id}`, '')
-        event.dataTransfer!.effectAllowed = 'copyMove'
+const ChartAlbumCover: FC<Props> = ({ dispatch, album, size }) => {
+    function dragStart(event: DragEvent<HTMLDivElement>) {
+        event.dataTransfer.setData(`chart-${album.id}`, '')
+        event.dataTransfer.effectAllowed = 'copyMove'
     }
 
-    function dragEnter(event: DragEvent) {
+    function dragEnter(event: DragEvent<HTMLDivElement>) {
         const sourceID = getAlbumID(event, chartPattern)
         if (sourceID === null) {
             return
@@ -81,7 +81,7 @@ const ChartAlbumCover: FunctionComponent<Props> = ({ dispatch, album, size }) =>
         event.preventDefault()
     }
 
-    function drop(event: DragEvent) {
+    function drop(event: DragEvent<HTMLDivElement>) {
         const sourceID = getAlbumID(event, searchPattern)
         if (sourceID === null) {
             return
@@ -94,7 +94,7 @@ const ChartAlbumCover: FunctionComponent<Props> = ({ dispatch, album, size }) =>
         event.preventDefault()
     }
 
-    let buttons: VNode | undefined
+    let buttons: JSX.Element | undefined
     if (!album.placeholder) {
         function rename() {
             dispatch({
@@ -111,14 +111,14 @@ const ChartAlbumCover: FunctionComponent<Props> = ({ dispatch, album, size }) =>
         }
 
         buttons = (
-            <Fragment>
+            <>
                 <AlbumActionButton onClick={rename} title='Rename'>
                     ✏️
                 </AlbumActionButton>
                 <AlbumActionButton onClick={remove} title='Delete'>
                     🗑️
                 </AlbumActionButton>
-            </Fragment>
+            </>
         )
     }
 

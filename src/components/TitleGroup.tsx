@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import { TITLES_PADDING_SIZE, TITLES_FONT_SIZE } from '../style'
@@ -10,8 +10,8 @@ const style = css({
 })
 
 
-const TitleGroup: FunctionComponent = ({ children }) =>
-    <div class={style}>
+const TitleGroup: FC = ({ children }) =>
+    <div className={style}>
         {children}
     </div>
 

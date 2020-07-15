@@ -1,5 +1,4 @@
-import { h, FunctionComponent } from 'preact'
-import { PropRef } from 'preact/hooks'
+import React, { FC, Ref } from 'react'
 import { css } from 'emotion'
 
 import {
@@ -30,7 +29,7 @@ type Props = DispatchProps<
     | 'DeleteAlbum'
 > & {
     details: ChartDetails
-    innerRef: PropRef<HTMLElement>
+    innerRef: Ref<HTMLElement>
 }
 
 
@@ -217,7 +216,7 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
 }
 
 
-const Chart: FunctionComponent<Props> = ({
+const Chart: FC<Props> = ({
     dispatch,
     details: { albums, name, shape, rowsX, rowsY },
     innerRef
@@ -260,10 +259,10 @@ const Chart: FunctionComponent<Props> = ({
     })
 
     return (
-        <main ref={innerRef} class={outContainerStyle}>
+        <main ref={innerRef} className={outContainerStyle}>
             <h1>{name}</h1>
-            <div class={innerContainerStyle}>
-                <div class={chartStyle}>
+            <div className={innerContainerStyle}>
+                <div className={chartStyle}>
                     {rowElements}
                 </div>
                 <div>

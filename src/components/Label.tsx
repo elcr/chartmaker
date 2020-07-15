@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import { SIDEBAR_LABEL_PADDING_SIZE } from '../style'
@@ -14,8 +14,8 @@ const style = css({
 })
 
 
-const Label: FunctionComponent<Props> = ({ children, target }) =>
-    <label class={style} for={target}>
+const Label: FC<Props> = ({ children, target }) =>
+    <label className={style} htmlFor={target}>
         {children}
     </label>
 

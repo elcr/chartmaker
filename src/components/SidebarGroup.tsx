@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 import { css, cx } from 'emotion'
 
 import { BORDER, CONTAINER_PADDING_SIZE } from '../style'
@@ -14,12 +14,12 @@ const style = css({
 
 
 type Props = {
-    class?: string
+    className?: string
 }
 
 
-const SidebarGroup: FunctionComponent<Props> = ({ children, class: className }) =>
-    <div class={cx(style, className)}>
+const SidebarGroup: FC<Props> = ({ children, className }) =>
+    <div className={cx(style, className)}>
         {children}
     </div>
 

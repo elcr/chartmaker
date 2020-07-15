@@ -1,4 +1,4 @@
-import { h, FunctionComponent, JSX, RefObject } from 'preact'
+import React, { FC, RefObject } from 'react'
 import { css } from 'emotion'
 
 import ChartManager from './ChartManager'
@@ -46,7 +46,7 @@ const style = css({
 })
 
 
-const Sidebar: FunctionComponent<Props> = ({
+const Sidebar: FC<Props> = ({
     dispatch,
     charts,
     activeChartIndex,
@@ -61,7 +61,7 @@ const Sidebar: FunctionComponent<Props> = ({
     }
 
     return (
-        <aside class={style}>
+        <aside className={style}>
             <ChartManager dispatch={dispatch}
                 charts={charts}
                 activeChartIndex={activeChartIndex}/>

@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import Label from './Label'
@@ -29,15 +29,15 @@ const inputStyle = css({
 })
 
 
-const ControlledRadioButton: FunctionComponent<Props> = ({
+const ControlledRadioButton: FC<Props> = ({
     id,
     checked,
     onCheck,
     children
 }) =>
-    <div class={containerStyle}>
+    <div className={containerStyle}>
         <input id={id}
-            class={inputStyle}
+            className={inputStyle}
             type='radio'
             checked={checked}
             onChange={onCheck}/>

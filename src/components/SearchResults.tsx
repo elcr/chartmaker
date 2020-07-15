@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import { NamedAlbum } from '../types'
@@ -24,7 +24,7 @@ const groupStyle = css({
 })
 
 
-const SearchResults: FunctionComponent<Props> = ({ albums }) => {
+const SearchResults: FC<Props> = ({ albums }) => {
     const albumCovers = albums.map(album =>
         <SearchAlbumCover key={album.id}
             album={album}
@@ -32,8 +32,8 @@ const SearchResults: FunctionComponent<Props> = ({ albums }) => {
     )
 
     return (
-        <SidebarGroup class={groupStyle}>
-            <div class={containerStyle}>
+        <SidebarGroup className={groupStyle}>
+            <div className={containerStyle}>
                 {albumCovers}
             </div>
         </SidebarGroup>

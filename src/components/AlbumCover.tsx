@@ -1,4 +1,4 @@
-import { h, FunctionComponent, JSX } from 'preact'
+import React, { FC, DragEvent } from 'react'
 import { css, cx } from 'emotion'
 
 import { TEXT_COLOUR, ALBUM_PADDING_SIZE } from '../style'
@@ -8,10 +8,10 @@ import { Size, Album } from '../types'
 type Props = {
     album: Album
     size: Size
-    onDragStart: (event: DragEvent) => void
-    onDragOver?: (event: DragEvent) => void
-    onDragEnter?: (event: DragEvent) => void
-    onDrop?: (event: DragEvent) => void
+    onDragStart: (event: DragEvent<HTMLDivElement>) => void
+    onDragOver?: (event: DragEvent<HTMLDivElement>) => void
+    onDragEnter?: (event: DragEvent<HTMLDivElement>) => void
+    onDrop?: (event: DragEvent<HTMLDivElement>) => void
     overlayClass?: string
 }
 
@@ -39,7 +39,7 @@ const baseOverlayStyle = cx(
 )
 
 
-const AlbumCover: FunctionComponent<Props> = ({
+const AlbumCover: FC<Props> = ({
     album,
     size,
     onDragStart,
@@ -64,7 +64,7 @@ const AlbumCover: FunctionComponent<Props> = ({
     let image: JSX.Element | undefined
     if (!album.placeholder) {
         image = (
-            <img class={imageStyle}
+            <img className={imageStyle}
                 src={album.url}
                 alt={album.name}
                 crossOrigin='anonymous'/>
@@ -72,7 +72,7 @@ const AlbumCover: FunctionComponent<Props> = ({
     }
 
     return (
-        <div class={containerStyle}
+        <div className={containerStyle}
                 draggable={!album.placeholder}
                 onDragStart={onDragStart}
                 onDragEnter={onDragEnter}
@@ -80,7 +80,7 @@ const AlbumCover: FunctionComponent<Props> = ({
                 onDrop={onDrop}
                 title={album.placeholder ? undefined : album.name}>
             {image}
-            <div class={overlayStyle}>
+            <div className={overlayStyle}>
                 {children}
             </div>
         </div>

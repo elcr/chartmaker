@@ -1,4 +1,4 @@
-import { h, FunctionComponent } from 'preact'
+import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import { DispatchProps } from '../reducer'
@@ -14,13 +14,13 @@ const style = css({
 })
 
 
-const RenameActiveChartButton: FunctionComponent<Props> = ({ dispatch }) => {
+const RenameActiveChartButton: FC<Props> = ({ dispatch }) => {
     function renameActiveChart() {
         dispatch({ tag: 'PromptToRenameActiveChart' })
     }
 
     return (
-        <Button class={style} onClick={renameActiveChart}>
+        <Button className={style} onClick={renameActiveChart}>
             Rename
         </Button>
     )

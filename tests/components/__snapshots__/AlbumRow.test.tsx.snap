@@ -17,42 +17,32 @@ exports[`renders album covers 1`] = `
     <div
       class="test-album-cover"
     >
-      Album: 
-      {"placeholder":true,"id":0}
-      Size: 
-      5rem
+      Album: {"placeholder":true,"id":0}
+      Size: 5rem
     </div>
     <div
       class="test-album-cover"
     >
-      Album: 
-      {"placeholder":true,"id":1}
-      Size: 
-      5rem
+      Album: {"placeholder":true,"id":1}
+      Size: 5rem
     </div>
     <div
       class="test-album-cover"
     >
-      Album: 
-      {"placeholder":true,"id":2}
-      Size: 
-      5rem
+      Album: {"placeholder":true,"id":2}
+      Size: 5rem
     </div>
     <div
       class="test-album-cover"
     >
-      Album: 
-      {"placeholder":true,"id":3}
-      Size: 
-      5rem
+      Album: {"placeholder":true,"id":3}
+      Size: 5rem
     </div>
     <div
       class="test-album-cover"
     >
-      Album: 
-      {"placeholder":true,"id":4}
-      Size: 
-      5rem
+      Album: {"placeholder":true,"id":4}
+      Size: 5rem
     </div>
   </div>
 </div>

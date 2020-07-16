@@ -5,7 +5,7 @@ import { TEXT_COLOUR, ALBUM_PADDING_SIZE } from '../style'
 import { Size, Album } from '../types'
 
 
-type Props = {
+export type AlbumCoverProps = {
     album: Album
     size: Size
     onDragStart: (event: DragEvent<HTMLDivElement>) => void
@@ -42,7 +42,7 @@ const baseOverlayStyle = cx(
 )
 
 
-const AlbumCover: FC<Props> = ({
+const AlbumCover: FC<AlbumCoverProps> = ({
     album,
     size,
     onDragStart,

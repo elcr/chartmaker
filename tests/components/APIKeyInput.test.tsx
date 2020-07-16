@@ -26,7 +26,7 @@ test('renders labelled input', () => {
 
 
 test('dispatches action on input change', () => {
-    const mock = jest.fn<void, UpdateAPIKeyAction[]>()
+    const mock = jest.fn<void, [ UpdateAPIKeyAction ]>()
     render(
         <APIKeyInput dispatch={mock} apiKey='test api key'/>,
         container.current

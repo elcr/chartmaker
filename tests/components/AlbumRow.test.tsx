@@ -16,8 +16,8 @@ const TestAlbumCover: FC<ChartAlbumCoverProps> = ({ album, size }) => {
     const json = JSON.stringify(album)
     return (
         <div className='test-album-cover'>
-            Album: {json}
-            Size: {size}
+            {`Album: ${json}`}
+            {`Size: ${size}`}
         </div>
     )
 }

@@ -1,8 +1,8 @@
-import React, { FC, DragEvent } from 'react'
+import React, { FC, DragEvent, ComponentType } from 'react'
 import { css } from 'emotion'
 
 import { Album, Size } from '../types'
-import AlbumCover from './AlbumCover'
+import AlbumCover, { AlbumCoverProps } from './AlbumCover'
 import { DispatchProps } from '../reducer'
 import AlbumActionButton from './AlbumActionButton'
 import { ALBUM_BUTTONS_PADDING_SIZE } from '../style'
@@ -59,10 +59,16 @@ export type ChartAlbumCoverProps = DispatchProps<
 > & {
     album: Album
     size: Size
+    albumCoverComponent?: ComponentType<AlbumCoverProps>
 }
 
 
-const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({ dispatch, album, size }) => {
+const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
+    dispatch,
+    album,
+    size,
+    albumCoverComponent: AlbumCoverComponent = AlbumCover
+}) => {
     function dragStart(event: DragEvent<HTMLDivElement>) {
         event.dataTransfer.setData(`chart-${album.id}`, '')
         event.dataTransfer.effectAllowed = 'copyMove'
@@ -124,7 +130,7 @@ const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({ dispatch, album, size }) =>
 
 
     return (
-        <AlbumCover album={album}
+        <AlbumCoverComponent album={album}
                 size={size}
                 onDragStart={dragStart}
                 onDragOver={dragOver}
@@ -132,7 +138,7 @@ const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({ dispatch, album, size }) =>
                 onDrop={drop}
                 overlayClass={overlayStyle}>
             {buttons}
-        </AlbumCover>
+        </AlbumCoverComponent>
     )
 }
 

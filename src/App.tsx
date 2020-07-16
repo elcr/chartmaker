@@ -51,9 +51,9 @@ const App: FC = () => {
                 searchState={state.search}
                 screenshotState={state.screenshot}
                 chartRef={chartRef}/>
-            <Chart innerRef={chartRef}
-                dispatch={dispatch}
-                details={state.charts[state.activeChartIndex]}/>
+            <Chart {...state.charts[state.activeChartIndex]}
+                innerRef={chartRef}
+                dispatch={dispatch}/>
         </div>
     )
 }

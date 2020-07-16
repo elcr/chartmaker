@@ -2,17 +2,18 @@
 
 exports[`renders as button 1`] = `
 .emotion-0 {
-  background: none;
-  border: 0;
-  padding: 0;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
 }
 
 <div
   id="test-render-container"
 >
   <button
-    class="emotion-0"
-    title="Test title"
+    class="emotion-0 test-class"
+    disabled=""
   >
     Test children
   </button>

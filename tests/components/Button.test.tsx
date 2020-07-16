@@ -2,8 +2,8 @@ import React, { createRef, MutableRefObject } from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import AlbumActionButton from '../../src/components/AlbumActionButton'
-import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../utils'
+import Button from '../../src/components/Button'
+import { setRenderContainer, clearRenderContainer, fireEvent } from '../utils'
 
 
 const container: MutableRefObject<HTMLElement | null> = createRef()
@@ -13,9 +13,9 @@ afterEach(() => clearRenderContainer(container))
 
 test('renders as button', () => {
     render(
-        <AlbumActionButton title='Test title' onClick={ignore}>
+        <Button className='test-class' disabled>
             Test children
-        </AlbumActionButton>,
+        </Button>,
         container.current
     )
 
@@ -27,9 +27,9 @@ test('click event calls onClick prop', () => {
     const mock = jest.fn<void, []>()
 
     render(
-        <AlbumActionButton title='Test title' onClick={mock}>
+        <Button onClick={mock}>
             Test children
-        </AlbumActionButton>,
+        </Button>,
         container.current
     )
 

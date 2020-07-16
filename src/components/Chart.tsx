@@ -1,4 +1,4 @@
-import React, { FC, Ref } from 'react'
+import React, { FC, Ref, ComponentType } from 'react'
 import { css } from 'emotion'
 
 import {
@@ -7,7 +7,7 @@ import {
     NamedAlbum,
     Size
 } from '../types'
-import AlbumRow from './AlbumRow'
+import AlbumRow, { AlbumRowProps } from './AlbumRow'
 import TitleGroup from './TitleGroup'
 import { DispatchProps } from '../reducer'
 import {
@@ -28,9 +28,10 @@ type Props = DispatchProps<
     | 'PromptToRenameAlbum'
     | 'DeleteAlbum'
 > & {
-    details: ChartDetails
     innerRef: Ref<HTMLElement>
-}
+    albumRowComponent?: ComponentType<AlbumRowProps>
+    titleGroupComponent?: ComponentType
+} & ChartDetails
 
 
 const outContainerStyle = css({
@@ -218,8 +219,14 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
 
 const Chart: FC<Props> = ({
     dispatch,
-    details: { albums, name, shape, rowsX, rowsY },
-    innerRef
+    albums,
+    name,
+    shape,
+    rowsX,
+    rowsY,
+    innerRef,
+    albumRowComponent: AlbumRowComponent = AlbumRow,
+    titleGroupComponent: TitleGroupComponent = TitleGroup
 }) => {
     let rows: AlbumRow[]
     let titles: TitleGroup[]
@@ -241,7 +248,7 @@ const Chart: FC<Props> = ({
     }
 
     const rowElements = rows.map((row, index) =>
-        <AlbumRow {...row}
+        <AlbumRowComponent {...row}
             key={index}
             dispatch={dispatch}/>
     )
@@ -252,9 +259,9 @@ const Chart: FC<Props> = ({
             </div>
         )
         return (
-            <TitleGroup key={index}>
+            <TitleGroupComponent key={index}>
                 {group}
-            </TitleGroup>
+            </TitleGroupComponent>
         )
     })
 

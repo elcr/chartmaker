@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`excludes null albums from successful request 1`] = `
+Object {
+  "albums": Array [
+    Object {
+      "name": "Test artist 1 - Test album 1",
+      "url": "large url 1",
+    },
+    Object {
+      "name": "Test artist 4 - Test album 4",
+      "url": "large url 4",
+    },
+  ],
+  "tag": "Ok",
+}
+`;
+
+exports[`returns Ok for successful request 1`] = `
+Object {
+  "albums": Array [
+    Object {
+      "name": "Test artist 1 - Test album 1",
+      "url": "large url 1",
+    },
+    Object {
+      "name": "Test artist 2 - Test album 2",
+      "url": "large url 2",
+    },
+    Object {
+      "name": "Test artist 3 - Test album 3",
+      "url": "large url 3",
+    },
+  ],
+  "tag": "Ok",
+}
+`;

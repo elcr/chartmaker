@@ -281,7 +281,8 @@ export function reducer(state: State, action: Action): Update<State, Action> {
                             })
                             break
                         }
-                        case 'JSONDecodeError': {
+                        case 'JSONDecodeError':
+                        case 'InvalidResponseData': {
                             dispatch({
                                 tag: 'UpdateSearchState',
                                 state: {

@@ -1,16 +1,33 @@
-type LastFMResult = {
-    results: {
-        albummatches: {
-            album: {
-                name: string
-                artist: string
-                image: {
-                    '#text': string
-                }[]
-            }[]
-        }
-    }
-}
+import {
+    Record as Record_,
+    Array as Array_,
+    String as String_,
+    Static
+} from 'runtypes'
+
+
+const LastFMAlbum = Record_({
+    name: String_,
+    artist: String_,
+    image: Array_(
+        Record_({
+            '#text': String_
+        })
+    )
+})
+
+
+const LastFMResult = Record_({
+    results: Record_({
+        albummatches: Record_({
+            album: Array_(LastFMAlbum)
+        })
+    })
+})
+
+
+export type LastFMAlbum = Static<typeof LastFMAlbum>
+export type LastFMResult = Static<typeof LastFMResult>
 
 
 function isLastFMNullString(value: string): boolean {
@@ -21,14 +38,14 @@ function isLastFMNullString(value: string): boolean {
 }
 
 
-type Album = {
+export type SearchResultAlbum = {
     name: string
     url: string
 }
 
 
-function formatLastFMResult(result: LastFMResult): Album[] {
-    const albums: Album[] = []
+function formatLastFMResult(result: LastFMResult): SearchResultAlbum[] {
+    const albums: SearchResultAlbum[] = []
     for (const album of result.results.albummatches.album) {
         if (isLastFMNullString(album.artist)
                 || isLastFMNullString(album.name)
@@ -44,17 +61,26 @@ function formatLastFMResult(result: LastFMResult): Album[] {
 }
 
 
+interface ResponseLike {
+    ok: boolean
+    status: number
+    json: () => Promise<unknown>
+}
+
+
 type SearchArguments = {
     key: string
     query: string
     signal: AbortSignal
+    fetcher?: (url: string, options: { signal: AbortSignal }) => Promise<ResponseLike>
 }
 
 
-type SearchResult =
-    | { tag: 'Ok', albums: Album[] }
+export type SearchResult =
+    | { tag: 'Ok', albums: SearchResultAlbum[] }
     | { tag: 'StatusError', status: number }
     | { tag: 'JSONDecodeError' }
+    | { tag: 'InvalidResponseData' }
     | { tag: 'NetworkError' }
     | { tag: 'Cancelled' }
 
@@ -71,7 +97,12 @@ function joinURLQuery(base: string, query: Record<string, string>): string {
 }
 
 
-export async function search({ key, query, signal }: SearchArguments): Promise<SearchResult> {
+export async function search({
+    key,
+    query,
+    signal,
+    fetcher = fetch
+}: SearchArguments): Promise<SearchResult> {
     const url = joinURLQuery('https://ws.audioscrobbler.com/2.0/', {
         method: 'album.search',
         format: 'json',
@@ -79,9 +110,9 @@ export async function search({ key, query, signal }: SearchArguments): Promise<S
         album: query
     })
 
-    let response: Response
+    let response: ResponseLike
     try {
-        response = await fetch(url, { signal })
+        response = await fetcher(url, { signal })
     }
     catch {
         return {
@@ -97,12 +128,16 @@ export async function search({ key, query, signal }: SearchArguments): Promise<S
         }
     }
 
-    let result: LastFMResult
+    let result: unknown
     try {
         result = await response.json()
     }
     catch {
         return { tag: 'JSONDecodeError' }
+    }
+
+    if (!LastFMResult.guard(result)) {
+        return { tag: 'InvalidResponseData' }
     }
 
     return {

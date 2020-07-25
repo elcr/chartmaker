@@ -55,11 +55,17 @@ export function createInitialState(): State {
 
 
 export function loadStateFromLocalStorage(): State | null {
-    const json = localStorage.getItem(LOCAL_STORAGE_KEY)
-    if (json === null) {
+    const value = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if (value === null) {
         return null
     }
-    const state: unknown = JSON.parse(json)
+    let state: unknown
+    try {
+        state = JSON.parse(value)
+    }
+    catch {
+        return null
+    }
     return State.guard(state)
         ? state
         : null

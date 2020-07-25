@@ -1,10 +1,10 @@
 import {
     Dispatch as Dispatch_,
-    Update,
     update,
     sideEffect,
     noUpdate,
-    updateWithSideEffect
+    updateWithSideEffect,
+    SideEffectReducer
 } from 'react-use-side-effect-reducer'
 
 import { createChart, escapeStateForExport, } from './state'
@@ -54,14 +54,13 @@ export type Action =
     | { tag: 'UpdateChartShape', shape: ChartShape, rowsX: number, rowsY: number }
 
 
-export type ActionTag = Action['tag']
-export type Dispatch<T extends ActionTag = ActionTag> = Dispatch_<Extract<Action, { tag: T }>>
-export type DispatchProps<T extends ActionTag = ActionTag> = {
+export type Dispatch<T extends Action['tag'] = Action['tag']> = Dispatch_<Extract<Action, { tag: T }>>
+export type DispatchProps<T extends Action['tag'] = Action['tag']> = {
     dispatch: Dispatch<T>
 }
 
 
-export function reducer(state: State, action: Action): Update<State, Action> {
+export const reducer: SideEffectReducer<State, Action> = (state, action) => {
     switch (action.tag) {
         case 'UpdateAPIKey':
             return update({
@@ -115,9 +114,14 @@ export function reducer(state: State, action: Action): Update<State, Action> {
                 if (name === undefined || name.length === 0) {
                     return
                 }
-                if (state.charts.some((chart, index) => index !== state.activeChartIndex && chart.name === name)) {
-                    dispatch({ tag: 'ShowChartNameTakenMessage' })
-                    return
+                for (let index = 0; index < state.charts.length; index++) {
+                    const chart = state.charts[index]
+                    if (chart.name === name) {
+                        if (index === state.activeChartIndex) {
+                            return
+                        }
+                        dispatch({ tag: 'ShowChartNameTakenMessage' })
+                    }
                 }
                 dispatch({ tag: 'RenameActiveChart', name })
             })

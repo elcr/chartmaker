@@ -4,7 +4,7 @@ import { css } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
 import AlbumCover from '../../src/components/AlbumCover'
-import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../utils'
+import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../test-utils'
 import { Album, Size } from '../../src/types'
 
 

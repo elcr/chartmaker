@@ -2,7 +2,7 @@ import React, { createRef, MutableRefObject } from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../utils'
+import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../test-utils'
 import APIKeyInput from '../../src/components/APIKeyInput'
 import { Action } from '../../src/reducer'
 

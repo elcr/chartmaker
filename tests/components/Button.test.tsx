@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import Button from '../../src/components/Button'
-import { setRenderContainer, clearRenderContainer, fireEvent } from '../utils'
+import { setRenderContainer, clearRenderContainer, fireEvent } from '../test-utils'
 
 
 const container: MutableRefObject<HTMLElement | null> = createRef()

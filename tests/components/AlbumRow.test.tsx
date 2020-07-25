@@ -2,7 +2,7 @@ import React, { createRef, MutableRefObject, FC } from 'react'
 import { render } from 'react-dom'
 
 import AlbumRow from '../../src/components/AlbumRow'
-import { setRenderContainer, clearRenderContainer, ignore } from '../utils'
+import { setRenderContainer, clearRenderContainer, ignore } from '../test-utils'
 import { Album, Size } from '../../src/types'
 import { ChartAlbumCoverProps } from '../../src/components/ChartAlbumCover'
 

@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import AlbumActionButton from '../../src/components/AlbumActionButton'
-import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../utils'
+import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../test-utils'
 
 
 const container: MutableRefObject<HTMLElement | null> = createRef()

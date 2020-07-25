@@ -10,7 +10,7 @@ import {
     ignore,
     fireEvent,
     DragEventDataTransferMock
-} from '../utils'
+} from '../test-utils'
 import { Album, Size } from '../../src/types'
 import { AlbumCoverProps } from '../../src/components/AlbumCover'
 

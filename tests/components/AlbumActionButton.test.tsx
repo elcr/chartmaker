@@ -1,14 +1,12 @@
-import React, { createRef, MutableRefObject } from 'react'
+import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import AlbumActionButton from '../../src/components/AlbumActionButton'
-import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../test-utils'
+import { ignore, fireEvent, RenderContainer } from '../test-utils'
 
 
-const container: MutableRefObject<HTMLElement | null> = createRef()
-beforeEach(() => setRenderContainer(container))
-afterEach(() => clearRenderContainer(container))
+const container = new RenderContainer()
 
 
 test('renders as button', () => {
@@ -16,10 +14,10 @@ test('renders as button', () => {
         <AlbumActionButton title='Test title' onClick={ignore}>
             Test children
         </AlbumActionButton>,
-        container.current
+        container.element
     )
 
-    expect(container.current).toMatchSnapshot()
+    expect(container.element).toMatchSnapshot()
 })
 
 
@@ -30,10 +28,10 @@ test('click event calls onClick prop', () => {
         <AlbumActionButton title='Test title' onClick={mock}>
             Test children
         </AlbumActionButton>,
-        container.current
+        container.element
     )
 
-    act(() => fireEvent('click', container.current?.firstChild))
+    act(() => fireEvent('click', container.element?.firstChild))
 
     expect(mock).toHaveBeenCalledTimes(1)
 })

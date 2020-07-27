@@ -1,15 +1,13 @@
-import React, { createRef, MutableRefObject } from 'react'
+import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../test-utils'
+import { RenderContainer, ignore, fireEvent } from '../test-utils'
 import APIKeyInput from '../../src/components/APIKeyInput'
 import { Action } from '../../src/reducer'
 
 
-const container: MutableRefObject<HTMLElement | null> = createRef()
-beforeEach(() => setRenderContainer(container))
-afterEach(() => clearRenderContainer(container))
+const container = new RenderContainer()
 
 
 // this line breaks vscode's highlights despite being syntactically correct. gg
@@ -19,9 +17,9 @@ type UpdateAPIKeyAction = Extract<Action, { tag: 'UpdateAPIKey' }>
 test('renders labelled input', () => {
     render(
         <APIKeyInput dispatch={ignore} apiKey='test api key'/>,
-        container.current
+        container.element
     )
-    expect(container.current).toMatchSnapshot()
+    expect(container.element).toMatchSnapshot()
 })
 
 
@@ -29,11 +27,11 @@ test('dispatches action on input change', () => {
     const mock = jest.fn<void, [ UpdateAPIKeyAction ]>()
     render(
         <APIKeyInput dispatch={mock} apiKey='test api key'/>,
-        container.current
+        container.element
     )
 
     act(() => {
-        const input = container.current?.querySelector('input')
+        const input = container.element?.querySelector('input')
         if (input == null) {
             return
         }

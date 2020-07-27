@@ -1,15 +1,13 @@
-import React, { createRef, MutableRefObject, FC } from 'react'
+import React, { FC } from 'react'
 import { render } from 'react-dom'
 
 import AlbumRow from '../../src/components/AlbumRow'
-import { setRenderContainer, clearRenderContainer, ignore } from '../test-utils'
+import { RenderContainer, ignore } from '../test-utils'
 import { Album, Size } from '../../src/types'
 import { ChartAlbumCoverProps } from '../../src/components/ChartAlbumCover'
 
 
-const container: MutableRefObject<HTMLElement | null> = createRef()
-beforeEach(() => setRenderContainer(container))
-afterEach(() => clearRenderContainer(container))
+const container = new RenderContainer()
 
 
 const TestAlbumCover: FC<ChartAlbumCoverProps> = ({ album, size }) => {
@@ -34,8 +32,8 @@ test('renders album covers', () => {
             albums={albums}
             size={'5rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
-    expect(container.current).toMatchSnapshot()
+    expect(container.element).toMatchSnapshot()
 })

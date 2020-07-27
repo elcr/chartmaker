@@ -1,15 +1,13 @@
-import React, { createRef, MutableRefObject, FC } from 'react'
+import React, { createRef, FC } from 'react'
 import { render } from 'react-dom'
 
 import Chart from '../../src/components/Chart'
-import { setRenderContainer, clearRenderContainer, ignore } from '../test-utils'
+import { RenderContainer, ignore } from '../test-utils'
 import { AlbumRowProps } from '../../src/components/AlbumRow'
 import { Album } from '../../src/types'
 
 
-const container: MutableRefObject<HTMLElement | null> = createRef()
-beforeEach(() => setRenderContainer(container))
-afterEach(() => clearRenderContainer(container))
+const container = new RenderContainer()
 
 
 const TestAlbumRow: FC<AlbumRowProps> = ({ albums, size }) => {
@@ -48,10 +46,10 @@ test.each([ 40, 42, 100 ] as const)('renders with top shape', size => {
             titleGroupComponent={TestTitleGroup}
             innerRef={ignore}
             dispatch={ignore}/>,
-        container.current
+        container.element
     )
 
-    expect(container.current).toMatchSnapshot()
+    expect(container.element).toMatchSnapshot()
 })
 
 
@@ -66,10 +64,10 @@ test('renders with collage shape', () => {
             titleGroupComponent={TestTitleGroup}
             innerRef={ignore}
             dispatch={ignore}/>,
-        container.current
+        container.element
     )
 
-    expect(container.current).toMatchSnapshot()
+    expect(container.element).toMatchSnapshot()
 })
 
 
@@ -89,10 +87,10 @@ test('excludes placeholder albums from titles', () => {
             titleGroupComponent={TestTitleGroup}
             innerRef={ignore}
             dispatch={ignore}/>,
-        container.current
+        container.element
     )
 
-    expect(container.current).toMatchSnapshot()
+    expect(container.element).toMatchSnapshot()
 })
 
 
@@ -109,7 +107,7 @@ test('passes ref', () => {
             titleGroupComponent={TestTitleGroup}
             innerRef={ref}
             dispatch={ignore}/>,
-        container.current
+        container.element
     )
 
     expect(ref.current).toBeInstanceOf(Element)

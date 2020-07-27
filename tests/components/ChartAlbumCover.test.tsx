@@ -1,12 +1,11 @@
-import React, { createRef, MutableRefObject, FC } from 'react'
+import React, { FC } from 'react'
 import { render } from 'react-dom'
 import { cx } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
 import ChartAlbumCover, { ChartAlbumCoverProps } from '../../src/components/ChartAlbumCover'
 import {
-    setRenderContainer,
-    clearRenderContainer,
+    RenderContainer,
     ignore,
     fireEvent,
     DragEventDataTransferMock
@@ -15,9 +14,7 @@ import { Album, Size } from '../../src/types'
 import { AlbumCoverProps } from '../../src/components/AlbumCover'
 
 
-const container: MutableRefObject<HTMLElement | null> = createRef()
-beforeEach(() => setRenderContainer(container))
-afterEach(() => clearRenderContainer(container))
+const container = new RenderContainer()
 
 
 const TestAlbumCover: FC<AlbumCoverProps> = ({
@@ -62,10 +59,10 @@ test('renders album cover for placeholder album', () => {
             album={placeholderAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
-    expect(container.current).toMatchSnapshot()
+    expect(container.element).toMatchSnapshot()
 })
 
 
@@ -75,10 +72,10 @@ test('renders album cover with overlay buttons for named album', () => {
             album={namedAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
-    expect(container.current).toMatchSnapshot()
+    expect(container.element).toMatchSnapshot()
 })
 
 
@@ -90,11 +87,11 @@ test('clicking rename button dispatches action', () => {
             album={namedAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
     act(() => {
-        const button = container.current?.querySelector('button[title="Rename"]')
+        const button = container.element?.querySelector('button[title="Rename"]')
         fireEvent('click', button)
     })
 
@@ -114,11 +111,11 @@ test('clicking delete button dispatches action', () => {
             album={namedAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
     act(() => {
-        const button = container.current?.querySelector('button[title="Delete"]')
+        const button = container.element?.querySelector('button[title="Delete"]')
         fireEvent('click', button)
     })
 
@@ -136,7 +133,7 @@ test('starting drag sets event data', () => {
             album={namedAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
     const mock = new DragEventDataTransferMock()
@@ -144,7 +141,7 @@ test('starting drag sets event data', () => {
     act(() =>
         fireEvent(
             'dragStart',
-            container.current?.firstChild,
+            container.element?.firstChild,
             { dataTransfer: mock }
         )
     )
@@ -164,7 +161,7 @@ test('chart album drag enter dispatches action', () => {
             album={namedAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
     const dataTransferMock = new DragEventDataTransferMock([ 'chart-1' ])
@@ -173,7 +170,7 @@ test('chart album drag enter dispatches action', () => {
     act(() => {
         fireEvent(
             'dragEnter',
-            container.current?.firstChild,
+            container.element?.firstChild,
             {
                 dataTransfer: dataTransferMock,
                 preventDefault: preventDefaultMock
@@ -199,7 +196,7 @@ test.each([ 'search-1', 'some-other-type' ])('any other drag enter is ignored', 
             album={namedAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
     const dataTransferMock = new DragEventDataTransferMock([ type ])
@@ -208,7 +205,7 @@ test.each([ 'search-1', 'some-other-type' ])('any other drag enter is ignored', 
     act(() => {
         fireEvent(
             'dragEnter',
-            container.current?.firstChild,
+            container.element?.firstChild,
             {
                 dataTransfer: dataTransferMock,
                 preventDefault: preventDefaultMock
@@ -227,7 +224,7 @@ test('dragging chart album over sets move drop effect', () => {
             album={namedAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
     const dataTransferMock = new DragEventDataTransferMock([ 'chart-1' ])
@@ -236,7 +233,7 @@ test('dragging chart album over sets move drop effect', () => {
     act(() =>
         fireEvent(
             'dragOver',
-            container.current?.firstChild,
+            container.element?.firstChild,
             {
                 dataTransfer: dataTransferMock,
                 preventDefault: preventDefaultMock
@@ -256,7 +253,7 @@ test('dragging search album over sets move copy effect', () => {
             album={namedAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
     const dataTransferMock = new DragEventDataTransferMock([ 'search-1' ])
@@ -265,7 +262,7 @@ test('dragging search album over sets move copy effect', () => {
     act(() =>
         fireEvent(
             'dragOver',
-            container.current?.firstChild,
+            container.element?.firstChild,
             {
                 dataTransfer: dataTransferMock,
                 preventDefault: preventDefaultMock
@@ -285,7 +282,7 @@ test('dragging anything else over does nothing', () => {
             album={namedAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
     const dataTransferMock = new DragEventDataTransferMock([ 'some-other-type' ])
@@ -294,7 +291,7 @@ test('dragging anything else over does nothing', () => {
     act(() =>
         fireEvent(
             'dragOver',
-            container.current?.firstChild,
+            container.element?.firstChild,
             {
                 dataTransfer: dataTransferMock,
                 preventDefault: preventDefaultMock
@@ -315,7 +312,7 @@ test('dropping search album dispatches action', () => {
             album={namedAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
     const dataTransferMock = new DragEventDataTransferMock([ 'search-1' ])
@@ -324,7 +321,7 @@ test('dropping search album dispatches action', () => {
     act(() => {
         fireEvent(
             'drop',
-            container.current?.firstChild,
+            container.element?.firstChild,
             {
                 dataTransfer: dataTransferMock,
                 preventDefault: preventDefaultMock
@@ -350,7 +347,7 @@ test.each([ 'chart-1', 'some-other-type' ])('dropping anything else does nothing
             album={namedAlbum}
             size={'3rem' as Size}
             albumCoverComponent={TestAlbumCover}/>,
-        container.current
+        container.element
     )
 
     const dataTransferMock = new DragEventDataTransferMock([ type ])
@@ -359,7 +356,7 @@ test.each([ 'chart-1', 'some-other-type' ])('dropping anything else does nothing
     act(() => {
         fireEvent(
             'drop',
-            container.current?.firstChild,
+            container.element?.firstChild,
             {
                 dataTransfer: dataTransferMock,
                 preventDefault: preventDefaultMock

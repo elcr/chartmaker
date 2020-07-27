@@ -1,16 +1,14 @@
-import React, { createRef, MutableRefObject, DragEvent } from 'react'
+import React, { DragEvent } from 'react'
 import { render } from 'react-dom'
 import { css } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
 import AlbumCover from '../../src/components/AlbumCover'
-import { setRenderContainer, clearRenderContainer, ignore, fireEvent } from '../test-utils'
+import { ignore, fireEvent, RenderContainer } from '../test-utils'
 import { Album, Size } from '../../src/types'
 
 
-const container: MutableRefObject<HTMLElement | null> = createRef()
-beforeEach(() => setRenderContainer(container))
-afterEach(() => clearRenderContainer(container))
+const container = new RenderContainer()
 
 const dragMock = jest.fn<void, DragEvent<HTMLDivElement>[]>()
 afterEach(jest.clearAllMocks)
@@ -35,10 +33,10 @@ test('renders without image for placeholder album', () => {
                 onDragStart={ignore}>
             Test children
         </AlbumCover>,
-        container.current
+        container.element
     )
 
-    expect(container.current).toMatchSnapshot()
+    expect(container.element).toMatchSnapshot()
 })
 
 
@@ -49,10 +47,10 @@ test('renders with image for named album', () => {
                 onDragStart={ignore}>
             Test children
         </AlbumCover>,
-        container.current
+        container.element
     )
 
-    expect(container.current).toMatchSnapshot()
+    expect(container.element).toMatchSnapshot()
 })
 
 
@@ -64,10 +62,10 @@ test('overlayClass prop merges styles', () => {
                 overlayClass={css({ color: 'red' })}>
             Test children
         </AlbumCover>,
-        container.current
+        container.element
     )
 
-    expect(container.current).toMatchSnapshot()
+    expect(container.element).toMatchSnapshot()
 })
 
 
@@ -78,10 +76,10 @@ test('dragStart event calls onDragStart prop', () => {
                 onDragStart={dragMock}>
             Test children
         </AlbumCover>,
-        container.current
+        container.element
     )
 
-    act(() => fireEvent('dragStart', container.current?.firstChild))
+    act(() => fireEvent('dragStart', container.element?.firstChild))
 
     expect(dragMock).toHaveBeenCalledTimes(1)
 })
@@ -95,10 +93,10 @@ test('dragEnter event calls onDragEnter prop', () => {
                 onDragEnter={dragMock}>
             Test children
         </AlbumCover>,
-        container.current
+        container.element
     )
 
-    act(() => fireEvent('dragEnter', container.current?.firstChild))
+    act(() => fireEvent('dragEnter', container.element?.firstChild))
 
     expect(dragMock).toHaveBeenCalledTimes(1)
 })
@@ -112,10 +110,10 @@ test('dragOver event calls onDragOver prop', () => {
                 onDragOver={dragMock}>
             Test children
         </AlbumCover>,
-        container.current
+        container.element
     )
 
-    act(() => fireEvent('dragOver', container.current?.firstChild))
+    act(() => fireEvent('dragOver', container.element?.firstChild))
 
     expect(dragMock).toHaveBeenCalledTimes(1)
 })
@@ -129,10 +127,10 @@ test('drop event calls onDrop prop', () => {
                 onDrop={dragMock}>
             Test children
         </AlbumCover>,
-        container.current
+        container.element
     )
 
-    act(() => fireEvent('drop', container.current?.firstChild))
+    act(() => fireEvent('drop', container.element?.firstChild))
 
     expect(dragMock).toHaveBeenCalledTimes(1)
 })

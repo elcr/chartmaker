@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { css, cx } from 'emotion'
 
-import { BORDER, CONTAINER_PADDING_SIZE } from '../style'
+import { BORDER, CONTAINER_PADDING_SIZE } from '@/style'
 
 
 const style = css({

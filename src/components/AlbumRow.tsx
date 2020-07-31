@@ -1,9 +1,9 @@
 import React, { FC, ComponentType } from 'react'
 import { css } from 'emotion'
 
-import { Album, Size } from '../types'
-import { DispatchProps } from '../reducer'
-import ChartAlbumCover, { ChartAlbumCoverProps } from './ChartAlbumCover'
+import { Album, Size } from '@/types'
+import { DispatchProps } from '@/reducer'
+import ChartAlbumCover, { ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
 
 
 export type AlbumRowProps = DispatchProps<

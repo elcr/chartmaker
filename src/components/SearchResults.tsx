@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { NamedAlbum } from '../types'
-import SidebarGroup from './SidebarGroup'
-import SearchAlbumCover from './SearchAlbumCover'
-import { LARGE_ALBUM_SIZE } from '../style'
+import { NamedAlbum } from '@/types'
+import { LARGE_ALBUM_SIZE } from '@/style'
+import SidebarGroup from '@/components/SidebarGroup'
+import SearchAlbumCover from '@/components/SearchAlbumCover'
 
 
 type Props = {

@@ -1,6 +1,6 @@
 import html2canvas from 'html2canvas'
 
-import { BACKGROUND_COLOUR } from './style'
+import { BACKGROUND_COLOUR } from '@/style'
 
 
 export function readFileText(file: File): Promise<string> {

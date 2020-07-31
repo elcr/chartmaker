@@ -1,11 +1,11 @@
 import React, { FC, DragEvent, ComponentType } from 'react'
 import { css } from 'emotion'
 
-import { Album, Size } from '../types'
-import AlbumCover, { AlbumCoverProps } from './AlbumCover'
-import { DispatchProps } from '../reducer'
-import AlbumActionButton from './AlbumActionButton'
-import { ALBUM_BUTTONS_PADDING_SIZE } from '../style'
+import { Album, Size } from '@/types'
+import { DispatchProps } from '@/reducer'
+import { ALBUM_BUTTONS_PADDING_SIZE } from '@/style'
+import AlbumCover, { AlbumCoverProps } from '@/components/AlbumCover'
+import AlbumActionButton from '@/components/AlbumActionButton'
 
 
 const chartPattern = /^chart-(.+)$/

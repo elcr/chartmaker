@@ -1,10 +1,11 @@
 import React, { FC } from 'react'
 import { render } from 'react-dom'
 
-import AlbumRow from '../../src/components/AlbumRow'
-import { RenderContainer, ignore } from '../test-utils'
-import { Album, Size } from '../../src/types'
-import { ChartAlbumCoverProps } from '../../src/components/ChartAlbumCover'
+import { Album, Size } from '@/types'
+import AlbumRow from '@/components/AlbumRow'
+import { ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
+
+import { RenderContainer, ignore } from '../utils'
 
 
 const container = new RenderContainer()

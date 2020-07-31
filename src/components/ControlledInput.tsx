@@ -1,6 +1,6 @@
 import React, { FC, ChangeEvent } from 'react'
 
-import { inputStyle } from '../style'
+import { inputStyle } from '@/style'
 
 
 type Props = {

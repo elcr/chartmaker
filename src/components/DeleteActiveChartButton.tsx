@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
-import { DispatchProps } from '../reducer'
-import Button from './Button'
+import { DispatchProps } from '@/reducer'
+import Button from '@/components/Button'
 
 
 type Props = DispatchProps<'PromptToDeleteActiveChart'>

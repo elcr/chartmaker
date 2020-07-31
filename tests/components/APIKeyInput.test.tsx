@@ -2,9 +2,10 @@ import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { RenderContainer, ignore, fireEvent } from '../test-utils'
-import APIKeyInput from '../../src/components/APIKeyInput'
-import { Action } from '../../src/reducer'
+import { Action } from '@/reducer'
+import APIKeyInput from '@/components/APIKeyInput'
+
+import { RenderContainer, ignore, fireEvent } from '../utils'
 
 
 const container = new RenderContainer()

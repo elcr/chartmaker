@@ -1,8 +1,8 @@
 import React, { FC, ChangeEvent } from 'react'
-
-import { inputStyle, SIDEBAR_ITEM_PADDING_SIZE } from '../style'
 import { css, cx } from 'emotion'
-import Label from './Label'
+
+import { inputStyle, SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
+import Label from '@/components/Label'
 
 
 type Props = {

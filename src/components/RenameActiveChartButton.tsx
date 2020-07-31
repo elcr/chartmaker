@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { DispatchProps } from '../reducer'
-import Button from './Button'
-import { SIDEBAR_ITEM_PADDING_SIZE } from '../style'
+import { DispatchProps } from '@/reducer'
+import Button from '@/components/Button'
+import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
 
 
 type Props = DispatchProps<'PromptToRenameActiveChart'>

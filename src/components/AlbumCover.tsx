@@ -1,8 +1,8 @@
 import React, { FC, DragEvent } from 'react'
 import { css, cx } from 'emotion'
 
-import { TEXT_COLOUR, ALBUM_PADDING_SIZE } from '../style'
-import { Size, Album } from '../types'
+import { TEXT_COLOUR, ALBUM_PADDING_SIZE } from '@/style'
+import { Size, Album } from '@/types'
 
 
 export type AlbumCoverProps = {

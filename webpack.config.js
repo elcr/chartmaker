@@ -5,6 +5,7 @@ const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const PreCSS = require('precss')
 const Autoprefixer = require('autoprefixer')
+const TSConfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 
 const sourceDirectory = path.join(__dirname, 'src')
@@ -19,11 +20,8 @@ module.exports = {
     },
     devtool: 'source-map',
     resolve: {
-        extensions: [ '.ts', '.tsx', '.js' ],
-        alias: {
-            'react': 'preact/compat',
-            'react-dom': 'preact/compat'
-        }
+        plugins: [ new TSConfigPathsPlugin() ],
+        extensions: [ '.ts', '.tsx', '.js' ]
     },
     module: {
         rules: [

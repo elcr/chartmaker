@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { DispatchProps } from '../reducer'
-import ChartSelector from './ChartSelector'
-import NewChartButton from './NewChartButton'
-import RenameActiveChartButton from './RenameActiveChartButton'
-import DeleteActiveChartButton from './DeleteActiveChartButton'
-import { Chart } from '../types'
-import SidebarGroup from './SidebarGroup'
+import { DispatchProps } from '@/reducer'
+import { Chart } from '@/types'
+import ChartSelector from '@/components/ChartSelector'
+import NewChartButton from '@/components/NewChartButton'
+import RenameActiveChartButton from '@/components/RenameActiveChartButton'
+import DeleteActiveChartButton from '@/components/DeleteActiveChartButton'
+import SidebarGroup from '@/components/SidebarGroup'
 
 
 type Props = DispatchProps<

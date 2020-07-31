@@ -7,22 +7,22 @@ import {
     SideEffectReducer
 } from 'react-use-side-effect-reducer'
 
-import { createChart, escapeStateForExport, } from './state'
+import { createChart, escapeStateForExport, } from '@/state'
 import {
     readFileText,
     findIndex,
     elementToDataURI,
     downloadURI,
     jsonToDataURI
-} from './utils'
-import { search } from './api'
+} from '@/utils'
+import { search } from '@/api'
 import {
     State,
     SearchState,
     ChartShape,
     NamedAlbum,
     Album
-} from './types'
+} from '@/types'
 
 
 export type Action =

@@ -1,14 +1,14 @@
 import React, { FC, RefObject } from 'react'
 import { css } from 'emotion'
 
-import ControlledSlider from './ControlledSlider'
-import { DispatchProps } from '../reducer'
-import SidebarGroup from './SidebarGroup'
-import Button from './Button'
-import { ScreenshotState } from '../types'
-import { MAX_SCREENSHOT_SCALE } from '../constants'
-import ImportStateButton from './ImportStateButton'
-import ExportStateButton from './ExportStateButton'
+import { DispatchProps } from '@/reducer'
+import { ScreenshotState } from '@/types'
+import { MAX_SCREENSHOT_SCALE } from '@/constants'
+import ControlledSlider from '@/components/ControlledSlider'
+import SidebarGroup from '@/components/SidebarGroup'
+import Button from '@/components/Button'
+import ImportStateButton from '@/components/ImportStateButton'
+import ExportStateButton from '@/components/ExportStateButton'
 
 
 type Props = DispatchProps<

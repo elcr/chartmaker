@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import SidebarGroup from './SidebarGroup'
-import { DispatchProps } from '../reducer'
-import ControlledSlider from './ControlledSlider'
-import ControlledRadioButton from './ControlledRadioButton'
-import { MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '../constants'
-import { ChartShape } from '../types'
+import { DispatchProps } from '@/reducer'
+import { ChartShape } from '@/types'
+import { MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
+import ControlledSlider from '@/components/ControlledSlider'
+import ControlledRadioButton from '@/components/ControlledRadioButton'
+import SidebarGroup from '@/components/SidebarGroup'
 
 
 type Props = DispatchProps<'UpdateChartShape'> & {

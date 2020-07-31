@@ -1,22 +1,21 @@
-import React, { FC } from 'react'
+import React, { FC, useRef, useEffect } from 'react'
 import { css } from 'emotion'
-import { useRef, useEffect } from 'preact/hooks'
 import { useSideEffectReducer } from 'react-use-side-effect-reducer'
 
-import { reducer } from './reducer'
-import Chart from './components/Chart'
-import Sidebar from './components/Sidebar'
+import { reducer } from '@/reducer'
 import {
     createInitialState,
     loadStateFromLocalStorage,
     saveStateToLocalStorage
-} from './state'
+} from '@/state'
 import {
     BACKGROUND_COLOUR,
     TEXT_COLOUR,
     FONT_SIZE,
     CONTAINER_PADDING_SIZE
-} from './style'
+} from '@/style'
+import Chart from '@/components/Chart'
+import Sidebar from '@/components/Sidebar'
 
 
 const rootStyle = css({

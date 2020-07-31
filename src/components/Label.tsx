@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { SIDEBAR_LABEL_PADDING_SIZE } from '../style'
+import { SIDEBAR_LABEL_PADDING_SIZE } from '@/style'
 
 
 type Props = {

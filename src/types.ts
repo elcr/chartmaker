@@ -10,12 +10,13 @@ import {
     Array as Array_,
     Runtype
 } from 'runtypes'
+
 import {
     CHART_ALBUMS_COUNT,
     MAX_SCREENSHOT_SCALE,
     MAX_COLLAGE_ROWS_X,
     MAX_COLLAGE_ROWS_Y
-} from './constants'
+} from '@/constants'
 
 
 export const Integer = Number_.withConstraint(Number.isSafeInteger)

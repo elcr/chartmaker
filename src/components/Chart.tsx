@@ -6,10 +6,8 @@ import {
     Album,
     NamedAlbum,
     Size
-} from '../types'
-import AlbumRow, { AlbumRowProps } from './AlbumRow'
-import TitleGroup from './TitleGroup'
-import { DispatchProps } from '../reducer'
+} from '@/types'
+import { DispatchProps } from '@/reducer'
 import {
     VERY_LARGE_ALBUM_SIZE,
     LARGE_ALBUM_SIZE,
@@ -19,7 +17,9 @@ import {
     CONTAINER_PADDING_SIZE,
     TINY_ALBUM_SIZE,
     BORDER
-} from '../style'
+} from '@/style'
+import AlbumRow, { AlbumRowProps } from '@/components/AlbumRow'
+import TitleGroup from '@/components/TitleGroup'
 
 
 type Props = DispatchProps<

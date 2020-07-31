@@ -1,7 +1,7 @@
 import React, { FC, DragEvent } from 'react'
 
-import { NamedAlbum, Size } from '../types'
-import AlbumCover from './AlbumCover'
+import { NamedAlbum, Size } from '@/types'
+import AlbumCover from '@/components/AlbumCover'
 
 
 type Props = {

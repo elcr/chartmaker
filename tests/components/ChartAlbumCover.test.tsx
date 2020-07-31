@@ -3,15 +3,16 @@ import { render } from 'react-dom'
 import { cx } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
-import ChartAlbumCover, { ChartAlbumCoverProps } from '../../src/components/ChartAlbumCover'
+import { Album, Size } from '@/types'
+import ChartAlbumCover, { ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
+import { AlbumCoverProps } from '@/components/AlbumCover'
+
 import {
     RenderContainer,
     ignore,
     fireEvent,
     DragEventDataTransferMock
-} from '../test-utils'
-import { Album, Size } from '../../src/types'
-import { AlbumCoverProps } from '../../src/components/AlbumCover'
+} from '../utils'
 
 
 const container = new RenderContainer()

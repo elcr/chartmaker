@@ -2,8 +2,9 @@ import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import AlbumActionButton from '../../src/components/AlbumActionButton'
-import { ignore, fireEvent, RenderContainer } from '../test-utils'
+import AlbumActionButton from '@/components/AlbumActionButton'
+
+import { ignore, fireEvent, RenderContainer } from '../utils'
 
 
 const container = new RenderContainer()

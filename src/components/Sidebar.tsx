@@ -1,15 +1,15 @@
 import React, { FC, RefObject } from 'react'
 import { css } from 'emotion'
 
-import ChartManager from './ChartManager'
-import { DispatchProps } from '../reducer'
-import { Chart, SearchState, ScreenshotState } from '../types'
-import APIKeyInput from './APIKeyInput'
-import ImportExportScreenshotButtons from './ImportExportScreenshotButtons'
-import SearchBox from './SearchBox'
-import SearchResults from './SearchResults'
-import { SIDEBAR_WIDTH, CONTAINER_PADDING_SIZE } from '../style'
-import ChartShapeControls from './ChartShapeControls'
+import { DispatchProps } from '@/reducer'
+import { Chart, SearchState, ScreenshotState } from '@/types'
+import { SIDEBAR_WIDTH, CONTAINER_PADDING_SIZE } from '@/style'
+import ChartManager from '@/components/ChartManager'
+import APIKeyInput from '@/components/APIKeyInput'
+import ImportExportScreenshotButtons from '@/components/ImportExportScreenshotButtons'
+import SearchBox from '@/components/SearchBox'
+import SearchResults from '@/components/SearchResults'
+import ChartShapeControls from '@/components/ChartShapeControls'
 
 
 type Props = DispatchProps<

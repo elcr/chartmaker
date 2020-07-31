@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { DispatchProps } from '../reducer'
-import { Chart } from '../types'
-import Label from './Label'
-import { SIDEBAR_ITEM_PADDING_SIZE } from '../style'
-import ControlledSelect from './ControlledSelect'
+import { DispatchProps } from '@/reducer'
+import { Chart } from '@/types'
+import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
+import Label from '@/components/Label'
+import ControlledSelect from '@/components/ControlledSelect'
 
 
 const id = 'chartSelector'

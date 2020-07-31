@@ -1,5 +1,6 @@
-import { LastFMResult, search, LastFMAlbum, SearchResult } from '../src/api'
-import { ignore } from './test-utils'
+import { LastFMResult, search, LastFMAlbum, SearchResult } from '@/api'
+
+import { ignore } from './utils'
 
 
 function lastFMAlbum(x: number): LastFMAlbum {

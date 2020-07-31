@@ -1,5 +1,6 @@
 import { css, cx } from 'emotion'
-import { Colour, Border, Size } from './types'
+
+import { Colour, Border, Size } from '@/types'
 
 
 export const BACKGROUND_COLOUR = 'black' as Colour

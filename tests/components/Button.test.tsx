@@ -2,8 +2,9 @@ import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import Button from '../../src/components/Button'
-import { RenderContainer, fireEvent } from '../test-utils'
+import Button from '@/components/Button'
+
+import { RenderContainer, fireEvent } from '../utils'
 
 
 const container = new RenderContainer()

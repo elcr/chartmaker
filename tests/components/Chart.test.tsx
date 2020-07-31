@@ -1,10 +1,11 @@
 import React, { createRef, FC } from 'react'
 import { render } from 'react-dom'
 
-import Chart from '../../src/components/Chart'
-import { RenderContainer, ignore } from '../test-utils'
-import { AlbumRowProps } from '../../src/components/AlbumRow'
-import { Album } from '../../src/types'
+import { Album } from '@/types'
+import Chart from '@/components/Chart'
+import { AlbumRowProps } from '@/components/AlbumRow'
+
+import { RenderContainer, ignore } from '../utils'
 
 
 const container = new RenderContainer()

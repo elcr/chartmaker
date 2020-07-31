@@ -3,9 +3,10 @@ import { render } from 'react-dom'
 import { css } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
-import AlbumCover from '../../src/components/AlbumCover'
-import { ignore, fireEvent, RenderContainer } from '../test-utils'
-import { Album, Size } from '../../src/types'
+import { Album, Size } from '@/types'
+import AlbumCover from '@/components/AlbumCover'
+
+import { ignore, fireEvent, RenderContainer } from '../utils'
 
 
 const container = new RenderContainer()

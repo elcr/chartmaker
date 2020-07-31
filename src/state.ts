@@ -1,11 +1,11 @@
-import { Chart, State, Album } from './types'
+import { Chart, State, Album } from '@/types'
 import {
     DEFAULT_CHART_NAME,
     CHART_ALBUMS_COUNT,
     DEFAULT_COLLAGE_ROWS_X,
     DEFAULT_COLLAGE_ROWS_Y,
     LOCAL_STORAGE_KEY
-} from './constants'
+} from '@/constants'
 
 
 type CreateChartArguments = {

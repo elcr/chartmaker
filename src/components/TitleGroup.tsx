@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { TITLES_PADDING_SIZE, TITLES_FONT_SIZE } from '../style'
+import { TITLES_PADDING_SIZE, TITLES_FONT_SIZE } from '@/style'
 
 
 const style = css({

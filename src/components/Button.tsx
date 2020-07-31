@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { cx } from 'emotion'
 
-import { buttonStyle } from '../style'
+import { buttonStyle } from '@/style'
 
 
 type Props = {

@@ -1,9 +1,9 @@
 import React, { FC, useRef } from 'react'
 import { css } from 'emotion'
 
-import { DispatchProps } from '../reducer'
-import Button from './Button'
-import { SIDEBAR_ITEM_PADDING_SIZE } from '../style'
+import { DispatchProps } from '@/reducer'
+import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
+import Button from '@/components/Button'
 
 
 type Props = DispatchProps<'ImportStateFile'>

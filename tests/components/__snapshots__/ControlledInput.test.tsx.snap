@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders disabled prop 1`] = `
+.emotion-0 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <input
+    class="emotion-0"
+    disabled=""
+    id="test-input"
+    value="test value"
+  />
+</div>
+`;
+
+exports[`renders disabled prop 2`] = `
+.emotion-0 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <input
+    class="emotion-0"
+    id="test-input"
+    value="test value"
+  />
+</div>
+`;
+
+exports[`renders disabled prop 3`] = `
+.emotion-0 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <input
+    class="emotion-0"
+    id="test-input"
+    value="test value"
+  />
+</div>
+`;
+
+exports[`renders id prop 1`] = `
+.emotion-0 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <input
+    class="emotion-0"
+    id="test-1"
+    value="test value"
+  />
+</div>
+`;
+
+exports[`renders id prop 2`] = `
+.emotion-0 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <input
+    class="emotion-0"
+    id="test-2"
+    value="test value"
+  />
+</div>
+`;
+
+exports[`renders text type input 1`] = `
+.emotion-0 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <input
+    class="emotion-0"
+    id="test-input"
+    type="text"
+    value="test value"
+  />
+</div>
+`;
+
+exports[`renders text type input 2`] = `
+.emotion-0 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <input
+    class="emotion-0"
+    id="test-input"
+    type="password"
+    value="test value"
+  />
+</div>
+`;
+
+exports[`renders text type input 3`] = `
+.emotion-0 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <input
+    class="emotion-0"
+    id="test-input"
+    value="test value"
+  />
+</div>
+`;
+
+exports[`renders value prop 1`] = `
+.emotion-0 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <input
+    class="emotion-0"
+    id="test-input"
+    value="test-1"
+  />
+</div>
+`;
+
+exports[`renders value prop 2`] = `
+.emotion-0 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <input
+    class="emotion-0"
+    id="test-input"
+    value="test-2"
+  />
+</div>
+`;

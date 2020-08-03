@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react'
+import React, { FC, useRef, ChangeEvent } from 'react'
 import { css } from 'emotion'
 
 import { DispatchProps } from '@/reducer'
@@ -22,8 +22,10 @@ const buttonStyle = css({
 export const ImportStateButton: FC<ImportStateButtonProps> = ({ dispatch }) => {
     const inputRef = useRef<HTMLInputElement>(null)
 
-    function loadSelectedFile() {
-        const file = inputRef.current?.files?.[0]
+    function loadSelectedFile(event: ChangeEvent<HTMLInputElement>) {
+        // files are accessed through the event rather than the ref for easier
+        // mocking during testing
+        const file = event.target.files?.[0]
         if (file === undefined) {
             return
         }

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders button and hidden file input 1`] = `
+.emotion-0 {
+  display: none;
+}
+
+.emotion-1 {
+  margin-right: 0.5rem;
+}
+
+<div
+  id="test-render-container"
+>
+  <input
+    accept="application/json"
+    class="emotion-0"
+    type="file"
+  />
+  <div
+    class="mock-button emotion-1"
+  >
+    Disabled: undefined
+    Import state
+  </div>
+</div>
+`;

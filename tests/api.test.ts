@@ -3,6 +3,13 @@ import { LastFMResult, search, LastFMAlbum, SearchResult } from '@/api'
 import { ignore } from './utils'
 
 
+// jsdom doesn't polyfill fetch so jest.spyOn can't be used here
+const fetchMock = jest.fn()
+beforeAll(() => global.fetch = fetchMock)
+afterEach(() => fetchMock.mockReset())
+afterAll(() => delete global.fetch)
+
+
 function lastFMAlbum(x: number): LastFMAlbum {
     return {
         artist: `Test artist ${x}`,
@@ -28,7 +35,7 @@ function mockSignal(aborted: boolean): AbortSignal {
 
 
 test('returns Ok for successful request', async () => {
-    const mock = jest.fn(() =>
+    fetchMock.mockImplementation(() =>
         Promise.resolve({
             ok: true,
             status: 200,
@@ -50,13 +57,12 @@ test('returns Ok for successful request', async () => {
     const result = await search({
         key: 'Test key',
         query: 'Test query',
-        signal,
-        fetcher: mock
+        signal
     })
 
     expect(result).toMatchSnapshot()
-    expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith(
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    expect(fetchMock).toHaveBeenCalledWith(
         'https://ws.audioscrobbler.com/2.0/?method=album.search&format=json&api_key=Test%20key&album=Test%20query',
         { signal }
     )
@@ -64,7 +70,7 @@ test('returns Ok for successful request', async () => {
 
 
 test('excludes null albums from successful request', async () => {
-    const mock = jest.fn(() =>
+    fetchMock.mockImplementation(() =>
         Promise.resolve({
             ok: true,
             status: 200,
@@ -99,39 +105,36 @@ test('excludes null albums from successful request', async () => {
     const result = await search({
         key: 'Test key',
         query: 'Test query',
-        signal: mockSignal(false),
-        fetcher: mock
+        signal: mockSignal(false)
     })
     expect(result).toMatchSnapshot()
 })
 
 
 test('returns Cancelled for cancelled request', async () => {
-    const mock = jest.fn(Promise.reject)
+    fetchMock.mockImplementation(Promise.reject)
     const result = await search({
         key: 'Test key',
         query: 'Test query',
-        signal: mockSignal(true),
-        fetcher: mock
+        signal: mockSignal(true)
     })
     expect(result).toEqual<SearchResult>({ tag: 'Cancelled' })
 })
 
 
 test('returns NetworkError for failed request', async () => {
-    const mock = jest.fn(Promise.reject)
+    fetchMock.mockImplementation(Promise.reject)
     const result = await search({
         key: 'Test key',
         query: 'Test query',
-        signal: mockSignal(false),
-        fetcher: mock
+        signal: mockSignal(false)
     })
     expect(result).toEqual<SearchResult>({ tag: 'NetworkError' })
 })
 
 
 test('returns JSONDecodeError for invalid json response', async () => {
-    const mock = jest.fn(() =>
+    fetchMock.mockImplementation(() =>
         Promise.resolve({
             ok: true,
             status: 200,
@@ -141,15 +144,14 @@ test('returns JSONDecodeError for invalid json response', async () => {
     const result = await search({
         key: 'Test key',
         query: 'Test query',
-        signal: mockSignal(false),
-        fetcher: mock
+        signal: mockSignal(false)
     })
     expect(result).toEqual<SearchResult>({ tag: 'JSONDecodeError' })
 })
 
 
 test('returns InvalidResponseData for invalid response data', async () => {
-    const mock = jest.fn(() =>
+    fetchMock.mockImplementation(() =>
         Promise.resolve({
             ok: true,
             status: 200,
@@ -165,8 +167,7 @@ test('returns InvalidResponseData for invalid response data', async () => {
     const result = await search({
         key: 'Test key',
         query: 'Test query',
-        signal: mockSignal(false),
-        fetcher: mock
+        signal: mockSignal(false)
     })
     expect(result).toEqual<SearchResult>({ tag: 'InvalidResponseData' })
 })

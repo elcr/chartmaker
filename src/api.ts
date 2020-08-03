@@ -61,18 +61,10 @@ function formatLastFMResult(result: LastFMResult): SearchResultAlbum[] {
 }
 
 
-interface ResponseLike {
-    ok: boolean
-    status: number
-    json: () => Promise<unknown>
-}
-
-
 type SearchArguments = {
     key: string
     query: string
     signal: AbortSignal
-    fetcher?: (url: string, options: { signal: AbortSignal }) => Promise<ResponseLike>
 }
 
 
@@ -100,8 +92,7 @@ function joinURLQuery(base: string, query: Record<string, string>): string {
 export async function search({
     key,
     query,
-    signal,
-    fetcher = fetch
+    signal
 }: SearchArguments): Promise<SearchResult> {
     const url = joinURLQuery('https://ws.audioscrobbler.com/2.0/', {
         method: 'album.search',
@@ -110,9 +101,9 @@ export async function search({
         album: query
     })
 
-    let response: ResponseLike
+    let response: Response
     try {
-        response = await fetcher(url, { signal })
+        response = await fetch(url, { signal })
     }
     catch {
         return {

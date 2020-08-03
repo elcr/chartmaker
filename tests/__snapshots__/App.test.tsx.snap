@@ -1,0 +1,868 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders sidebar and chart 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  min-height: 100vh;
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
+  background: black;
+  color: white;
+  font-size: 0.875rem;
+  padding: 1rem;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="mock-sidebar"
+    >
+      Charts: [
+  {
+    "name": "Untitled chart",
+    "albums": [
+      {
+        "placeholder": true,
+        "id": 1
+      },
+      {
+        "placeholder": true,
+        "id": 2
+      },
+      {
+        "placeholder": true,
+        "id": 3
+      },
+      {
+        "placeholder": true,
+        "id": 4
+      },
+      {
+        "placeholder": true,
+        "id": 5
+      },
+      {
+        "placeholder": true,
+        "id": 6
+      },
+      {
+        "placeholder": true,
+        "id": 7
+      },
+      {
+        "placeholder": true,
+        "id": 8
+      },
+      {
+        "placeholder": true,
+        "id": 9
+      },
+      {
+        "placeholder": true,
+        "id": 10
+      },
+      {
+        "placeholder": true,
+        "id": 11
+      },
+      {
+        "placeholder": true,
+        "id": 12
+      },
+      {
+        "placeholder": true,
+        "id": 13
+      },
+      {
+        "placeholder": true,
+        "id": 14
+      },
+      {
+        "placeholder": true,
+        "id": 15
+      },
+      {
+        "placeholder": true,
+        "id": 16
+      },
+      {
+        "placeholder": true,
+        "id": 17
+      },
+      {
+        "placeholder": true,
+        "id": 18
+      },
+      {
+        "placeholder": true,
+        "id": 19
+      },
+      {
+        "placeholder": true,
+        "id": 20
+      },
+      {
+        "placeholder": true,
+        "id": 21
+      },
+      {
+        "placeholder": true,
+        "id": 22
+      },
+      {
+        "placeholder": true,
+        "id": 23
+      },
+      {
+        "placeholder": true,
+        "id": 24
+      },
+      {
+        "placeholder": true,
+        "id": 25
+      },
+      {
+        "placeholder": true,
+        "id": 26
+      },
+      {
+        "placeholder": true,
+        "id": 27
+      },
+      {
+        "placeholder": true,
+        "id": 28
+      },
+      {
+        "placeholder": true,
+        "id": 29
+      },
+      {
+        "placeholder": true,
+        "id": 30
+      },
+      {
+        "placeholder": true,
+        "id": 31
+      },
+      {
+        "placeholder": true,
+        "id": 32
+      },
+      {
+        "placeholder": true,
+        "id": 33
+      },
+      {
+        "placeholder": true,
+        "id": 34
+      },
+      {
+        "placeholder": true,
+        "id": 35
+      },
+      {
+        "placeholder": true,
+        "id": 36
+      },
+      {
+        "placeholder": true,
+        "id": 37
+      },
+      {
+        "placeholder": true,
+        "id": 38
+      },
+      {
+        "placeholder": true,
+        "id": 39
+      },
+      {
+        "placeholder": true,
+        "id": 40
+      },
+      {
+        "placeholder": true,
+        "id": 41
+      },
+      {
+        "placeholder": true,
+        "id": 42
+      },
+      {
+        "placeholder": true,
+        "id": 43
+      },
+      {
+        "placeholder": true,
+        "id": 44
+      },
+      {
+        "placeholder": true,
+        "id": 45
+      },
+      {
+        "placeholder": true,
+        "id": 46
+      },
+      {
+        "placeholder": true,
+        "id": 47
+      },
+      {
+        "placeholder": true,
+        "id": 48
+      },
+      {
+        "placeholder": true,
+        "id": 49
+      },
+      {
+        "placeholder": true,
+        "id": 50
+      },
+      {
+        "placeholder": true,
+        "id": 51
+      },
+      {
+        "placeholder": true,
+        "id": 52
+      },
+      {
+        "placeholder": true,
+        "id": 53
+      },
+      {
+        "placeholder": true,
+        "id": 54
+      },
+      {
+        "placeholder": true,
+        "id": 55
+      },
+      {
+        "placeholder": true,
+        "id": 56
+      },
+      {
+        "placeholder": true,
+        "id": 57
+      },
+      {
+        "placeholder": true,
+        "id": 58
+      },
+      {
+        "placeholder": true,
+        "id": 59
+      },
+      {
+        "placeholder": true,
+        "id": 60
+      },
+      {
+        "placeholder": true,
+        "id": 61
+      },
+      {
+        "placeholder": true,
+        "id": 62
+      },
+      {
+        "placeholder": true,
+        "id": 63
+      },
+      {
+        "placeholder": true,
+        "id": 64
+      },
+      {
+        "placeholder": true,
+        "id": 65
+      },
+      {
+        "placeholder": true,
+        "id": 66
+      },
+      {
+        "placeholder": true,
+        "id": 67
+      },
+      {
+        "placeholder": true,
+        "id": 68
+      },
+      {
+        "placeholder": true,
+        "id": 69
+      },
+      {
+        "placeholder": true,
+        "id": 70
+      },
+      {
+        "placeholder": true,
+        "id": 71
+      },
+      {
+        "placeholder": true,
+        "id": 72
+      },
+      {
+        "placeholder": true,
+        "id": 73
+      },
+      {
+        "placeholder": true,
+        "id": 74
+      },
+      {
+        "placeholder": true,
+        "id": 75
+      },
+      {
+        "placeholder": true,
+        "id": 76
+      },
+      {
+        "placeholder": true,
+        "id": 77
+      },
+      {
+        "placeholder": true,
+        "id": 78
+      },
+      {
+        "placeholder": true,
+        "id": 79
+      },
+      {
+        "placeholder": true,
+        "id": 80
+      },
+      {
+        "placeholder": true,
+        "id": 81
+      },
+      {
+        "placeholder": true,
+        "id": 82
+      },
+      {
+        "placeholder": true,
+        "id": 83
+      },
+      {
+        "placeholder": true,
+        "id": 84
+      },
+      {
+        "placeholder": true,
+        "id": 85
+      },
+      {
+        "placeholder": true,
+        "id": 86
+      },
+      {
+        "placeholder": true,
+        "id": 87
+      },
+      {
+        "placeholder": true,
+        "id": 88
+      },
+      {
+        "placeholder": true,
+        "id": 89
+      },
+      {
+        "placeholder": true,
+        "id": 90
+      },
+      {
+        "placeholder": true,
+        "id": 91
+      },
+      {
+        "placeholder": true,
+        "id": 92
+      },
+      {
+        "placeholder": true,
+        "id": 93
+      },
+      {
+        "placeholder": true,
+        "id": 94
+      },
+      {
+        "placeholder": true,
+        "id": 95
+      },
+      {
+        "placeholder": true,
+        "id": 96
+      },
+      {
+        "placeholder": true,
+        "id": 97
+      },
+      {
+        "placeholder": true,
+        "id": 98
+      },
+      {
+        "placeholder": true,
+        "id": 99
+      },
+      {
+        "placeholder": true,
+        "id": 100
+      }
+    ],
+    "shape": {
+      "tag": "Top",
+      "size": 40
+    },
+    "rowsX": 5,
+    "rowsY": 5
+  }
+]
+      Screenshot state: {
+  "loading": false,
+  "scale": 1
+}
+      Search state: {
+  "tag": "Waiting",
+  "query": ""
+}
+      API key: 
+      Active chart index: 0
+    </div>
+    <div
+      class="mock-chart"
+    >
+      Albums: [
+  {
+    "placeholder": true,
+    "id": 1
+  },
+  {
+    "placeholder": true,
+    "id": 2
+  },
+  {
+    "placeholder": true,
+    "id": 3
+  },
+  {
+    "placeholder": true,
+    "id": 4
+  },
+  {
+    "placeholder": true,
+    "id": 5
+  },
+  {
+    "placeholder": true,
+    "id": 6
+  },
+  {
+    "placeholder": true,
+    "id": 7
+  },
+  {
+    "placeholder": true,
+    "id": 8
+  },
+  {
+    "placeholder": true,
+    "id": 9
+  },
+  {
+    "placeholder": true,
+    "id": 10
+  },
+  {
+    "placeholder": true,
+    "id": 11
+  },
+  {
+    "placeholder": true,
+    "id": 12
+  },
+  {
+    "placeholder": true,
+    "id": 13
+  },
+  {
+    "placeholder": true,
+    "id": 14
+  },
+  {
+    "placeholder": true,
+    "id": 15
+  },
+  {
+    "placeholder": true,
+    "id": 16
+  },
+  {
+    "placeholder": true,
+    "id": 17
+  },
+  {
+    "placeholder": true,
+    "id": 18
+  },
+  {
+    "placeholder": true,
+    "id": 19
+  },
+  {
+    "placeholder": true,
+    "id": 20
+  },
+  {
+    "placeholder": true,
+    "id": 21
+  },
+  {
+    "placeholder": true,
+    "id": 22
+  },
+  {
+    "placeholder": true,
+    "id": 23
+  },
+  {
+    "placeholder": true,
+    "id": 24
+  },
+  {
+    "placeholder": true,
+    "id": 25
+  },
+  {
+    "placeholder": true,
+    "id": 26
+  },
+  {
+    "placeholder": true,
+    "id": 27
+  },
+  {
+    "placeholder": true,
+    "id": 28
+  },
+  {
+    "placeholder": true,
+    "id": 29
+  },
+  {
+    "placeholder": true,
+    "id": 30
+  },
+  {
+    "placeholder": true,
+    "id": 31
+  },
+  {
+    "placeholder": true,
+    "id": 32
+  },
+  {
+    "placeholder": true,
+    "id": 33
+  },
+  {
+    "placeholder": true,
+    "id": 34
+  },
+  {
+    "placeholder": true,
+    "id": 35
+  },
+  {
+    "placeholder": true,
+    "id": 36
+  },
+  {
+    "placeholder": true,
+    "id": 37
+  },
+  {
+    "placeholder": true,
+    "id": 38
+  },
+  {
+    "placeholder": true,
+    "id": 39
+  },
+  {
+    "placeholder": true,
+    "id": 40
+  },
+  {
+    "placeholder": true,
+    "id": 41
+  },
+  {
+    "placeholder": true,
+    "id": 42
+  },
+  {
+    "placeholder": true,
+    "id": 43
+  },
+  {
+    "placeholder": true,
+    "id": 44
+  },
+  {
+    "placeholder": true,
+    "id": 45
+  },
+  {
+    "placeholder": true,
+    "id": 46
+  },
+  {
+    "placeholder": true,
+    "id": 47
+  },
+  {
+    "placeholder": true,
+    "id": 48
+  },
+  {
+    "placeholder": true,
+    "id": 49
+  },
+  {
+    "placeholder": true,
+    "id": 50
+  },
+  {
+    "placeholder": true,
+    "id": 51
+  },
+  {
+    "placeholder": true,
+    "id": 52
+  },
+  {
+    "placeholder": true,
+    "id": 53
+  },
+  {
+    "placeholder": true,
+    "id": 54
+  },
+  {
+    "placeholder": true,
+    "id": 55
+  },
+  {
+    "placeholder": true,
+    "id": 56
+  },
+  {
+    "placeholder": true,
+    "id": 57
+  },
+  {
+    "placeholder": true,
+    "id": 58
+  },
+  {
+    "placeholder": true,
+    "id": 59
+  },
+  {
+    "placeholder": true,
+    "id": 60
+  },
+  {
+    "placeholder": true,
+    "id": 61
+  },
+  {
+    "placeholder": true,
+    "id": 62
+  },
+  {
+    "placeholder": true,
+    "id": 63
+  },
+  {
+    "placeholder": true,
+    "id": 64
+  },
+  {
+    "placeholder": true,
+    "id": 65
+  },
+  {
+    "placeholder": true,
+    "id": 66
+  },
+  {
+    "placeholder": true,
+    "id": 67
+  },
+  {
+    "placeholder": true,
+    "id": 68
+  },
+  {
+    "placeholder": true,
+    "id": 69
+  },
+  {
+    "placeholder": true,
+    "id": 70
+  },
+  {
+    "placeholder": true,
+    "id": 71
+  },
+  {
+    "placeholder": true,
+    "id": 72
+  },
+  {
+    "placeholder": true,
+    "id": 73
+  },
+  {
+    "placeholder": true,
+    "id": 74
+  },
+  {
+    "placeholder": true,
+    "id": 75
+  },
+  {
+    "placeholder": true,
+    "id": 76
+  },
+  {
+    "placeholder": true,
+    "id": 77
+  },
+  {
+    "placeholder": true,
+    "id": 78
+  },
+  {
+    "placeholder": true,
+    "id": 79
+  },
+  {
+    "placeholder": true,
+    "id": 80
+  },
+  {
+    "placeholder": true,
+    "id": 81
+  },
+  {
+    "placeholder": true,
+    "id": 82
+  },
+  {
+    "placeholder": true,
+    "id": 83
+  },
+  {
+    "placeholder": true,
+    "id": 84
+  },
+  {
+    "placeholder": true,
+    "id": 85
+  },
+  {
+    "placeholder": true,
+    "id": 86
+  },
+  {
+    "placeholder": true,
+    "id": 87
+  },
+  {
+    "placeholder": true,
+    "id": 88
+  },
+  {
+    "placeholder": true,
+    "id": 89
+  },
+  {
+    "placeholder": true,
+    "id": 90
+  },
+  {
+    "placeholder": true,
+    "id": 91
+  },
+  {
+    "placeholder": true,
+    "id": 92
+  },
+  {
+    "placeholder": true,
+    "id": 93
+  },
+  {
+    "placeholder": true,
+    "id": 94
+  },
+  {
+    "placeholder": true,
+    "id": 95
+  },
+  {
+    "placeholder": true,
+    "id": 96
+  },
+  {
+    "placeholder": true,
+    "id": 97
+  },
+  {
+    "placeholder": true,
+    "id": 98
+  },
+  {
+    "placeholder": true,
+    "id": 99
+  },
+  {
+    "placeholder": true,
+    "id": 100
+  }
+]
+      Name: Untitled chart
+      Rows X: 5
+      Rows Y: 5
+      Shape: {"tag":"Top","size":40}
+    </div>
+  </div>
+</div>
+`;

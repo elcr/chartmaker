@@ -22,7 +22,7 @@ import { AlbumRow } from '@/components/AlbumRow'
 import { TitleGroup } from '@/components/TitleGroup'
 
 
-type Props = DispatchProps<
+export type ChartProps = DispatchProps<
     | 'DragChartAlbum'
     | 'DropSearchAlbum'
     | 'PromptToRenameAlbum'
@@ -215,7 +215,7 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
 }
 
 
-export const Chart: FC<Props> = ({
+export const Chart: FC<ChartProps> = ({
     dispatch,
     albums,
     name,

@@ -12,7 +12,7 @@ import { SearchResults } from '@/components/SearchResults'
 import { ChartShapeControls } from '@/components/ChartShapeControls'
 
 
-type Props = DispatchProps<
+export type SidebarProps = DispatchProps<
     | 'UpdateActiveChart'
     | 'PromptForNewChart'
     | 'PromptToRenameActiveChart'
@@ -46,7 +46,7 @@ const style = css({
 })
 
 
-export const Sidebar: FC<Props> = ({
+export const Sidebar: FC<SidebarProps> = ({
     dispatch,
     charts,
     activeChartIndex,

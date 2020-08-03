@@ -4,10 +4,10 @@ import { DispatchProps } from '@/reducer'
 import Button from '@/components/Button'
 
 
-type Props = DispatchProps<'PromptToDeleteActiveChart'>
+export type DeleteActiveChartButtonProps = DispatchProps<'PromptToDeleteActiveChart'>
 
 
-const DeleteActiveChartButton: FC<Props> = ({ dispatch }) => {
+const DeleteActiveChartButton: FC<DeleteActiveChartButtonProps> = ({ dispatch }) => {
     function deleteActiveChart() {
         dispatch({ tag: 'PromptToDeleteActiveChart' })
     }

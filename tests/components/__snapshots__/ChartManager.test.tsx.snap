@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders chart selector and buttons 1`] = `
+.emotion-1:not(:last-of-type) {
+  border-bottom: 1px solid white;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="test-chart-selector"
+    >
+      Charts: [{"name":"test chart 1","rowsX":5,"rowsY":5,"shape":{"tag":"Collage"},"albums":[]},{"name":"test chart 2","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":100},"albums":[]},{"name":"test chart 3","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":42},"albums":[]}]
+      Active chart index: 1
+    </div>
+    <div
+      class="emotion-0"
+    >
+      <div
+        class="test-new-chart-button"
+      />
+      <div
+        class="test-rename-active-chart-button"
+      />
+      <div
+        class="test-delete-active-chart-button"
+      />
+    </div>
+  </div>
+</div>
+`;

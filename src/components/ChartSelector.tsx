@@ -11,7 +11,7 @@ import ControlledSelect from '@/components/ControlledSelect'
 const id = 'chartSelector'
 
 
-type Props = DispatchProps<'UpdateActiveChart'> & {
+export type ChartSelectorProps = DispatchProps<'UpdateActiveChart'> & {
     charts: Chart[]
     activeChartIndex: number
 }
@@ -24,7 +24,7 @@ const containerStyle = css({
 })
 
 
-const ChartSelector: FC<Props> = ({ dispatch, charts, activeChartIndex }) => {
+const ChartSelector: FC<ChartSelectorProps> = ({ dispatch, charts, activeChartIndex }) => {
     function updateActiveChart(index: number) {
         dispatch({
             tag: 'UpdateActiveChart',

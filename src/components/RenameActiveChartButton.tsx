@@ -6,7 +6,7 @@ import Button from '@/components/Button'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
 
 
-type Props = DispatchProps<'PromptToRenameActiveChart'>
+export type RenameActiveChartButtonProps = DispatchProps<'PromptToRenameActiveChart'>
 
 
 const style = css({
@@ -14,7 +14,7 @@ const style = css({
 })
 
 
-const RenameActiveChartButton: FC<Props> = ({ dispatch }) => {
+const RenameActiveChartButton: FC<RenameActiveChartButtonProps> = ({ dispatch }) => {
     function renameActiveChart() {
         dispatch({ tag: 'PromptToRenameActiveChart' })
     }

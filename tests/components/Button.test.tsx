@@ -12,7 +12,7 @@ const container = new RenderContainer()
 
 test('renders as button', () => {
     render(
-        <Button className='test-class' disabled>
+        <Button id='test-id' className='test-class' disabled>
             Test children
         </Button>,
         container.element

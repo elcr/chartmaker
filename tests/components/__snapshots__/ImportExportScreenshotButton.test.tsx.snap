@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders slider and buttons 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <div
+      class="mock-controlled-slider"
+      id="screenshotScale"
+    >
+      Min: 1
+      Max: 3
+      Step: 1
+      Value: 1
+      Disabled: true
+      Scale
+    </div>
+    <div
+      class="emotion-1"
+    >
+      <div
+        class="mock-button"
+        id="screenshot"
+      >
+        Disabled: true
+        Screenshot
+      </div>
+      <div
+        class="emotion-0"
+      >
+        <div
+          class="mock-import-state-button"
+        />
+        <div
+          class="mock-export-state-button"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders slider and buttons 2`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <div
+      class="mock-controlled-slider"
+      id="screenshotScale"
+    >
+      Min: 1
+      Max: 3
+      Step: 1
+      Value: 2
+      Disabled: false
+      Scale
+    </div>
+    <div
+      class="emotion-1"
+    >
+      <div
+        class="mock-button"
+        id="screenshot"
+      >
+        Disabled: false
+        Screenshot
+      </div>
+      <div
+        class="emotion-0"
+      >
+        <div
+          class="mock-import-state-button"
+        />
+        <div
+          class="mock-export-state-button"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

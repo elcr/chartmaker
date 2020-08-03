@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders button 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-button"
+  >
+    Disabled: undefined
+    Export state
+  </div>
+</div>
+`;

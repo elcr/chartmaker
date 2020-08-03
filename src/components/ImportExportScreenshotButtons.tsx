@@ -11,7 +11,11 @@ import { ImportStateButton } from '@/components/ImportStateButton'
 import { ExportStateButton } from '@/components/ExportStateButton'
 
 
-type Props = DispatchProps<
+export const sliderID = 'screenshotScale'
+export const buttonID = 'screenshot'
+
+
+export type ImportExportScreenshotButtonsProps = DispatchProps<
     | 'UpdateScreenshotScale'
     | 'TakeScreenshot'
     | 'ImportStateFile'
@@ -33,7 +37,7 @@ const buttonContainerStyle = css({
 })
 
 
-export const ImportExportScreenshotButtons: FC<Props> = ({
+export const ImportExportScreenshotButtons: FC<ImportExportScreenshotButtonsProps> = ({
     dispatch,
     screenshotState: { loading, scale },
     chartRef
@@ -54,7 +58,7 @@ export const ImportExportScreenshotButtons: FC<Props> = ({
 
     return (
         <SidebarGroup>
-            <ControlledSlider id='screenshotScale'
+            <ControlledSlider id={sliderID}
                     disabled={loading}
                     value={scale}
                     onChange={updateScreenshotScale}
@@ -64,7 +68,7 @@ export const ImportExportScreenshotButtons: FC<Props> = ({
                 Scale
             </ControlledSlider>
             <div className={buttonContainerStyle}>
-                <Button onClick={takeScreenshot} disabled={loading}>
+                <Button id={buttonID} onClick={takeScreenshot} disabled={loading}>
                     Screenshot
                 </Button>
                 <div className={stateButtonsContainerStyle}>

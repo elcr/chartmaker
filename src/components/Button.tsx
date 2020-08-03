@@ -4,12 +4,13 @@ import { cx } from 'emotion'
 import { buttonStyle } from '@/style'
 
 
-type Props = {
+export type ButtonProps = {
+    id?: string
     className?: string
     disabled?: boolean
     onClick?: () => void
 }
 
 
-export const Button: FC<Props> = ({ className, ...props }) =>
+export const Button: FC<ButtonProps> = ({ className, ...props }) =>
     <button {...props} className={cx(buttonStyle, className)}/>

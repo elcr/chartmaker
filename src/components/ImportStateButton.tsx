@@ -6,7 +6,7 @@ import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
 import { Button } from '@/components/Button'
 
 
-type Props = DispatchProps<'ImportStateFile'>
+export type ImportStateButtonProps = DispatchProps<'ImportStateFile'>
 
 
 const inputStyle = css({
@@ -19,7 +19,7 @@ const buttonStyle = css({
 })
 
 
-export const ImportStateButton: FC<Props> = ({ dispatch }) => {
+export const ImportStateButton: FC<ImportStateButtonProps> = ({ dispatch }) => {
     const inputRef = useRef<HTMLInputElement>(null)
 
     function loadSelectedFile() {

@@ -1,7 +1,95 @@
-test.todo('renders slider and buttons')
+import React, { MutableRefObject } from 'react'
+import { render } from 'react-dom'
+import { act } from 'react-dom/test-utils'
+
+import {
+    ImportExportScreenshotButtons,
+    ImportExportScreenshotButtonsProps,
+    sliderID,
+    buttonID
+} from '@/components/ImportExportScreenshotButtons'
+import { ScreenshotState } from '@/types'
+
+import { RenderContainer, ignore, fireEvent } from '../utils'
 
 
-test.todo('dispatches action when slider moved')
+jest.mock('@/components/Button')
+jest.mock('@/components/ControlledSlider')
+jest.mock('@/components/ImportStateButton')
+jest.mock('@/components/ExportStateButton')
+jest.mock('@/components/SidebarGroup')
 
 
-test.todo('dispatches action when screenshot button clicked')
+const container = new RenderContainer()
+
+
+type ActionParams = Parameters<ImportExportScreenshotButtonsProps['dispatch']>;
+
+
+test.each<ScreenshotState>([
+    { loading: true, scale: 1 },
+    { loading: false, scale: 2 },
+])('renders slider and buttons', screenshotState => {
+    render(
+        <ImportExportScreenshotButtons dispatch={ignore}
+            chartRef={{ current: null }}
+            screenshotState={screenshotState}/>,
+        container.element
+    )
+
+    expect(container.element).toMatchSnapshot()
+})
+
+
+test('dispatches action when slider moved', () => {
+    const mock = jest.fn<void, ActionParams>()
+
+    render(
+        <ImportExportScreenshotButtons dispatch={mock}
+            chartRef={{ current: null }}
+            screenshotState={{ loading: false, scale: 1 }}/>,
+        container.element
+    )
+
+    act(() =>
+        fireEvent(
+            'change',
+            container.element?.querySelector(`#${sliderID}`),
+            { target: { value: '3' } }
+        )
+    )
+
+    expect(mock).toHaveBeenCalledTimes(1)
+    expect(mock).toHaveBeenCalledWith<ActionParams>({
+        tag: 'UpdateScreenshotScale',
+        scale: 3
+    })
+})
+
+
+test('dispatches action when screenshot button clicked', () => {
+    const mock = jest.fn<void, ActionParams>()
+    const ref: MutableRefObject<HTMLElement> = {
+        current: container.element!
+    }
+
+    render(
+        <ImportExportScreenshotButtons dispatch={mock}
+            chartRef={ref}
+            screenshotState={{ loading: false, scale: 1 }}/>,
+        container.element
+    )
+
+    act(() =>
+        fireEvent(
+            'click',
+            container.element?.querySelector(`#${buttonID}`)
+        )
+    )
+
+    expect(mock).toHaveBeenCalledTimes(1)
+    expect(mock).toHaveBeenCalledWith<ActionParams>({
+        tag: 'TakeScreenshot',
+        element: container.element!
+    })
+})

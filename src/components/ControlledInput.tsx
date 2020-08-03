@@ -15,7 +15,7 @@ type Props = {
 export const ControlledInput: FC<Props> = ({ onChange, ...props }) => {
     function controlledOnChange(event: ChangeEvent<HTMLInputElement>) {
         event.preventDefault()
-        onChange(event.currentTarget.value)
+        onChange(event.target.value)
     }
 
     return <input {...props}

@@ -24,7 +24,11 @@ const containerStyle = css({
 })
 
 
-export const ChartSelector: FC<ChartSelectorProps> = ({ dispatch, charts, activeChartIndex }) => {
+export const ChartSelector: FC<ChartSelectorProps> = ({
+    dispatch,
+    charts,
+    activeChartIndex
+}) => {
     function updateActiveChart(index: number) {
         dispatch({
             tag: 'UpdateActiveChart',

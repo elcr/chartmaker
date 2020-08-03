@@ -13,9 +13,9 @@ type Props = {
 export const ControlledSelect: FC<Props> = ({ onChange, ...props }) => {
     function change(event: ChangeEvent<HTMLSelectElement>) {
         event.preventDefault()
-        const value = Number(event.currentTarget.value)
+        const value = Number(event.target.value)
         onChange(value)
     }
 
-    return <select {...props} className={inputStyle} onInput={change}/>
+    return <select {...props} className={inputStyle} onChange={change}/>
 }

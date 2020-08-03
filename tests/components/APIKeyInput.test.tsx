@@ -2,17 +2,13 @@ import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { Action } from '@/reducer'
+import { ActionWithTag } from '@/reducer'
 import { APIKeyInput } from '@/components/APIKeyInput'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
 
 
 const container = new RenderContainer()
-
-
-// this line breaks vscode's highlights despite being syntactically correct. gg
-type UpdateAPIKeyAction = Extract<Action, { tag: 'UpdateAPIKey' }>
 
 
 test('renders labelled input', () => {
@@ -25,23 +21,22 @@ test('renders labelled input', () => {
 
 
 test('dispatches action on input change', () => {
-    const mock = jest.fn<void, [ UpdateAPIKeyAction ]>()
+    const mock = jest.fn<void, [ ActionWithTag<'UpdateAPIKey'> ]>()
     render(
         <APIKeyInput dispatch={mock} apiKey='test api key'/>,
         container.element
     )
 
-    act(() => {
-        const input = container.element?.querySelector('input')
-        if (input == null) {
-            return
-        }
-        input.value = 'test new api key'
-        fireEvent('change', input)
-    })
+    act(() =>
+        fireEvent(
+            'change',
+            container.element?.querySelector('input'),
+            { target: { value: 'test new api key' } }
+        )
+    )
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<[ UpdateAPIKeyAction ]>({
+    expect(mock).toHaveBeenCalledWith<[ ActionWithTag<'UpdateAPIKey'> ]>({
         tag: 'UpdateAPIKey',
         apiKey: 'test new api key'
     })

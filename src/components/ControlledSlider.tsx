@@ -36,7 +36,7 @@ export const ControlledSlider: FC<Props> = ({
 }) => {
     function change(event: ChangeEvent<HTMLInputElement>) {
         event.preventDefault()
-        const value = Number(event.currentTarget.value)
+        const value = Number(event.target.value)
         onChange(value)
     }
 

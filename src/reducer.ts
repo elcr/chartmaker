@@ -54,7 +54,8 @@ export type Action =
     | { tag: 'UpdateChartShape', shape: ChartShape, rowsX: number, rowsY: number }
 
 
-export type Dispatch<T extends Action['tag'] = Action['tag']> = Dispatch_<Extract<Action, { tag: T }>>
+export type ActionWithTag<T extends Action['tag']> = Extract<Action, { tag: T }>
+export type Dispatch<T extends Action['tag'] = Action['tag']> = Dispatch_<ActionWithTag<T>>
 export type DispatchProps<T extends Action['tag'] = Action['tag']> = {
     dispatch: Dispatch<T>
 }

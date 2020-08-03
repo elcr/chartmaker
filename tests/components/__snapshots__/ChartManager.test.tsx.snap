@@ -21,7 +21,7 @@ exports[`renders chart selector and buttons 1`] = `
     class="emotion-1"
   >
     <div
-      class="test-chart-selector"
+      class="mock-chart-selector"
     >
       Charts: [{"name":"test chart 1","rowsX":5,"rowsY":5,"shape":{"tag":"Collage"},"albums":[]},{"name":"test chart 2","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":100},"albums":[]},{"name":"test chart 3","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":42},"albums":[]}]
       Active chart index: 1
@@ -30,13 +30,13 @@ exports[`renders chart selector and buttons 1`] = `
       class="emotion-0"
     >
       <div
-        class="test-new-chart-button"
+        class="mock-new-chart-button"
       />
       <div
-        class="test-rename-active-chart-button"
+        class="mock-rename-active-chart-button"
       />
       <div
-        class="test-delete-active-chart-button"
+        class="mock-delete-active-chart-button"
       />
     </div>
   </div>

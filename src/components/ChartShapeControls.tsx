@@ -9,7 +9,7 @@ import { ControlledRadioButton } from '@/components/ControlledRadioButton'
 import { SidebarGroup } from '@/components/SidebarGroup'
 
 
-type Props = DispatchProps<'UpdateChartShape'> & {
+export type ChartShapeControlsProps = DispatchProps<'UpdateChartShape'> & {
     shape: ChartShape
     rowsX: number
     rowsY: number
@@ -21,7 +21,7 @@ const style = css({
 })
 
 
-export const ChartShapeControls: FC<Props> = ({
+export const ChartShapeControls: FC<ChartShapeControlsProps> = ({
     dispatch,
     shape,
     rowsX,

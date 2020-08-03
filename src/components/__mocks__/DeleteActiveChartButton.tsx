@@ -4,4 +4,4 @@ import { DeleteActiveChartButtonProps } from '@/components/DeleteActiveChartButt
 
 
 export const DeleteActiveChartButton: FC<DeleteActiveChartButtonProps> = () =>
-    <div className='test-delete-active-chart-button'/>
+    <div className='mock-delete-active-chart-button'/>

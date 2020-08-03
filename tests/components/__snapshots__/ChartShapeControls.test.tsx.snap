@@ -1,0 +1,223 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`collage shape renders radio buttons and sliders 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <div
+      class="emotion-0"
+    >
+      <div
+        class="mock-controlled-radio-button"
+        id="top40"
+      >
+        Checked: false
+        Top 40
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="top42"
+      >
+        Checked: false
+        Top 42
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="top100"
+      >
+        Checked: false
+        Top 100
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="collage"
+      >
+        Checked: true
+        Collage
+      </div>
+    </div>
+    <div
+      class="mock-controlled-slider"
+      id="rows-x"
+    >
+      Min: 1
+      Max: 10
+      Step: 1
+      Value: 10
+      Disabled: undefined
+      X
+    </div>
+    <div
+      class="mock-controlled-slider"
+      id="rows-y"
+    >
+      Min: 1
+      Max: 10
+      Step: 1
+      Value: 10
+      Disabled: undefined
+      Y
+    </div>
+  </div>
+</div>
+`;
+
+exports[`top shape renders radio buttons 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <div
+      class="emotion-0"
+    >
+      <div
+        class="mock-controlled-radio-button"
+        id="top40"
+      >
+        Checked: true
+        Top 40
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="top42"
+      >
+        Checked: false
+        Top 42
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="top100"
+      >
+        Checked: false
+        Top 100
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="collage"
+      >
+        Checked: false
+        Collage
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`top shape renders radio buttons 2`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <div
+      class="emotion-0"
+    >
+      <div
+        class="mock-controlled-radio-button"
+        id="top40"
+      >
+        Checked: false
+        Top 40
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="top42"
+      >
+        Checked: true
+        Top 42
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="top100"
+      >
+        Checked: false
+        Top 100
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="collage"
+      >
+        Checked: false
+        Collage
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`top shape renders radio buttons 3`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <div
+      class="emotion-0"
+    >
+      <div
+        class="mock-controlled-radio-button"
+        id="top40"
+      >
+        Checked: false
+        Top 40
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="top42"
+      >
+        Checked: false
+        Top 42
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="top100"
+      >
+        Checked: true
+        Top 100
+      </div>
+      <div
+        class="mock-controlled-radio-button"
+        id="collage"
+      >
+        Checked: false
+        Collage
+      </div>
+    </div>
+  </div>
+</div>
+`;

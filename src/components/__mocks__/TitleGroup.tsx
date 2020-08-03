@@ -2,6 +2,6 @@ import React, { FC } from 'react'
 
 
 export const TitleGroup: FC = ({ children }) =>
-    <div className='test-title-group'>
+    <div className='mock-title-group'>
         {children}
     </div>

@@ -4,4 +4,4 @@ import { NewChartButtonProps } from '@/components/NewChartButton'
 
 
 export const NewChartButton: FC<NewChartButtonProps> = () =>
-    <div className='test-new-chart-button'/>
+    <div className='mock-new-chart-button'/>

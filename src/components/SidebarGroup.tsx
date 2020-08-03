@@ -13,12 +13,12 @@ const style = css({
 })
 
 
-type Props = {
+export type SidebarGroupProps = {
     className?: string
 }
 
 
-export const SidebarGroup: FC<Props> = ({ children, className }) =>
+export const SidebarGroup: FC<SidebarGroupProps> = ({ children, className }) =>
     <div className={cx(style, className)}>
         {children}
     </div>

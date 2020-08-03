@@ -5,7 +5,7 @@ import { SIDEBAR_LABEL_PADDING_SIZE, SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
 import { Label } from '@/components/Label'
 
 
-type Props = {
+export type ControlledRadioButtonProps = {
     id: string
     checked: boolean
     onCheck: () => void
@@ -29,7 +29,7 @@ const inputStyle = css({
 })
 
 
-export const ControlledRadioButton: FC<Props> = ({
+export const ControlledRadioButton: FC<ControlledRadioButtonProps> = ({
     id,
     checked,
     onCheck,

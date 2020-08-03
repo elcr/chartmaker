@@ -4,4 +4,4 @@ import { RenameActiveChartButtonProps } from '@/components/RenameActiveChartButt
 
 
 export const RenameActiveChartButton: FC<RenameActiveChartButtonProps> = () =>
-    <div className='test-rename-active-chart-button'/>
+    <div className='mock-rename-active-chart-button'/>

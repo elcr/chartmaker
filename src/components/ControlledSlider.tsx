@@ -5,7 +5,7 @@ import { inputStyle, SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
 import { Label } from '@/components/Label'
 
 
-type Props = {
+export type ControlledSliderProps = {
     id: string
     min: number
     max: number
@@ -27,7 +27,7 @@ const baseInputStyle = css({
 })
 
 
-export const ControlledSlider: FC<Props> = ({
+export const ControlledSlider: FC<ControlledSliderProps> = ({
     id,
     onChange,
     children,

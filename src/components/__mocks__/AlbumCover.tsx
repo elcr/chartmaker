@@ -12,7 +12,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
     ...props
 }) => {
     const json = JSON.stringify(album)
-    const className = cx('test-album-cover', overlayClass)
+    const className = cx('mock-album-cover', overlayClass)
     return (
         <div {...props} className={className}>
             {`Album: ${json}`}

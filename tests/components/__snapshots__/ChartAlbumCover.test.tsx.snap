@@ -21,7 +21,7 @@ exports[`renders album cover for placeholder album 1`] = `
   id="test-render-container"
 >
   <div
-    class="test-album-cover emotion-0"
+    class="mock-album-cover emotion-0"
   >
     Album: {"placeholder":true,"id":123}
     Size: 3rem
@@ -56,7 +56,7 @@ exports[`renders album cover with overlay buttons for named album 1`] = `
   id="test-render-container"
 >
   <div
-    class="test-album-cover emotion-2"
+    class="mock-album-cover emotion-2"
   >
     Album: {"placeholder":false,"id":456,"name":"Test named album","url":"https://test.com"}
     Size: 3rem

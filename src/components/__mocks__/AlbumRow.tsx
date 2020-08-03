@@ -6,7 +6,7 @@ import { AlbumRowProps } from '@/components/AlbumRow'
 export const AlbumRow: FC<AlbumRowProps> = ({ albums, size }) => {
     const json = JSON.stringify(albums)
     return (
-        <div className='test-album-row'>
+        <div className='mock-album-row'>
             {`Albums: ${json}`}
             {`Size: ${size}`}
         </div>

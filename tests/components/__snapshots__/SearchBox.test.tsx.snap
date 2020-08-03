@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders form with labelled text input 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <form>
+      <div
+        class="mock-label"
+      >
+        Target: search
+        Search for albums
+      </div>
+      <div
+        class="mock-controlled-input"
+        id="search"
+      >
+        Type: undefined
+        Value: Test query
+        Disabled: false
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`renders form with labelled text input 2`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <form>
+      <div
+        class="mock-label"
+      >
+        Target: search
+        Search for albums
+      </div>
+      <div
+        class="mock-controlled-input"
+        id="search"
+      >
+        Type: undefined
+        Value: Test query
+        Disabled: true
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`renders form with labelled text input 3`] = `
+.emotion-0 {
+  color: red;
+  margin-bottom: 0.25rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <form>
+      <div
+        class="mock-label"
+      >
+        Target: search
+        Search for albums
+      </div>
+      <div
+        class="emotion-0"
+      >
+        Test error message
+      </div>
+      <div
+        class="mock-controlled-input"
+        id="search"
+      >
+        Type: undefined
+        Value: Test query
+        Disabled: false
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`renders form with labelled text input 4`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <form>
+      <div
+        class="mock-label"
+      >
+        Target: search
+        Search for albums
+      </div>
+      <div
+        class="mock-controlled-input"
+        id="search"
+      >
+        Type: undefined
+        Value: Test query
+        Disabled: false
+      </div>
+    </form>
+  </div>
+</div>
+`;

@@ -10,10 +10,10 @@ import { SidebarGroup } from '@/components/SidebarGroup'
 import { ControlledInput } from '@/components/ControlledInput'
 
 
-const id = 'search'
+export const id = 'search'
 
 
-type Props = DispatchProps<
+export type SearchBoxProps = DispatchProps<
     | 'UpdateSearchQuery'
     | 'SendSearchRequest'
     | 'CancelSearchRequest'
@@ -29,7 +29,7 @@ const errorStyle = css({
 })
 
 
-export const SearchBox: FC<Props> = ({ dispatch, searchState }) => {
+export const SearchBox: FC<SearchBoxProps> = ({ dispatch, searchState }) => {
     function sendSearchRequest() {
         dispatch({ tag: 'CancelSearchRequest' })
         dispatch({ tag: 'SendSearchRequest' })

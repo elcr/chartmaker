@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders button 1`] = `
+.emotion-0 {
+  margin: 0 0.5rem;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-button emotion-0"
+  >
+    Disabled: undefined
+    Rename
+  </div>
+</div>
+`;

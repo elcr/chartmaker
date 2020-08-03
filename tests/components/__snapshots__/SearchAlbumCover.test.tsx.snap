@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders album cover 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-album-cover"
+  >
+    Album: {"placeholder":false,"id":123,"name":"Test Album","url":"https://test.com"}
+    Size: 5rem
+  </div>
+</div>
+`;

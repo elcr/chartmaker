@@ -12,7 +12,7 @@ import { ignore, fireEvent, RenderContainer } from '../utils'
 const container = new RenderContainer()
 
 const dragMock = jest.fn<void, DragEvent<HTMLDivElement>[]>()
-afterEach(jest.clearAllMocks)
+afterEach(jest.resetAllMocks)
 
 
 const namedAlbum: Album = {

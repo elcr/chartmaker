@@ -15,31 +15,31 @@ exports[`renders album covers 1`] = `
     class="emotion-0"
   >
     <div
-      class="test-album-cover"
+      class="test-chart-album-cover"
     >
       Album: {"placeholder":true,"id":0}
       Size: 5rem
     </div>
     <div
-      class="test-album-cover"
+      class="test-chart-album-cover"
     >
       Album: {"placeholder":true,"id":1}
       Size: 5rem
     </div>
     <div
-      class="test-album-cover"
+      class="test-chart-album-cover"
     >
       Album: {"placeholder":true,"id":2}
       Size: 5rem
     </div>
     <div
-      class="test-album-cover"
+      class="test-chart-album-cover"
     >
       Album: {"placeholder":true,"id":3}
       Size: 5rem
     </div>
     <div
-      class="test-album-cover"
+      class="test-chart-album-cover"
     >
       Album: {"placeholder":true,"id":4}
       Size: 5rem

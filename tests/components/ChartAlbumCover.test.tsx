@@ -1,11 +1,9 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { render } from 'react-dom'
-import { cx } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
 import { Album, Size } from '@/types'
 import { ChartAlbumCover, ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
-import { AlbumCoverProps } from '@/components/AlbumCover'
 
 import {
     RenderContainer,
@@ -15,26 +13,10 @@ import {
 } from '../utils'
 
 
+jest.mock('@/components/AlbumCover')
+
+
 const container = new RenderContainer()
-
-
-const TestAlbumCover: FC<AlbumCoverProps> = ({
-    album,
-    size,
-    overlayClass,
-    children,
-    ...props
-}) => {
-    const json = JSON.stringify(album)
-    const className = cx('test-album-cover', overlayClass)
-    return (
-        <div {...props} className={className}>
-            {`Album: ${json}`}
-            {`Size: ${size}`}
-            {children}
-        </div>
-    )
-}
 
 
 const placeholderAlbum: Album = {
@@ -58,8 +40,7 @@ test('renders album cover for placeholder album', () => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={placeholderAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 
@@ -71,8 +52,7 @@ test('renders album cover with overlay buttons for named album', () => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={namedAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 
@@ -86,8 +66,7 @@ test('clicking rename button dispatches action', () => {
     render(
         <ChartAlbumCover dispatch={mock}
             album={namedAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 
@@ -110,8 +89,7 @@ test('clicking delete button dispatches action', () => {
     render(
         <ChartAlbumCover dispatch={mock}
             album={namedAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 
@@ -132,8 +110,7 @@ test('starting drag sets event data', () => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={namedAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 
@@ -160,8 +137,7 @@ test('chart album drag enter dispatches action', () => {
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 
@@ -195,8 +171,7 @@ test.each([ 'search-1', 'some-other-type' ])('any other drag enter is ignored', 
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 
@@ -223,8 +198,7 @@ test('dragging chart album over sets move drop effect', () => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={namedAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 
@@ -252,8 +226,7 @@ test('dragging search album over sets move copy effect', () => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={namedAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 
@@ -281,8 +254,7 @@ test('dragging anything else over does nothing', () => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={namedAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 
@@ -311,8 +283,7 @@ test('dropping search album dispatches action', () => {
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 
@@ -346,8 +317,7 @@ test.each([ 'chart-1', 'some-other-type' ])('dropping anything else does nothing
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
-            size={'3rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'3rem' as Size}/>,
         container.element
     )
 

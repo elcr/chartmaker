@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import type { ChartSelectorProps } from '@/components/ChartSelector'
+import { ChartSelectorProps } from '@/components/ChartSelector'
 
 
 export const ChartSelector: FC<ChartSelectorProps> = ({ charts, activeChartIndex }) => {

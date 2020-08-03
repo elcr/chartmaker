@@ -1,4 +1,4 @@
-import React, { FC, Ref, ComponentType } from 'react'
+import React, { FC, Ref } from 'react'
 import { css } from 'emotion'
 
 import {
@@ -18,7 +18,7 @@ import {
     TINY_ALBUM_SIZE,
     BORDER
 } from '@/style'
-import { AlbumRow, AlbumRowProps } from '@/components/AlbumRow'
+import { AlbumRow } from '@/components/AlbumRow'
 import { TitleGroup } from '@/components/TitleGroup'
 
 
@@ -29,8 +29,6 @@ type Props = DispatchProps<
     | 'DeleteAlbum'
 > & {
     innerRef: Ref<HTMLElement>
-    albumRowComponent?: ComponentType<AlbumRowProps>
-    titleGroupComponent?: ComponentType
 } & ChartDetails
 
 
@@ -224,9 +222,7 @@ export const Chart: FC<Props> = ({
     shape,
     rowsX,
     rowsY,
-    innerRef,
-    albumRowComponent: AlbumRowComponent = AlbumRow,
-    titleGroupComponent: TitleGroupComponent = TitleGroup
+    innerRef
 }) => {
     let rows: AlbumRow[]
     let titles: TitleGroup[]
@@ -248,7 +244,7 @@ export const Chart: FC<Props> = ({
     }
 
     const rowElements = rows.map((row, index) =>
-        <AlbumRowComponent {...row}
+        <AlbumRow {...row}
             key={index}
             dispatch={dispatch}/>
     )
@@ -259,9 +255,9 @@ export const Chart: FC<Props> = ({
             </div>
         )
         return (
-            <TitleGroupComponent key={index}>
+            <TitleGroup key={index}>
                 {group}
-            </TitleGroupComponent>
+            </TitleGroup>
         )
     })
 

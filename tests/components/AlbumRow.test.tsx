@@ -1,25 +1,16 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { render } from 'react-dom'
 
 import { Album, Size } from '@/types'
 import { AlbumRow } from '@/components/AlbumRow'
-import { ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
 
 import { RenderContainer, ignore } from '../utils'
 
 
+jest.mock('@/components/ChartAlbumCover')
+
+
 const container = new RenderContainer()
-
-
-const TestAlbumCover: FC<ChartAlbumCoverProps> = ({ album, size }) => {
-    const json = JSON.stringify(album)
-    return (
-        <div className='test-album-cover'>
-            {`Album: ${json}`}
-            {`Size: ${size}`}
-        </div>
-    )
-}
 
 
 test('renders album covers', () => {
@@ -31,8 +22,7 @@ test('renders album covers', () => {
     render(
         <AlbumRow dispatch={ignore}
             albums={albums}
-            size={'5rem' as Size}
-            albumCoverComponent={TestAlbumCover}/>,
+            size={'5rem' as Size}/>,
         container.element
     )
 

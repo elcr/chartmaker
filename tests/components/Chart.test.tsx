@@ -1,31 +1,17 @@
-import React, { createRef, FC } from 'react'
+import React, { createRef } from 'react'
 import { render } from 'react-dom'
 
 import { Album } from '@/types'
 import { Chart } from '@/components/Chart'
-import { AlbumRowProps } from '@/components/AlbumRow'
 
 import { RenderContainer, ignore } from '../utils'
 
 
+jest.mock('@/components/AlbumRow')
+jest.mock('@/components/TitleGroup')
+
+
 const container = new RenderContainer()
-
-
-const TestAlbumRow: FC<AlbumRowProps> = ({ albums, size }) => {
-    const json = JSON.stringify(albums)
-    return (
-        <div className='test-album-row'>
-            {`Albums: ${json}`}
-            {`Size: ${size}`}
-        </div>
-    )
-}
-
-
-const TestTitleGroup: FC = ({ children }) =>
-    <div className='test-title-group'>
-        {children}
-    </div>
 
 
 const albums: Album[] = [...Array(100).keys()].map(index => ({
@@ -43,8 +29,6 @@ test.each([ 40, 42, 100 ] as const)('renders with top shape', size => {
             shape={{ tag: 'Top', size }}
             rowsX={10}
             rowsY={10}
-            albumRowComponent={TestAlbumRow}
-            titleGroupComponent={TestTitleGroup}
             innerRef={ignore}
             dispatch={ignore}/>,
         container.element
@@ -61,8 +45,6 @@ test('renders with collage shape', () => {
             shape={{ tag: 'Collage' }}
             rowsX={5}
             rowsY={7}
-            albumRowComponent={TestAlbumRow}
-            titleGroupComponent={TestTitleGroup}
             innerRef={ignore}
             dispatch={ignore}/>,
         container.element
@@ -84,8 +66,6 @@ test('excludes placeholder albums from titles', () => {
             shape={{ tag: 'Collage' }}
             rowsX={5}
             rowsY={5}
-            albumRowComponent={TestAlbumRow}
-            titleGroupComponent={TestTitleGroup}
             innerRef={ignore}
             dispatch={ignore}/>,
         container.element
@@ -104,8 +84,6 @@ test('passes ref', () => {
             shape={{ tag: 'Collage' }}
             rowsX={5}
             rowsY={7}
-            albumRowComponent={TestAlbumRow}
-            titleGroupComponent={TestTitleGroup}
             innerRef={ref}
             dispatch={ignore}/>,
         container.element

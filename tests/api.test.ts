@@ -6,7 +6,7 @@ import { ignore } from './utils'
 // jsdom doesn't polyfill fetch so jest.spyOn can't be used here
 const fetchMock = jest.fn()
 beforeAll(() => global.fetch = fetchMock)
-afterEach(() => fetchMock.mockReset())
+afterEach(jest.resetAllMocks)
 afterAll(() => delete global.fetch)
 
 

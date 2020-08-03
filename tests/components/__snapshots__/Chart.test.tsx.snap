@@ -1,13 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`excludes placeholder albums from titles 1`] = `
-.emotion-1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -18,6 +11,13 @@ exports[`excludes placeholder albums from titles 1`] = `
   flex-direction: column;
   padding: 1rem;
   border: 1px solid white;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .emotion-0 {
@@ -148,13 +148,6 @@ exports[`excludes placeholder albums from titles 1`] = `
 `;
 
 exports[`renders with collage shape 1`] = `
-.emotion-1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -165,6 +158,13 @@ exports[`renders with collage shape 1`] = `
   flex-direction: column;
   padding: 1rem;
   border: 1px solid white;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .emotion-0 {
@@ -381,13 +381,6 @@ exports[`renders with collage shape 1`] = `
 `;
 
 exports[`renders with top shape 1`] = `
-.emotion-1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -398,6 +391,13 @@ exports[`renders with top shape 1`] = `
   flex-direction: column;
   padding: 1rem;
   border: 1px solid white;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .emotion-0 {
@@ -611,13 +611,6 @@ exports[`renders with top shape 1`] = `
 `;
 
 exports[`renders with top shape 2`] = `
-.emotion-1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -628,6 +621,13 @@ exports[`renders with top shape 2`] = `
   flex-direction: column;
   padding: 1rem;
   border: 1px solid white;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .emotion-0 {
@@ -843,13 +843,6 @@ exports[`renders with top shape 2`] = `
 `;
 
 exports[`renders with top shape 3`] = `
-.emotion-1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -860,6 +853,13 @@ exports[`renders with top shape 3`] = `
   flex-direction: column;
   padding: 1rem;
   border: 1px solid white;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .emotion-0 {

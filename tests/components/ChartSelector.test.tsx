@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import { Chart } from '@/types'
-import { ChartSelector, ChartSelectorProps } from '@/components/ChartSelector'
+import { ChartSelector, ChartSelectorProps, id } from '@/components/ChartSelector'
 
 import {
     RenderContainer,
@@ -73,7 +73,7 @@ test('changing selected chart dispatches action', () => {
     act(() =>
         fireEvent(
             'change',
-            container.element?.querySelector('select'),
+            container.element?.querySelector(`#${id}`),
             { target: { value: '1' } }
         )
     )

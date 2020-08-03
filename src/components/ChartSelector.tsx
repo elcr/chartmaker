@@ -8,7 +8,7 @@ import { Label } from '@/components/Label'
 import { ControlledSelect } from '@/components/ControlledSelect'
 
 
-const id = 'chartSelector'
+export const id = 'chartSelector'
 
 
 export type ChartSelectorProps = DispatchProps<'UpdateActiveChart'> & {

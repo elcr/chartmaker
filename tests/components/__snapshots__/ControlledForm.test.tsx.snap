@@ -5,7 +5,7 @@ exports[`renders form 1`] = `
   id="test-render-container"
 >
   <form>
-    test form
+    Test children
   </form>
 </div>
 `;

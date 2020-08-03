@@ -13,7 +13,7 @@ const container = new RenderContainer()
 test('renders form', () => {
     render(
         <ControlledForm onSubmit={ignore}>
-            test form
+            Test children
         </ControlledForm>,
         container.element
     )

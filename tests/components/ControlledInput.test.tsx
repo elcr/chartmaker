@@ -36,30 +36,6 @@ test.each([ true, false, undefined ])('renders disabled prop', disabled => {
 })
 
 
-test.each([ 'test-1', 'test-2' ])('renders id prop', id => {
-    render(
-        <ControlledInput id={id}
-            value='test value'
-            onChange={ignore}/>,
-        container.element
-    )
-
-    expect(container.element).toMatchSnapshot()
-})
-
-
-test.each([ 'test-1', 'test-2' ])('renders value prop', value => {
-    render(
-        <ControlledInput id='test-input'
-            value={value}
-            onChange={ignore}/>,
-        container.element
-    )
-
-    expect(container.element).toMatchSnapshot()
-})
-
-
 test('change event calls onChange prop', () => {
     const mock = jest.fn<void, [ string ]>()
 

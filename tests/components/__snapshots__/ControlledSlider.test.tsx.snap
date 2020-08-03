@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders labelled slider 1`] = `
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 {
+  margin: 0 0.5rem;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="mock-label"
+    >
+      Target: test-slider
+      Test children
+    </div>
+    <input
+      class="emotion-0"
+      disabled=""
+      id="test-slider"
+      max="3"
+      min="1"
+      step="1"
+      type="range"
+      value="1"
+    />
+    <div
+      class="mock-label"
+    >
+      Target: test-slider
+      1
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders labelled slider 2`] = `
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 {
+  margin: 0 0.5rem;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="mock-label"
+    >
+      Target: test-slider
+      Test children
+    </div>
+    <input
+      class="emotion-0"
+      id="test-slider"
+      max="3"
+      min="1"
+      step="1"
+      type="range"
+      value="1"
+    />
+    <div
+      class="mock-label"
+    >
+      Target: test-slider
+      1
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders labelled slider 3`] = `
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 {
+  margin: 0 0.5rem;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="mock-label"
+    >
+      Target: test-slider
+      Test children
+    </div>
+    <input
+      class="emotion-0"
+      id="test-slider"
+      max="3"
+      min="1"
+      step="1"
+      type="range"
+      value="1"
+    />
+    <div
+      class="mock-label"
+    >
+      Target: test-slider
+      1
+    </div>
+  </div>
+</div>
+`;

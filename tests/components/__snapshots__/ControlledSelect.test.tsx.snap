@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders select 1`] = `
+.emotion-0 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+<div
+  id="test-render-container"
+>
+  <select
+    class="emotion-0"
+    id="test-select"
+  >
+    Test children
+  </select>
+</div>
+`;

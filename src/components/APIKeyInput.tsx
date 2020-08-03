@@ -9,12 +9,12 @@ import { ControlledInput } from '@/components/ControlledInput'
 export const id = 'apiKeyInput'
 
 
-type Props = DispatchProps<'UpdateAPIKey'> & {
+export type APIKeyInputProps = DispatchProps<'UpdateAPIKey'> & {
     apiKey: string
 }
 
 
-export const APIKeyInput: FC<Props> = ({ dispatch, apiKey }) => {
+export const APIKeyInput: FC<APIKeyInputProps> = ({ dispatch, apiKey }) => {
     function updateAPIKey(apiKey: string) {
         dispatch({
             tag: 'UpdateAPIKey',

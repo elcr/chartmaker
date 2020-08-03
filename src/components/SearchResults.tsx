@@ -7,7 +7,7 @@ import { SidebarGroup } from '@/components/SidebarGroup'
 import { SearchAlbumCover } from '@/components/SearchAlbumCover'
 
 
-type Props = {
+export type SearchResultsProps = {
     albums: NamedAlbum[]
 }
 
@@ -24,7 +24,7 @@ const groupStyle = css({
 })
 
 
-export const SearchResults: FC<Props> = ({ albums }) => {
+export const SearchResults: FC<SearchResultsProps> = ({ albums }) => {
     const albumCovers = albums.map(album =>
         <SearchAlbumCover key={album.id}
             album={album}

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders styled div 1`] = `
+.emotion-0:not(:last-of-type) {
+  border-bottom: 1px solid white;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-0 test-sidebar-group"
+  >
+    Test children
+  </div>
+</div>
+`;

@@ -10,7 +10,7 @@ import { DeleteActiveChartButton } from '@/components/DeleteActiveChartButton'
 import { SidebarGroup } from '@/components/SidebarGroup'
 
 
-type Props = DispatchProps<
+export type ChartManagerProps = DispatchProps<
     | 'UpdateActiveChart'
     | 'PromptForNewChart'
     | 'PromptToRenameActiveChart'
@@ -26,7 +26,11 @@ const buttonsContainerStyle = css({
 })
 
 
-export const ChartManager: FC<Props> = ({ dispatch, charts, activeChartIndex }) =>
+export const ChartManager: FC<ChartManagerProps> = ({
+    dispatch,
+    charts,
+    activeChartIndex
+}) =>
     <SidebarGroup>
         <ChartSelector dispatch={dispatch}
             charts={charts}

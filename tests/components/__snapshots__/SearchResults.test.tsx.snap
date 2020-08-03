@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders album covers 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.emotion-1 {
+  overflow-y: scroll;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group emotion-1"
+  >
+    <div
+      class="emotion-0"
+    >
+      <div
+        class="mock-search-album-cover"
+      >
+        Album: {"placeholder":false,"id":0,"name":"Test album 0","url":"https://test.com/0"}
+        Size: 9.1rem
+      </div>
+      <div
+        class="mock-search-album-cover"
+      >
+        Album: {"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"}
+        Size: 9.1rem
+      </div>
+      <div
+        class="mock-search-album-cover"
+      >
+        Album: {"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"}
+        Size: 9.1rem
+      </div>
+      <div
+        class="mock-search-album-cover"
+      >
+        Album: {"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"}
+        Size: 9.1rem
+      </div>
+      <div
+        class="mock-search-album-cover"
+      >
+        Album: {"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"}
+        Size: 9.1rem
+      </div>
+    </div>
+  </div>
+</div>
+`;

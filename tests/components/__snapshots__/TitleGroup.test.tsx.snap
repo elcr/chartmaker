@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders styled div 1`] = `
+.emotion-0 {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-0"
+  >
+    Test children
+  </div>
+</div>
+`;

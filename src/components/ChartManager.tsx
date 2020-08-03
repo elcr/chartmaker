@@ -3,11 +3,11 @@ import { css } from 'emotion'
 
 import { DispatchProps } from '@/reducer'
 import { Chart } from '@/types'
-import ChartSelector from '@/components/ChartSelector'
-import NewChartButton from '@/components/NewChartButton'
-import RenameActiveChartButton from '@/components/RenameActiveChartButton'
-import DeleteActiveChartButton from '@/components/DeleteActiveChartButton'
-import SidebarGroup from '@/components/SidebarGroup'
+import { ChartSelector } from '@/components/ChartSelector'
+import { NewChartButton } from '@/components/NewChartButton'
+import { RenameActiveChartButton } from '@/components/RenameActiveChartButton'
+import { DeleteActiveChartButton } from '@/components/DeleteActiveChartButton'
+import { SidebarGroup } from '@/components/SidebarGroup'
 
 
 type Props = DispatchProps<
@@ -26,7 +26,7 @@ const buttonsContainerStyle = css({
 })
 
 
-const ChartManager: FC<Props> = ({ dispatch, charts, activeChartIndex }) =>
+export const ChartManager: FC<Props> = ({ dispatch, charts, activeChartIndex }) =>
     <SidebarGroup>
         <ChartSelector dispatch={dispatch}
             charts={charts}
@@ -37,6 +37,3 @@ const ChartManager: FC<Props> = ({ dispatch, charts, activeChartIndex }) =>
             <DeleteActiveChartButton dispatch={dispatch}/>
         </div>
     </SidebarGroup>
-
-
-export default ChartManager

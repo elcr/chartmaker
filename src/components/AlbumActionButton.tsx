@@ -15,8 +15,5 @@ const style = css({
 })
 
 
-const AlbumActionButton: FC<Props> = props =>
+export const AlbumActionButton: FC<Props> = props =>
     <button {...props} className={style}/>
-
-
-export default AlbumActionButton

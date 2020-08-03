@@ -3,7 +3,7 @@ import { css } from 'emotion'
 
 import { DispatchProps } from '@/reducer'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
-import Button from '@/components/Button'
+import { Button } from '@/components/Button'
 
 
 type Props = DispatchProps<'ImportStateFile'>
@@ -19,7 +19,7 @@ const buttonStyle = css({
 })
 
 
-const ImportStateButton: FC<Props> = ({ dispatch }) => {
+export const ImportStateButton: FC<Props> = ({ dispatch }) => {
     const inputRef = useRef<HTMLInputElement>(null)
 
     function loadSelectedFile() {
@@ -50,6 +50,3 @@ const ImportStateButton: FC<Props> = ({ dispatch }) => {
         </>
     )
 }
-
-
-export default ImportStateButton

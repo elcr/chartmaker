@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import { SIDEBAR_LABEL_PADDING_SIZE, SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
-import Label from '@/components/Label'
+import { Label } from '@/components/Label'
 
 
 type Props = {
@@ -29,7 +29,7 @@ const inputStyle = css({
 })
 
 
-const ControlledRadioButton: FC<Props> = ({
+export const ControlledRadioButton: FC<Props> = ({
     id,
     checked,
     onCheck,
@@ -45,6 +45,3 @@ const ControlledRadioButton: FC<Props> = ({
             {children}
         </Label>
     </div>
-
-
-export default ControlledRadioButton

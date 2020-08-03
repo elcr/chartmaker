@@ -4,11 +4,11 @@ import { css } from 'emotion'
 import { DispatchProps } from '@/reducer'
 import { ScreenshotState } from '@/types'
 import { MAX_SCREENSHOT_SCALE } from '@/constants'
-import ControlledSlider from '@/components/ControlledSlider'
-import SidebarGroup from '@/components/SidebarGroup'
-import Button from '@/components/Button'
-import ImportStateButton from '@/components/ImportStateButton'
-import ExportStateButton from '@/components/ExportStateButton'
+import { ControlledSlider } from '@/components/ControlledSlider'
+import { SidebarGroup } from '@/components/SidebarGroup'
+import { Button } from '@/components/Button'
+import { ImportStateButton } from '@/components/ImportStateButton'
+import { ExportStateButton } from '@/components/ExportStateButton'
 
 
 type Props = DispatchProps<
@@ -33,7 +33,7 @@ const buttonContainerStyle = css({
 })
 
 
-const ImportExportScreenshotButtons: FC<Props> = ({
+export const ImportExportScreenshotButtons: FC<Props> = ({
     dispatch,
     screenshotState: { loading, scale },
     chartRef
@@ -75,6 +75,3 @@ const ImportExportScreenshotButtons: FC<Props> = ({
         </SidebarGroup>
     )
 }
-
-
-export default ImportExportScreenshotButtons

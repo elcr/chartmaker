@@ -18,10 +18,7 @@ type Props = {
 }
 
 
-const SidebarGroup: FC<Props> = ({ children, className }) =>
+export const SidebarGroup: FC<Props> = ({ children, className }) =>
     <div className={cx(style, className)}>
         {children}
     </div>
-
-
-export default SidebarGroup

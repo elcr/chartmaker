@@ -4,9 +4,9 @@ import { css } from 'emotion'
 import { DispatchProps } from '@/reducer'
 import { ChartShape } from '@/types'
 import { MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
-import ControlledSlider from '@/components/ControlledSlider'
-import ControlledRadioButton from '@/components/ControlledRadioButton'
-import SidebarGroup from '@/components/SidebarGroup'
+import { ControlledSlider } from '@/components/ControlledSlider'
+import { ControlledRadioButton } from '@/components/ControlledRadioButton'
+import { SidebarGroup } from '@/components/SidebarGroup'
 
 
 type Props = DispatchProps<'UpdateChartShape'> & {
@@ -21,7 +21,7 @@ const style = css({
 })
 
 
-const ChartShapeControls: FC<Props> = ({
+export const ChartShapeControls: FC<Props> = ({
     dispatch,
     shape,
     rowsX,
@@ -121,6 +121,3 @@ const ChartShapeControls: FC<Props> = ({
         </SidebarGroup>
     )
 }
-
-
-export default ChartShapeControls

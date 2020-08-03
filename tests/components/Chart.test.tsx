@@ -2,7 +2,7 @@ import React, { createRef, FC } from 'react'
 import { render } from 'react-dom'
 
 import { Album } from '@/types'
-import Chart from '@/components/Chart'
+import { Chart } from '@/components/Chart'
 import { AlbumRowProps } from '@/components/AlbumRow'
 
 import { RenderContainer, ignore } from '../utils'

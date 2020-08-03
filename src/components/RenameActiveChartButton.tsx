@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import { DispatchProps } from '@/reducer'
-import Button from '@/components/Button'
+import { Button } from '@/components/Button'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
 
 
@@ -14,7 +14,7 @@ const style = css({
 })
 
 
-const RenameActiveChartButton: FC<RenameActiveChartButtonProps> = ({ dispatch }) => {
+export const RenameActiveChartButton: FC<RenameActiveChartButtonProps> = ({ dispatch }) => {
     function renameActiveChart() {
         dispatch({ tag: 'PromptToRenameActiveChart' })
     }
@@ -25,6 +25,3 @@ const RenameActiveChartButton: FC<RenameActiveChartButtonProps> = ({ dispatch })
         </Button>
     )
 }
-
-
-export default RenameActiveChartButton

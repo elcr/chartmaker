@@ -3,7 +3,7 @@ import { css } from 'emotion'
 
 import { Album, Size } from '@/types'
 import { DispatchProps } from '@/reducer'
-import ChartAlbumCover, { ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
+import { ChartAlbumCover, ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
 
 
 export type AlbumRowProps = DispatchProps<
@@ -23,7 +23,7 @@ const style = css({
 })
 
 
-const AlbumRow: FC<AlbumRowProps> = ({
+export const AlbumRow: FC<AlbumRowProps> = ({
     dispatch,
     albums,
     size,
@@ -41,6 +41,3 @@ const AlbumRow: FC<AlbumRowProps> = ({
         </div>
     )
 }
-
-
-export default AlbumRow

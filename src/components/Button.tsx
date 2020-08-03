@@ -11,8 +11,5 @@ type Props = {
 }
 
 
-const Button: FC<Props> = ({ className, ...props }) =>
+export const Button: FC<Props> = ({ className, ...props }) =>
     <button {...props} className={cx(buttonStyle, className)}/>
-
-
-export default Button

@@ -12,7 +12,7 @@ type Props = {
 }
 
 
-const ControlledInput: FC<Props> = ({ onChange, ...props }) => {
+export const ControlledInput: FC<Props> = ({ onChange, ...props }) => {
     function controlledOnChange(event: ChangeEvent<HTMLInputElement>) {
         event.preventDefault()
         onChange(event.currentTarget.value)
@@ -22,6 +22,3 @@ const ControlledInput: FC<Props> = ({ onChange, ...props }) => {
         className={inputStyle}
         onChange={controlledOnChange}/>
 }
-
-
-export default ControlledInput

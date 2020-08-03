@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import AlbumActionButton from '@/components/AlbumActionButton'
+import { AlbumActionButton } from '@/components/AlbumActionButton'
 
 import { ignore, fireEvent, RenderContainer } from '../utils'
 

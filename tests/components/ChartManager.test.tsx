@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import ChartManager from '@/components/ChartManager'
+import { ChartManager } from '@/components/ChartManager'
 import { Chart } from '@/types'
 
 import { RenderContainer, ignore } from '../utils'

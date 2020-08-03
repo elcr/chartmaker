@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 
 import { DispatchProps } from '@/reducer'
-import Button from '@/components/Button'
+import { Button } from '@/components/Button'
 
 
 export type NewChartButtonProps = DispatchProps<'PromptForNewChart'>
 
 
-const NewChartButton: FC<NewChartButtonProps> = ({ dispatch }) => {
+export const NewChartButton: FC<NewChartButtonProps> = ({ dispatch }) => {
     function addNewChart() {
         dispatch({ tag: 'PromptForNewChart' })
     }
@@ -18,6 +18,3 @@ const NewChartButton: FC<NewChartButtonProps> = ({ dispatch }) => {
         </Button>
     )
 }
-
-
-export default NewChartButton

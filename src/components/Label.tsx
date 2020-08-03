@@ -14,10 +14,7 @@ const style = css({
 })
 
 
-const Label: FC<Props> = ({ children, target }) =>
+export const Label: FC<Props> = ({ children, target }) =>
     <label className={style} htmlFor={target}>
         {children}
     </label>
-
-
-export default Label

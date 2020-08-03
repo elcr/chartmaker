@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import { Action } from '@/reducer'
-import APIKeyInput from '@/components/APIKeyInput'
+import { APIKeyInput } from '@/components/APIKeyInput'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
 

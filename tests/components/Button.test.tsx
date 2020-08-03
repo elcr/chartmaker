@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import Button from '@/components/Button'
+import { Button } from '@/components/Button'
 
 import { RenderContainer, fireEvent } from '../utils'
 

@@ -10,10 +10,7 @@ const style = css({
 })
 
 
-const TitleGroup: FC = ({ children }) =>
+export const TitleGroup: FC = ({ children }) =>
     <div className={style}>
         {children}
     </div>
-
-
-export default TitleGroup

@@ -14,8 +14,8 @@ import {
     FONT_SIZE,
     CONTAINER_PADDING_SIZE
 } from '@/style'
-import Chart from '@/components/Chart'
-import Sidebar from '@/components/Sidebar'
+import { Chart } from '@/components/Chart'
+import { Sidebar } from '@/components/Sidebar'
 
 
 const rootStyle = css({
@@ -30,7 +30,7 @@ const rootStyle = css({
 })
 
 
-const App: FC = () => {
+export const App: FC = () => {
     const chartRef = useRef<HTMLElement>(null)
     const [ state, dispatch ] = useSideEffectReducer(
         () => loadStateFromLocalStorage() ?? createInitialState(),
@@ -56,6 +56,3 @@ const App: FC = () => {
         </div>
     )
 }
-
-
-export default App

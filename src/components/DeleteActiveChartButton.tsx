@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 
 import { DispatchProps } from '@/reducer'
-import Button from '@/components/Button'
+import { Button } from '@/components/Button'
 
 
 export type DeleteActiveChartButtonProps = DispatchProps<'PromptToDeleteActiveChart'>
 
 
-const DeleteActiveChartButton: FC<DeleteActiveChartButtonProps> = ({ dispatch }) => {
+export const DeleteActiveChartButton: FC<DeleteActiveChartButtonProps> = ({ dispatch }) => {
     function deleteActiveChart() {
         dispatch({ tag: 'PromptToDeleteActiveChart' })
     }
@@ -18,6 +18,3 @@ const DeleteActiveChartButton: FC<DeleteActiveChartButtonProps> = ({ dispatch })
         </Button>
     )
 }
-
-
-export default DeleteActiveChartButton

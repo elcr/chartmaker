@@ -4,8 +4,8 @@ import { css } from 'emotion'
 import { Album, Size } from '@/types'
 import { DispatchProps } from '@/reducer'
 import { ALBUM_BUTTONS_PADDING_SIZE } from '@/style'
-import AlbumCover, { AlbumCoverProps } from '@/components/AlbumCover'
-import AlbumActionButton from '@/components/AlbumActionButton'
+import { AlbumCover, AlbumCoverProps } from '@/components/AlbumCover'
+import { AlbumActionButton } from '@/components/AlbumActionButton'
 
 
 const chartPattern = /^chart-(.+)$/
@@ -63,7 +63,7 @@ export type ChartAlbumCoverProps = DispatchProps<
 }
 
 
-const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
+export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
     dispatch,
     album,
     size,
@@ -141,6 +141,3 @@ const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
         </AlbumCoverComponent>
     )
 }
-
-
-export default ChartAlbumCover

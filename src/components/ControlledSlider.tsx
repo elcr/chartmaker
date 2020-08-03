@@ -2,7 +2,7 @@ import React, { FC, ChangeEvent } from 'react'
 import { css, cx } from 'emotion'
 
 import { inputStyle, SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
-import Label from '@/components/Label'
+import { Label } from '@/components/Label'
 
 
 type Props = {
@@ -27,7 +27,7 @@ const baseInputStyle = css({
 })
 
 
-const ControlledSlider: FC<Props> = ({
+export const ControlledSlider: FC<Props> = ({
     id,
     onChange,
     children,
@@ -59,6 +59,3 @@ const ControlledSlider: FC<Props> = ({
         </div>
     )
 }
-
-
-export default ControlledSlider

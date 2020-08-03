@@ -4,7 +4,7 @@ import { css } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
 import { Album, Size } from '@/types'
-import AlbumCover from '@/components/AlbumCover'
+import { AlbumCover } from '@/components/AlbumCover'
 
 import { ignore, fireEvent, RenderContainer } from '../utils'
 

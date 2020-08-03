@@ -18,8 +18,8 @@ import {
     TINY_ALBUM_SIZE,
     BORDER
 } from '@/style'
-import AlbumRow, { AlbumRowProps } from '@/components/AlbumRow'
-import TitleGroup from '@/components/TitleGroup'
+import { AlbumRow, AlbumRowProps } from '@/components/AlbumRow'
+import { TitleGroup } from '@/components/TitleGroup'
 
 
 type Props = DispatchProps<
@@ -217,7 +217,7 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
 }
 
 
-const Chart: FC<Props> = ({
+export const Chart: FC<Props> = ({
     dispatch,
     albums,
     name,
@@ -279,6 +279,3 @@ const Chart: FC<Props> = ({
         </main>
     )
 }
-
-
-export default Chart

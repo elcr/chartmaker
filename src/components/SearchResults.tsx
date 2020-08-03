@@ -3,8 +3,8 @@ import { css } from 'emotion'
 
 import { NamedAlbum } from '@/types'
 import { LARGE_ALBUM_SIZE } from '@/style'
-import SidebarGroup from '@/components/SidebarGroup'
-import SearchAlbumCover from '@/components/SearchAlbumCover'
+import { SidebarGroup } from '@/components/SidebarGroup'
+import { SearchAlbumCover } from '@/components/SearchAlbumCover'
 
 
 type Props = {
@@ -24,7 +24,7 @@ const groupStyle = css({
 })
 
 
-const SearchResults: FC<Props> = ({ albums }) => {
+export const SearchResults: FC<Props> = ({ albums }) => {
     const albumCovers = albums.map(album =>
         <SearchAlbumCover key={album.id}
             album={album}
@@ -39,6 +39,3 @@ const SearchResults: FC<Props> = ({ albums }) => {
         </SidebarGroup>
     )
 }
-
-
-export default SearchResults

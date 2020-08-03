@@ -4,8 +4,8 @@ import { css } from 'emotion'
 import { DispatchProps } from '@/reducer'
 import { Chart } from '@/types'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
-import Label from '@/components/Label'
-import ControlledSelect from '@/components/ControlledSelect'
+import { Label } from '@/components/Label'
+import { ControlledSelect } from '@/components/ControlledSelect'
 
 
 const id = 'chartSelector'
@@ -24,7 +24,7 @@ const containerStyle = css({
 })
 
 
-const ChartSelector: FC<ChartSelectorProps> = ({ dispatch, charts, activeChartIndex }) => {
+export const ChartSelector: FC<ChartSelectorProps> = ({ dispatch, charts, activeChartIndex }) => {
     function updateActiveChart(index: number) {
         dispatch({
             tag: 'UpdateActiveChart',
@@ -51,6 +51,3 @@ const ChartSelector: FC<ChartSelectorProps> = ({ dispatch, charts, activeChartIn
         </div>
     )
 }
-
-
-export default ChartSelector

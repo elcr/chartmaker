@@ -4,7 +4,7 @@ import { cx } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
 import { Album, Size } from '@/types'
-import ChartAlbumCover, { ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
+import { ChartAlbumCover, ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
 import { AlbumCoverProps } from '@/components/AlbumCover'
 
 import {

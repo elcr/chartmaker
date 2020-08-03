@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 
 import { DispatchProps } from '@/reducer'
-import SidebarGroup from '@/components/SidebarGroup'
-import Label from '@/components/Label'
-import ControlledInput from '@/components/ControlledInput'
+import { SidebarGroup } from '@/components/SidebarGroup'
+import { Label } from '@/components/Label'
+import { ControlledInput } from '@/components/ControlledInput'
 
 
 const id = 'apiKeyInput'
@@ -14,7 +14,7 @@ type Props = DispatchProps<'UpdateAPIKey'> & {
 }
 
 
-const APIKeyInput: FC<Props> = ({ dispatch, apiKey }) => {
+export const APIKeyInput: FC<Props> = ({ dispatch, apiKey }) => {
     function updateAPIKey(apiKey: string) {
         dispatch({
             tag: 'UpdateAPIKey',

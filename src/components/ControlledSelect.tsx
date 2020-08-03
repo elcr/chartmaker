@@ -10,7 +10,7 @@ type Props = {
 }
 
 
-const ControlledSelect: FC<Props> = ({ onChange, ...props }) => {
+export const ControlledSelect: FC<Props> = ({ onChange, ...props }) => {
     function change(event: ChangeEvent<HTMLSelectElement>) {
         event.preventDefault()
         const value = Number(event.currentTarget.value)
@@ -19,6 +19,3 @@ const ControlledSelect: FC<Props> = ({ onChange, ...props }) => {
 
     return <select {...props} className={inputStyle} onInput={change}/>
 }
-
-
-export default ControlledSelect

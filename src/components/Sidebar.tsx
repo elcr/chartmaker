@@ -4,12 +4,12 @@ import { css } from 'emotion'
 import { DispatchProps } from '@/reducer'
 import { Chart, SearchState, ScreenshotState } from '@/types'
 import { SIDEBAR_WIDTH, CONTAINER_PADDING_SIZE } from '@/style'
-import ChartManager from '@/components/ChartManager'
-import APIKeyInput from '@/components/APIKeyInput'
-import ImportExportScreenshotButtons from '@/components/ImportExportScreenshotButtons'
-import SearchBox from '@/components/SearchBox'
-import SearchResults from '@/components/SearchResults'
-import ChartShapeControls from '@/components/ChartShapeControls'
+import { ChartManager } from '@/components/ChartManager'
+import { APIKeyInput } from '@/components/APIKeyInput'
+import { ImportExportScreenshotButtons } from '@/components/ImportExportScreenshotButtons'
+import { SearchBox } from '@/components/SearchBox'
+import { SearchResults } from '@/components/SearchResults'
+import { ChartShapeControls } from '@/components/ChartShapeControls'
 
 
 type Props = DispatchProps<
@@ -46,7 +46,7 @@ const style = css({
 })
 
 
-const Sidebar: FC<Props> = ({
+export const Sidebar: FC<Props> = ({
     dispatch,
     charts,
     activeChartIndex,
@@ -76,6 +76,3 @@ const Sidebar: FC<Props> = ({
         </aside>
     )
 }
-
-
-export default Sidebar

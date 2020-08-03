@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders labelled select 1`] = `
+.emotion-1 {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+.emotion-0 {
+  margin-bottom: 0.25rem;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-2"
+  >
+    <label
+      class="emotion-0"
+      for="chartSelector"
+    >
+      Active chart
+    </label>
+    <select
+      class="emotion-1"
+      id="chartSelector"
+    >
+      <option
+        value="0"
+      >
+        test chart 1
+      </option>
+      <option
+        value="1"
+      >
+        test chart 2
+      </option>
+      <option
+        value="2"
+      >
+        test chart 3
+      </option>
+    </select>
+  </div>
+</div>
+`;

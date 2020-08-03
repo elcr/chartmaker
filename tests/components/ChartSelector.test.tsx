@@ -12,6 +12,10 @@ import {
 } from '../utils'
 
 
+jest.mock('@/components/Label')
+jest.mock('@/components/ControlledSelect')
+
+
 const container = new RenderContainer()
 
 const charts: Chart[] = [

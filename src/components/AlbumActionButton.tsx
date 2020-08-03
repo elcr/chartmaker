@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { css } from 'emotion'
 
 
-type Props = {
+export type AlbumActionButtonProps = {
     onClick: () => void
     title: string
 }
@@ -15,5 +15,5 @@ const style = css({
 })
 
 
-export const AlbumActionButton: FC<Props> = props =>
+export const AlbumActionButton: FC<AlbumActionButtonProps> = props =>
     <button {...props} className={style}/>

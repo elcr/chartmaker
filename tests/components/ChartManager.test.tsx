@@ -11,6 +11,7 @@ jest.mock('@/components/ChartSelector')
 jest.mock('@/components/NewChartButton')
 jest.mock('@/components/RenameActiveChartButton')
 jest.mock('@/components/DeleteActiveChartButton')
+jest.mock('@/components/SidebarGroup')
 
 
 const container = new RenderContainer()

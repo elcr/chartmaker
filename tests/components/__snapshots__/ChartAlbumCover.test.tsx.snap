@@ -31,12 +31,6 @@ exports[`renders album cover for placeholder album 1`] = `
 
 exports[`renders album cover with overlay buttons for named album 1`] = `
 .emotion-0 {
-  background: none;
-  border: 0;
-  padding: 0;
-}
-
-.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -56,22 +50,22 @@ exports[`renders album cover with overlay buttons for named album 1`] = `
   id="test-render-container"
 >
   <div
-    class="mock-album-cover emotion-2"
+    class="mock-album-cover emotion-0"
   >
     Album: {"placeholder":false,"id":456,"name":"Test named album","url":"https://test.com"}
     Size: 3rem
-    <button
-      class="emotion-0"
+    <div
+      class="mock-album-action-button"
       title="Rename"
     >
       ✏️
-    </button>
-    <button
-      class="emotion-0"
+    </div>
+    <div
+      class="mock-album-action-button"
       title="Delete"
     >
       🗑️
-    </button>
+    </div>
   </div>
 </div>
 `;

@@ -1,12 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders chart selector and buttons 1`] = `
-.emotion-1:not(:last-of-type) {
-  border-bottom: 1px solid white;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-}
-
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -18,7 +12,7 @@ exports[`renders chart selector and buttons 1`] = `
   id="test-render-container"
 >
   <div
-    class="emotion-1"
+    class="mock-sidebar-group"
   >
     <div
       class="mock-chart-selector"

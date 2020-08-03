@@ -3,9 +3,14 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import { ActionWithTag } from '@/reducer'
-import { APIKeyInput } from '@/components/APIKeyInput'
+import { APIKeyInput, id } from '@/components/APIKeyInput'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
+
+
+jest.mock('@/components/SidebarGroup')
+jest.mock('@/components/Label')
+jest.mock('@/components/ControlledInput')
 
 
 const container = new RenderContainer()
@@ -30,7 +35,7 @@ test('dispatches action on input change', () => {
     act(() =>
         fireEvent(
             'change',
-            container.element?.querySelector('input'),
+            container.element?.querySelector(`#${id}`),
             { target: { value: 'test new api key' } }
         )
     )

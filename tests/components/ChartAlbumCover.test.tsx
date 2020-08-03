@@ -14,6 +14,7 @@ import {
 
 
 jest.mock('@/components/AlbumCover')
+jest.mock('@/components/AlbumActionButton')
 
 
 const container = new RenderContainer()
@@ -70,10 +71,12 @@ test('clicking rename button dispatches action', () => {
         container.element
     )
 
-    act(() => {
-        const button = container.element?.querySelector('button[title="Rename"]')
-        fireEvent('click', button)
-    })
+    act(() =>
+        fireEvent(
+            'click',
+            container.element?.querySelector('[title="Rename"]')
+        )
+    )
 
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith<ActionParams>({
@@ -93,10 +96,12 @@ test('clicking delete button dispatches action', () => {
         container.element
     )
 
-    act(() => {
-        const button = container.element?.querySelector('button[title="Delete"]')
-        fireEvent('click', button)
-    })
+    act(() =>
+        fireEvent(
+            'click',
+            container.element?.querySelector('[title="Delete"]')
+        )
+    )
 
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith<ActionParams>({

@@ -6,7 +6,7 @@ import { Label } from '@/components/Label'
 import { ControlledInput } from '@/components/ControlledInput'
 
 
-const id = 'apiKeyInput'
+export const id = 'apiKeyInput'
 
 
 type Props = DispatchProps<'UpdateAPIKey'> & {

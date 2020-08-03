@@ -3,7 +3,7 @@ import React, { FC, ChangeEvent } from 'react'
 import { inputStyle } from '@/style'
 
 
-type Props = {
+export type ControlledInputProps = {
     id: string
     type?: 'text' | 'password'
     value: string
@@ -12,7 +12,7 @@ type Props = {
 }
 
 
-export const ControlledInput: FC<Props> = ({ onChange, ...props }) => {
+export const ControlledInput: FC<ControlledInputProps> = ({ onChange, ...props }) => {
     function controlledOnChange(event: ChangeEvent<HTMLInputElement>) {
         event.preventDefault()
         onChange(event.target.value)

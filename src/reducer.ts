@@ -117,10 +117,10 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                 for (let index = 0; index < state.charts.length; index++) {
                     const chart = state.charts[index]
                     if (chart.name === name) {
-                        if (index === state.activeChartIndex) {
-                            return
+                        if (index !== state.activeChartIndex) {
+                            dispatch({ tag: 'ShowChartNameTakenMessage' })
                         }
-                        dispatch({ tag: 'ShowChartNameTakenMessage' })
+                        return
                     }
                 }
                 dispatch({ tag: 'RenameActiveChart', name })

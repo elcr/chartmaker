@@ -9,7 +9,6 @@ import {
 
 import { createChart, escapeStateForExport, } from '@/state'
 import {
-    readFileText,
     findIndex,
     elementToDataURI,
     downloadURI,
@@ -179,7 +178,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         case 'ImportStateFile':
             return sideEffect(async dispatch => {
                 try {
-                    const json = await readFileText(action.file)
+                    const json = await action.file.text()
                     const parsed: unknown = JSON.parse(json)
                     const state = State.check(parsed)
                     dispatch({ tag: 'LoadState', state })

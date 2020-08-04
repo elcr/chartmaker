@@ -4,7 +4,7 @@ import { render } from 'react-dom'
 import { SearchState, Chart } from '@/types'
 import { Sidebar } from '@/components/Sidebar'
 
-import { RenderContainer, ignore, namedAlbums } from '../utils'
+import { RenderContainer, ignore, createTestNamedAlbums } from '../utils'
 
 
 jest.mock('@/components/ChartManager')
@@ -42,7 +42,7 @@ test.each<SearchState>([
     {
         tag: 'Complete',
         query: 'Test query',
-        albums: namedAlbums(5)
+        albums: createTestNamedAlbums(5)
     },
 ])('renders groups with no search results unless complete and album present', searchState => {
     const charts: Chart[] = [

@@ -4,7 +4,7 @@ import util from 'util'
 import { unmountComponentAtNode } from 'react-dom'
 import { Simulate } from 'react-dom/test-utils'
 
-import { NamedAlbum, PlaceholderAlbum } from '@/types'
+import { NamedAlbum, PlaceholderAlbum, State, Chart } from '@/types'
 
 
 export function fireEvent(
@@ -74,7 +74,7 @@ export class RenderContainer {
 export const readFile = util.promisify(fs.readFile)
 
 
-export function namedAlbums(count: number, start = 1): NamedAlbum[] {
+export function createTestNamedAlbums(count: number, start = 1): NamedAlbum[] {
     const albums: NamedAlbum[] = []
     for (let index = start; index < count + 1; index++) {
         albums.push({
@@ -88,7 +88,7 @@ export function namedAlbums(count: number, start = 1): NamedAlbum[] {
 }
 
 
-export function placeholderAlbums(count: number, start = 1): PlaceholderAlbum[] {
+export function createTestPlaceholderAlbums(count: number, start = 1): PlaceholderAlbum[] {
     const albums: PlaceholderAlbum[] = []
     for (let index = start; index < count + 1; index++) {
         albums.push({
@@ -97,4 +97,49 @@ export function placeholderAlbums(count: number, start = 1): PlaceholderAlbum[] 
         })
     }
     return albums
+}
+
+
+export function createTestChart(albums = 100): Chart {
+    return {
+        name: 'Test chart',
+        albums: createTestPlaceholderAlbums(albums),
+        rowsX: 10,
+        rowsY: 10,
+        shape: { tag: 'Top', size: 40 }
+    }
+}
+
+
+export function createTestState(): State {
+    return {
+        charts: [ createTestChart() ],
+        activeChartIndex: 0,
+        albumIDCounter: 100,
+        apiKey: 'Test API key',
+        screenshot: {
+            loading: false,
+            scale: 2
+        },
+        search: {
+            tag: 'Waiting',
+            query: 'Test query'
+        }
+    }
+}
+
+
+export function createTestStateForEscaping(): State {
+    return {
+        ...createTestState(),
+        search: {
+            tag: 'Error',
+            query: 'Test query',
+            message: 'Test error message'
+        },
+        screenshot: {
+            loading: true,
+            scale: 2
+        }
+    }
 }

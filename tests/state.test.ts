@@ -5,10 +5,13 @@ import {
     escapeStateForExport,
     saveStateToLocalStorage
 } from '@/state'
-import { State } from '@/types'
 import { LOCAL_STORAGE_KEY } from '@/constants'
 
-import { placeholderAlbums, ignore } from './utils'
+import {
+    createTestState,
+    createTestStateForEscaping,
+    ignore
+} from './utils'
 
 
 describe('createChart', () => {
@@ -33,48 +36,6 @@ test('createInitialState', () => {
     const state = createInitialState()
     expect(state).toMatchSnapshot()
 })
-
-
-function createTestState(): State {
-    return {
-        charts: [
-            {
-                name: 'Test chart',
-                albums: placeholderAlbums(100),
-                rowsX: 10,
-                rowsY: 10,
-                shape: { tag: 'Top', size: 40 }
-            }
-        ],
-        activeChartIndex: 0,
-        albumIDCounter: 100,
-        apiKey: 'Test API key',
-        screenshot: {
-            loading: false,
-            scale: 2
-        },
-        search: {
-            tag: 'Waiting',
-            query: 'Test query'
-        }
-    }
-}
-
-
-function createTestStateForEscaping(): State {
-    return {
-        ...createTestState(),
-        search: {
-            tag: 'Error',
-            query: 'Test query',
-            message: 'Test error message'
-        },
-        screenshot: {
-            loading: true,
-            scale: 2
-        }
-    }
-}
 
 
 describe('loadStateFromLocalStorage', () => {

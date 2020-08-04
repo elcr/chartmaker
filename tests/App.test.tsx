@@ -4,7 +4,7 @@ import { render } from 'react-dom'
 import { State } from '@/types'
 import { App } from '@/App'
 
-import { RenderContainer, placeholderAlbums, namedAlbums } from './utils'
+import { RenderContainer, createTestPlaceholderAlbums, createTestNamedAlbums } from './utils'
 
 
 jest.mock('@/components/Sidebar')
@@ -20,14 +20,14 @@ const localStorageMock = jest.spyOn(Storage.prototype, 'getItem')
                     rowsX: 10,
                     rowsY: 10,
                     shape: { tag: 'Top', size: 40 },
-                    albums: placeholderAlbums(10)
+                    albums: createTestPlaceholderAlbums(10)
                 },
                 {
                     name: 'Test chart 2',
                     rowsX: 3,
                     rowsY: 3,
                     shape: { tag: 'Collage' },
-                    albums: placeholderAlbums(10, 10)
+                    albums: createTestPlaceholderAlbums(10, 10)
                 }
             ],
             apiKey: 'Test api key',
@@ -38,7 +38,7 @@ const localStorageMock = jest.spyOn(Storage.prototype, 'getItem')
             search: {
                 tag: 'Complete',
                 query: 'Test search query',
-                albums: namedAlbums(5, 20)
+                albums: createTestNamedAlbums(5, 20)
             },
             activeChartIndex: 1,
             albumIDCounter: 25

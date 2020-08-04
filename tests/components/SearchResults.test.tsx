@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 
 import { SearchResults } from '@/components/SearchResults'
 
-import { RenderContainer, namedAlbums } from '../utils'
+import { RenderContainer, createTestNamedAlbums } from '../utils'
 
 
 jest.mock('@/components/SidebarGroup')
@@ -15,7 +15,7 @@ const container = new RenderContainer()
 
 test('renders album covers', () => {
     render(
-        <SearchResults albums={namedAlbums(5)}/>,
+        <SearchResults albums={createTestNamedAlbums(5)}/>,
         container.element
     )
 

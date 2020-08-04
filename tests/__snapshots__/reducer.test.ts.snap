@@ -1,0 +1,3143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddNewChart 1`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 1,
+    "albumIDCounter": 200,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+          Object {
+            "id": 4,
+            "placeholder": true,
+          },
+          Object {
+            "id": 5,
+            "placeholder": true,
+          },
+          Object {
+            "id": 6,
+            "placeholder": true,
+          },
+          Object {
+            "id": 7,
+            "placeholder": true,
+          },
+          Object {
+            "id": 8,
+            "placeholder": true,
+          },
+          Object {
+            "id": 9,
+            "placeholder": true,
+          },
+          Object {
+            "id": 10,
+            "placeholder": true,
+          },
+          Object {
+            "id": 11,
+            "placeholder": true,
+          },
+          Object {
+            "id": 12,
+            "placeholder": true,
+          },
+          Object {
+            "id": 13,
+            "placeholder": true,
+          },
+          Object {
+            "id": 14,
+            "placeholder": true,
+          },
+          Object {
+            "id": 15,
+            "placeholder": true,
+          },
+          Object {
+            "id": 16,
+            "placeholder": true,
+          },
+          Object {
+            "id": 17,
+            "placeholder": true,
+          },
+          Object {
+            "id": 18,
+            "placeholder": true,
+          },
+          Object {
+            "id": 19,
+            "placeholder": true,
+          },
+          Object {
+            "id": 20,
+            "placeholder": true,
+          },
+          Object {
+            "id": 21,
+            "placeholder": true,
+          },
+          Object {
+            "id": 22,
+            "placeholder": true,
+          },
+          Object {
+            "id": 23,
+            "placeholder": true,
+          },
+          Object {
+            "id": 24,
+            "placeholder": true,
+          },
+          Object {
+            "id": 25,
+            "placeholder": true,
+          },
+          Object {
+            "id": 26,
+            "placeholder": true,
+          },
+          Object {
+            "id": 27,
+            "placeholder": true,
+          },
+          Object {
+            "id": 28,
+            "placeholder": true,
+          },
+          Object {
+            "id": 29,
+            "placeholder": true,
+          },
+          Object {
+            "id": 30,
+            "placeholder": true,
+          },
+          Object {
+            "id": 31,
+            "placeholder": true,
+          },
+          Object {
+            "id": 32,
+            "placeholder": true,
+          },
+          Object {
+            "id": 33,
+            "placeholder": true,
+          },
+          Object {
+            "id": 34,
+            "placeholder": true,
+          },
+          Object {
+            "id": 35,
+            "placeholder": true,
+          },
+          Object {
+            "id": 36,
+            "placeholder": true,
+          },
+          Object {
+            "id": 37,
+            "placeholder": true,
+          },
+          Object {
+            "id": 38,
+            "placeholder": true,
+          },
+          Object {
+            "id": 39,
+            "placeholder": true,
+          },
+          Object {
+            "id": 40,
+            "placeholder": true,
+          },
+          Object {
+            "id": 41,
+            "placeholder": true,
+          },
+          Object {
+            "id": 42,
+            "placeholder": true,
+          },
+          Object {
+            "id": 43,
+            "placeholder": true,
+          },
+          Object {
+            "id": 44,
+            "placeholder": true,
+          },
+          Object {
+            "id": 45,
+            "placeholder": true,
+          },
+          Object {
+            "id": 46,
+            "placeholder": true,
+          },
+          Object {
+            "id": 47,
+            "placeholder": true,
+          },
+          Object {
+            "id": 48,
+            "placeholder": true,
+          },
+          Object {
+            "id": 49,
+            "placeholder": true,
+          },
+          Object {
+            "id": 50,
+            "placeholder": true,
+          },
+          Object {
+            "id": 51,
+            "placeholder": true,
+          },
+          Object {
+            "id": 52,
+            "placeholder": true,
+          },
+          Object {
+            "id": 53,
+            "placeholder": true,
+          },
+          Object {
+            "id": 54,
+            "placeholder": true,
+          },
+          Object {
+            "id": 55,
+            "placeholder": true,
+          },
+          Object {
+            "id": 56,
+            "placeholder": true,
+          },
+          Object {
+            "id": 57,
+            "placeholder": true,
+          },
+          Object {
+            "id": 58,
+            "placeholder": true,
+          },
+          Object {
+            "id": 59,
+            "placeholder": true,
+          },
+          Object {
+            "id": 60,
+            "placeholder": true,
+          },
+          Object {
+            "id": 61,
+            "placeholder": true,
+          },
+          Object {
+            "id": 62,
+            "placeholder": true,
+          },
+          Object {
+            "id": 63,
+            "placeholder": true,
+          },
+          Object {
+            "id": 64,
+            "placeholder": true,
+          },
+          Object {
+            "id": 65,
+            "placeholder": true,
+          },
+          Object {
+            "id": 66,
+            "placeholder": true,
+          },
+          Object {
+            "id": 67,
+            "placeholder": true,
+          },
+          Object {
+            "id": 68,
+            "placeholder": true,
+          },
+          Object {
+            "id": 69,
+            "placeholder": true,
+          },
+          Object {
+            "id": 70,
+            "placeholder": true,
+          },
+          Object {
+            "id": 71,
+            "placeholder": true,
+          },
+          Object {
+            "id": 72,
+            "placeholder": true,
+          },
+          Object {
+            "id": 73,
+            "placeholder": true,
+          },
+          Object {
+            "id": 74,
+            "placeholder": true,
+          },
+          Object {
+            "id": 75,
+            "placeholder": true,
+          },
+          Object {
+            "id": 76,
+            "placeholder": true,
+          },
+          Object {
+            "id": 77,
+            "placeholder": true,
+          },
+          Object {
+            "id": 78,
+            "placeholder": true,
+          },
+          Object {
+            "id": 79,
+            "placeholder": true,
+          },
+          Object {
+            "id": 80,
+            "placeholder": true,
+          },
+          Object {
+            "id": 81,
+            "placeholder": true,
+          },
+          Object {
+            "id": 82,
+            "placeholder": true,
+          },
+          Object {
+            "id": 83,
+            "placeholder": true,
+          },
+          Object {
+            "id": 84,
+            "placeholder": true,
+          },
+          Object {
+            "id": 85,
+            "placeholder": true,
+          },
+          Object {
+            "id": 86,
+            "placeholder": true,
+          },
+          Object {
+            "id": 87,
+            "placeholder": true,
+          },
+          Object {
+            "id": 88,
+            "placeholder": true,
+          },
+          Object {
+            "id": 89,
+            "placeholder": true,
+          },
+          Object {
+            "id": 90,
+            "placeholder": true,
+          },
+          Object {
+            "id": 91,
+            "placeholder": true,
+          },
+          Object {
+            "id": 92,
+            "placeholder": true,
+          },
+          Object {
+            "id": 93,
+            "placeholder": true,
+          },
+          Object {
+            "id": 94,
+            "placeholder": true,
+          },
+          Object {
+            "id": 95,
+            "placeholder": true,
+          },
+          Object {
+            "id": 96,
+            "placeholder": true,
+          },
+          Object {
+            "id": 97,
+            "placeholder": true,
+          },
+          Object {
+            "id": 98,
+            "placeholder": true,
+          },
+          Object {
+            "id": 99,
+            "placeholder": true,
+          },
+          Object {
+            "id": 100,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+      Object {
+        "albums": Array [
+          Object {
+            "id": 101,
+            "placeholder": true,
+          },
+          Object {
+            "id": 102,
+            "placeholder": true,
+          },
+          Object {
+            "id": 103,
+            "placeholder": true,
+          },
+          Object {
+            "id": 104,
+            "placeholder": true,
+          },
+          Object {
+            "id": 105,
+            "placeholder": true,
+          },
+          Object {
+            "id": 106,
+            "placeholder": true,
+          },
+          Object {
+            "id": 107,
+            "placeholder": true,
+          },
+          Object {
+            "id": 108,
+            "placeholder": true,
+          },
+          Object {
+            "id": 109,
+            "placeholder": true,
+          },
+          Object {
+            "id": 110,
+            "placeholder": true,
+          },
+          Object {
+            "id": 111,
+            "placeholder": true,
+          },
+          Object {
+            "id": 112,
+            "placeholder": true,
+          },
+          Object {
+            "id": 113,
+            "placeholder": true,
+          },
+          Object {
+            "id": 114,
+            "placeholder": true,
+          },
+          Object {
+            "id": 115,
+            "placeholder": true,
+          },
+          Object {
+            "id": 116,
+            "placeholder": true,
+          },
+          Object {
+            "id": 117,
+            "placeholder": true,
+          },
+          Object {
+            "id": 118,
+            "placeholder": true,
+          },
+          Object {
+            "id": 119,
+            "placeholder": true,
+          },
+          Object {
+            "id": 120,
+            "placeholder": true,
+          },
+          Object {
+            "id": 121,
+            "placeholder": true,
+          },
+          Object {
+            "id": 122,
+            "placeholder": true,
+          },
+          Object {
+            "id": 123,
+            "placeholder": true,
+          },
+          Object {
+            "id": 124,
+            "placeholder": true,
+          },
+          Object {
+            "id": 125,
+            "placeholder": true,
+          },
+          Object {
+            "id": 126,
+            "placeholder": true,
+          },
+          Object {
+            "id": 127,
+            "placeholder": true,
+          },
+          Object {
+            "id": 128,
+            "placeholder": true,
+          },
+          Object {
+            "id": 129,
+            "placeholder": true,
+          },
+          Object {
+            "id": 130,
+            "placeholder": true,
+          },
+          Object {
+            "id": 131,
+            "placeholder": true,
+          },
+          Object {
+            "id": 132,
+            "placeholder": true,
+          },
+          Object {
+            "id": 133,
+            "placeholder": true,
+          },
+          Object {
+            "id": 134,
+            "placeholder": true,
+          },
+          Object {
+            "id": 135,
+            "placeholder": true,
+          },
+          Object {
+            "id": 136,
+            "placeholder": true,
+          },
+          Object {
+            "id": 137,
+            "placeholder": true,
+          },
+          Object {
+            "id": 138,
+            "placeholder": true,
+          },
+          Object {
+            "id": 139,
+            "placeholder": true,
+          },
+          Object {
+            "id": 140,
+            "placeholder": true,
+          },
+          Object {
+            "id": 141,
+            "placeholder": true,
+          },
+          Object {
+            "id": 142,
+            "placeholder": true,
+          },
+          Object {
+            "id": 143,
+            "placeholder": true,
+          },
+          Object {
+            "id": 144,
+            "placeholder": true,
+          },
+          Object {
+            "id": 145,
+            "placeholder": true,
+          },
+          Object {
+            "id": 146,
+            "placeholder": true,
+          },
+          Object {
+            "id": 147,
+            "placeholder": true,
+          },
+          Object {
+            "id": 148,
+            "placeholder": true,
+          },
+          Object {
+            "id": 149,
+            "placeholder": true,
+          },
+          Object {
+            "id": 150,
+            "placeholder": true,
+          },
+          Object {
+            "id": 151,
+            "placeholder": true,
+          },
+          Object {
+            "id": 152,
+            "placeholder": true,
+          },
+          Object {
+            "id": 153,
+            "placeholder": true,
+          },
+          Object {
+            "id": 154,
+            "placeholder": true,
+          },
+          Object {
+            "id": 155,
+            "placeholder": true,
+          },
+          Object {
+            "id": 156,
+            "placeholder": true,
+          },
+          Object {
+            "id": 157,
+            "placeholder": true,
+          },
+          Object {
+            "id": 158,
+            "placeholder": true,
+          },
+          Object {
+            "id": 159,
+            "placeholder": true,
+          },
+          Object {
+            "id": 160,
+            "placeholder": true,
+          },
+          Object {
+            "id": 161,
+            "placeholder": true,
+          },
+          Object {
+            "id": 162,
+            "placeholder": true,
+          },
+          Object {
+            "id": 163,
+            "placeholder": true,
+          },
+          Object {
+            "id": 164,
+            "placeholder": true,
+          },
+          Object {
+            "id": 165,
+            "placeholder": true,
+          },
+          Object {
+            "id": 166,
+            "placeholder": true,
+          },
+          Object {
+            "id": 167,
+            "placeholder": true,
+          },
+          Object {
+            "id": 168,
+            "placeholder": true,
+          },
+          Object {
+            "id": 169,
+            "placeholder": true,
+          },
+          Object {
+            "id": 170,
+            "placeholder": true,
+          },
+          Object {
+            "id": 171,
+            "placeholder": true,
+          },
+          Object {
+            "id": 172,
+            "placeholder": true,
+          },
+          Object {
+            "id": 173,
+            "placeholder": true,
+          },
+          Object {
+            "id": 174,
+            "placeholder": true,
+          },
+          Object {
+            "id": 175,
+            "placeholder": true,
+          },
+          Object {
+            "id": 176,
+            "placeholder": true,
+          },
+          Object {
+            "id": 177,
+            "placeholder": true,
+          },
+          Object {
+            "id": 178,
+            "placeholder": true,
+          },
+          Object {
+            "id": 179,
+            "placeholder": true,
+          },
+          Object {
+            "id": 180,
+            "placeholder": true,
+          },
+          Object {
+            "id": 181,
+            "placeholder": true,
+          },
+          Object {
+            "id": 182,
+            "placeholder": true,
+          },
+          Object {
+            "id": 183,
+            "placeholder": true,
+          },
+          Object {
+            "id": 184,
+            "placeholder": true,
+          },
+          Object {
+            "id": 185,
+            "placeholder": true,
+          },
+          Object {
+            "id": 186,
+            "placeholder": true,
+          },
+          Object {
+            "id": 187,
+            "placeholder": true,
+          },
+          Object {
+            "id": 188,
+            "placeholder": true,
+          },
+          Object {
+            "id": 189,
+            "placeholder": true,
+          },
+          Object {
+            "id": 190,
+            "placeholder": true,
+          },
+          Object {
+            "id": 191,
+            "placeholder": true,
+          },
+          Object {
+            "id": 192,
+            "placeholder": true,
+          },
+          Object {
+            "id": 193,
+            "placeholder": true,
+          },
+          Object {
+            "id": 194,
+            "placeholder": true,
+          },
+          Object {
+            "id": 195,
+            "placeholder": true,
+          },
+          Object {
+            "id": 196,
+            "placeholder": true,
+          },
+          Object {
+            "id": 197,
+            "placeholder": true,
+          },
+          Object {
+            "id": 198,
+            "placeholder": true,
+          },
+          Object {
+            "id": 199,
+            "placeholder": true,
+          },
+          Object {
+            "id": 200,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test new chart",
+        "rowsX": 5,
+        "rowsY": 5,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`PromptForNewChart cancelling the prompt dispatches nothing 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptForNewChart entering name of existing chart dispatches name taken action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptForNewChart entering nothing in the prompt dispatches nothing 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptForNewChart entering unique name dispatches new chart action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameActiveChart cancelling the prompt dispatches nothing 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameActiveChart entering name of other existing chart dispatches name taken action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameActiveChart entering nothing in the prompt dispatches nothing 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameActiveChart entering the same name as active chart in the prompt dispatches nothing 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameActiveChart entering unique name dispatches rename action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`RenameActiveChart 1`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 100,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+          Object {
+            "id": 4,
+            "placeholder": true,
+          },
+          Object {
+            "id": 5,
+            "placeholder": true,
+          },
+          Object {
+            "id": 6,
+            "placeholder": true,
+          },
+          Object {
+            "id": 7,
+            "placeholder": true,
+          },
+          Object {
+            "id": 8,
+            "placeholder": true,
+          },
+          Object {
+            "id": 9,
+            "placeholder": true,
+          },
+          Object {
+            "id": 10,
+            "placeholder": true,
+          },
+          Object {
+            "id": 11,
+            "placeholder": true,
+          },
+          Object {
+            "id": 12,
+            "placeholder": true,
+          },
+          Object {
+            "id": 13,
+            "placeholder": true,
+          },
+          Object {
+            "id": 14,
+            "placeholder": true,
+          },
+          Object {
+            "id": 15,
+            "placeholder": true,
+          },
+          Object {
+            "id": 16,
+            "placeholder": true,
+          },
+          Object {
+            "id": 17,
+            "placeholder": true,
+          },
+          Object {
+            "id": 18,
+            "placeholder": true,
+          },
+          Object {
+            "id": 19,
+            "placeholder": true,
+          },
+          Object {
+            "id": 20,
+            "placeholder": true,
+          },
+          Object {
+            "id": 21,
+            "placeholder": true,
+          },
+          Object {
+            "id": 22,
+            "placeholder": true,
+          },
+          Object {
+            "id": 23,
+            "placeholder": true,
+          },
+          Object {
+            "id": 24,
+            "placeholder": true,
+          },
+          Object {
+            "id": 25,
+            "placeholder": true,
+          },
+          Object {
+            "id": 26,
+            "placeholder": true,
+          },
+          Object {
+            "id": 27,
+            "placeholder": true,
+          },
+          Object {
+            "id": 28,
+            "placeholder": true,
+          },
+          Object {
+            "id": 29,
+            "placeholder": true,
+          },
+          Object {
+            "id": 30,
+            "placeholder": true,
+          },
+          Object {
+            "id": 31,
+            "placeholder": true,
+          },
+          Object {
+            "id": 32,
+            "placeholder": true,
+          },
+          Object {
+            "id": 33,
+            "placeholder": true,
+          },
+          Object {
+            "id": 34,
+            "placeholder": true,
+          },
+          Object {
+            "id": 35,
+            "placeholder": true,
+          },
+          Object {
+            "id": 36,
+            "placeholder": true,
+          },
+          Object {
+            "id": 37,
+            "placeholder": true,
+          },
+          Object {
+            "id": 38,
+            "placeholder": true,
+          },
+          Object {
+            "id": 39,
+            "placeholder": true,
+          },
+          Object {
+            "id": 40,
+            "placeholder": true,
+          },
+          Object {
+            "id": 41,
+            "placeholder": true,
+          },
+          Object {
+            "id": 42,
+            "placeholder": true,
+          },
+          Object {
+            "id": 43,
+            "placeholder": true,
+          },
+          Object {
+            "id": 44,
+            "placeholder": true,
+          },
+          Object {
+            "id": 45,
+            "placeholder": true,
+          },
+          Object {
+            "id": 46,
+            "placeholder": true,
+          },
+          Object {
+            "id": 47,
+            "placeholder": true,
+          },
+          Object {
+            "id": 48,
+            "placeholder": true,
+          },
+          Object {
+            "id": 49,
+            "placeholder": true,
+          },
+          Object {
+            "id": 50,
+            "placeholder": true,
+          },
+          Object {
+            "id": 51,
+            "placeholder": true,
+          },
+          Object {
+            "id": 52,
+            "placeholder": true,
+          },
+          Object {
+            "id": 53,
+            "placeholder": true,
+          },
+          Object {
+            "id": 54,
+            "placeholder": true,
+          },
+          Object {
+            "id": 55,
+            "placeholder": true,
+          },
+          Object {
+            "id": 56,
+            "placeholder": true,
+          },
+          Object {
+            "id": 57,
+            "placeholder": true,
+          },
+          Object {
+            "id": 58,
+            "placeholder": true,
+          },
+          Object {
+            "id": 59,
+            "placeholder": true,
+          },
+          Object {
+            "id": 60,
+            "placeholder": true,
+          },
+          Object {
+            "id": 61,
+            "placeholder": true,
+          },
+          Object {
+            "id": 62,
+            "placeholder": true,
+          },
+          Object {
+            "id": 63,
+            "placeholder": true,
+          },
+          Object {
+            "id": 64,
+            "placeholder": true,
+          },
+          Object {
+            "id": 65,
+            "placeholder": true,
+          },
+          Object {
+            "id": 66,
+            "placeholder": true,
+          },
+          Object {
+            "id": 67,
+            "placeholder": true,
+          },
+          Object {
+            "id": 68,
+            "placeholder": true,
+          },
+          Object {
+            "id": 69,
+            "placeholder": true,
+          },
+          Object {
+            "id": 70,
+            "placeholder": true,
+          },
+          Object {
+            "id": 71,
+            "placeholder": true,
+          },
+          Object {
+            "id": 72,
+            "placeholder": true,
+          },
+          Object {
+            "id": 73,
+            "placeholder": true,
+          },
+          Object {
+            "id": 74,
+            "placeholder": true,
+          },
+          Object {
+            "id": 75,
+            "placeholder": true,
+          },
+          Object {
+            "id": 76,
+            "placeholder": true,
+          },
+          Object {
+            "id": 77,
+            "placeholder": true,
+          },
+          Object {
+            "id": 78,
+            "placeholder": true,
+          },
+          Object {
+            "id": 79,
+            "placeholder": true,
+          },
+          Object {
+            "id": 80,
+            "placeholder": true,
+          },
+          Object {
+            "id": 81,
+            "placeholder": true,
+          },
+          Object {
+            "id": 82,
+            "placeholder": true,
+          },
+          Object {
+            "id": 83,
+            "placeholder": true,
+          },
+          Object {
+            "id": 84,
+            "placeholder": true,
+          },
+          Object {
+            "id": 85,
+            "placeholder": true,
+          },
+          Object {
+            "id": 86,
+            "placeholder": true,
+          },
+          Object {
+            "id": 87,
+            "placeholder": true,
+          },
+          Object {
+            "id": 88,
+            "placeholder": true,
+          },
+          Object {
+            "id": 89,
+            "placeholder": true,
+          },
+          Object {
+            "id": 90,
+            "placeholder": true,
+          },
+          Object {
+            "id": 91,
+            "placeholder": true,
+          },
+          Object {
+            "id": 92,
+            "placeholder": true,
+          },
+          Object {
+            "id": 93,
+            "placeholder": true,
+          },
+          Object {
+            "id": 94,
+            "placeholder": true,
+          },
+          Object {
+            "id": 95,
+            "placeholder": true,
+          },
+          Object {
+            "id": 96,
+            "placeholder": true,
+          },
+          Object {
+            "id": 97,
+            "placeholder": true,
+          },
+          Object {
+            "id": 98,
+            "placeholder": true,
+          },
+          Object {
+            "id": 99,
+            "placeholder": true,
+          },
+          Object {
+            "id": 100,
+            "placeholder": true,
+          },
+        ],
+        "name": "Renamed test chart",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`RenameActiveChart 2`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 100,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+          Object {
+            "id": 4,
+            "placeholder": true,
+          },
+          Object {
+            "id": 5,
+            "placeholder": true,
+          },
+          Object {
+            "id": 6,
+            "placeholder": true,
+          },
+          Object {
+            "id": 7,
+            "placeholder": true,
+          },
+          Object {
+            "id": 8,
+            "placeholder": true,
+          },
+          Object {
+            "id": 9,
+            "placeholder": true,
+          },
+          Object {
+            "id": 10,
+            "placeholder": true,
+          },
+          Object {
+            "id": 11,
+            "placeholder": true,
+          },
+          Object {
+            "id": 12,
+            "placeholder": true,
+          },
+          Object {
+            "id": 13,
+            "placeholder": true,
+          },
+          Object {
+            "id": 14,
+            "placeholder": true,
+          },
+          Object {
+            "id": 15,
+            "placeholder": true,
+          },
+          Object {
+            "id": 16,
+            "placeholder": true,
+          },
+          Object {
+            "id": 17,
+            "placeholder": true,
+          },
+          Object {
+            "id": 18,
+            "placeholder": true,
+          },
+          Object {
+            "id": 19,
+            "placeholder": true,
+          },
+          Object {
+            "id": 20,
+            "placeholder": true,
+          },
+          Object {
+            "id": 21,
+            "placeholder": true,
+          },
+          Object {
+            "id": 22,
+            "placeholder": true,
+          },
+          Object {
+            "id": 23,
+            "placeholder": true,
+          },
+          Object {
+            "id": 24,
+            "placeholder": true,
+          },
+          Object {
+            "id": 25,
+            "placeholder": true,
+          },
+          Object {
+            "id": 26,
+            "placeholder": true,
+          },
+          Object {
+            "id": 27,
+            "placeholder": true,
+          },
+          Object {
+            "id": 28,
+            "placeholder": true,
+          },
+          Object {
+            "id": 29,
+            "placeholder": true,
+          },
+          Object {
+            "id": 30,
+            "placeholder": true,
+          },
+          Object {
+            "id": 31,
+            "placeholder": true,
+          },
+          Object {
+            "id": 32,
+            "placeholder": true,
+          },
+          Object {
+            "id": 33,
+            "placeholder": true,
+          },
+          Object {
+            "id": 34,
+            "placeholder": true,
+          },
+          Object {
+            "id": 35,
+            "placeholder": true,
+          },
+          Object {
+            "id": 36,
+            "placeholder": true,
+          },
+          Object {
+            "id": 37,
+            "placeholder": true,
+          },
+          Object {
+            "id": 38,
+            "placeholder": true,
+          },
+          Object {
+            "id": 39,
+            "placeholder": true,
+          },
+          Object {
+            "id": 40,
+            "placeholder": true,
+          },
+          Object {
+            "id": 41,
+            "placeholder": true,
+          },
+          Object {
+            "id": 42,
+            "placeholder": true,
+          },
+          Object {
+            "id": 43,
+            "placeholder": true,
+          },
+          Object {
+            "id": 44,
+            "placeholder": true,
+          },
+          Object {
+            "id": 45,
+            "placeholder": true,
+          },
+          Object {
+            "id": 46,
+            "placeholder": true,
+          },
+          Object {
+            "id": 47,
+            "placeholder": true,
+          },
+          Object {
+            "id": 48,
+            "placeholder": true,
+          },
+          Object {
+            "id": 49,
+            "placeholder": true,
+          },
+          Object {
+            "id": 50,
+            "placeholder": true,
+          },
+          Object {
+            "id": 51,
+            "placeholder": true,
+          },
+          Object {
+            "id": 52,
+            "placeholder": true,
+          },
+          Object {
+            "id": 53,
+            "placeholder": true,
+          },
+          Object {
+            "id": 54,
+            "placeholder": true,
+          },
+          Object {
+            "id": 55,
+            "placeholder": true,
+          },
+          Object {
+            "id": 56,
+            "placeholder": true,
+          },
+          Object {
+            "id": 57,
+            "placeholder": true,
+          },
+          Object {
+            "id": 58,
+            "placeholder": true,
+          },
+          Object {
+            "id": 59,
+            "placeholder": true,
+          },
+          Object {
+            "id": 60,
+            "placeholder": true,
+          },
+          Object {
+            "id": 61,
+            "placeholder": true,
+          },
+          Object {
+            "id": 62,
+            "placeholder": true,
+          },
+          Object {
+            "id": 63,
+            "placeholder": true,
+          },
+          Object {
+            "id": 64,
+            "placeholder": true,
+          },
+          Object {
+            "id": 65,
+            "placeholder": true,
+          },
+          Object {
+            "id": 66,
+            "placeholder": true,
+          },
+          Object {
+            "id": 67,
+            "placeholder": true,
+          },
+          Object {
+            "id": 68,
+            "placeholder": true,
+          },
+          Object {
+            "id": 69,
+            "placeholder": true,
+          },
+          Object {
+            "id": 70,
+            "placeholder": true,
+          },
+          Object {
+            "id": 71,
+            "placeholder": true,
+          },
+          Object {
+            "id": 72,
+            "placeholder": true,
+          },
+          Object {
+            "id": 73,
+            "placeholder": true,
+          },
+          Object {
+            "id": 74,
+            "placeholder": true,
+          },
+          Object {
+            "id": 75,
+            "placeholder": true,
+          },
+          Object {
+            "id": 76,
+            "placeholder": true,
+          },
+          Object {
+            "id": 77,
+            "placeholder": true,
+          },
+          Object {
+            "id": 78,
+            "placeholder": true,
+          },
+          Object {
+            "id": 79,
+            "placeholder": true,
+          },
+          Object {
+            "id": 80,
+            "placeholder": true,
+          },
+          Object {
+            "id": 81,
+            "placeholder": true,
+          },
+          Object {
+            "id": 82,
+            "placeholder": true,
+          },
+          Object {
+            "id": 83,
+            "placeholder": true,
+          },
+          Object {
+            "id": 84,
+            "placeholder": true,
+          },
+          Object {
+            "id": 85,
+            "placeholder": true,
+          },
+          Object {
+            "id": 86,
+            "placeholder": true,
+          },
+          Object {
+            "id": 87,
+            "placeholder": true,
+          },
+          Object {
+            "id": 88,
+            "placeholder": true,
+          },
+          Object {
+            "id": 89,
+            "placeholder": true,
+          },
+          Object {
+            "id": 90,
+            "placeholder": true,
+          },
+          Object {
+            "id": 91,
+            "placeholder": true,
+          },
+          Object {
+            "id": 92,
+            "placeholder": true,
+          },
+          Object {
+            "id": 93,
+            "placeholder": true,
+          },
+          Object {
+            "id": 94,
+            "placeholder": true,
+          },
+          Object {
+            "id": 95,
+            "placeholder": true,
+          },
+          Object {
+            "id": 96,
+            "placeholder": true,
+          },
+          Object {
+            "id": 97,
+            "placeholder": true,
+          },
+          Object {
+            "id": 98,
+            "placeholder": true,
+          },
+          Object {
+            "id": 99,
+            "placeholder": true,
+          },
+          Object {
+            "id": 100,
+            "placeholder": true,
+          },
+        ],
+        "name": "Renamed test chart",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`RenameActiveChart 3`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 2,
+    "albumIDCounter": 100,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+          Object {
+            "id": 4,
+            "placeholder": true,
+          },
+          Object {
+            "id": 5,
+            "placeholder": true,
+          },
+          Object {
+            "id": 6,
+            "placeholder": true,
+          },
+          Object {
+            "id": 7,
+            "placeholder": true,
+          },
+          Object {
+            "id": 8,
+            "placeholder": true,
+          },
+          Object {
+            "id": 9,
+            "placeholder": true,
+          },
+          Object {
+            "id": 10,
+            "placeholder": true,
+          },
+          Object {
+            "id": 11,
+            "placeholder": true,
+          },
+          Object {
+            "id": 12,
+            "placeholder": true,
+          },
+          Object {
+            "id": 13,
+            "placeholder": true,
+          },
+          Object {
+            "id": 14,
+            "placeholder": true,
+          },
+          Object {
+            "id": 15,
+            "placeholder": true,
+          },
+          Object {
+            "id": 16,
+            "placeholder": true,
+          },
+          Object {
+            "id": 17,
+            "placeholder": true,
+          },
+          Object {
+            "id": 18,
+            "placeholder": true,
+          },
+          Object {
+            "id": 19,
+            "placeholder": true,
+          },
+          Object {
+            "id": 20,
+            "placeholder": true,
+          },
+          Object {
+            "id": 21,
+            "placeholder": true,
+          },
+          Object {
+            "id": 22,
+            "placeholder": true,
+          },
+          Object {
+            "id": 23,
+            "placeholder": true,
+          },
+          Object {
+            "id": 24,
+            "placeholder": true,
+          },
+          Object {
+            "id": 25,
+            "placeholder": true,
+          },
+          Object {
+            "id": 26,
+            "placeholder": true,
+          },
+          Object {
+            "id": 27,
+            "placeholder": true,
+          },
+          Object {
+            "id": 28,
+            "placeholder": true,
+          },
+          Object {
+            "id": 29,
+            "placeholder": true,
+          },
+          Object {
+            "id": 30,
+            "placeholder": true,
+          },
+          Object {
+            "id": 31,
+            "placeholder": true,
+          },
+          Object {
+            "id": 32,
+            "placeholder": true,
+          },
+          Object {
+            "id": 33,
+            "placeholder": true,
+          },
+          Object {
+            "id": 34,
+            "placeholder": true,
+          },
+          Object {
+            "id": 35,
+            "placeholder": true,
+          },
+          Object {
+            "id": 36,
+            "placeholder": true,
+          },
+          Object {
+            "id": 37,
+            "placeholder": true,
+          },
+          Object {
+            "id": 38,
+            "placeholder": true,
+          },
+          Object {
+            "id": 39,
+            "placeholder": true,
+          },
+          Object {
+            "id": 40,
+            "placeholder": true,
+          },
+          Object {
+            "id": 41,
+            "placeholder": true,
+          },
+          Object {
+            "id": 42,
+            "placeholder": true,
+          },
+          Object {
+            "id": 43,
+            "placeholder": true,
+          },
+          Object {
+            "id": 44,
+            "placeholder": true,
+          },
+          Object {
+            "id": 45,
+            "placeholder": true,
+          },
+          Object {
+            "id": 46,
+            "placeholder": true,
+          },
+          Object {
+            "id": 47,
+            "placeholder": true,
+          },
+          Object {
+            "id": 48,
+            "placeholder": true,
+          },
+          Object {
+            "id": 49,
+            "placeholder": true,
+          },
+          Object {
+            "id": 50,
+            "placeholder": true,
+          },
+          Object {
+            "id": 51,
+            "placeholder": true,
+          },
+          Object {
+            "id": 52,
+            "placeholder": true,
+          },
+          Object {
+            "id": 53,
+            "placeholder": true,
+          },
+          Object {
+            "id": 54,
+            "placeholder": true,
+          },
+          Object {
+            "id": 55,
+            "placeholder": true,
+          },
+          Object {
+            "id": 56,
+            "placeholder": true,
+          },
+          Object {
+            "id": 57,
+            "placeholder": true,
+          },
+          Object {
+            "id": 58,
+            "placeholder": true,
+          },
+          Object {
+            "id": 59,
+            "placeholder": true,
+          },
+          Object {
+            "id": 60,
+            "placeholder": true,
+          },
+          Object {
+            "id": 61,
+            "placeholder": true,
+          },
+          Object {
+            "id": 62,
+            "placeholder": true,
+          },
+          Object {
+            "id": 63,
+            "placeholder": true,
+          },
+          Object {
+            "id": 64,
+            "placeholder": true,
+          },
+          Object {
+            "id": 65,
+            "placeholder": true,
+          },
+          Object {
+            "id": 66,
+            "placeholder": true,
+          },
+          Object {
+            "id": 67,
+            "placeholder": true,
+          },
+          Object {
+            "id": 68,
+            "placeholder": true,
+          },
+          Object {
+            "id": 69,
+            "placeholder": true,
+          },
+          Object {
+            "id": 70,
+            "placeholder": true,
+          },
+          Object {
+            "id": 71,
+            "placeholder": true,
+          },
+          Object {
+            "id": 72,
+            "placeholder": true,
+          },
+          Object {
+            "id": 73,
+            "placeholder": true,
+          },
+          Object {
+            "id": 74,
+            "placeholder": true,
+          },
+          Object {
+            "id": 75,
+            "placeholder": true,
+          },
+          Object {
+            "id": 76,
+            "placeholder": true,
+          },
+          Object {
+            "id": 77,
+            "placeholder": true,
+          },
+          Object {
+            "id": 78,
+            "placeholder": true,
+          },
+          Object {
+            "id": 79,
+            "placeholder": true,
+          },
+          Object {
+            "id": 80,
+            "placeholder": true,
+          },
+          Object {
+            "id": 81,
+            "placeholder": true,
+          },
+          Object {
+            "id": 82,
+            "placeholder": true,
+          },
+          Object {
+            "id": 83,
+            "placeholder": true,
+          },
+          Object {
+            "id": 84,
+            "placeholder": true,
+          },
+          Object {
+            "id": 85,
+            "placeholder": true,
+          },
+          Object {
+            "id": 86,
+            "placeholder": true,
+          },
+          Object {
+            "id": 87,
+            "placeholder": true,
+          },
+          Object {
+            "id": 88,
+            "placeholder": true,
+          },
+          Object {
+            "id": 89,
+            "placeholder": true,
+          },
+          Object {
+            "id": 90,
+            "placeholder": true,
+          },
+          Object {
+            "id": 91,
+            "placeholder": true,
+          },
+          Object {
+            "id": 92,
+            "placeholder": true,
+          },
+          Object {
+            "id": 93,
+            "placeholder": true,
+          },
+          Object {
+            "id": 94,
+            "placeholder": true,
+          },
+          Object {
+            "id": 95,
+            "placeholder": true,
+          },
+          Object {
+            "id": 96,
+            "placeholder": true,
+          },
+          Object {
+            "id": 97,
+            "placeholder": true,
+          },
+          Object {
+            "id": 98,
+            "placeholder": true,
+          },
+          Object {
+            "id": 99,
+            "placeholder": true,
+          },
+          Object {
+            "id": 100,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Renamed test chart",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`ShowChartNameTakenMessage calls alert 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`UpdateAPIKey 1`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 100,
+    "apiKey": "New API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+          Object {
+            "id": 4,
+            "placeholder": true,
+          },
+          Object {
+            "id": 5,
+            "placeholder": true,
+          },
+          Object {
+            "id": 6,
+            "placeholder": true,
+          },
+          Object {
+            "id": 7,
+            "placeholder": true,
+          },
+          Object {
+            "id": 8,
+            "placeholder": true,
+          },
+          Object {
+            "id": 9,
+            "placeholder": true,
+          },
+          Object {
+            "id": 10,
+            "placeholder": true,
+          },
+          Object {
+            "id": 11,
+            "placeholder": true,
+          },
+          Object {
+            "id": 12,
+            "placeholder": true,
+          },
+          Object {
+            "id": 13,
+            "placeholder": true,
+          },
+          Object {
+            "id": 14,
+            "placeholder": true,
+          },
+          Object {
+            "id": 15,
+            "placeholder": true,
+          },
+          Object {
+            "id": 16,
+            "placeholder": true,
+          },
+          Object {
+            "id": 17,
+            "placeholder": true,
+          },
+          Object {
+            "id": 18,
+            "placeholder": true,
+          },
+          Object {
+            "id": 19,
+            "placeholder": true,
+          },
+          Object {
+            "id": 20,
+            "placeholder": true,
+          },
+          Object {
+            "id": 21,
+            "placeholder": true,
+          },
+          Object {
+            "id": 22,
+            "placeholder": true,
+          },
+          Object {
+            "id": 23,
+            "placeholder": true,
+          },
+          Object {
+            "id": 24,
+            "placeholder": true,
+          },
+          Object {
+            "id": 25,
+            "placeholder": true,
+          },
+          Object {
+            "id": 26,
+            "placeholder": true,
+          },
+          Object {
+            "id": 27,
+            "placeholder": true,
+          },
+          Object {
+            "id": 28,
+            "placeholder": true,
+          },
+          Object {
+            "id": 29,
+            "placeholder": true,
+          },
+          Object {
+            "id": 30,
+            "placeholder": true,
+          },
+          Object {
+            "id": 31,
+            "placeholder": true,
+          },
+          Object {
+            "id": 32,
+            "placeholder": true,
+          },
+          Object {
+            "id": 33,
+            "placeholder": true,
+          },
+          Object {
+            "id": 34,
+            "placeholder": true,
+          },
+          Object {
+            "id": 35,
+            "placeholder": true,
+          },
+          Object {
+            "id": 36,
+            "placeholder": true,
+          },
+          Object {
+            "id": 37,
+            "placeholder": true,
+          },
+          Object {
+            "id": 38,
+            "placeholder": true,
+          },
+          Object {
+            "id": 39,
+            "placeholder": true,
+          },
+          Object {
+            "id": 40,
+            "placeholder": true,
+          },
+          Object {
+            "id": 41,
+            "placeholder": true,
+          },
+          Object {
+            "id": 42,
+            "placeholder": true,
+          },
+          Object {
+            "id": 43,
+            "placeholder": true,
+          },
+          Object {
+            "id": 44,
+            "placeholder": true,
+          },
+          Object {
+            "id": 45,
+            "placeholder": true,
+          },
+          Object {
+            "id": 46,
+            "placeholder": true,
+          },
+          Object {
+            "id": 47,
+            "placeholder": true,
+          },
+          Object {
+            "id": 48,
+            "placeholder": true,
+          },
+          Object {
+            "id": 49,
+            "placeholder": true,
+          },
+          Object {
+            "id": 50,
+            "placeholder": true,
+          },
+          Object {
+            "id": 51,
+            "placeholder": true,
+          },
+          Object {
+            "id": 52,
+            "placeholder": true,
+          },
+          Object {
+            "id": 53,
+            "placeholder": true,
+          },
+          Object {
+            "id": 54,
+            "placeholder": true,
+          },
+          Object {
+            "id": 55,
+            "placeholder": true,
+          },
+          Object {
+            "id": 56,
+            "placeholder": true,
+          },
+          Object {
+            "id": 57,
+            "placeholder": true,
+          },
+          Object {
+            "id": 58,
+            "placeholder": true,
+          },
+          Object {
+            "id": 59,
+            "placeholder": true,
+          },
+          Object {
+            "id": 60,
+            "placeholder": true,
+          },
+          Object {
+            "id": 61,
+            "placeholder": true,
+          },
+          Object {
+            "id": 62,
+            "placeholder": true,
+          },
+          Object {
+            "id": 63,
+            "placeholder": true,
+          },
+          Object {
+            "id": 64,
+            "placeholder": true,
+          },
+          Object {
+            "id": 65,
+            "placeholder": true,
+          },
+          Object {
+            "id": 66,
+            "placeholder": true,
+          },
+          Object {
+            "id": 67,
+            "placeholder": true,
+          },
+          Object {
+            "id": 68,
+            "placeholder": true,
+          },
+          Object {
+            "id": 69,
+            "placeholder": true,
+          },
+          Object {
+            "id": 70,
+            "placeholder": true,
+          },
+          Object {
+            "id": 71,
+            "placeholder": true,
+          },
+          Object {
+            "id": 72,
+            "placeholder": true,
+          },
+          Object {
+            "id": 73,
+            "placeholder": true,
+          },
+          Object {
+            "id": 74,
+            "placeholder": true,
+          },
+          Object {
+            "id": 75,
+            "placeholder": true,
+          },
+          Object {
+            "id": 76,
+            "placeholder": true,
+          },
+          Object {
+            "id": 77,
+            "placeholder": true,
+          },
+          Object {
+            "id": 78,
+            "placeholder": true,
+          },
+          Object {
+            "id": 79,
+            "placeholder": true,
+          },
+          Object {
+            "id": 80,
+            "placeholder": true,
+          },
+          Object {
+            "id": 81,
+            "placeholder": true,
+          },
+          Object {
+            "id": 82,
+            "placeholder": true,
+          },
+          Object {
+            "id": 83,
+            "placeholder": true,
+          },
+          Object {
+            "id": 84,
+            "placeholder": true,
+          },
+          Object {
+            "id": 85,
+            "placeholder": true,
+          },
+          Object {
+            "id": 86,
+            "placeholder": true,
+          },
+          Object {
+            "id": 87,
+            "placeholder": true,
+          },
+          Object {
+            "id": 88,
+            "placeholder": true,
+          },
+          Object {
+            "id": 89,
+            "placeholder": true,
+          },
+          Object {
+            "id": 90,
+            "placeholder": true,
+          },
+          Object {
+            "id": 91,
+            "placeholder": true,
+          },
+          Object {
+            "id": 92,
+            "placeholder": true,
+          },
+          Object {
+            "id": 93,
+            "placeholder": true,
+          },
+          Object {
+            "id": 94,
+            "placeholder": true,
+          },
+          Object {
+            "id": 95,
+            "placeholder": true,
+          },
+          Object {
+            "id": 96,
+            "placeholder": true,
+          },
+          Object {
+            "id": 97,
+            "placeholder": true,
+          },
+          Object {
+            "id": 98,
+            "placeholder": true,
+          },
+          Object {
+            "id": 99,
+            "placeholder": true,
+          },
+          Object {
+            "id": 100,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`UpdateActiveChart 1`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 123,
+    "albumIDCounter": 100,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+          Object {
+            "id": 4,
+            "placeholder": true,
+          },
+          Object {
+            "id": 5,
+            "placeholder": true,
+          },
+          Object {
+            "id": 6,
+            "placeholder": true,
+          },
+          Object {
+            "id": 7,
+            "placeholder": true,
+          },
+          Object {
+            "id": 8,
+            "placeholder": true,
+          },
+          Object {
+            "id": 9,
+            "placeholder": true,
+          },
+          Object {
+            "id": 10,
+            "placeholder": true,
+          },
+          Object {
+            "id": 11,
+            "placeholder": true,
+          },
+          Object {
+            "id": 12,
+            "placeholder": true,
+          },
+          Object {
+            "id": 13,
+            "placeholder": true,
+          },
+          Object {
+            "id": 14,
+            "placeholder": true,
+          },
+          Object {
+            "id": 15,
+            "placeholder": true,
+          },
+          Object {
+            "id": 16,
+            "placeholder": true,
+          },
+          Object {
+            "id": 17,
+            "placeholder": true,
+          },
+          Object {
+            "id": 18,
+            "placeholder": true,
+          },
+          Object {
+            "id": 19,
+            "placeholder": true,
+          },
+          Object {
+            "id": 20,
+            "placeholder": true,
+          },
+          Object {
+            "id": 21,
+            "placeholder": true,
+          },
+          Object {
+            "id": 22,
+            "placeholder": true,
+          },
+          Object {
+            "id": 23,
+            "placeholder": true,
+          },
+          Object {
+            "id": 24,
+            "placeholder": true,
+          },
+          Object {
+            "id": 25,
+            "placeholder": true,
+          },
+          Object {
+            "id": 26,
+            "placeholder": true,
+          },
+          Object {
+            "id": 27,
+            "placeholder": true,
+          },
+          Object {
+            "id": 28,
+            "placeholder": true,
+          },
+          Object {
+            "id": 29,
+            "placeholder": true,
+          },
+          Object {
+            "id": 30,
+            "placeholder": true,
+          },
+          Object {
+            "id": 31,
+            "placeholder": true,
+          },
+          Object {
+            "id": 32,
+            "placeholder": true,
+          },
+          Object {
+            "id": 33,
+            "placeholder": true,
+          },
+          Object {
+            "id": 34,
+            "placeholder": true,
+          },
+          Object {
+            "id": 35,
+            "placeholder": true,
+          },
+          Object {
+            "id": 36,
+            "placeholder": true,
+          },
+          Object {
+            "id": 37,
+            "placeholder": true,
+          },
+          Object {
+            "id": 38,
+            "placeholder": true,
+          },
+          Object {
+            "id": 39,
+            "placeholder": true,
+          },
+          Object {
+            "id": 40,
+            "placeholder": true,
+          },
+          Object {
+            "id": 41,
+            "placeholder": true,
+          },
+          Object {
+            "id": 42,
+            "placeholder": true,
+          },
+          Object {
+            "id": 43,
+            "placeholder": true,
+          },
+          Object {
+            "id": 44,
+            "placeholder": true,
+          },
+          Object {
+            "id": 45,
+            "placeholder": true,
+          },
+          Object {
+            "id": 46,
+            "placeholder": true,
+          },
+          Object {
+            "id": 47,
+            "placeholder": true,
+          },
+          Object {
+            "id": 48,
+            "placeholder": true,
+          },
+          Object {
+            "id": 49,
+            "placeholder": true,
+          },
+          Object {
+            "id": 50,
+            "placeholder": true,
+          },
+          Object {
+            "id": 51,
+            "placeholder": true,
+          },
+          Object {
+            "id": 52,
+            "placeholder": true,
+          },
+          Object {
+            "id": 53,
+            "placeholder": true,
+          },
+          Object {
+            "id": 54,
+            "placeholder": true,
+          },
+          Object {
+            "id": 55,
+            "placeholder": true,
+          },
+          Object {
+            "id": 56,
+            "placeholder": true,
+          },
+          Object {
+            "id": 57,
+            "placeholder": true,
+          },
+          Object {
+            "id": 58,
+            "placeholder": true,
+          },
+          Object {
+            "id": 59,
+            "placeholder": true,
+          },
+          Object {
+            "id": 60,
+            "placeholder": true,
+          },
+          Object {
+            "id": 61,
+            "placeholder": true,
+          },
+          Object {
+            "id": 62,
+            "placeholder": true,
+          },
+          Object {
+            "id": 63,
+            "placeholder": true,
+          },
+          Object {
+            "id": 64,
+            "placeholder": true,
+          },
+          Object {
+            "id": 65,
+            "placeholder": true,
+          },
+          Object {
+            "id": 66,
+            "placeholder": true,
+          },
+          Object {
+            "id": 67,
+            "placeholder": true,
+          },
+          Object {
+            "id": 68,
+            "placeholder": true,
+          },
+          Object {
+            "id": 69,
+            "placeholder": true,
+          },
+          Object {
+            "id": 70,
+            "placeholder": true,
+          },
+          Object {
+            "id": 71,
+            "placeholder": true,
+          },
+          Object {
+            "id": 72,
+            "placeholder": true,
+          },
+          Object {
+            "id": 73,
+            "placeholder": true,
+          },
+          Object {
+            "id": 74,
+            "placeholder": true,
+          },
+          Object {
+            "id": 75,
+            "placeholder": true,
+          },
+          Object {
+            "id": 76,
+            "placeholder": true,
+          },
+          Object {
+            "id": 77,
+            "placeholder": true,
+          },
+          Object {
+            "id": 78,
+            "placeholder": true,
+          },
+          Object {
+            "id": 79,
+            "placeholder": true,
+          },
+          Object {
+            "id": 80,
+            "placeholder": true,
+          },
+          Object {
+            "id": 81,
+            "placeholder": true,
+          },
+          Object {
+            "id": 82,
+            "placeholder": true,
+          },
+          Object {
+            "id": 83,
+            "placeholder": true,
+          },
+          Object {
+            "id": 84,
+            "placeholder": true,
+          },
+          Object {
+            "id": 85,
+            "placeholder": true,
+          },
+          Object {
+            "id": 86,
+            "placeholder": true,
+          },
+          Object {
+            "id": 87,
+            "placeholder": true,
+          },
+          Object {
+            "id": 88,
+            "placeholder": true,
+          },
+          Object {
+            "id": 89,
+            "placeholder": true,
+          },
+          Object {
+            "id": 90,
+            "placeholder": true,
+          },
+          Object {
+            "id": 91,
+            "placeholder": true,
+          },
+          Object {
+            "id": 92,
+            "placeholder": true,
+          },
+          Object {
+            "id": 93,
+            "placeholder": true,
+          },
+          Object {
+            "id": 94,
+            "placeholder": true,
+          },
+          Object {
+            "id": 95,
+            "placeholder": true,
+          },
+          Object {
+            "id": 96,
+            "placeholder": true,
+          },
+          Object {
+            "id": 97,
+            "placeholder": true,
+          },
+          Object {
+            "id": 98,
+            "placeholder": true,
+          },
+          Object {
+            "id": 99,
+            "placeholder": true,
+          },
+          Object {
+            "id": 100,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
+    },
+  },
+  "tag": "Update",
+}
+`;

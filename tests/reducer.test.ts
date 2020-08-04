@@ -1,47 +1,246 @@
-test.todo('UpdateAPIKey')
+import { reducer, Action } from '@/reducer'
+
+import { createTestState, createTestChart } from './utils'
+import { State } from '@/types'
 
 
-test.todo('UpdateActiveChart')
+type ActionParams = [ Action ]
+
+
+const dispatchMock = jest.fn<void, ActionParams>()
+afterEach(() => dispatchMock.mockReset())
+
+const state = createTestState()
+
+
+test('UpdateAPIKey', () => {
+    const apiKey = 'New API key'
+    const result = reducer(state, { tag: 'UpdateAPIKey', apiKey })
+    expect(result).toMatchSnapshot()
+})
+
+
+test('UpdateActiveChart', () => {
+    const activeChartIndex = 123
+    const result = reducer(
+        state,
+        {
+            tag: 'UpdateActiveChart',
+            index: activeChartIndex
+        }
+    )
+    expect(result).toMatchSnapshot()
+})
 
 
 describe('PromptForNewChart', () => {
-    test.todo('cancelling the prompt dispatches nothing')
+    // jsdom doesn't implement prompt so jest.spyOn can't be used here
+    const promptMock = jest.fn<ReturnType<typeof prompt>, Parameters<typeof prompt>>()
+    beforeAll(() => global.prompt = promptMock)
+    afterEach(() => promptMock.mockRestore())
+    afterAll(() => delete global.prompt)
 
+    test('cancelling the prompt dispatches nothing', () => {
+        promptMock.mockImplementation(() => null)
 
-    test.todo('entering nothing in the prompt dispatches nothing')
+        const result = reducer(state, { tag: 'PromptForNewChart' })
+        expect(result).toMatchSnapshot()
 
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, state)
 
-    test.todo('entering name of existing chart dispatches name taken action')
+        expect(dispatchMock).toHaveBeenCalledTimes(0)
+    })
 
+    test('entering nothing in the prompt dispatches nothing', () => {
+        promptMock.mockImplementation(() => '')
 
-    test.todo('entering unique name dispatches new chart action')
+        const result = reducer(state, { tag: 'PromptForNewChart' })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, state)
+
+        expect(dispatchMock).toHaveBeenCalledTimes(0)
+    })
+
+    test('entering name of existing chart dispatches name taken action', () => {
+        promptMock.mockImplementation(() => 'Test chart')
+
+        const result = reducer(state, { tag: 'PromptForNewChart' })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, state)
+
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+            tag: 'ShowChartNameTakenMessage'
+        })
+    })
+
+    test('entering unique name dispatches new chart action', () => {
+        const name = 'Test new chart'
+        promptMock.mockImplementation(() => name)
+
+        const result = reducer(state, { tag: 'PromptForNewChart' })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, state)
+
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+            tag: 'AddNewChart',
+            name
+        })
+    })
 })
 
 
-test.todo('ShowChartNameTakenMessage')
+describe('ShowChartNameTakenMessage', () => {
+    // likewise, it doesn't implement alert
+    const alertMock = jest.fn<void, [ string ]>()
+    beforeAll(() => global.alert = alertMock)
+    afterEach(() => alertMock.mockRestore())
+    afterAll(() => delete global.alert)
+
+    test('calls alert', () => {
+        const result = reducer(state, { tag: 'ShowChartNameTakenMessage' })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, state)
+
+        expect(dispatchMock).toHaveBeenCalledTimes(0)
+        expect(alertMock).toHaveBeenCalledTimes(1)
+        expect(alertMock).toHaveBeenCalledWith('A chart with that name already exists')
+    })
+})
 
 
-test.todo('AddNewChart')
+test('AddNewChart', () => {
+    const result = reducer(
+        state,
+        {
+            tag: 'AddNewChart',
+            name: 'Test new chart'
+        }
+    )
+    expect(result).toMatchSnapshot()
+})
 
 
 describe('PromptToRenameActiveChart', () => {
-    test.todo('cancelling the prompt dispatches nothing')
+    const promptMock = jest.fn<ReturnType<typeof prompt>, Parameters<typeof prompt>>()
+    beforeAll(() => global.prompt = promptMock)
+    afterEach(() => promptMock.mockRestore())
+    afterAll(() => delete global.prompt)
 
+    test('cancelling the prompt dispatches nothing', () => {
+        promptMock.mockImplementation(() => null)
 
-    test.todo('entering nothing in the prompt dispatches nothing')
+        const result = reducer(state, { tag: 'PromptToRenameActiveChart' })
+        expect(result).toMatchSnapshot()
 
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, state)
 
-    test.todo('entering the same name in the prompt dispatches nothing')
+        expect(dispatchMock).toHaveBeenCalledTimes(0)
+    })
 
+    test('entering nothing in the prompt dispatches nothing', () => {
+        promptMock.mockImplementation(() => '')
 
-    test.todo('entering name of existing chart dispatches name taken action')
+        const result = reducer(state, { tag: 'PromptToRenameActiveChart' })
+        expect(result).toMatchSnapshot()
 
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, state)
 
-    test.todo('entering unique name dispatches rename action')
+        expect(dispatchMock).toHaveBeenCalledTimes(0)
+    })
+
+    test('entering the same name as active chart in the prompt dispatches nothing', () => {
+        promptMock.mockImplementation(() => state.charts[state.activeChartIndex].name)
+
+        const result = reducer(state, { tag: 'PromptToRenameActiveChart' })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, state)
+
+        expect(dispatchMock).toHaveBeenCalledTimes(0)
+    })
+
+    test('entering name of other existing chart dispatches name taken action', () => {
+        const name = 'Other test chart'
+        promptMock.mockImplementation(() => name)
+
+        const stateWithExtraChart: State = {
+            ...state,
+            charts: [
+                ...state.charts,
+                { ...state.charts[0], name }
+            ]
+        }
+        const result = reducer(
+            stateWithExtraChart,
+            { tag: 'PromptToRenameActiveChart' }
+        )
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, stateWithExtraChart)
+
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+            tag: 'ShowChartNameTakenMessage'
+        })
+    })
+
+    test('entering unique name dispatches rename action', () => {
+        const name = 'Renamed test chart'
+        promptMock.mockImplementation(() => name)
+
+        const result = reducer(state, { tag: 'PromptToRenameActiveChart' })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, state)
+
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+            tag: 'RenameActiveChart',
+            name
+        })
+    })
 })
 
 
-test.todo('RenameActiveChart')
+test.each<State>([
+    state,
+    {
+        ...state,
+        charts: [
+            ...state.charts,
+            createTestChart(3)  // just to keep the snapshots small
+        ]
+    },
+    {
+        ...state,
+        charts: [
+            createTestChart(3),
+            ...state.charts,
+            createTestChart(3)
+        ],
+        activeChartIndex: 2
+    }
+])('RenameActiveChart', state => {
+    const name = 'Renamed test chart'
+    const result = reducer(state, { tag: 'RenameActiveChart', name })
+    expect(result).toMatchSnapshot()
+})
 
 
 describe('PromptToDeleteActiveChart', () => {

@@ -4,7 +4,7 @@ import { render } from 'react-dom'
 import { Album } from '@/types'
 import { Chart } from '@/components/Chart'
 
-import { RenderContainer, ignore, namedAlbums } from '../utils'
+import { RenderContainer, ignore, createTestNamedAlbums } from '../utils'
 
 
 jest.mock('@/components/AlbumRow')
@@ -14,7 +14,7 @@ jest.mock('@/components/TitleGroup')
 const container = new RenderContainer()
 
 
-const albums = namedAlbums(100)
+const albums = createTestNamedAlbums(100)
 
 test.each([ 40, 42, 100 ] as const)('renders with top shape', size => {
     render(

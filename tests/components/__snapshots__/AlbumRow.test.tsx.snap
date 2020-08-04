@@ -17,12 +17,6 @@ exports[`renders album covers 1`] = `
     <div
       class="mock-chart-album-cover"
     >
-      Album: {"placeholder":true,"id":0}
-      Size: 5rem
-    </div>
-    <div
-      class="mock-chart-album-cover"
-    >
       Album: {"placeholder":true,"id":1}
       Size: 5rem
     </div>
@@ -42,6 +36,12 @@ exports[`renders album covers 1`] = `
       class="mock-chart-album-cover"
     >
       Album: {"placeholder":true,"id":4}
+      Size: 5rem
+    </div>
+    <div
+      class="mock-chart-album-cover"
+    >
+      Album: {"placeholder":true,"id":5}
       Size: 5rem
     </div>
   </div>

@@ -4,6 +4,8 @@ import util from 'util'
 import { unmountComponentAtNode } from 'react-dom'
 import { Simulate } from 'react-dom/test-utils'
 
+import { NamedAlbum, PlaceholderAlbum } from '@/types'
+
 
 export function fireEvent(
     type: keyof typeof Simulate,
@@ -70,3 +72,29 @@ export class RenderContainer {
 
 
 export const readFile = util.promisify(fs.readFile)
+
+
+export function namedAlbums(count: number, start = 1): NamedAlbum[] {
+    const albums: NamedAlbum[] = []
+    for (let index = start; index < count + 1; index++) {
+        albums.push({
+            placeholder: false,
+            id: index,
+            name: `Test album ${index}`,
+            url: `https://test.com/${index}`
+        })
+    }
+    return albums
+}
+
+
+export function placeholderAlbums(count: number, start = 1): PlaceholderAlbum[] {
+    const albums: PlaceholderAlbum[] = []
+    for (let index = start; index < count + 1; index++) {
+        albums.push({
+            placeholder: true,
+            id: index
+        })
+    }
+    return albums
+}

@@ -1,19 +1,136 @@
-test.todo('createChart')
+import {
+    createChart,
+    createInitialState,
+    loadStateFromLocalStorage,
+    escapeStateForExport,
+    saveStateToLocalStorage
+} from '@/state'
+import { State } from '@/types'
+import { LOCAL_STORAGE_KEY } from '@/constants'
+
+import { placeholderAlbums, ignore } from './utils'
 
 
-test.todo('createInitialState')
+describe('createChart', () => {
+    test('no arguments creates default chart', () => {
+        const result = createChart()
+        expect(result).toMatchSnapshot()
+    })
 
+    test('albumIDCounter argument affects new album IDs', () => {
+        const result = createChart({ albumIDCounter: 100 })
+        expect(result).toMatchSnapshot()
+    })
 
-describe('loadStateFromLocalStorage', () => {
-    test.todo('returns valid state in local storage')
-
-    test.todo('returns null when state in local storage invalid')
-
-    test.todo('returns null when nothing in local storage')
+    test('name argument changes chart name', () => {
+        const result = createChart({ name: 'Test chart' })
+        expect(result).toMatchSnapshot()
+    })
 })
 
 
-test.todo('escapeStateForExport')
+test('createInitialState', () => {
+    const state = createInitialState()
+    expect(state).toMatchSnapshot()
+})
 
 
-test.todo('saveStateToLocalStorage')
+function createTestState(): State {
+    return {
+        charts: [
+            {
+                name: 'Test chart',
+                albums: placeholderAlbums(100),
+                rowsX: 10,
+                rowsY: 10,
+                shape: { tag: 'Top', size: 40 }
+            }
+        ],
+        activeChartIndex: 0,
+        albumIDCounter: 100,
+        apiKey: 'Test API key',
+        screenshot: {
+            loading: false,
+            scale: 2
+        },
+        search: {
+            tag: 'Waiting',
+            query: 'Test query'
+        }
+    }
+}
+
+
+function createTestStateForEscaping(): State {
+    return {
+        ...createTestState(),
+        search: {
+            tag: 'Error',
+            query: 'Test query',
+            message: 'Test error message'
+        },
+        screenshot: {
+            loading: true,
+            scale: 2
+        }
+    }
+}
+
+
+describe('loadStateFromLocalStorage', () => {
+    const localStorageMock = jest.spyOn(Storage.prototype, 'getItem')
+
+    afterEach(() => localStorageMock.mockRestore())
+
+    test('returns valid state in local storage', () => {
+        const state = createTestState()
+        localStorageMock.mockImplementation(() => JSON.stringify(state))
+        const returnedState = loadStateFromLocalStorage()
+        expect(returnedState).toEqual(state)
+    })
+
+    test.each([
+        '{',
+        '{}',
+        '0',
+        JSON.stringify({
+            ...createTestState(),
+            charts: undefined
+        })
+    ])('returns null when invalid state json in local storage', json => {
+        localStorageMock.mockImplementation(() => json)
+        const state = loadStateFromLocalStorage()
+        expect(state).toBeNull()
+    })
+
+    test('returns null when nothing in local storage', () => {
+        localStorageMock.mockImplementation(() => null)
+        const state = loadStateFromLocalStorage()
+        expect(state).toBeNull()
+    })
+})
+
+
+test('escapeStateForExport', () => {
+    const escaped = escapeStateForExport(createTestStateForEscaping())
+    expect(escaped).toEqual(createTestState())
+})
+
+
+describe('saveStateToLocalStorage', () => {
+    const localStorageMock = jest.spyOn(Storage.prototype, 'setItem')
+
+    afterEach(() => localStorageMock.mockRestore())
+
+    test('escapes and json encodes state', () => {
+        localStorageMock.mockImplementation(ignore)
+
+        saveStateToLocalStorage(createTestStateForEscaping())
+
+        expect(localStorageMock).toHaveBeenCalledTimes(1)
+        expect(localStorageMock).toHaveBeenCalledWith(
+            LOCAL_STORAGE_KEY,
+            JSON.stringify(createTestState())
+        )
+    })
+})

@@ -4,7 +4,7 @@ import { render } from 'react-dom'
 import { Album } from '@/types'
 import { Chart } from '@/components/Chart'
 
-import { RenderContainer, ignore } from '../utils'
+import { RenderContainer, ignore, namedAlbums } from '../utils'
 
 
 jest.mock('@/components/AlbumRow')
@@ -14,13 +14,7 @@ jest.mock('@/components/TitleGroup')
 const container = new RenderContainer()
 
 
-const albums: Album[] = [...Array(100).keys()].map(index => ({
-    placeholder: false,
-    id: index,
-    name: `Test album ${index}`,
-    url: `https://test.com/${index}`
-}))
-
+const albums = namedAlbums(100)
 
 test.each([ 40, 42, 100 ] as const)('renders with top shape', size => {
     render(

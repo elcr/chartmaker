@@ -1,10 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import { NamedAlbum } from '@/types'
 import { SearchResults } from '@/components/SearchResults'
 
-import { RenderContainer } from '../utils'
+import { RenderContainer, namedAlbums } from '../utils'
 
 
 jest.mock('@/components/SidebarGroup')
@@ -15,15 +14,8 @@ const container = new RenderContainer()
 
 
 test('renders album covers', () => {
-    const albums: NamedAlbum[] = [ ...Array(5).keys() ].map(index => ({
-        placeholder: false,
-        id: index,
-        name: `Test album ${index}`,
-        url: `https://test.com/${index}`
-    }))
-
     render(
-        <SearchResults albums={albums}/>,
+        <SearchResults albums={namedAlbums(5)}/>,
         container.element
     )
 

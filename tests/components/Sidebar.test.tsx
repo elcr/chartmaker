@@ -4,7 +4,7 @@ import { render } from 'react-dom'
 import { SearchState, Chart } from '@/types'
 import { Sidebar } from '@/components/Sidebar'
 
-import { RenderContainer, ignore } from '../utils'
+import { RenderContainer, ignore, namedAlbums } from '../utils'
 
 
 jest.mock('@/components/ChartManager')
@@ -42,12 +42,7 @@ test.each<SearchState>([
     {
         tag: 'Complete',
         query: 'Test query',
-        albums: [ ...Array(5).keys() ].map(index => ({
-            placeholder: false,
-            id: index,
-            name: `Test album ${index}`,
-            url: `https://test.com/${index}`
-        }))
+        albums: namedAlbums(5)
     },
 ])('renders groups with no search results unless complete and album present', searchState => {
     const charts: Chart[] = [

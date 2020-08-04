@@ -31,12 +31,6 @@ exports[`renders album covers 1`] = `
       <div
         class="mock-search-album-cover"
       >
-        Album: {"placeholder":false,"id":0,"name":"Test album 0","url":"https://test.com/0"}
-        Size: 9.1rem
-      </div>
-      <div
-        class="mock-search-album-cover"
-      >
         Album: {"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"}
         Size: 9.1rem
       </div>
@@ -56,6 +50,12 @@ exports[`renders album covers 1`] = `
         class="mock-search-album-cover"
       >
         Album: {"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"}
+        Size: 9.1rem
+      </div>
+      <div
+        class="mock-search-album-cover"
+      >
+        Album: {"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}
         Size: 9.1rem
       </div>
     </div>

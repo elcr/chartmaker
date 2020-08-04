@@ -22,7 +22,7 @@ import {
 export const Integer = Number_.withConstraint(Number.isSafeInteger)
 
 
-export function IntegerRange(minimum: number, maximum: number) {
+export function IntegerRange(minimum: number, maximum = Number.MAX_SAFE_INTEGER) {
     return Integer.withConstraint(number => number >= minimum && number <= maximum)
 }
 
@@ -37,17 +37,20 @@ export function NonEmptyArray<T extends Runtype>(element: T) {
 }
 
 
-const PlaceholderAlbum = Record_({
+export const NonEmptyString = String.withConstraint(string => string.length !== 0)
+
+
+export const PlaceholderAlbum = Record_({
     placeholder: Literal(true),
-    id: Integer
+    id: IntegerRange(1)
 })
 
 
 export const NamedAlbum = Record_({
     placeholder: Literal(false),
-    id: Integer,
-    name: String,
-    url: String
+    id: IntegerRange(1),
+    name: NonEmptyString,
+    url: NonEmptyString
 })
 
 
@@ -70,7 +73,7 @@ const ChartShape = Union(
 
 
 const Chart = Record_({
-    name: String,
+    name: NonEmptyString,
     albums: FixedSizeArray(Album, CHART_ALBUMS_COUNT),
     shape: ChartShape,
     rowsX: IntegerRange(1, MAX_COLLAGE_ROWS_X),
@@ -110,14 +113,15 @@ const ScreenshotState = Record_({
 export const State = Record_({
     apiKey: String,
     charts: NonEmptyArray(Chart),
-    activeChartIndex: Integer,
+    activeChartIndex: IntegerRange(0),
     search: SearchState,
-    albumIDCounter: Integer,
+    albumIDCounter: IntegerRange(1),
     screenshot: ScreenshotState
 })
 
 
 export type NamedAlbum = Static<typeof NamedAlbum>
+export type PlaceholderAlbum = Static<typeof PlaceholderAlbum>
 export type Album = Static<typeof Album>
 export type ChartShape = Static<typeof ChartShape>
 export type Chart = Static<typeof Chart>

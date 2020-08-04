@@ -4,6 +4,7 @@ import {
     CHART_ALBUMS_COUNT,
     DEFAULT_COLLAGE_ROWS_X,
     DEFAULT_COLLAGE_ROWS_Y,
+    DEFAULT_CHART_SHAPE,
     LOCAL_STORAGE_KEY
 } from '@/constants'
 
@@ -27,7 +28,7 @@ export function createChart({
         {
             name,
             albums,
-            shape: { tag: 'Top', size: 40 },
+            shape: DEFAULT_CHART_SHAPE,
             rowsX: DEFAULT_COLLAGE_ROWS_X,
             rowsY: DEFAULT_COLLAGE_ROWS_Y
         }

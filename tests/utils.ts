@@ -1,3 +1,6 @@
+import fs from 'fs'
+import util from 'util'
+
 import { unmountComponentAtNode } from 'react-dom'
 import { Simulate } from 'react-dom/test-utils'
 
@@ -61,5 +64,9 @@ export class RenderContainer {
         }
         unmountComponentAtNode(this.element)
         this.element.remove()
+        this.element = null
     }
 }
+
+
+export const readFile = util.promisify(fs.readFile)

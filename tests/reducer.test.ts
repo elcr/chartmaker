@@ -1,6 +1,6 @@
 import { reducer, Action } from '@/reducer'
 
-import { createTestState, createTestChart } from './utils'
+import { createTestState } from './utils'
 import { State } from '@/types'
 
 
@@ -10,12 +10,16 @@ type ActionParams = [ Action ]
 const dispatchMock = jest.fn<void, ActionParams>()
 afterEach(() => dispatchMock.mockReset())
 
+
 const state = createTestState()
 
 
 test('UpdateAPIKey', () => {
     const apiKey = 'New API key'
-    const result = reducer(state, { tag: 'UpdateAPIKey', apiKey })
+    const result = reducer(
+        createTestState(),
+        { tag: 'UpdateAPIKey', apiKey }
+    )
     expect(result).toMatchSnapshot()
 })
 
@@ -23,7 +27,7 @@ test('UpdateAPIKey', () => {
 test('UpdateActiveChart', () => {
     const activeChartIndex = 123
     const result = reducer(
-        state,
+        createTestState(),
         {
             tag: 'UpdateActiveChart',
             index: activeChartIndex
@@ -65,7 +69,7 @@ describe('PromptForNewChart', () => {
     })
 
     test('entering name of existing chart dispatches name taken action', () => {
-        promptMock.mockImplementation(() => 'Test chart')
+        promptMock.mockImplementation(() => 'Test chart 1')
 
         const result = reducer(state, { tag: 'PromptForNewChart' })
         expect(result).toMatchSnapshot()
@@ -220,20 +224,9 @@ describe('PromptToRenameActiveChart', () => {
 
 test.each<State>([
     state,
+    createTestState({ charts: 2 }),
     {
-        ...state,
-        charts: [
-            ...state.charts,
-            createTestChart(3)  // just to keep the snapshots small
-        ]
-    },
-    {
-        ...state,
-        charts: [
-            createTestChart(3),
-            ...state.charts,
-            createTestChart(3)
-        ],
+        ...createTestState({ charts: 3 }),
         activeChartIndex: 2
     }
 ])('RenameActiveChart', state => {
@@ -244,17 +237,52 @@ test.each<State>([
 
 
 describe('PromptToDeleteActiveChart', () => {
-    test.todo('declining the prompt dispatches nothing')
+    const confirmMock = jest.fn<boolean, [ string | undefined ]>()
+    beforeAll(() => global.confirm = confirmMock)
+    afterEach(() => confirmMock.mockRestore())
+    afterAll(() => delete global.confirm)
 
+    test('declining the prompt dispatches nothing', () => {
+        confirmMock.mockImplementation(() => false)
 
-    test.todo('accepting the prompt dispatches delete action')
+        const result = reducer(state, { tag: 'PromptToDeleteActiveChart' })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, state)
+
+        expect(confirmMock).toHaveBeenCalledTimes(1)
+        expect(confirmMock).toHaveBeenCalledWith('Really delete active chart? This cannot be undone')
+        expect(dispatchMock).toHaveBeenCalledTimes(0)
+    })
+
+    test('accepting the prompt dispatches delete action', () => {
+        confirmMock.mockImplementation(() => true)
+
+        const result = reducer(state, { tag: 'PromptToDeleteActiveChart' })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
+        sideEffect(dispatchMock, state)
+
+        expect(confirmMock).toHaveBeenCalledTimes(1)
+        expect(confirmMock).toHaveBeenCalledWith('Really delete active chart? This cannot be undone')
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+            tag: 'DeleteActiveChart'
+        })
+    })
 })
 
 
 describe('DeleteActiveChart', () => {
-    test.todo('replaces active chart if only one chart total')
-
-    test.todo('removes active chart if more than one chart')
+    test.each<State>([
+        state,
+        createTestState({ charts: 3 })
+    ])('replaces active chart if only one chart, otherwise removes', state => {
+        const result = reducer(state, { tag: 'DeleteActiveChart' })
+        expect(result).toMatchSnapshot()
+    })
 })
 
 

@@ -88,22 +88,22 @@ export function createTestNamedAlbums(count: number, start = 1): NamedAlbum[] {
 }
 
 
-export function createTestPlaceholderAlbums(count: number, start = 1): PlaceholderAlbum[] {
+export function createTestPlaceholderAlbums(count: number, startID = 1): PlaceholderAlbum[] {
     const albums: PlaceholderAlbum[] = []
-    for (let index = start; index < count + 1; index++) {
+    for (let index = 0; index < count; index++) {
         albums.push({
             placeholder: true,
-            id: index
+            id: index + startID
         })
     }
     return albums
 }
 
 
-export function createTestChart(albums = 100): Chart {
+export function createTestChart(albums = 3, index = 1): Chart {
     return {
-        name: 'Test chart',
-        albums: createTestPlaceholderAlbums(albums),
+        name: `Test chart ${index}`,
+        albums: createTestPlaceholderAlbums(albums, ((index - 1) * albums) + 1),
         rowsX: 10,
         rowsY: 10,
         shape: { tag: 'Top', size: 40 }
@@ -111,11 +111,16 @@ export function createTestChart(albums = 100): Chart {
 }
 
 
-export function createTestState(): State {
+export function createTestState({ albums = 3, charts: chartsCount = 1 } = {}): State {
+    const charts: Chart[] = []
+    for (let index = 1; index < chartsCount + 1; index++) {
+        const chart = createTestChart(albums, index)
+        charts.push(chart)
+    }
     return {
-        charts: [ createTestChart() ],
+        charts,
         activeChartIndex: 0,
-        albumIDCounter: 100,
+        albumIDCounter: albums,
         apiKey: 'Test API key',
         screenshot: {
             loading: false,

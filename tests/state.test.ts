@@ -44,7 +44,7 @@ describe('loadStateFromLocalStorage', () => {
     afterEach(() => localStorageMock.mockRestore())
 
     test('returns valid state in local storage', () => {
-        const state = createTestState()
+        const state = createTestState({ albums: 100 })
         localStorageMock.mockImplementation(() => JSON.stringify(state))
         const returnedState = loadStateFromLocalStorage()
         expect(returnedState).toEqual(state)

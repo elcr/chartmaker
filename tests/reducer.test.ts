@@ -1,7 +1,8 @@
 import { reducer, Action } from '@/reducer'
+import { SideEffectUpdate, update, noUpdate } from 'react-use-side-effect-reducer'
 
 import { createTestState } from './utils'
-import { State } from '@/types'
+import { State, SearchState } from '@/types'
 
 
 type ActionParams = [ Action ]
@@ -39,43 +40,43 @@ test('UpdateActiveChart', () => {
 
 describe('PromptForNewChart', () => {
     // jsdom doesn't implement prompt so jest.spyOn can't be used here
-    const promptMock = jest.fn<ReturnType<typeof prompt>, Parameters<typeof prompt>>()
+    const promptMock = jest.fn<string | null, [ string | undefined, string | undefined ]>()
     beforeAll(() => global.prompt = promptMock)
     afterEach(() => promptMock.mockRestore())
     afterAll(() => delete global.prompt)
 
-    test('cancelling the prompt dispatches nothing', () => {
+    test('cancelling the prompt dispatches nothing', async () => {
         promptMock.mockImplementation(() => null)
 
         const result = reducer(state, { tag: 'PromptForNewChart' })
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, state)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(0)
     })
 
-    test('entering nothing in the prompt dispatches nothing', () => {
+    test('entering nothing in the prompt dispatches nothing', async () => {
         promptMock.mockImplementation(() => '')
 
         const result = reducer(state, { tag: 'PromptForNewChart' })
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, state)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(0)
     })
 
-    test('entering name of existing chart dispatches name taken action', () => {
+    test('entering name of existing chart dispatches name taken action', async () => {
         promptMock.mockImplementation(() => 'Test chart 1')
 
         const result = reducer(state, { tag: 'PromptForNewChart' })
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, state)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(1)
         expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
@@ -83,15 +84,15 @@ describe('PromptForNewChart', () => {
         })
     })
 
-    test('entering unique name dispatches new chart action', () => {
+    test('entering unique name dispatches new chart action', async () => {
         const name = 'Test new chart'
         promptMock.mockImplementation(() => name)
 
         const result = reducer(state, { tag: 'PromptForNewChart' })
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, state)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(1)
         expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
@@ -109,12 +110,12 @@ describe('ShowChartNameTakenMessage', () => {
     afterEach(() => alertMock.mockRestore())
     afterAll(() => delete global.alert)
 
-    test('calls alert', () => {
+    test('calls alert', async () => {
         const result = reducer(state, { tag: 'ShowChartNameTakenMessage' })
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, state)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(0)
         expect(alertMock).toHaveBeenCalledTimes(1)
@@ -136,48 +137,48 @@ test('AddNewChart', () => {
 
 
 describe('PromptToRenameActiveChart', () => {
-    const promptMock = jest.fn<ReturnType<typeof prompt>, Parameters<typeof prompt>>()
+    const promptMock = jest.fn<string | null, [ string | undefined, string | undefined ]>()
     beforeAll(() => global.prompt = promptMock)
     afterEach(() => promptMock.mockRestore())
     afterAll(() => delete global.prompt)
 
-    test('cancelling the prompt dispatches nothing', () => {
+    test('cancelling the prompt dispatches nothing', async () => {
         promptMock.mockImplementation(() => null)
 
         const result = reducer(state, { tag: 'PromptToRenameActiveChart' })
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, state)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(0)
     })
 
-    test('entering nothing in the prompt dispatches nothing', () => {
+    test('entering nothing in the prompt dispatches nothing', async () => {
         promptMock.mockImplementation(() => '')
 
         const result = reducer(state, { tag: 'PromptToRenameActiveChart' })
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, state)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(0)
     })
 
-    test('entering the same name as active chart in the prompt dispatches nothing', () => {
+    test('entering the same name as active chart in the prompt dispatches nothing', async () => {
         promptMock.mockImplementation(() => state.charts[state.activeChartIndex].name)
 
         const result = reducer(state, { tag: 'PromptToRenameActiveChart' })
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, state)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(0)
     })
 
-    test('entering name of other existing chart dispatches name taken action', () => {
+    test('entering name of other existing chart dispatches name taken action', async () => {
         const name = 'Other test chart'
         promptMock.mockImplementation(() => name)
 
@@ -194,8 +195,8 @@ describe('PromptToRenameActiveChart', () => {
         )
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, stateWithExtraChart)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, stateWithExtraChart)
 
         expect(dispatchMock).toHaveBeenCalledTimes(1)
         expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
@@ -203,15 +204,15 @@ describe('PromptToRenameActiveChart', () => {
         })
     })
 
-    test('entering unique name dispatches rename action', () => {
+    test('entering unique name dispatches rename action', async () => {
         const name = 'Renamed test chart'
         promptMock.mockImplementation(() => name)
 
         const result = reducer(state, { tag: 'PromptToRenameActiveChart' })
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, state)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(1)
         expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
@@ -242,28 +243,28 @@ describe('PromptToDeleteActiveChart', () => {
     afterEach(() => confirmMock.mockRestore())
     afterAll(() => delete global.confirm)
 
-    test('declining the prompt dispatches nothing', () => {
+    test('declining the prompt dispatches nothing', async () => {
         confirmMock.mockImplementation(() => false)
 
         const result = reducer(state, { tag: 'PromptToDeleteActiveChart' })
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, state)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
         expect(confirmMock).toHaveBeenCalledTimes(1)
         expect(confirmMock).toHaveBeenCalledWith('Really delete active chart? This cannot be undone')
         expect(dispatchMock).toHaveBeenCalledTimes(0)
     })
 
-    test('accepting the prompt dispatches delete action', () => {
+    test('accepting the prompt dispatches delete action', async () => {
         confirmMock.mockImplementation(() => true)
 
         const result = reducer(state, { tag: 'PromptToDeleteActiveChart' })
         expect(result).toMatchSnapshot()
 
-        const { sideEffect } = result as Extract<typeof result, { tag: 'SideEffect' }>
-        sideEffect(dispatchMock, state)
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
         expect(confirmMock).toHaveBeenCalledTimes(1)
         expect(confirmMock).toHaveBeenCalledWith('Really delete active chart? This cannot be undone')
@@ -287,33 +288,162 @@ describe('DeleteActiveChart', () => {
 
 
 describe('ImportStateFile', () => {
-    test.todo('read error dispatches error action')
+    test('read error dispatches error action', async () => {
+        const fileTextMock = jest.fn<Promise<string>, []>(Promise.reject)
+        const file: File = { text: fileTextMock } as any
 
+        const result = reducer(state, { tag: 'ImportStateFile', file })
+        expect(result).toMatchSnapshot()
 
-    test.todo('json parse error dispatches error action')
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
+        expect(fileTextMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+            tag: 'ShowInvalidStateImportMessage'
+        })
+    })
 
-    test.todo('validation error dispatches error action')
+    test('json parse error dispatches error action', async () => {
+        const fileTextMock = jest.fn<Promise<string>, []>(() =>
+            Promise.resolve('{')
+        )
 
+        const result = reducer(state, {
+            tag: 'ImportStateFile',
+            file: { text: fileTextMock } as any
+        })
+        expect(result).toMatchSnapshot()
 
-    test.todo('validation success dispatches load state action')
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
+
+        expect(fileTextMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+            tag: 'ShowInvalidStateImportMessage'
+        })
+    })
+
+    test('validation error dispatches error action', async () => {
+        const fileTextMock = jest.fn<Promise<string>, []>(() =>
+            Promise.resolve('{}')
+        )
+
+        const result = reducer(state, {
+            tag: 'ImportStateFile',
+            file: { text: fileTextMock } as any
+        })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
+
+        expect(fileTextMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+            tag: 'ShowInvalidStateImportMessage'
+        })
+    })
+
+    test('validation success dispatches load state action', async () => {
+        const state = createTestState({ albums: 100 })
+        const fileTextMock = jest.fn<Promise<string>, []>(() => {
+            const json = JSON.stringify(state)
+            return Promise.resolve(json)
+        })
+
+        const result = reducer(state, {
+            tag: 'ImportStateFile',
+            file: { text: fileTextMock } as any
+        })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
+
+        expect(fileTextMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+            tag: 'LoadState',
+            state
+        })
+    })
 })
 
 
-test.todo('ShowInvalidStateImportMessage')
+describe('ShowInvalidStateImportMessage', () => {
+    const alertMock = jest.fn<void, [ string ]>()
+    beforeAll(() => global.alert = alertMock)
+    afterEach(() => alertMock.mockRestore())
+    afterAll(() => delete global.alert)
+
+    test('shows alert', async () => {
+        const result = reducer(state, { tag: 'ShowInvalidStateImportMessage' })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
+
+        expect(alertMock).toHaveBeenCalledTimes(1)
+        expect(alertMock).toHaveBeenCalledWith('Selected file is invalid')
+    })
+})
 
 
-test.todo('LoadState')
+test('LoadState', () => {
+    const newState = createTestState({ charts: 3 })
+    const result = reducer(state, {
+        tag: 'LoadState',
+        state: newState
+    })
+    expect(result).toEqual(update(newState))
+})
 
 
 test.todo('PromptToExportState')
 
 
 describe('CancelSearchRequest', () => {
-    test.todo('no update wehn search request not in progress')
+    test.each<SearchState>([
+        {
+            tag: 'Complete',
+            albums: [],
+            query: ''
+        },
+        {
+            tag: 'Error',
+            message: '',
+            query: ''
+        },
+        {
+            tag: 'Waiting',
+            query: ''
+        }
+    ])('no update when search request not in progress', search => {
+        const result = reducer({ ...state, search }, { tag: 'CancelSearchRequest' })
+        expect(result).toEqual(noUpdate)
+    })
 
+    test('changes search state to waiting and aborts request controller', async () => {
+        const mock = jest.fn<void, []>()
+        const state: State = {
+            ...createTestState(),
+            search: {
+                tag: 'Loading',
+                query: 'Test query',
+                controller: { abort: mock } as any
+            }
+        }
 
-    test.todo('changes search state to waiting and aborts request controller')
+        const result = reducer(state, { tag: 'CancelSearchRequest' })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
+        expect(mock).toHaveBeenCalledTimes(1)
+    })
 })
 
 

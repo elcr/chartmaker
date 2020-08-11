@@ -455,6 +455,51 @@ Object {
 }
 `;
 
+exports[`CancelSearchRequest changes search state to waiting and aborts request controller 1`] = `
+Object {
+  "sideEffect": [Function],
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
+    },
+  },
+  "tag": "UpdateWithSideEffect",
+}
+`;
+
 exports[`DeleteActiveChart replaces active chart if only one chart, otherwise removes 1`] = `
 Object {
   "state": Object {
@@ -954,6 +999,34 @@ Object {
 }
 `;
 
+exports[`ImportStateFile json parse error dispatches error action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`ImportStateFile read error dispatches error action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`ImportStateFile validation error dispatches error action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`ImportStateFile validation success dispatches load state action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
 exports[`PromptForNewChart cancelling the prompt dispatches nothing 1`] = `
 Object {
   "sideEffect": [Function],
@@ -1233,6 +1306,13 @@ Object {
 `;
 
 exports[`ShowChartNameTakenMessage calls alert 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`ShowInvalidStateImportMessage shows alert 1`] = `
 Object {
   "sideEffect": [Function],
   "tag": "SideEffect",

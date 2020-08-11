@@ -205,7 +205,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'CancelSearchRequest': {
             if (state.search.tag !== 'Loading') {
-                return noUpdate()
+                return noUpdate
             }
             const controller = state.search.controller
             return updateWithSideEffect<State, Action>(
@@ -223,11 +223,11 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         case 'SendSearchRequest': {
             if (state.search.tag === 'Loading'
                     || state.search.query.trim().length === 0) {
-                return noUpdate()
+                return noUpdate
             }
 
             if (state.apiKey.trim().length === 0) {
-                return update<State, Action>({
+                return update({
                     ...state,
                     search: {
                         tag: 'Error',
@@ -323,9 +323,9 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'UpdateSearchQuery': {
             if (state.search.tag === 'Loading') {
-                return noUpdate()
+                return noUpdate
             }
-            return update<State, Action>({
+            return update({
                 ...state,
                 search: {
                     ...state.search,
@@ -336,19 +336,19 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'DragChartAlbum': {
             if (action.sourceID === action.targetID) {
-                return noUpdate()
+                return noUpdate
             }
 
             const activeChart = state.charts[state.activeChartIndex]
 
             const sourceIndex = findIndex(activeChart.albums, album => album.id === action.sourceID)
             if (sourceIndex === null) {
-                return noUpdate()
+                return noUpdate
             }
 
             const targetIndex = findIndex(activeChart.albums, album => album.id === action.targetID)
             if (targetIndex === null) {
-                return noUpdate()
+                return noUpdate
             }
 
             let albums: Album[]
@@ -384,19 +384,19 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'DropSearchAlbum': {
             if (state.search.tag !== 'Complete') {
-                return noUpdate()
+                return noUpdate
             }
 
             const activeChart = state.charts[state.activeChartIndex]
 
             const source = state.search.albums.find(album => album.id === action.sourceID)
             if (source === undefined) {
-                return noUpdate()
+                return noUpdate
             }
 
             const targetIndex = findIndex(activeChart.albums, album => album.id === action.targetID)
             if (targetIndex === null) {
-                return noUpdate()
+                return noUpdate
             }
 
             return update({
@@ -445,12 +445,12 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
             const index = findIndex(activeChart.albums, album => album.id === action.id)
             if (index === null) {
-                return noUpdate()
+                return noUpdate
             }
 
             const album = activeChart.albums[index]
             if (album.placeholder) {
-                return noUpdate()
+                return noUpdate
             }
 
             return update({
@@ -478,7 +478,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
             const index = findIndex(activeChart.albums, album => album.id === action.id)
             if (index === null) {
-                return noUpdate()
+                return noUpdate
             }
 
             return update({
@@ -513,7 +513,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'UpdateScreenshotScale': {
             if (state.screenshot.loading) {
-                return noUpdate()
+                return noUpdate
             }
             return update({
                 ...state,
@@ -526,7 +526,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'TakeScreenshot': {
             if (state.screenshot.loading) {
-                return noUpdate()
+                return noUpdate
             }
             return updateWithSideEffect<State, Action>(
                 {

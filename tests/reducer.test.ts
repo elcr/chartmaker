@@ -581,14 +581,96 @@ describe('SendSearchRequest', () => {
 })
 
 
-test.todo('UpdateSearchState')
+test.each<SearchState>([
+    {
+        tag: 'Complete',
+        albums: [
+            {
+                placeholder: false,
+                id: 123,
+                name: 'Test search album',
+                url: 'https://test.com'
+            }
+        ],
+        query: 'Test complete query'
+    },
+    {
+        tag: 'Error',
+        message: 'Test error message',
+        query: 'Test error query'
+    },
+    {
+        tag: 'Loading',
+        controller: 'Test controller' as any,
+        query: 'Test loading query'
+    },
+    {
+        tag: 'Waiting',
+        query: 'Test waiting query'
+    }
+])('UpdateSearchState', searchState => {
+    const result = reducer(state, {
+        tag: 'UpdateSearchState',
+        state: searchState
+    })
+    expect(result).toMatchSnapshot()
+})
 
 
 describe('UpdateSearchQuery', () => {
-    test.todo('no update when search state loading')
+    test('no update when search state loading', () => {
+        const result = reducer(
+            {
+                ...state,
+                search: {
+                    tag: 'Loading',
+                    controller: 'Test controller' as any,
+                    query: 'Test query'
+                }
+            },
+            {
+                tag: 'UpdateSearchQuery',
+                query: 'Test new query'
+            }
+        )
+        expect(result).toEqual(noUpdate)
+    })
 
-
-    test.todo('update for other search states')
+    test.each<SearchState>([
+        {
+            tag: 'Complete',
+            albums: [
+                {
+                    placeholder: false,
+                    id: 123,
+                    name: 'Test search album',
+                    url: 'https://test.com'
+                }
+            ],
+            query: 'Test complete query'
+        },
+        {
+            tag: 'Error',
+            message: 'Test error message',
+            query: 'Test error query'
+        },
+        {
+            tag: 'Waiting',
+            query: 'Test waiting query'
+        }
+    ])('update for other search states', searchState => {
+        const result = reducer(
+            {
+                ...state,
+                search: searchState
+            },
+            {
+                tag: 'UpdateSearchQuery',
+                query: 'Test new query'
+            }
+        )
+        expect(result).toMatchSnapshot()
+    })
 })
 
 

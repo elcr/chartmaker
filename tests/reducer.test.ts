@@ -1,16 +1,19 @@
-import { reducer, Action } from '@/reducer'
 import { SideEffectUpdate, update, noUpdate } from 'react-use-side-effect-reducer'
 
-import { createTestState } from './utils'
+import { reducer, Action } from '@/reducer'
+import { search, SearchResultAlbum } from '@/api'
 import { State, SearchState } from '@/types'
+
+import { createTestState } from './utils'
 
 
 type ActionParams = [ Action ]
 
 
+jest.mock('@/api')
 const dispatchMock = jest.fn<void, ActionParams>()
-afterEach(() => dispatchMock.mockReset())
-
+const searchMock = search as jest.MockedFunction<typeof search>
+afterEach(jest.resetAllMocks)
 
 const state = createTestState()
 
@@ -54,7 +57,7 @@ describe('PromptForNewChart', () => {
         const { sideEffect } = result as SideEffectUpdate<State, Action>
         await sideEffect(dispatchMock, state)
 
-        expect(dispatchMock).toHaveBeenCalledTimes(0)
+        expect(dispatchMock).not.toHaveBeenCalled()
     })
 
     test('entering nothing in the prompt dispatches nothing', async () => {
@@ -66,7 +69,7 @@ describe('PromptForNewChart', () => {
         const { sideEffect } = result as SideEffectUpdate<State, Action>
         await sideEffect(dispatchMock, state)
 
-        expect(dispatchMock).toHaveBeenCalledTimes(0)
+        expect(dispatchMock).not.toHaveBeenCalled()
     })
 
     test('entering name of existing chart dispatches name taken action', async () => {
@@ -117,9 +120,9 @@ describe('ShowChartNameTakenMessage', () => {
         const { sideEffect } = result as SideEffectUpdate<State, Action>
         await sideEffect(dispatchMock, state)
 
-        expect(dispatchMock).toHaveBeenCalledTimes(0)
         expect(alertMock).toHaveBeenCalledTimes(1)
         expect(alertMock).toHaveBeenCalledWith('A chart with that name already exists')
+        expect(dispatchMock).not.toHaveBeenCalled()
     })
 })
 
@@ -151,7 +154,7 @@ describe('PromptToRenameActiveChart', () => {
         const { sideEffect } = result as SideEffectUpdate<State, Action>
         await sideEffect(dispatchMock, state)
 
-        expect(dispatchMock).toHaveBeenCalledTimes(0)
+        expect(dispatchMock).not.toHaveBeenCalled()
     })
 
     test('entering nothing in the prompt dispatches nothing', async () => {
@@ -163,7 +166,7 @@ describe('PromptToRenameActiveChart', () => {
         const { sideEffect } = result as SideEffectUpdate<State, Action>
         await sideEffect(dispatchMock, state)
 
-        expect(dispatchMock).toHaveBeenCalledTimes(0)
+        expect(dispatchMock).not.toHaveBeenCalled()
     })
 
     test('entering the same name as active chart in the prompt dispatches nothing', async () => {
@@ -175,7 +178,7 @@ describe('PromptToRenameActiveChart', () => {
         const { sideEffect } = result as SideEffectUpdate<State, Action>
         await sideEffect(dispatchMock, state)
 
-        expect(dispatchMock).toHaveBeenCalledTimes(0)
+        expect(dispatchMock).not.toHaveBeenCalled()
     })
 
     test('entering name of other existing chart dispatches name taken action', async () => {
@@ -254,7 +257,7 @@ describe('PromptToDeleteActiveChart', () => {
 
         expect(confirmMock).toHaveBeenCalledTimes(1)
         expect(confirmMock).toHaveBeenCalledWith('Really delete active chart? This cannot be undone')
-        expect(dispatchMock).toHaveBeenCalledTimes(0)
+        expect(dispatchMock).not.toHaveBeenCalled()
     })
 
     test('accepting the prompt dispatches delete action', async () => {
@@ -388,6 +391,7 @@ describe('ShowInvalidStateImportMessage', () => {
 
         expect(alertMock).toHaveBeenCalledTimes(1)
         expect(alertMock).toHaveBeenCalledWith('Selected file is invalid')
+        expect(dispatchMock).not.toHaveBeenCalled()
     })
 })
 
@@ -427,13 +431,13 @@ describe('CancelSearchRequest', () => {
     })
 
     test('changes search state to waiting and aborts request controller', async () => {
-        const mock = jest.fn<void, []>()
+        const abortMock = jest.fn<void, []>()
         const state: State = {
             ...createTestState(),
             search: {
                 tag: 'Loading',
                 query: 'Test query',
-                controller: { abort: mock } as any
+                controller: { abort: abortMock } as any
             }
         }
 
@@ -442,34 +446,138 @@ describe('CancelSearchRequest', () => {
 
         const { sideEffect } = result as SideEffectUpdate<State, Action>
         await sideEffect(dispatchMock, state)
-        expect(mock).toHaveBeenCalledTimes(1)
+
+        expect(abortMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).not.toHaveBeenCalled()
     })
 })
 
 
 describe('SendSearchRequest', () => {
-    test.todo('no update when request already in progress')
+    const abortControllerMock = jest.fn<AbortController, []>()
+    beforeAll(() => global.AbortController = abortControllerMock)
+    beforeEach(() =>
+        abortControllerMock.mockImplementation(() => ({
+            signal: 'Test signal'
+        }) as any)
+    )
+    afterEach(() => abortControllerMock.mockReset())
+    afterAll(() => delete global.AbortController)
 
+    test.each<SearchState>([
+        {
+            tag: 'Loading',
+            controller: undefined as any,
+            query: 'Test query'
+        },
+        {
+            tag: 'Complete',
+            albums: [],
+            query: ''
+        },
+        {
+            tag: 'Error',
+            message: '',
+            query: ''
+        },
+        {
+            tag: 'Waiting',
+            query: ''
+        }
+    ])('no update when request already in progress or search query empty', search => {
+        const result = reducer({ ...state, search }, { tag: 'SendSearchRequest' })
+        expect(result).toEqual(noUpdate)
+    })
 
-    test.todo('no update when search query empty')
+    test('error when api key empty', () => {
+        const result = reducer(
+            {
+                ...state,
+                apiKey: ''
+            },
+            { tag: 'SendSearchRequest' }
+        )
+        expect(result).toMatchSnapshot()
+    })
 
+    test('side effect dispatches load state action on request success', async () => {
+        const albums: SearchResultAlbum[] = []
+        for (let index = 1; index < 4; index++) {
+            albums.push({
+                name: `Test album ${index}`,
+                url: `https://test.com/${index}`
+            })
+        }
 
-    test.todo('error when api key empty')
+        searchMock.mockImplementation(() => Promise.resolve({ tag: 'Ok', albums }))
 
+        const result = reducer(state, { tag: 'SendSearchRequest' })
+        expect(result).toMatchSnapshot()
 
-    test.todo('side effect dispatches load state action on request success')
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
+        expect(searchMock).toHaveBeenCalledTimes(1)
+        expect(searchMock.mock.calls[0]).toMatchSnapshot()
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock.mock.calls[0]).toMatchSnapshot()
+    })
 
-    test.todo('side effect dispatches error action on request status error')
+    test.each([
+        404,
+        500
+    ])('side effect dispatches error action on request status error', async status => {
+        searchMock.mockImplementation(() =>
+            Promise.resolve({
+                tag: 'StatusError',
+                status
+            })
+        )
 
+        const result = reducer(state, { tag: 'SendSearchRequest' })
+        expect(result).toMatchSnapshot()
 
-    test.todo('side effect dispatches error action on request response json decode error')
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
+        expect(searchMock).toHaveBeenCalledTimes(1)
+        expect(searchMock.mock.calls[0]).toMatchSnapshot()
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock.mock.calls[0]).toMatchSnapshot()
+    })
 
-    test.todo('side effect dispatches error action on request response validation error')
+    test.each([
+        'JSONDecodeError',
+        'InvalidResponseData',
+        'NetworkError'
+    ] as const)('side effect dispatches error action on other request errors', async tag => {
+        searchMock.mockImplementation(() => Promise.resolve({ tag }))
 
+        const result = reducer(state, { tag: 'SendSearchRequest' })
+        expect(result).toMatchSnapshot()
 
-    test.todo('side effect dispatches error action on request network error')
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
+
+        expect(searchMock).toHaveBeenCalledTimes(1)
+        expect(searchMock.mock.calls[0]).toMatchSnapshot()
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock.mock.calls[0]).toMatchSnapshot()
+    })
+
+    test('side effect dispatches nothing when search cancelled', async () => {
+        searchMock.mockImplementation(() => Promise.resolve({ tag: 'Cancelled' }))
+
+        const result = reducer(state, { tag: 'SendSearchRequest' })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
+
+        expect(searchMock).toHaveBeenCalledTimes(1)
+        expect(searchMock.mock.calls[0]).toMatchSnapshot()
+        expect(dispatchMock).not.toHaveBeenCalled()
+    })
 })
 
 

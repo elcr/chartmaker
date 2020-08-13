@@ -61,7 +61,7 @@ function formatLastFMResult(result: LastFMResult): SearchResultAlbum[] {
 }
 
 
-type SearchArguments = {
+export type SearchArguments = {
     key: string
     query: string
     signal: AbortSignal

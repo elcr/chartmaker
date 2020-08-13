@@ -1305,6 +1305,588 @@ Object {
 }
 `;
 
+exports[`SendSearchRequest error when api key empty 1`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "message": "Last.fm API key required",
+      "query": "Test query",
+      "tag": "Error",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on other request errors 1`] = `
+Object {
+  "sideEffect": [Function],
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "controller": Object {
+        "signal": "Test signal",
+      },
+      "query": "Test query",
+      "tag": "Loading",
+    },
+  },
+  "tag": "UpdateWithSideEffect",
+}
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on other request errors 2`] = `
+Array [
+  Object {
+    "key": "Test API key",
+    "query": "Test query",
+    "signal": "Test signal",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on other request errors 3`] = `
+Array [
+  Object {
+    "state": Object {
+      "message": "Invalid data returned from Last.fm",
+      "query": "Test query",
+      "tag": "Error",
+    },
+    "tag": "UpdateSearchState",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on other request errors 4`] = `
+Object {
+  "sideEffect": [Function],
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "controller": Object {
+        "signal": "Test signal",
+      },
+      "query": "Test query",
+      "tag": "Loading",
+    },
+  },
+  "tag": "UpdateWithSideEffect",
+}
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on other request errors 5`] = `
+Array [
+  Object {
+    "key": "Test API key",
+    "query": "Test query",
+    "signal": "Test signal",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on other request errors 6`] = `
+Array [
+  Object {
+    "state": Object {
+      "message": "Invalid data returned from Last.fm",
+      "query": "Test query",
+      "tag": "Error",
+    },
+    "tag": "UpdateSearchState",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on other request errors 7`] = `
+Object {
+  "sideEffect": [Function],
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "controller": Object {
+        "signal": "Test signal",
+      },
+      "query": "Test query",
+      "tag": "Loading",
+    },
+  },
+  "tag": "UpdateWithSideEffect",
+}
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on other request errors 8`] = `
+Array [
+  Object {
+    "key": "Test API key",
+    "query": "Test query",
+    "signal": "Test signal",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on other request errors 9`] = `
+Array [
+  Object {
+    "state": Object {
+      "message": "Network error sending request to Last.fm",
+      "query": "Test query",
+      "tag": "Error",
+    },
+    "tag": "UpdateSearchState",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on request status error 1`] = `
+Object {
+  "sideEffect": [Function],
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "controller": Object {
+        "signal": "Test signal",
+      },
+      "query": "Test query",
+      "tag": "Loading",
+    },
+  },
+  "tag": "UpdateWithSideEffect",
+}
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on request status error 2`] = `
+Array [
+  Object {
+    "key": "Test API key",
+    "query": "Test query",
+    "signal": "Test signal",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on request status error 3`] = `
+Array [
+  Object {
+    "state": Object {
+      "message": "Last.fm request returned 404",
+      "query": "Test query",
+      "tag": "Error",
+    },
+    "tag": "UpdateSearchState",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on request status error 4`] = `
+Object {
+  "sideEffect": [Function],
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "controller": Object {
+        "signal": "Test signal",
+      },
+      "query": "Test query",
+      "tag": "Loading",
+    },
+  },
+  "tag": "UpdateWithSideEffect",
+}
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on request status error 5`] = `
+Array [
+  Object {
+    "key": "Test API key",
+    "query": "Test query",
+    "signal": "Test signal",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches error action on request status error 6`] = `
+Array [
+  Object {
+    "state": Object {
+      "message": "Last.fm request returned 500",
+      "query": "Test query",
+      "tag": "Error",
+    },
+    "tag": "UpdateSearchState",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches load state action on request success 1`] = `
+Object {
+  "sideEffect": [Function],
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "controller": Object {
+        "signal": "Test signal",
+      },
+      "query": "Test query",
+      "tag": "Loading",
+    },
+  },
+  "tag": "UpdateWithSideEffect",
+}
+`;
+
+exports[`SendSearchRequest side effect dispatches load state action on request success 2`] = `
+Array [
+  Object {
+    "key": "Test API key",
+    "query": "Test query",
+    "signal": "Test signal",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches load state action on request success 3`] = `
+Array [
+  Object {
+    "state": Object {
+      "activeChartIndex": 0,
+      "albumIDCounter": 6,
+      "apiKey": "Test API key",
+      "charts": Array [
+        Object {
+          "albums": Array [
+            Object {
+              "id": 1,
+              "placeholder": true,
+            },
+            Object {
+              "id": 2,
+              "placeholder": true,
+            },
+            Object {
+              "id": 3,
+              "placeholder": true,
+            },
+          ],
+          "name": "Test chart 1",
+          "rowsX": 10,
+          "rowsY": 10,
+          "shape": Object {
+            "size": 40,
+            "tag": "Top",
+          },
+        },
+      ],
+      "screenshot": Object {
+        "loading": false,
+        "scale": 2,
+      },
+      "search": Object {
+        "albums": Array [
+          Object {
+            "id": 4,
+            "name": "Test album 1",
+            "placeholder": false,
+            "url": "https://test.com/1",
+          },
+          Object {
+            "id": 5,
+            "name": "Test album 2",
+            "placeholder": false,
+            "url": "https://test.com/2",
+          },
+          Object {
+            "id": 6,
+            "name": "Test album 3",
+            "placeholder": false,
+            "url": "https://test.com/3",
+          },
+        ],
+        "query": "Test query",
+        "tag": "Complete",
+      },
+    },
+    "tag": "LoadState",
+  },
+]
+`;
+
+exports[`SendSearchRequest side effect dispatches nothing when search cancelled 1`] = `
+Object {
+  "sideEffect": [Function],
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "controller": Object {
+        "signal": "Test signal",
+      },
+      "query": "Test query",
+      "tag": "Loading",
+    },
+  },
+  "tag": "UpdateWithSideEffect",
+}
+`;
+
+exports[`SendSearchRequest side effect dispatches nothing when search cancelled 2`] = `
+Array [
+  Object {
+    "key": "Test API key",
+    "query": "Test query",
+    "signal": "Test signal",
+  },
+]
+`;
+
 exports[`ShowChartNameTakenMessage calls alert 1`] = `
 Object {
   "sideEffect": [Function],

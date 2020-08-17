@@ -675,19 +675,56 @@ describe('UpdateSearchQuery', () => {
 
 
 describe('DragChartAlbum', () => {
-    test.todo('no update when source and target ids are same')
+    test.each([ 123, 456 ])('no update when source and target ids are same', id => {
+        const result = reducer(state, {
+            tag: 'DragChartAlbum',
+            sourceID: id,
+            targetID: id
+        })
+        expect(result).toEqual(noUpdate)
+    })
 
+    test.each([ 123, 456 ])('no update when album with source id cannot be found', id => {
+        const result = reducer(state, {
+            tag: 'DragChartAlbum',
+            sourceID: id,
+            targetID: 1
+        })
+        expect(result).toEqual(noUpdate)
+    })
 
-    test.todo('no update when album with source id cannot be found')
+    test.each([ 123, 456 ])('no update when album with target id cannot be found', id => {
+        const result = reducer(state, {
+            tag: 'DragChartAlbum',
+            sourceID: 1,
+            targetID: id,
+        })
+        expect(result).toEqual(noUpdate)
+    })
 
+    test.each([ 5, 4 ])('inserts source before target when source index higher', id => {
+        const result = reducer(
+            createTestState({ albums: 5 }),
+            {
+                tag: 'DragChartAlbum',
+                sourceID: id,
+                targetID: id - 2
+            }
+        )
+        expect(result).toMatchSnapshot()
+    })
 
-    test.todo('no update when album with target id cannot be found')
-
-
-    test.todo('inserts source before target when source index higher')
-
-
-    test.todo('inserts source after target when target index higher')
+    test.each([ 5, 4 ])('inserts source after target when target index higher', id => {
+        const result = reducer(
+            createTestState({ albums: 5 }),
+            {
+                tag: 'DragChartAlbum',
+                sourceID: id - 2,
+                targetID: id
+            }
+        )
+        expect(result).toMatchSnapshot()
+    })
 })
 
 

@@ -908,7 +908,12 @@ describe('PromptToRenameAlbum', () => {
 
 
 describe('RenameAlbum', () => {
-    test.each([ 123, 456, 1, 2 ])('no update when album with id not found or placeholder', id => {
+    test.each([
+        123,
+        456,
+        1,
+        2
+    ])('no update when album with id not found or placeholder', id => {
         const result = reducer(state, {
             tag: 'RenameAlbum',
             id,

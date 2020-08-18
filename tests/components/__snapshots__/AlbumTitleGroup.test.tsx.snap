@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders album titles 1`] = `
+.emotion-0 {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="mock-album-title"
+    >
+      ID: 1
+      Test album 1
+    </div>
+    <div
+      class="mock-album-title"
+    >
+      ID: 2
+      Test album 2
+    </div>
+    <div
+      class="mock-album-title"
+    >
+      ID: 3
+      Test album 3
+    </div>
+  </div>
+</div>
+`;

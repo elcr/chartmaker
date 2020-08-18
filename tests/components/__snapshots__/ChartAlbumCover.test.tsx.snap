@@ -55,16 +55,14 @@ exports[`renders album cover with overlay buttons for named album 1`] = `
     Album: {"placeholder":false,"id":456,"name":"Test named album","url":"https://test.com"}
     Size: 3rem
     <div
-      class="mock-album-action-button"
-      title="Rename"
+      class="mock-rename-album-button"
     >
-      ✏️
+      ID: 456
     </div>
     <div
-      class="mock-album-action-button"
-      title="Delete"
+      class="mock-delete-album-button"
     >
-      🗑️
+      ID: 456
     </div>
   </div>
 </div>

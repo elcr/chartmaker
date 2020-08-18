@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders title and two buttons 1`] = `
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-1:not(:hover) button {
+  display: none;
+}
+
+.emotion-0 {
+  margin-right: 0.25rem;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-1"
+  >
+    <span
+      class="emotion-0"
+    >
+      Test title
+    </span>
+    <div
+      class="mock-rename-album-button"
+    >
+      ID: 123
+    </div>
+    <div
+      class="mock-delete-album-button"
+    >
+      ID: 123
+    </div>
+  </div>
+</div>
+`;

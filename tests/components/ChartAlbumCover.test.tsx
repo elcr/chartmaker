@@ -14,7 +14,8 @@ import {
 
 
 jest.mock('@/components/AlbumCover')
-jest.mock('@/components/AlbumActionButton')
+jest.mock('@/components/RenameAlbumButton')
+jest.mock('@/components/DeleteAlbumButton')
 
 
 const container = new RenderContainer()
@@ -58,56 +59,6 @@ test('renders album cover with overlay buttons for named album', () => {
     )
 
     expect(container.element).toMatchSnapshot()
-})
-
-
-test('clicking rename button dispatches action', () => {
-    const mock = jest.fn<void, ActionParams>()
-
-    render(
-        <ChartAlbumCover dispatch={mock}
-            album={namedAlbum}
-            size={'3rem' as Size}/>,
-        container.element
-    )
-
-    act(() =>
-        fireEvent(
-            'click',
-            container.element?.querySelector('[title="Rename"]')
-        )
-    )
-
-    expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<ActionParams>({
-        tag: 'PromptToRenameAlbum',
-        id: namedAlbum.id
-    })
-})
-
-
-test('clicking delete button dispatches action', () => {
-    const mock = jest.fn<void, ActionParams>()
-
-    render(
-        <ChartAlbumCover dispatch={mock}
-            album={namedAlbum}
-            size={'3rem' as Size}/>,
-        container.element
-    )
-
-    act(() =>
-        fireEvent(
-            'click',
-            container.element?.querySelector('[title="Delete"]')
-        )
-    )
-
-    expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<ActionParams>({
-        tag: 'DeleteAlbum',
-        id: namedAlbum.id
-    })
 })
 
 

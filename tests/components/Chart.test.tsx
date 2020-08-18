@@ -8,7 +8,7 @@ import { RenderContainer, ignore, createTestNamedAlbums } from '../utils'
 
 
 jest.mock('@/components/AlbumRow')
-jest.mock('@/components/TitleGroup')
+jest.mock('@/components/AlbumTitleGroup')
 
 
 const container = new RenderContainer()

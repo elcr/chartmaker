@@ -22,6 +22,7 @@ import {
     NamedAlbum,
     Album
 } from '@/types'
+import { MAX_SCREENSHOT_SCALE, MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
 
 
 export type Action =
@@ -501,7 +502,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             })
         }
 
-        case 'UpdateScreenshotLoading': {
+        case 'UpdateScreenshotLoading':
             return update({
                 ...state,
                 screenshot: {
@@ -509,10 +510,11 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                     loading: action.loading
                 }
             })
-        }
 
         case 'UpdateScreenshotScale': {
-            if (state.screenshot.loading) {
+            if (state.screenshot.loading
+                    || action.scale < 1
+                    || action.scale > MAX_SCREENSHOT_SCALE) {
                 return noUpdate
             }
             return update({
@@ -550,7 +552,13 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             )
         }
 
-        case 'UpdateChartShape':
+        case 'UpdateChartShape': {
+            if (action.rowsX < 1
+                    || action.rowsX > MAX_COLLAGE_ROWS_X
+                    || action.rowsY < 1
+                    || action.rowsY > MAX_COLLAGE_ROWS_Y) {
+                return noUpdate
+            }
             return update({
                 ...state,
                 charts: [
@@ -564,5 +572,6 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                     ...state.charts.slice(state.activeChartIndex + 1)
                 ]
             })
+        }
     }
 }

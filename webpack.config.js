@@ -64,6 +64,7 @@ module.exports = {
                     {
                         loader: 'string-replace-loader',
                         options: {
+                            // remove license comments
                             search: /^\/\*!.+?\*\//s,
                             replace: ''
                         }

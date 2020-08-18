@@ -19,7 +19,7 @@ import {
     BORDER
 } from '@/style'
 import { AlbumRow } from '@/components/AlbumRow'
-import { TitleGroup } from '@/components/TitleGroup'
+import { AlbumTitleGroup } from '@/components/AlbumTitleGroup'
 
 
 export type ChartProps = DispatchProps<
@@ -56,32 +56,6 @@ const chartStyle = css({
 type AlbumRow = {
     albums: Album[]
     size: Size
-}
-
-
-type TitleGroup = string[]
-
-
-function titleGroupsFromRows(rows: AlbumRow[]): TitleGroup[] {
-    const titles: TitleGroup[] = []
-    let lastSize = ''
-
-    for (const row of rows) {
-        const named = row.albums.filter(NamedAlbum.guard)
-
-        if (row.size === lastSize) {
-            for (const album of named) {
-                titles[titles.length - 1].push(album.name)
-            }
-        }
-        else {
-            const newTitles = named.map(album => album.name)
-            titles.push(newTitles)
-            lastSize = row.size
-        }
-    }
-
-    return titles
 }
 
 
@@ -195,9 +169,34 @@ function top100Rows(albums: Album[]): AlbumRow[] {
 }
 
 
-function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRow[], TitleGroup[] ] {
+type AlbumTitleGroup = NamedAlbum[]
+
+
+function titleGroupsFromRows(rows: AlbumRow[]): AlbumTitleGroup[] {
+    const groups: AlbumTitleGroup[] = []
+    let lastSize = ''
+
+    for (const row of rows) {
+        const named = row.albums.filter(NamedAlbum.guard)
+
+        if (row.size === lastSize) {
+            for (const album of named) {
+                groups[groups.length - 1].push(album)
+            }
+        }
+        else {
+            groups.push(named)
+            lastSize = row.size
+        }
+    }
+
+    return groups
+}
+
+
+function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRow[], AlbumTitleGroup[] ] {
     const rows: AlbumRow[] = []
-    const titles: TitleGroup[] = []
+    const groups: AlbumTitleGroup[] = []
 
     for (let y = 0; y < rowsY; y++) {
         const slice = albums.slice(rowsX * y, (rowsX * y) + rowsX)
@@ -205,13 +204,12 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
             albums: slice,
             size: VERY_LARGE_ALBUM_SIZE
         })
-        titles.push(
+        groups.push(
             slice.filter(NamedAlbum.guard)
-                .map(album => album.name)
         )
     }
 
-    return [ rows, titles ]
+    return [ rows, groups ]
 }
 
 
@@ -225,7 +223,7 @@ export const Chart: FC<ChartProps> = ({
     innerRef
 }) => {
     let rows: AlbumRow[]
-    let titles: TitleGroup[]
+    let groups: AlbumTitleGroup[]
     if (shape.tag === 'Top') {
         switch (shape.size) {
             case 40:
@@ -237,10 +235,10 @@ export const Chart: FC<ChartProps> = ({
             case 100:
                 rows = top100Rows(albums)
         }
-        titles = titleGroupsFromRows(rows)
+        groups = titleGroupsFromRows(rows)
     }
     else {
-        [ rows, titles ] = collageGroups(albums, rowsX, rowsY)
+        [ rows, groups ] = collageGroups(albums, rowsX, rowsY)
     }
 
     const rowElements = rows.map((row, index) =>
@@ -248,18 +246,9 @@ export const Chart: FC<ChartProps> = ({
             key={index}
             dispatch={dispatch}/>
     )
-    const titleElements = titles.map((titles, index) => {
-        const group = titles.map((title, index) =>
-            <div key={index}>
-                {title}
-            </div>
-        )
-        return (
-            <TitleGroup key={index}>
-                {group}
-            </TitleGroup>
-        )
-    })
+    const titleElements = groups.map((albums, index) =>
+        <AlbumTitleGroup key={index} dispatch={dispatch} albums={albums}/>
+    )
 
     return (
         <main ref={innerRef} className={outContainerStyle}>

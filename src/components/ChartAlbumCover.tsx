@@ -5,7 +5,8 @@ import { Album, Size } from '@/types'
 import { DispatchProps } from '@/reducer'
 import { ALBUM_BUTTONS_PADDING_SIZE } from '@/style'
 import { AlbumCover } from '@/components/AlbumCover'
-import { AlbumActionButton } from '@/components/AlbumActionButton'
+import { RenameAlbumButton } from '@/components/RenameAlbumButton'
+import { DeleteAlbumButton } from '@/components/DeleteAlbumButton'
 
 
 const chartPattern = /^chart-(.+)$/
@@ -100,28 +101,10 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
 
     let buttons: JSX.Element | undefined
     if (!album.placeholder) {
-        function rename() {
-            dispatch({
-                tag: 'PromptToRenameAlbum',
-                id: album.id
-            })
-        }
-
-        function remove() {
-            dispatch({
-                tag: 'DeleteAlbum',
-                id: album.id
-            })
-        }
-
         buttons = (
             <>
-                <AlbumActionButton onClick={rename} title='Rename'>
-                    ✏️
-                </AlbumActionButton>
-                <AlbumActionButton onClick={remove} title='Delete'>
-                    🗑️
-                </AlbumActionButton>
+                <RenameAlbumButton dispatch={dispatch} id={album.id}/>
+                <DeleteAlbumButton dispatch={dispatch} id={album.id}/>
             </>
         )
     }

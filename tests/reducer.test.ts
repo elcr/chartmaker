@@ -2,7 +2,8 @@ import { SideEffectUpdate, update, noUpdate } from 'react-use-side-effect-reduce
 
 import { reducer, Action } from '@/reducer'
 import { search, SearchResultAlbum } from '@/api'
-import { State, SearchState } from '@/types'
+import { State, SearchState, ChartShape } from '@/types'
+import { MAX_SCREENSHOT_SCALE, MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
 
 import { createTestState, createTestNamedAlbums } from './utils'
 
@@ -907,36 +908,163 @@ describe('PromptToRenameAlbum', () => {
 
 
 describe('RenameAlbum', () => {
-    test.todo('no update when album with id not found')
+    test.each([ 123, 456, 1, 2 ])('no update when album with id not found or placeholder', id => {
+        const result = reducer(state, {
+            tag: 'RenameAlbum',
+            id,
+            name: 'Test new name'
+        })
+        expect(result).toEqual(noUpdate)
+    })
 
-    test.todo('no update when album with id is a placeholder')
-
-    test.todo('renames album with id')
+    test.each([
+        [ 1, 'Test new name' ],
+        [ 2, 'Test other new name' ]
+    ])('renames album with id', (id, name) => {
+        const result = reducer(
+            {
+                ...state,
+                charts: [
+                    {
+                        ...state.charts[0],
+                        albums: createTestNamedAlbums(3)
+                    }
+                ]
+            },
+            {
+                tag: 'RenameAlbum',
+                id,
+                name
+            }
+        )
+        expect(result).toMatchSnapshot()
+    })
 })
 
 
 describe('DeleteAlbum', () => {
-    test.todo('no update when album with id not found')
+    test.each([ 123, 456 ])('no update when album with id not found', id => {
+        const result = reducer(state, { tag: 'DeleteAlbum', id })
+        expect(result).toEqual(noUpdate)
+    })
 
-    test.todo('replaces album with id with a placeholder')
+    test.each([ 1, 2 ])('replaces album with id with a placeholder', id => {
+        const result = reducer(
+            {
+                ...state,
+                charts: [
+                    {
+                        ...state.charts[0],
+                        albums: createTestNamedAlbums(3)
+                    }
+                ]
+            },
+            {
+                tag: 'DeleteAlbum',
+                id
+            }
+        )
+        expect(result).toMatchSnapshot()
+    })
 })
 
 
-test.todo('UpdateScreenshotLoading')
+test.each([ true, false ])('UpdateScreenshotLoading', loading => {
+    const result = reducer(
+        {
+            ...state,
+            screenshot: {
+                ...state.screenshot,
+                loading: !loading
+            }
+        },
+        { tag: 'UpdateScreenshotLoading', loading }
+    )
+    expect(result).toMatchSnapshot()
+})
 
 
 describe('UpdateScreenshotScale', () => {
-    test.todo('no update when screenshot in progress')
+    test('no update when screenshot in progress', () => {
+        const result = reducer(
+            {
+                ...state,
+                screenshot: {
+                    ...state.screenshot,
+                    loading: true
+                }
+            },
+            {
+                tag: 'UpdateScreenshotScale',
+                scale: 1
+            }
+        )
+        expect(result).toEqual(noUpdate)
+    })
 
-    test.todo('updates screenshot scale')
+    test.each([ 0, MAX_SCREENSHOT_SCALE + 1 ])('no update when scale out of range', scale => {
+        const result = reducer(state, { tag :'UpdateScreenshotScale', scale })
+        expect(result).toEqual(noUpdate)
+    })
+
+    test.each([ 2, 3 ])('updates screenshot scale', scale => {
+        const result = reducer(state, { tag: 'UpdateScreenshotScale', scale })
+        expect(result).toMatchSnapshot()
+    })
 })
 
 
 describe('TakeScreenshot', () => {
-    test.todo('no update when screenshot in progress')
+    test('no update when screenshot in progress', () => {
+        const result = reducer(
+            {
+                ...state,
+                screenshot: {
+                    ...state.screenshot,
+                    loading: true
+                }
+            },
+            {
+                tag: 'TakeScreenshot',
+                element: undefined as any
+            }
+        )
+        expect(result).toEqual(noUpdate)
+    })
 
     test.todo('side effect downloads picture and dispatches action')
 })
 
 
-test.todo('UpdateChartShape')
+describe('UpdateChartShape', () => {
+    test.each([
+        [ 0, 5 ],
+        [ MAX_COLLAGE_ROWS_X + 1, 5 ],
+        [ 5, 0 ],
+        [ 5, MAX_COLLAGE_ROWS_Y + 1 ]
+    ])('no update when row counts out of range', (rowsX, rowsY) => {
+        const result = reducer(state, {
+            tag: 'UpdateChartShape',
+            shape: { tag: 'Collage' },
+            rowsX,
+            rowsY
+        })
+        expect(result).toEqual(noUpdate)
+    })
+
+    test.each<[ ChartShape, number, number ]>([
+        [ { tag: 'Collage' }, 3, 7 ],
+        [ { tag: 'Top', size: 100 }, 5, 5 ]
+    ])('updates chart shape and rows', (shape, rowsX, rowsY) => {
+        const result = reducer(
+            createTestState({ charts: 3 }),
+            {
+                tag: 'UpdateChartShape',
+                shape,
+                rowsX,
+                rowsY
+            }
+        )
+        expect(result).toMatchSnapshot()
+    })
+})

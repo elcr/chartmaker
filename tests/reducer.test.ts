@@ -4,7 +4,7 @@ import { reducer, Action } from '@/reducer'
 import { search, SearchResultAlbum } from '@/api'
 import { State, SearchState } from '@/types'
 
-import { createTestState } from './utils'
+import { createTestState, createTestNamedAlbums } from './utils'
 
 
 type ActionParams = [ Action ]
@@ -702,7 +702,7 @@ describe('DragChartAlbum', () => {
         expect(result).toEqual(noUpdate)
     })
 
-    test.each([ 5, 4 ])('inserts source before target when source index higher', id => {
+    test.each([ 5, 4 ])('inserts source before target when source id higher', id => {
         const result = reducer(
             createTestState({ albums: 5 }),
             {
@@ -714,7 +714,7 @@ describe('DragChartAlbum', () => {
         expect(result).toMatchSnapshot()
     })
 
-    test.each([ 5, 4 ])('inserts source after target when target index higher', id => {
+    test.each([ 5, 4 ])('inserts source after target when target id higher', id => {
         const result = reducer(
             createTestState({ albums: 5 }),
             {
@@ -729,42 +729,187 @@ describe('DragChartAlbum', () => {
 
 
 describe('DropSearchAlbum', () => {
-    test.todo('no update when search state not complete')
+    test('no update when search state not complete', () => {
+        const result = reducer(state, {
+            tag: 'DropSearchAlbum',
+            sourceID: 123,
+            targetID: 456
+        })
+        expect(result).toEqual(noUpdate)
+    })
 
+    test.each([ 123, 456 ])('no update when album with source id cannot be found', id => {
+        const result = reducer(
+            {
+                ...state,
+                search: {
+                    ...state.search,
+                    tag: 'Complete',
+                    albums: []
+                }
+            },
+            {
+                tag: 'DropSearchAlbum',
+                sourceID: id,
+                targetID: 1
+            }
+        )
+        expect(result).toEqual(noUpdate)
+    })
 
-    test.todo('no update when album with source id cannot be found')
+    test.each([ 123, 456 ])('no update when album with target id cannot be found', id => {
+        const result = reducer(
+            {
+                ...state,
+                search: {
+                    ...state.search,
+                    tag: 'Complete',
+                    albums: [
+                        {
+                            placeholder: false,
+                            id: 1,
+                            name: 'Test search album',
+                            url: 'https://test.com'
+                        }
+                    ]
+                }
+            },
+            {
+                tag: 'DropSearchAlbum',
+                sourceID: 1,
+                targetID: id
+            }
+        )
+        expect(result).toEqual(noUpdate)
+    })
 
-
-    test.todo('no update when album with target id cannot be found')
-
-
-    test.todo('replaces album at target index')
+    test.each<[ number, number ]>([
+        [ 4, 1 ],
+        [ 5, 3 ]
+    ])('replaces album at target id', (sourceID, targetID) => {
+        const result = reducer(
+            {
+                ...state,
+                search: {
+                    ...state.search,
+                    tag: 'Complete',
+                    albums: [
+                        {
+                            placeholder: false,
+                            id: 4,
+                            name: 'Test search album 4',
+                            url: 'https://test.com'
+                        },
+                        {
+                            placeholder: false,
+                            id: 5,
+                            name: 'Test search album 5',
+                            url: 'https://test.com'
+                        }
+                    ]
+                }
+            },
+            {
+                tag: 'DropSearchAlbum',
+                sourceID,
+                targetID
+            }
+        )
+        expect(result).toMatchSnapshot()
+    })
 })
 
 
 describe('PromptToRenameAlbum', () => {
-    test.todo('dispatches nothing when album with id not found')
+    const promptMock = jest.fn<string | null, [ string | undefined, string | undefined ]>()
+    beforeAll(() => global.prompt = promptMock)
+    afterEach(() => promptMock.mockRestore())
+    afterAll(() => delete global.prompt)
 
+    test.each([
+        123,
+        456,
+        1,
+        2
+    ])('dispatches nothing when album with id not found or placeholder', async id => {
+        const result = reducer(state, { tag: 'PromptToRenameAlbum', id })
+        expect(result).toMatchSnapshot()
 
-    test.todo('dispatches nothing if album with id is a placeholder')
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, state)
 
+        expect(promptMock).not.toHaveBeenCalled()
+        expect(dispatchMock).not.toHaveBeenCalled()
+    })
 
-    test.todo('dispatches nothing when prompt cancelled')
+    test.each([
+        null,
+        '',
+        ' '
+    ])('dispatches nothing when prompt cancelled or nothing entered', async name => {
+        promptMock.mockImplementation(() => name)
 
+        const result = reducer(state, {
+            tag: 'PromptToRenameAlbum',
+            id: 1
+        })
+        expect(result).toMatchSnapshot()
 
-    test.todo('dispatches nothing when nothing entered in prompt')
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, {
+            ...state,
+            charts: [
+                {
+                    ...state.charts[0],
+                    albums: createTestNamedAlbums(3)
+                }
+            ]
+        })
 
+        expect(promptMock).toHaveBeenCalledTimes(1)
+        expect(promptMock.mock.calls[0]).toMatchSnapshot()
+        expect(dispatchMock).not.toHaveBeenCalled()
+    })
 
-    test.todo('dispatches rename action')
+    test.each([
+        [ 1, 'Test renamed album' ],
+        [ 2, 'Test other renamed album' ]
+    ])('dispatches rename action', async (id, name) => {
+        promptMock.mockImplementation(() => name)
+
+        const result = reducer(state, {
+            tag: 'PromptToRenameAlbum',
+            id
+        })
+        expect(result).toMatchSnapshot()
+
+        const { sideEffect } = result as SideEffectUpdate<State, Action>
+        await sideEffect(dispatchMock, {
+            ...state,
+            charts: [
+                {
+                    ...state.charts[0],
+                    albums: createTestNamedAlbums(3)
+                }
+            ]
+        })
+
+        expect(promptMock).toHaveBeenCalledTimes(1)
+        expect(promptMock.mock.calls[0]).toMatchSnapshot()
+        expect(dispatchMock).toHaveBeenCalledTimes(1)
+        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+            tag: 'RenameAlbum',
+            id,
+            name
+        })
+    })
 })
 
 
 describe('RenameAlbum', () => {
     test.todo('no update when album with id not found')
 
-
     test.todo('no update when album with id is a placeholder')
-
 
     test.todo('renames album with id')
 })
@@ -772,7 +917,6 @@ describe('RenameAlbum', () => {
 
 describe('DeleteAlbum', () => {
     test.todo('no update when album with id not found')
-
 
     test.todo('replaces album with id with a placeholder')
 })
@@ -784,14 +928,12 @@ test.todo('UpdateScreenshotLoading')
 describe('UpdateScreenshotScale', () => {
     test.todo('no update when screenshot in progress')
 
-
     test.todo('updates screenshot scale')
 })
 
 
 describe('TakeScreenshot', () => {
     test.todo('no update when screenshot in progress')
-
 
     test.todo('side effect downloads picture and dispatches action')
 })

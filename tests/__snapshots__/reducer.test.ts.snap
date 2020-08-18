@@ -999,7 +999,7 @@ Object {
 }
 `;
 
-exports[`DragChartAlbum inserts source after target when target index higher 1`] = `
+exports[`DragChartAlbum inserts source after target when target id higher 1`] = `
 Object {
   "state": Object {
     "activeChartIndex": 0,
@@ -1051,7 +1051,7 @@ Object {
 }
 `;
 
-exports[`DragChartAlbum inserts source after target when target index higher 2`] = `
+exports[`DragChartAlbum inserts source after target when target id higher 2`] = `
 Object {
   "state": Object {
     "activeChartIndex": 0,
@@ -1103,7 +1103,7 @@ Object {
 }
 `;
 
-exports[`DragChartAlbum inserts source before target when source index higher 1`] = `
+exports[`DragChartAlbum inserts source before target when source id higher 1`] = `
 Object {
   "state": Object {
     "activeChartIndex": 0,
@@ -1155,7 +1155,7 @@ Object {
 }
 `;
 
-exports[`DragChartAlbum inserts source before target when source index higher 2`] = `
+exports[`DragChartAlbum inserts source before target when source id higher 2`] = `
 Object {
   "state": Object {
     "activeChartIndex": 0,
@@ -1201,6 +1201,126 @@ Object {
     "search": Object {
       "query": "Test query",
       "tag": "Waiting",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`DropSearchAlbum replaces album at target id 1`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 4,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 4,
+            "name": "Test search album 4",
+            "placeholder": false,
+            "url": "https://test.com",
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "albums": Array [
+        Object {
+          "id": 4,
+          "name": "Test search album 4",
+          "placeholder": false,
+          "url": "https://test.com",
+        },
+        Object {
+          "id": 5,
+          "name": "Test search album 5",
+          "placeholder": false,
+          "url": "https://test.com",
+        },
+      ],
+      "query": "Test query",
+      "tag": "Complete",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`DropSearchAlbum replaces album at target id 2`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 4,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 4,
+            "name": "Test search album 5",
+            "placeholder": false,
+            "url": "https://test.com",
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "albums": Array [
+        Object {
+          "id": 4,
+          "name": "Test search album 4",
+          "placeholder": false,
+          "url": "https://test.com",
+        },
+        Object {
+          "id": 5,
+          "name": "Test search album 5",
+          "placeholder": false,
+          "url": "https://test.com",
+        },
+      ],
+      "query": "Test query",
+      "tag": "Complete",
     },
   },
   "tag": "Update",
@@ -1310,6 +1430,104 @@ Object {
   "sideEffect": [Function],
   "tag": "SideEffect",
 }
+`;
+
+exports[`PromptToRenameAlbum dispatches nothing when album with id not found or placeholder 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameAlbum dispatches nothing when album with id not found or placeholder 2`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameAlbum dispatches nothing when album with id not found or placeholder 3`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameAlbum dispatches nothing when album with id not found or placeholder 4`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameAlbum dispatches nothing when prompt cancelled or nothing entered 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameAlbum dispatches nothing when prompt cancelled or nothing entered 2`] = `
+Array [
+  "Enter new album name:",
+  "Test album 1",
+]
+`;
+
+exports[`PromptToRenameAlbum dispatches nothing when prompt cancelled or nothing entered 3`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameAlbum dispatches nothing when prompt cancelled or nothing entered 4`] = `
+Array [
+  "Enter new album name:",
+  "Test album 1",
+]
+`;
+
+exports[`PromptToRenameAlbum dispatches nothing when prompt cancelled or nothing entered 5`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameAlbum dispatches nothing when prompt cancelled or nothing entered 6`] = `
+Array [
+  "Enter new album name:",
+  "Test album 1",
+]
+`;
+
+exports[`PromptToRenameAlbum dispatches rename action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameAlbum dispatches rename action 2`] = `
+Array [
+  "Enter new album name:",
+  "Test album 1",
+]
+`;
+
+exports[`PromptToRenameAlbum dispatches rename action 3`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`PromptToRenameAlbum dispatches rename action 4`] = `
+Array [
+  "Enter new album name:",
+  "Test album 2",
+]
 `;
 
 exports[`RenameActiveChart 1`] = `

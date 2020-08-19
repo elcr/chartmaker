@@ -27,6 +27,7 @@ export type ChartProps = DispatchProps<
     | 'DropSearchAlbum'
     | 'PromptToRenameAlbum'
     | 'DeleteAlbum'
+    | 'DropExternalFile'
 > & {
     innerRef: Ref<HTMLElement>
 } & ChartDetails

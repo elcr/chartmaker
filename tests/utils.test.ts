@@ -32,6 +32,11 @@ describe('jsonToDataURI', () => {
 })
 
 
+describe('fileToDataURI', () => {
+    test.todo('returns data uri for file')
+})
+
+
 describe('downloadURI', () => {
     const setHrefMock = jest.spyOn(HTMLAnchorElement.prototype, 'href', 'set')
     const setDownloadMock = jest.spyOn(HTMLAnchorElement.prototype, 'download', 'set')

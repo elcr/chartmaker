@@ -11,6 +11,7 @@ export type AlbumRowProps = DispatchProps<
     | 'DropSearchAlbum'
     | 'PromptToRenameAlbum'
     | 'DeleteAlbum'
+    | 'DropExternalFile'
 > & {
     albums: Album[]
     size: Size

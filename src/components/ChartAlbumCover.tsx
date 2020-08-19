@@ -30,13 +30,13 @@ function getAlbumID(
 
 function dragOver(event: DragEvent<HTMLDivElement>) {
     for (const type of event.dataTransfer.types) {
-        if (chartPattern.test(type)) {
-            event.dataTransfer.dropEffect = 'move'
+        if (type === 'Files' || searchPattern.test(type)) {
+            event.dataTransfer.dropEffect = 'copy'
             event.preventDefault()
             return
         }
-        if (searchPattern.test(type)) {
-            event.dataTransfer.dropEffect = 'copy'
+        if (chartPattern.test(type)) {
+            event.dataTransfer.dropEffect = 'move'
             event.preventDefault()
             return
         }
@@ -57,6 +57,7 @@ export type ChartAlbumCoverProps = DispatchProps<
     | 'DropSearchAlbum'
     | 'PromptToRenameAlbum'
     | 'DeleteAlbum'
+    | 'DropExternalFile'
 > & {
     album: Album
     size: Size
@@ -87,6 +88,17 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
     }
 
     function drop(event: DragEvent<HTMLDivElement>) {
+        const file: File | undefined = event.dataTransfer.files[0]
+        if (file !== undefined) {
+            dispatch({
+                tag: 'DropExternalFile',
+                file,
+                targetID: album.id
+            })
+            event.preventDefault()
+            return
+        }
+
         const sourceID = getAlbumID(event, searchPattern)
         if (sourceID === null) {
             return

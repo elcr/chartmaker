@@ -8,7 +8,9 @@
   },
   "author": "elcr",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "js-base64": "^3.4.5"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.8",
     "@types/react": "^16.9.44",

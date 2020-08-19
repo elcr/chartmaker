@@ -1,4 +1,5 @@
 import html2canvas from 'html2canvas'
+import { fromUint8Array as base64FromUint8Array } from 'js-base64'
 
 import { BACKGROUND_COLOUR } from '@/style'
 
@@ -23,6 +24,14 @@ export async function elementToDataURI(element: HTMLElement, scale: number) {
 
 export function jsonToDataURI(json: string): string {
     return 'data:application/json;charset=utf-8,' + encodeURIComponent(json)
+}
+
+
+export async function fileToDataURI(file: File): Promise<string> {
+    const buffer = await file.arrayBuffer()
+    const array = new Uint8Array(buffer)
+    const base64 = base64FromUint8Array(array)
+    return `data:${file.type};base64,${base64}`
 }
 
 

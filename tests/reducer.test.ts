@@ -1073,3 +1073,17 @@ describe('UpdateChartShape', () => {
         expect(result).toMatchSnapshot()
     })
 })
+
+
+describe('DropExternalFile', () => {
+    test.todo('no update if target id nonexistent')
+
+    test.todo('side effect dispatches load external file action')
+})
+
+
+describe('LoadExternalFile', () => {
+    test.todo('no update if target id nonexistent')
+
+    test.todo('replaces album with id with new album with given image and name')
+})

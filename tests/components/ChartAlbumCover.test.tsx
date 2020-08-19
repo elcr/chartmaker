@@ -20,6 +20,9 @@ jest.mock('@/components/DeleteAlbumButton')
 
 const container = new RenderContainer()
 
+const dispatchMock = jest.fn<void, ActionParams>()
+afterEach(() => dispatchMock.mockClear())
+
 
 const placeholderAlbum: Album = {
     placeholder: true,
@@ -88,8 +91,6 @@ test('starting drag sets event data', () => {
 
 
 test('chart album drag enter dispatches action', () => {
-    const dispatchMock = jest.fn<void, ActionParams>()
-
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
@@ -121,9 +122,11 @@ test('chart album drag enter dispatches action', () => {
 })
 
 
-test.each([ 'search-1', 'some-other-type' ])('any other drag enter is ignored', type => {
-    const dispatchMock = jest.fn<void, ActionParams>()
-
+test.each([
+    'search-1',
+    'Files',
+    'some-other-type'
+])('any other drag enter is ignored', type => {
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
@@ -178,7 +181,10 @@ test('dragging chart album over sets move drop effect', () => {
 })
 
 
-test('dragging search album over sets move copy effect', () => {
+test.each([
+    'search-1',
+    'Files'
+])('dragging search album or file over sets move copy effect', type => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={namedAlbum}
@@ -186,7 +192,7 @@ test('dragging search album over sets move copy effect', () => {
         container.element
     )
 
-    const dataTransferMock = new DragEventDataTransferMock([ 'search-1' ])
+    const dataTransferMock = new DragEventDataTransferMock([ type ])
     const preventDefaultMock = jest.fn<void, []>()
 
     act(() =>
@@ -234,8 +240,6 @@ test('dragging anything else over does nothing', () => {
 
 
 test('dropping search album dispatches action', () => {
-    const dispatchMock = jest.fn<void, ActionParams>()
-
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
@@ -267,9 +271,43 @@ test('dropping search album dispatches action', () => {
 })
 
 
-test.each([ 'chart-1', 'some-other-type' ])('dropping anything else does nothing', type => {
-    const dispatchMock = jest.fn<void, ActionParams>()
+test('dropping file dispatches action', () => {
+    render(
+        <ChartAlbumCover dispatch={dispatchMock}
+            album={namedAlbum}
+            size={'3rem' as Size}/>,
+        container.element
+    )
 
+    const file: File = 'Test file' as any
+    const dataTransferMock = new DragEventDataTransferMock(
+        [ 'Files' ],
+        [ file ]
+    )
+    const preventDefaultMock = jest.fn<void, []>()
+
+    act(() => {
+        fireEvent(
+            'drop',
+            container.element?.firstChild,
+            {
+                dataTransfer: dataTransferMock,
+                preventDefault: preventDefaultMock
+            }
+        )
+    })
+
+    expect(dispatchMock).toHaveBeenCalledTimes(1)
+    expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        tag: 'DropExternalFile',
+        file,
+        targetID: namedAlbum.id
+    })
+    expect(preventDefaultMock).toHaveBeenCalledTimes(1)
+})
+
+
+test.each([ 'chart-1', 'some-other-type' ])('dropping anything else does nothing', type => {
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}

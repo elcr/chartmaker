@@ -12,7 +12,8 @@ import {
     findIndex,
     elementToDataURI,
     downloadURI,
-    jsonToDataURI
+    jsonToDataURI,
+    fileToDataURI
 } from '@/utils'
 import { search } from '@/api'
 import {
@@ -52,6 +53,8 @@ export type Action =
     | { tag: 'UpdateScreenshotScale', scale: number }
     | { tag: 'TakeScreenshot', element: HTMLElement }
     | { tag: 'UpdateChartShape', shape: ChartShape, rowsX: number, rowsY: number }
+    | { tag: 'DropExternalFile', file: File, targetID: number }
+    | { tag: 'LoadExternalFile', uri: string, name: string, targetID: number }
 
 
 export type ActionWithTag<T extends Action['tag']> = Extract<Action, { tag: T }>
@@ -568,6 +571,57 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                         shape: action.shape,
                         rowsX: action.rowsX,
                         rowsY: action.rowsY
+                    },
+                    ...state.charts.slice(state.activeChartIndex + 1)
+                ]
+            })
+        }
+
+        case 'DropExternalFile': {
+            const targetIndex = findIndex(
+                state.charts[state.activeChartIndex].albums,
+                album => album.id === action.targetID
+            )
+            if (targetIndex === null) {
+                return noUpdate
+            }
+
+            return sideEffect(async dispatch =>
+                dispatch({
+                    tag: 'LoadExternalFile',
+                    targetID: action.targetID,
+                    uri: await fileToDataURI(action.file),
+                    name: action.file.name
+                })
+            )
+        }
+
+        case 'LoadExternalFile': {
+            const activeChart = state.charts[state.activeChartIndex]
+            const targetIndex = findIndex(
+                activeChart.albums,
+                album => album.id === action.targetID
+            )
+            if (targetIndex === null) {
+                return noUpdate
+            }
+
+            return update({
+                ...state,
+                charts: [
+                    ...state.charts.slice(0, state.activeChartIndex),
+                    {
+                        ...activeChart,
+                        albums: [
+                            ...activeChart.albums.slice(0, targetIndex),
+                            {
+                                placeholder: false,
+                                id: action.targetID,
+                                name: action.name,
+                                url: action.uri
+                            },
+                            ...activeChart.albums.slice(targetIndex + 1)
+                        ]
                     },
                     ...state.charts.slice(state.activeChartIndex + 1)
                 ]

@@ -27,9 +27,11 @@ export class DragEventDataTransferMock {
     public readonly effectAllowedMock = jest.fn<void, [ string ]>()
     public readonly dropEffectMock = jest.fn<void, [ string ]>()
     public readonly types: ReadonlyArray<string>
+    public readonly files: ReadonlyArray<File>
 
-    public constructor(types: ReadonlyArray<string> = []) {
+    public constructor(types: ReadonlyArray<string> = [], files: ReadonlyArray<File> = []) {
         this.types = types
+        this.files = files
     }
 
     public setData(key: string, value: string) {

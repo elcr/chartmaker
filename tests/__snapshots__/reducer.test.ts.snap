@@ -1451,6 +1451,98 @@ Object {
 }
 `;
 
+exports[`LoadExternalFile replaces album with id with new album with given uri and name 1`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "name": "Test name",
+            "placeholder": false,
+            "url": "Test uri",
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`LoadExternalFile replaces album with id with new album with given uri and name 2`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "name": "Other test name",
+            "placeholder": false,
+            "url": "Other test uri",
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
 exports[`PromptForNewChart cancelling the prompt dispatches nothing 1`] = `
 Object {
   "sideEffect": [Function],

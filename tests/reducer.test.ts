@@ -407,6 +407,7 @@ test('LoadState', () => {
 })
 
 
+// TODO: extract to separate test suite to mock utils module
 test.todo('PromptToExportState')
 
 
@@ -1037,6 +1038,7 @@ describe('TakeScreenshot', () => {
         expect(result).toEqual(noUpdate)
     })
 
+    // TODO: extract to separate test suite to mock utils module
     test.todo('side effect downloads picture and dispatches action')
 })
 
@@ -1076,14 +1078,41 @@ describe('UpdateChartShape', () => {
 
 
 describe('DropExternalFile', () => {
-    test.todo('no update if target id nonexistent')
+    test.each([ 123, 456 ])('no update if target id nonexistent', id => {
+        const result = reducer(state, {
+            tag: 'DropExternalFile',
+            file: undefined as any,
+            targetID: id
+        })
+        expect(result).toEqual(noUpdate)
+    })
 
+    // TODO: extract to separate test suite to mock utils module
     test.todo('side effect dispatches load external file action')
 })
 
 
 describe('LoadExternalFile', () => {
-    test.todo('no update if target id nonexistent')
+    test.each([ 123, 456 ])('no update if target id nonexistent', id => {
+        const result = reducer(state, {
+            tag: 'LoadExternalFile',
+            name: 'Test name',
+            uri: 'Test uri',
+            targetID: id
+        })
+        expect(result).toEqual(noUpdate)
+    })
 
-    test.todo('replaces album with id with new album with given image and name')
+    test.each([
+        [ 1, 'Test uri', 'Test name' ],
+        [ 2, 'Other test uri', 'Other test name']
+    ])('replaces album with id with new album with given uri and name', (id, uri, name) => {
+        const result = reducer(state, {
+            tag: 'LoadExternalFile',
+            name,
+            targetID: id,
+            uri
+        })
+        expect(result).toMatchSnapshot()
+    })
 })

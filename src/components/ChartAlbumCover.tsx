@@ -121,7 +121,6 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
         )
     }
 
-
     return (
         <AlbumCover album={album}
                 size={size}

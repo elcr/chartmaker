@@ -1,4 +1,8 @@
-import { findIndex, jsonToDataURI, downloadURI } from '@/utils'
+import fs from 'fs'
+import util from 'util'
+import path from 'path'
+
+import { findIndex, jsonToDataURI, downloadURI, fileToDataURI } from '@/utils'
 
 
 describe('findIndex', () => {
@@ -33,7 +37,15 @@ describe('jsonToDataURI', () => {
 
 
 describe('fileToDataURI', () => {
-    test.todo('returns data uri for file')
+    test.each([ 'blue.bmp', 'red.bmp' ])('returns data uri for file', async fileName => {
+        const filePath = path.join(__dirname, fileName)
+        const { buffer } = await util.promisify(fs.readFile)(filePath)
+        const uri = await fileToDataURI({
+            arrayBuffer: () => Promise.resolve(buffer),
+            type: 'image/bmp'
+        } as any)
+        expect(uri).toMatchSnapshot()
+    })
 })
 
 

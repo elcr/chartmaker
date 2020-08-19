@@ -28,7 +28,8 @@ const imageStyle = css({
     left: 0,
     width: '100%',
     maxWidth: '100%',
-    height: '100%'
+    height: '100%',
+    objectFit: 'contain'
 })
 
 // the overlay is given an additional non-emotion class so it can be used as a

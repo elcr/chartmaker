@@ -8,13 +8,10 @@
   },
   "author": "elcr",
   "license": "MIT",
-  "dependencies": {
-    "js-base64": "^3.4.5"
-  },
   "devDependencies": {
     "@types/jest": "^26.0.8",
-    "@types/react": "^16.9.44",
     "@types/react-dom": "^16.9.8",
+    "@types/react": "^16.9.44",
     "autoprefixer": "^9.8.6",
     "bootstrap": "^4.4.1",
     "css-loader": "^4.2.0",
@@ -22,16 +19,17 @@
     "html-webpack-plugin": "^4.3.0",
     "html2canvas": "^1.0.0-rc.5",
     "inline-source-webpack-plugin": "^1.4.1",
-    "jest": "^26.2.2",
     "jest-emotion": "^10.0.32",
     "jest-webpack-resolver": "^0.3.0",
+    "jest": "^26.2.2",
+    "js-base64": "^3.4.5",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
-    "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-use-side-effect-reducer": "https://github.com/elcr/react-use-side-effect-reducer.git",
+    "react": "^16.13.1",
     "runtypes": "^5.0.1",
     "sass-loader": "^9.0.2",
     "source-map-loader": "^1.0.1",
@@ -41,8 +39,8 @@
     "ts-loader": "^8.0.2",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
     "typescript": "^3.9.7",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack": "^4.44.1"
   },
   "scripts": {
     "build": "webpack -p",

@@ -1,3 +1,5 @@
+import { produce } from 'immer'
+
 import { Chart, State, Album } from '@/types'
 import {
     DEFAULT_CHART_NAME,
@@ -74,17 +76,13 @@ export function loadStateFromLocalStorage(): State | null {
 
 
 export function escapeStateForExport(state: State): State {
-    return {
-        ...state,
-        search: {
+    return produce(state, state => {
+        state.search = {
             tag: 'Waiting',
             query: state.search.query
-        },
-        screenshot: {
-            loading: false,
-            scale: state.screenshot.scale
         }
-    }
+        state.screenshot.loading = false
+    })
 }
 
 

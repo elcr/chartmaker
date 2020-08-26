@@ -1,6 +1,3 @@
-import fs from 'fs'
-import util from 'util'
-
 import { unmountComponentAtNode } from 'react-dom'
 import { Simulate } from 'react-dom/test-utils'
 
@@ -71,9 +68,6 @@ export class RenderContainer {
         this.element = null
     }
 }
-
-
-export const readFile = util.promisify(fs.readFile)
 
 
 export function createTestNamedAlbums(count: number, start = 1): NamedAlbum[] {

@@ -20,7 +20,7 @@
     "html2canvas": "^1.0.0-rc.5",
     "immer": "^8.0.1",
     "inline-source-webpack-plugin": "^1.4.1",
-    "jest": "^26.2.2",
+    "jest": "^26.6.3",
     "jest-emotion": "^10.0.32",
     "jest-webpack-resolver": "^0.3.0",
     "js-base64": "^3.4.5",

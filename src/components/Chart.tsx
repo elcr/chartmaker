@@ -203,7 +203,7 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
         const slice = albums.slice(rowsX * y, (rowsX * y) + rowsX)
         rows.push({
             albums: slice,
-            size: VERY_LARGE_ALBUM_SIZE
+            size: LARGE_ALBUM_SIZE
         })
         groups.push(
             slice.filter(NamedAlbum.guard)

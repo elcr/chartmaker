@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import { css } from 'emotion'
 
 import { NamedAlbum } from '@/types'
-import { LARGE_ALBUM_SIZE } from '@/style'
 import { SidebarGroup } from '@/components/SidebarGroup'
 import { SearchAlbumCover } from '@/components/SearchAlbumCover'
 
@@ -26,9 +25,7 @@ const groupStyle = css({
 
 export const SearchResults: FC<SearchResultsProps> = ({ albums }) => {
     const albumCovers = albums.map(album =>
-        <SearchAlbumCover key={album.id}
-            album={album}
-            size={LARGE_ALBUM_SIZE}/>
+        <SearchAlbumCover key={album.id} album={album}/>
     )
 
     return (

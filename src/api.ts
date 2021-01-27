@@ -80,9 +80,9 @@ export type SearchResult =
 function joinURLQuery(base: string, query: Record<string, string>): string {
     const joinedQuery = Object.entries(query)
         .map(([ key, value ]) => {
-            const escapedKey = encodeURIComponent(key.trim())
-            const escapedValue = encodeURIComponent(value.trim())
-            return `${escapedKey}=${escapedValue}`
+            key = encodeURIComponent(key.trim())
+            value = encodeURIComponent(value.trim())
+            return `${key}=${value}`
         })
         .join('&')
     return `${base}?${joinedQuery}`

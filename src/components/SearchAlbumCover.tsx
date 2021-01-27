@@ -1,16 +1,16 @@
 import React, { FC, DragEvent } from 'react'
 
-import { NamedAlbum, Size } from '@/types'
+import { NamedAlbum } from '@/types'
 import { AlbumCover } from '@/components/AlbumCover'
+import { SMALL_ALBUM_SIZE } from '@/style'
 
 
 export type SearchAlbumCoverProps = {
     album: NamedAlbum
-    size: Size
 }
 
 
-export const SearchAlbumCover: FC<SearchAlbumCoverProps> = ({ album, size }) => {
+export const SearchAlbumCover: FC<SearchAlbumCoverProps> = ({ album }) => {
     function dragStart(event: DragEvent<HTMLDivElement>) {
         event.dataTransfer.setData(`search-${album.id}`, '')
         event.dataTransfer.effectAllowed = 'copy'
@@ -18,7 +18,7 @@ export const SearchAlbumCover: FC<SearchAlbumCoverProps> = ({ album, size }) => 
 
     return (
         <AlbumCover album={album}
-            size={size}
+            size={SMALL_ALBUM_SIZE}
             onDragStart={dragStart}/>
     )
 }

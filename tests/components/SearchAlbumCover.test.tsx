@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { NamedAlbum, Size } from '@/types'
+import { NamedAlbum } from '@/types'
 import { SearchAlbumCover } from '@/components/SearchAlbumCover'
 
 import {
@@ -27,7 +27,7 @@ const album: NamedAlbum = {
 
 test('renders album cover', () => {
     render(
-        <SearchAlbumCover size={'5rem' as Size} album={album}/>,
+        <SearchAlbumCover album={album}/>,
         container.element
     )
 
@@ -37,7 +37,7 @@ test('renders album cover', () => {
 
 test('starting drag sets event data', () => {
     render(
-        <SearchAlbumCover size={'5rem' as Size} album={album}/>,
+        <SearchAlbumCover album={album}/>,
         container.element
     )
 

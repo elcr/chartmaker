@@ -23,7 +23,11 @@ import {
     ChartShape,
     NamedAlbum
 } from '@/types'
-import { MAX_SCREENSHOT_SCALE, MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
+import {
+    MAX_SCREENSHOT_SCALE,
+    MAX_COLLAGE_ROWS_X,
+    MAX_COLLAGE_ROWS_Y
+} from '@/constants'
 
 
 export type Action =
@@ -56,6 +60,8 @@ export type Action =
     | { tag: 'UpdateChartShape', shape: ChartShape, rowsX: number, rowsY: number }
     | { tag: 'DropExternalFile', file: File, targetID: number }
     | { tag: 'LoadExternalFile', uri: string, name: string, targetID: number }
+    | { tag: 'HighlightAlbum', targetID: number }
+    | { tag: 'UnhighlightAlbum' }
 
 
 export type ActionWithTag<T extends Action['tag']> = Extract<Action, { tag: T }>
@@ -78,6 +84,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             return update(
                 produce(state, state => {
                     state.activeChartIndex = action.index
+                    state.highlightedID = undefined
                 })
             )
 
@@ -110,6 +117,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                     state.charts.push(chart)
                     state.albumIDCounter = albumIDCounter
                     state.activeChartIndex = state.charts.length - 1
+                    state.highlightedID = undefined
                 })
             )
         }
@@ -157,6 +165,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                         state.charts = [ chart ]
                         state.activeChartIndex = 0
                         state.albumIDCounter = albumIDCounter
+                        state.highlightedID = undefined
                     })
                 )
             }
@@ -167,6 +176,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                     state.activeChartIndex = state.activeChartIndex - 1 < 0
                         ? state.charts.length - 1
                         : state.activeChartIndex - 1
+                    state.highlightedID = undefined
                 })
             )
         }
@@ -546,11 +556,10 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         }
 
         case 'DropExternalFile': {
-            const targetIndex = findIndex(
-                state.charts[state.activeChartIndex].albums,
-                album => album.id === action.targetID
+            const exists = state.charts[state.activeChartIndex].albums.some(album =>
+                album.id === action.targetID
             )
-            if (targetIndex === null) {
+            if (!exists) {
                 return noUpdate
             }
 
@@ -584,5 +593,31 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                 })
             )
         }
+
+        case 'HighlightAlbum': {
+            const target = state.charts[state.activeChartIndex].albums.find(album =>
+                album.id === action.targetID
+            )
+            if (target === undefined || target.placeholder) {
+                return update(
+                    produce(state, state => {
+                        state.highlightedID = undefined
+                    })
+                )
+            }
+
+            return update(
+                produce(state, state => {
+                    state.highlightedID = action.targetID
+                })
+            )
+        }
+
+        case 'UnhighlightAlbum':
+            return update(
+                produce(state, state => {
+                    state.highlightedID = undefined
+                })
+            )
     }
 }

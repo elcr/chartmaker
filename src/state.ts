@@ -82,6 +82,7 @@ export function escapeStateForExport(state: State): State {
             query: state.search.query
         }
         state.screenshot.loading = false
+        state.highlightedID = undefined
     })
 }
 

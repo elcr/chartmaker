@@ -23,8 +23,11 @@ export type ChartProps = DispatchProps<
     | 'PromptToRenameAlbum'
     | 'DeleteAlbum'
     | 'DropExternalFile'
+    | 'HighlightAlbum'
+    | 'UnhighlightAlbum'
 > & {
     innerRef: Ref<HTMLElement>
+    highlighted: number | undefined
 } & ChartDetails
 
 
@@ -37,7 +40,8 @@ const outContainerStyle = css({
 
 
 const innerContainerStyle = css({
-    display: 'flex'
+    display: 'flex',
+    alignItems: 'flex-start'
 })
 
 
@@ -216,7 +220,8 @@ export const Chart: FC<ChartProps> = ({
     shape,
     rowsX,
     rowsY,
-    innerRef
+    innerRef,
+    highlighted
 }) => {
     let rows: AlbumRow[]
     let groups: AlbumTitleGroup[]
@@ -240,20 +245,28 @@ export const Chart: FC<ChartProps> = ({
     const rowElements = rows.map((row, index) =>
         <AlbumRow {...row}
             key={index}
-            dispatch={dispatch}/>
+            dispatch={dispatch}
+            highlighted={highlighted}/>
     )
     const titleElements = groups.map((albums, index) =>
-        <AlbumTitleGroup key={index} dispatch={dispatch} albums={albums}/>
+        <AlbumTitleGroup key={index}
+            dispatch={dispatch}
+            albums={albums}
+            highlighted={highlighted}/>
     )
+
+    function mouseLeave() {
+        dispatch({ tag: 'UnhighlightAlbum' })
+    }
 
     return (
         <main ref={innerRef} className={outContainerStyle}>
             <h1>{name}</h1>
             <div className={innerContainerStyle}>
-                <div className={chartStyle}>
+                <div className={chartStyle} onMouseLeave={mouseLeave}>
                     {rowElements}
                 </div>
-                <div>
+                <div onMouseLeave={mouseLeave}>
                     {titleElements}
                 </div>
             </div>

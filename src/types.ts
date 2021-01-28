@@ -8,7 +8,8 @@ import {
     Static,
     Number as Number_,
     Array as Array_,
-    Runtype
+    Runtype,
+    Partial as Partial_
 } from 'runtypes'
 
 import {
@@ -117,7 +118,11 @@ export const State = Record_({
     search: SearchState,
     albumIDCounter: IntegerRange(1),
     screenshot: ScreenshotState
-})
+}).And(
+    Partial_({
+        highlightedID: IntegerRange(1)
+    })
+)
 
 
 export type NamedAlbum = Static<typeof NamedAlbum>

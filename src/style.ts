@@ -36,3 +36,8 @@ export const inputStyle = cx(
         width: '100%'
     })
 )
+
+
+export const highlightBackgroundStyle = css({
+    opacity: 'calc(100% / 3 * 2)'
+})

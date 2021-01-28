@@ -12,9 +12,11 @@ export type AlbumRowProps = DispatchProps<
     | 'PromptToRenameAlbum'
     | 'DeleteAlbum'
     | 'DropExternalFile'
+    | 'HighlightAlbum'
 > & {
     albums: Album[]
     size: string
+    highlighted: number | undefined
 }
 
 
@@ -26,12 +28,16 @@ const style = css({
 export const AlbumRow: FC<AlbumRowProps> = ({
     dispatch,
     albums,
-    size
+    size,
+    highlighted
 }) => {
     const albumCovers = albums.map(album =>
         <ChartAlbumCover key={album.id}
             dispatch={dispatch}
             album={album}
+            highlighted={highlighted === undefined
+                ? undefined
+                : album.id === highlighted}
             size={size}/>
     )
     return (

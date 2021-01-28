@@ -58,16 +58,19 @@ export type ChartAlbumCoverProps = DispatchProps<
     | 'PromptToRenameAlbum'
     | 'DeleteAlbum'
     | 'DropExternalFile'
+    | 'HighlightAlbum'
 > & {
     album: Album
     size: string
+    highlighted: boolean | undefined
 }
 
 
 export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
     dispatch,
     album,
-    size
+    size,
+    highlighted
 }) => {
     function dragStart(event: DragEvent<HTMLDivElement>) {
         event.dataTransfer.setData(`chart-${album.id}`, '')
@@ -111,6 +114,13 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
         event.preventDefault()
     }
 
+    function mouseEnter() {
+        dispatch({
+            tag: 'HighlightAlbum',
+            targetID: album.id
+        })
+    }
+
     let buttons: JSX.Element | undefined
     if (!album.placeholder) {
         buttons = (
@@ -128,7 +138,9 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
                 onDragOver={dragOver}
                 onDragEnter={dragEnter}
                 onDrop={drop}
-                overlayClass={overlayStyle}>
+                onMouseEnter={mouseEnter}
+                overlayClass={overlayStyle}
+                highlighted={highlighted}>
             {buttons}
         </AlbumCover>
     )

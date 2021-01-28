@@ -13,14 +13,28 @@ const style = css({
 })
 
 
-export type AlbumTitleGroupProps = DispatchProps<'PromptToRenameAlbum' | 'DeleteAlbum'> & {
+export type AlbumTitleGroupProps = DispatchProps<
+    | 'PromptToRenameAlbum'
+    | 'DeleteAlbum'
+    | 'HighlightAlbum'
+> & {
     albums: NamedAlbum[]
+    highlighted: number | undefined
 }
 
 
-export const AlbumTitleGroup: FC<AlbumTitleGroupProps> = ({ dispatch, albums }) => {
+export const AlbumTitleGroup: FC<AlbumTitleGroupProps> = ({
+    dispatch,
+    highlighted,
+    albums
+}) => {
     const titles = albums.map((album, index) =>
-        <AlbumTitle key={index} dispatch={dispatch} id={album.id}>
+        <AlbumTitle key={index}
+                dispatch={dispatch}
+                id={album.id}
+                highlighted={highlighted === undefined
+                    ? undefined
+                    : album.id === highlighted}>
             {album.name}
         </AlbumTitle>
     )

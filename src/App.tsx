@@ -52,7 +52,8 @@ export const App: FC = () => {
                 chartRef={chartRef}/>
             <Chart {...state.charts[state.activeChartIndex]}
                 innerRef={chartRef}
-                dispatch={dispatch}/>
+                dispatch={dispatch}
+                highlighted={state.highlightedID}/>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { FC, DragEvent } from 'react'
 import { css, cx } from 'emotion'
 
-import { TEXT_COLOUR, ALBUM_PADDING_SIZE } from '@/style'
+import { TEXT_COLOUR, ALBUM_PADDING_SIZE, highlightBackgroundStyle } from '@/style'
 import { Album } from '@/types'
 
 
@@ -12,7 +12,9 @@ export type AlbumCoverProps = {
     onDragOver?: (event: DragEvent<HTMLDivElement>) => void
     onDragEnter?: (event: DragEvent<HTMLDivElement>) => void
     onDrop?: (event: DragEvent<HTMLDivElement>) => void
+    onMouseEnter?: () => void
     overlayClass?: string
+    highlighted?: boolean
 }
 
 
@@ -50,8 +52,10 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
     onDragEnter,
     onDragOver,
     onDrop,
+    onMouseEnter,
     children,
-    overlayClass
+    overlayClass,
+    highlighted
 }) => {
     const overlayStyle = cx(baseOverlayStyle, overlayClass)
     const containerStyle = cx(
@@ -62,7 +66,10 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
             [`:not(:hover) .${overlaySelector}`]: {
                 display: 'none'
             }
-        })
+        }),
+        highlighted === false
+            ? highlightBackgroundStyle
+            : undefined
     )
 
     let image: JSX.Element | undefined
@@ -83,6 +90,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
                 onDragEnter={onDragEnter}
                 onDragOver={onDragOver}
                 onDrop={onDrop}
+                onMouseEnter={onMouseEnter}
                 title={album.placeholder ? undefined : album.name}>
             {image}
             <div className={overlayStyle}>

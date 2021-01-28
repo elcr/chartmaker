@@ -596,9 +596,9 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'HighlightAlbum': {
             const target = state.charts[state.activeChartIndex].albums.find(album =>
-                album.id === action.targetID
+                !album.placeholder && album.id === action.targetID
             )
-            if (target === undefined || target.placeholder) {
+            if (target === undefined) {
                 return update(
                     produce(state, state => {
                         state.highlightedID = undefined

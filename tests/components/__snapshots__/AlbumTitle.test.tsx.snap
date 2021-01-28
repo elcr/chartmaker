@@ -1,5 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`has reduced opacity when highlighted is false 1`] = `
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-1:not(:hover) button {
+  display: none;
+}
+
+.emotion-0 {
+  margin-right: 0.25rem;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-1"
+  >
+    <span
+      class="emotion-0"
+    >
+      Test title
+    </span>
+    <div
+      class="mock-rename-album-button"
+    >
+      ID: 456
+    </div>
+    <div
+      class="mock-delete-album-button"
+    >
+      ID: 456
+    </div>
+  </div>
+</div>
+`;
+
+exports[`has reduced opacity when highlighted is false 2`] = `
+.emotion-0 {
+  margin-right: 0.25rem;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: calc(100% / 3 * 2);
+}
+
+.emotion-1:not(:hover) button {
+  display: none;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="emotion-1"
+  >
+    <span
+      class="emotion-0"
+    >
+      Test title
+    </span>
+    <div
+      class="mock-rename-album-button"
+    >
+      ID: 456
+    </div>
+    <div
+      class="mock-delete-album-button"
+    >
+      ID: 456
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders title and two buttons 1`] = `
 .emotion-1 {
   display: -webkit-box;

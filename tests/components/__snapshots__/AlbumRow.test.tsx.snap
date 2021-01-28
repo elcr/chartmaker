@@ -19,30 +19,35 @@ exports[`renders album covers 1`] = `
     >
       Album: {"placeholder":true,"id":1}
       Size: 5rem
+      Highlighted: false
     </div>
     <div
       class="mock-chart-album-cover"
     >
       Album: {"placeholder":true,"id":2}
       Size: 5rem
+      Highlighted: false
     </div>
     <div
       class="mock-chart-album-cover"
     >
       Album: {"placeholder":true,"id":3}
       Size: 5rem
+      Highlighted: true
     </div>
     <div
       class="mock-chart-album-cover"
     >
       Album: {"placeholder":true,"id":4}
       Size: 5rem
+      Highlighted: false
     </div>
     <div
       class="mock-chart-album-cover"
     >
       Album: {"placeholder":true,"id":5}
       Size: 5rem
+      Highlighted: false
     </div>
   </div>
 </div>

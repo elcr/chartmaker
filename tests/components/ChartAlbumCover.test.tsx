@@ -45,7 +45,8 @@ test('renders album cover for placeholder album', () => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={placeholderAlbum}
-            size='3rem'/>,
+            size='3rem'
+            highlighted/>,
         container.element
     )
 
@@ -57,7 +58,8 @@ test('renders album cover with overlay buttons for named album', () => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={namedAlbum}
-            size='3rem'/>,
+            size='3rem'
+            highlighted={false}/>,
         container.element
     )
 
@@ -69,7 +71,8 @@ test('starting drag sets event data', () => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={namedAlbum}
-            size='3rem'/>,
+            size='3rem'
+            highlighted={undefined}/>,
         container.element
     )
 
@@ -94,7 +97,8 @@ test('chart album drag enter dispatches action', () => {
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
-            size='3rem'/>,
+            size='3rem'
+            highlighted={undefined}/>,
         container.element
     )
 
@@ -130,7 +134,8 @@ test.each([
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
-            size='3rem'/>,
+            size='3rem'
+            highlighted={undefined}/>,
         container.element
     )
 
@@ -157,7 +162,8 @@ test('dragging chart album over sets move drop effect', () => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={namedAlbum}
-            size='3rem'/>,
+            size='3rem'
+            highlighted={undefined}/>,
         container.element
     )
 
@@ -188,7 +194,8 @@ test.each([
     render(
         <ChartAlbumCover dispatch={ignore}
             album={namedAlbum}
-            size='3rem'/>,
+            size='3rem'
+            highlighted={undefined}/>,
         container.element
     )
 
@@ -216,7 +223,8 @@ test('dragging anything else over does nothing', () => {
     render(
         <ChartAlbumCover dispatch={ignore}
             album={namedAlbum}
-            size='3rem'/>,
+            size='3rem'
+            highlighted={undefined}/>,
         container.element
     )
 
@@ -243,7 +251,8 @@ test('dropping search album dispatches action', () => {
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
-            size='3rem'/>,
+            size='3rem'
+            highlighted={undefined}/>,
         container.element
     )
 
@@ -275,7 +284,8 @@ test('dropping file dispatches action', () => {
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
-            size='3rem'/>,
+            size='3rem'
+            highlighted={undefined}/>,
         container.element
     )
 
@@ -311,7 +321,8 @@ test.each([ 'chart-1', 'some-other-type' ])('dropping anything else does nothing
     render(
         <ChartAlbumCover dispatch={dispatchMock}
             album={namedAlbum}
-            size='3rem'/>,
+            size='3rem'
+            highlighted={undefined}/>,
         container.element
     )
 
@@ -331,4 +342,38 @@ test.each([ 'chart-1', 'some-other-type' ])('dropping anything else does nothing
 
     expect(dispatchMock).toHaveBeenCalledTimes(0)
     expect(preventDefaultMock).toHaveBeenCalledTimes(0)
+})
+
+
+test('dispatches highlight event on mouse enter', () => {
+    render(
+        <ChartAlbumCover dispatch={dispatchMock}
+            album={namedAlbum}
+            size='3rem'
+            highlighted={undefined}/>,
+        container.element
+    )
+
+    act(() => fireEvent('mouseEnter', container.element?.firstChild))
+
+    expect(dispatchMock).toHaveBeenCalledTimes(1)
+    expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        tag: 'HighlightAlbum',
+        targetID: namedAlbum.id
+    })
+})
+
+
+test('does not dispatch on placeholder mouse enter', () => {
+    render(
+        <ChartAlbumCover dispatch={dispatchMock}
+            album={placeholderAlbum}
+            size='3rem'
+            highlighted={undefined}/>,
+        container.element
+    )
+
+    act(() => fireEvent('mouseEnter', container.element?.firstChild))
+
+    expect(dispatchMock).not.toHaveBeenCalled()
 })

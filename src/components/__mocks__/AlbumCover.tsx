@@ -9,6 +9,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
     size,
     overlayClass,
     children,
+    highlighted,
     ...props
 }) => {
     const json = JSON.stringify(album)
@@ -17,6 +18,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
         <div {...props} className={className}>
             {`Album: ${json}`}
             {`Size: ${size}`}
+            {`Highlighted: ${highlighted}`}
             {children}
         </div>
     )

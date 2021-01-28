@@ -6,6 +6,7 @@ import { State, SearchState, ChartShape } from '@/types'
 import { MAX_SCREENSHOT_SCALE, MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
 
 import { createTestState, createTestNamedAlbums } from './utils'
+import produce from 'immer'
 
 
 type ActionParams = [ Action ];
@@ -21,10 +22,7 @@ const state = createTestState()
 
 test('UpdateAPIKey', () => {
     const apiKey = 'New API key'
-    const result = reducer(
-        createTestState(),
-        { tag: 'UpdateAPIKey', apiKey }
-    )
+    const result = reducer(state, { tag: 'UpdateAPIKey', apiKey })
     expect(result).toMatchSnapshot()
 })
 
@@ -32,7 +30,10 @@ test('UpdateAPIKey', () => {
 test('UpdateActiveChart', () => {
     const activeChartIndex = 123
     const result = reducer(
-        createTestState(),
+        {
+            ...state,
+            highlightedID: 1
+        },
         {
             tag: 'UpdateActiveChart',
             index: activeChartIndex
@@ -130,7 +131,10 @@ describe('ShowChartNameTakenMessage', () => {
 
 test('AddNewChart', () => {
     const result = reducer(
-        state,
+        {
+            ...state,
+            highlightedID: 1
+        },
         {
             tag: 'AddNewChart',
             name: 'Test new chart'
@@ -285,7 +289,13 @@ describe('DeleteActiveChart', () => {
         state,
         createTestState({ charts: 3 })
     ])('replaces active chart if only one chart, otherwise removes', state => {
-        const result = reducer(state, { tag: 'DeleteActiveChart' })
+        const result = reducer(
+            {
+                ...state,
+                highlightedID: 1
+            },
+            { tag: 'DeleteActiveChart' }
+        )
         expect(result).toMatchSnapshot()
     })
 })
@@ -483,8 +493,8 @@ describe('CancelSearchRequest', () => {
 
     test('changes search state to waiting and aborts request controller', async () => {
         const abortMock = jest.fn<void, []>()
-        const state: State = {
-            ...createTestState(),
+        const testState: State = {
+            ...state,
             search: {
                 tag: 'Loading',
                 query: 'Test query',
@@ -492,11 +502,11 @@ describe('CancelSearchRequest', () => {
             }
         }
 
-        const result = reducer(state, { tag: 'CancelSearchRequest' })
+        const result = reducer(testState, { tag: 'CancelSearchRequest' })
         expect(result).toMatchSnapshot()
 
         const { sideEffect } = result as SideEffectUpdate<State, Action>
-        await sideEffect(dispatchMock, state)
+        await sideEffect(dispatchMock, testState)
 
         expect(abortMock).toHaveBeenCalledTimes(1)
         expect(dispatchMock).not.toHaveBeenCalled()
@@ -1162,6 +1172,48 @@ describe('LoadExternalFile', () => {
             targetID: id,
             uri
         })
+        expect(result).toMatchSnapshot()
+    })
+})
+
+
+describe('HighlightAlbum', () => {
+    test('clears highlightedID if targetID does not exist', () => {
+        const result = reducer(
+            produce(state, state => {
+                state.charts[state.activeChartIndex].albums = createTestNamedAlbums(3)
+                state.highlightedID = 123
+            }),
+            {
+                tag: 'HighlightAlbum',
+                targetID: 456
+            }
+        )
+        expect(result).toMatchSnapshot()
+    })
+
+    test('clears highlightedID if targetID is a placeholder', () => {
+        const result = reducer(
+            { ...state, highlightedID: 123 },
+            {
+                tag: 'HighlightAlbum',
+                targetID: 1
+            }
+        )
+        expect(result).toMatchSnapshot()
+    })
+
+    test('sets highlightedID to targetID', () => {
+        const result = reducer(
+            produce(state, state => {
+                state.charts[state.activeChartIndex].albums = createTestNamedAlbums(3)
+                state.highlightedID = 123
+            }),
+            {
+                tag: 'HighlightAlbum',
+                targetID: 1
+            }
+        )
         expect(result).toMatchSnapshot()
     })
 })

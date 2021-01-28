@@ -17,6 +17,10 @@ import { AlbumRow } from '@/components/AlbumRow'
 import { AlbumTitleGroup } from '@/components/AlbumTitleGroup'
 
 
+export const rowsID = 'rows'
+export const titlesID = 'titles'
+
+
 export type ChartProps = DispatchProps<
     | 'DragChartAlbum'
     | 'DropSearchAlbum'
@@ -263,10 +267,10 @@ export const Chart: FC<ChartProps> = ({
         <main ref={innerRef} className={outContainerStyle}>
             <h1>{name}</h1>
             <div className={innerContainerStyle}>
-                <div className={chartStyle} onMouseLeave={mouseLeave}>
+                <div id={rowsID} className={chartStyle} onMouseLeave={mouseLeave}>
                     {rowElements}
                 </div>
-                <div onMouseLeave={mouseLeave}>
+                <div id={titlesID} onMouseLeave={mouseLeave}>
                     {titleElements}
                 </div>
             </div>

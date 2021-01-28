@@ -16,7 +16,8 @@ test('renders album covers', () => {
     render(
         <AlbumRow dispatch={ignore}
             albums={createTestPlaceholderAlbums(5)}
-            size='5rem'/>,
+            size='5rem'
+            highlighted={3}/>,
         container.element
     )
 

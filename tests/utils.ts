@@ -141,6 +141,7 @@ export function createTestStateForEscaping(): State {
         screenshot: {
             loading: true,
             scale: 2
-        }
+        },
+        highlightedID: 123
     }
 }

@@ -1,10 +1,12 @@
 import React, { createRef } from 'react'
 import { render } from 'react-dom'
+import { act } from 'react-dom/test-utils'
 
 import { Album } from '@/types'
-import { Chart } from '@/components/Chart'
+import { Chart, rowsID, titlesID } from '@/components/Chart'
+import { Action } from '@/reducer'
 
-import { RenderContainer, ignore, createTestNamedAlbums } from '../utils'
+import { RenderContainer, ignore, createTestNamedAlbums, fireEvent } from '../utils'
 
 
 jest.mock('@/components/AlbumRow')
@@ -24,7 +26,8 @@ test.each([ 40, 42, 100 ] as const)('renders with top shape', size => {
             rowsX={10}
             rowsY={10}
             innerRef={ignore}
-            dispatch={ignore}/>,
+            dispatch={ignore}
+            highlighted={5}/>,
         container.element
     )
 
@@ -40,7 +43,8 @@ test('renders with collage shape', () => {
             rowsX={5}
             rowsY={7}
             innerRef={ignore}
-            dispatch={ignore}/>,
+            dispatch={ignore}
+            highlighted={undefined}/>,
         container.element
     )
 
@@ -61,7 +65,8 @@ test('excludes placeholder albums from titles', () => {
             rowsX={5}
             rowsY={5}
             innerRef={ignore}
-            dispatch={ignore}/>,
+            dispatch={ignore}
+            highlighted={3}/>,
         container.element
     )
 
@@ -79,9 +84,58 @@ test('passes ref', () => {
             rowsX={5}
             rowsY={7}
             innerRef={ref}
-            dispatch={ignore}/>,
+            dispatch={ignore}
+            highlighted={undefined}/>,
         container.element
     )
 
     expect(ref.current).toBeInstanceOf(Element)
+})
+
+
+test('dispatches unhighlight action on mouse leaving albums container', () => {
+    const mock = jest.fn<[], [ Action ]>()
+
+    render(
+        <Chart albums={albums}
+            name='Test 5x7 collage chart'
+            shape={{ tag: 'Collage' }}
+            rowsX={5}
+            rowsY={7}
+            innerRef={ignore}
+            dispatch={mock}
+            highlighted={undefined}/>,
+        container.element
+    )
+
+    act(() => fireEvent('mouseLeave', container.element?.querySelector(`#${rowsID}`)))
+
+    expect(mock).toHaveBeenCalledTimes(1)
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
+        tag: 'UnhighlightAlbum'
+    })
+})
+
+
+test('dispatches unhighlight action on mouse leaving titles container', () => {
+    const mock = jest.fn<[], [ Action ]>()
+
+    render(
+        <Chart albums={albums}
+            name='Test 5x7 collage chart'
+            shape={{ tag: 'Collage' }}
+            rowsX={5}
+            rowsY={7}
+            innerRef={ignore}
+            dispatch={mock}
+            highlighted={undefined}/>,
+        container.element
+    )
+
+    act(() => fireEvent('mouseLeave', container.element?.querySelector(`#${titlesID}`)))
+
+    expect(mock).toHaveBeenCalledTimes(1)
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
+        tag: 'UnhighlightAlbum'
+    })
 })

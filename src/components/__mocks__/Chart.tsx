@@ -8,7 +8,8 @@ export const Chart: FC<ChartProps> = ({
     name,
     rowsX,
     rowsY,
-    shape
+    shape,
+    highlighted
 }) => {
     const albumsJSON = JSON.stringify(albums, undefined, 2)
     const shapeJSON = JSON.stringify(shape)
@@ -19,6 +20,7 @@ export const Chart: FC<ChartProps> = ({
             {`Rows X: ${rowsX}`}
             {`Rows Y: ${rowsY}`}
             {`Shape: ${shapeJSON}`}
+            {`Highlighted: ${highlighted}`}
         </div>
     )
 }

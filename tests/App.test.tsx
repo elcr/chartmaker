@@ -41,7 +41,8 @@ const localStorageMock = jest.spyOn(Storage.prototype, 'getItem')
                 albums: createTestNamedAlbums(5, 20)
             },
             activeChartIndex: 1,
-            albumIDCounter: 25
+            albumIDCounter: 25,
+            highlightedID: 5
         }
         return JSON.stringify(state)
     })

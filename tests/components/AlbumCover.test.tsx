@@ -70,6 +70,21 @@ test('overlayClass prop merges styles', () => {
 })
 
 
+test.each([ true, false ])('highlighted prop merges styles when false', highlighted => {
+    render(
+        <AlbumCover album={placeholderAlbum}
+                size='2rem'
+                onDragStart={ignore}
+                highlighted={highlighted}>
+            Test children
+        </AlbumCover>,
+        container.element
+    )
+
+    expect(container.element).toMatchSnapshot()
+})
+
+
 test('dragStart event calls onDragStart prop', () => {
     render(
         <AlbumCover album={namedAlbum}
@@ -134,4 +149,23 @@ test('drop event calls onDrop prop', () => {
     act(() => fireEvent('drop', container.element?.firstChild))
 
     expect(dragMock).toHaveBeenCalledTimes(1)
+})
+
+
+test('mouseEnter event calls onMouseEnter prop', () => {
+    const mouseEnterMock = jest.fn<void, []>()
+
+    render(
+        <AlbumCover album={namedAlbum}
+                size='2rem'
+                onDragStart={ignore}
+                onMouseEnter={mouseEnterMock}>
+            Test children
+        </AlbumCover>,
+        container.element
+    )
+
+    act(() => fireEvent('mouseEnter', container.element?.firstChild))
+
+    expect(mouseEnterMock).toHaveBeenCalledTimes(1)
 })

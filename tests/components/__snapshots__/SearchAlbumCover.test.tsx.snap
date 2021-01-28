@@ -9,6 +9,7 @@ exports[`renders album cover 1`] = `
   >
     Album: {"placeholder":false,"id":123,"name":"Test Album","url":"https://test.com"}
     Size: 8.6rem
+    Highlighted: undefined
   </div>
 </div>
 `;

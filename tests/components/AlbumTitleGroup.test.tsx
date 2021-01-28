@@ -16,7 +16,7 @@ test('renders album titles', () => {
     const albums = createTestNamedAlbums(3)
 
     render(
-        <AlbumTitleGroup dispatch={ignore} albums={albums}/>,
+        <AlbumTitleGroup dispatch={ignore} albums={albums} highlighted={2}/>,
         container.element
     )
 

@@ -114,15 +114,13 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
         event.preventDefault()
     }
 
-    function mouseEnter() {
-        dispatch({
+    let mouseEnter: (() => void) | undefined
+    let buttons: JSX.Element | undefined
+    if (!album.placeholder) {
+        mouseEnter = () => dispatch({
             tag: 'HighlightAlbum',
             targetID: album.id
         })
-    }
-
-    let buttons: JSX.Element | undefined
-    if (!album.placeholder) {
         buttons = (
             <>
                 <RenameAlbumButton dispatch={dispatch} id={album.id}/>

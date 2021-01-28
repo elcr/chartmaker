@@ -442,6 +442,7 @@ Object {
         },
       },
     ],
+    "highlightedID": undefined,
     "screenshot": Object {
       "loading": false,
       "scale": 2,
@@ -919,6 +920,7 @@ Object {
         },
       },
     ],
+    "highlightedID": undefined,
     "screenshot": Object {
       "loading": false,
       "scale": 2,
@@ -986,6 +988,7 @@ Object {
         },
       },
     ],
+    "highlightedID": undefined,
     "screenshot": Object {
       "loading": false,
       "scale": 2,
@@ -1417,6 +1420,153 @@ Object {
       ],
       "query": "Test query",
       "tag": "Complete",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`HighlightAlbum clears highlightedID if targetID does not exist 1`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "name": "Test album 1",
+            "placeholder": false,
+            "url": "https://test.com/1",
+          },
+          Object {
+            "id": 2,
+            "name": "Test album 2",
+            "placeholder": false,
+            "url": "https://test.com/2",
+          },
+          Object {
+            "id": 3,
+            "name": "Test album 3",
+            "placeholder": false,
+            "url": "https://test.com/3",
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "highlightedID": undefined,
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`HighlightAlbum clears highlightedID if targetID is a placeholder 1`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "placeholder": true,
+          },
+          Object {
+            "id": 2,
+            "placeholder": true,
+          },
+          Object {
+            "id": 3,
+            "placeholder": true,
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "highlightedID": undefined,
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
+    },
+  },
+  "tag": "Update",
+}
+`;
+
+exports[`HighlightAlbum sets highlightedID to targetID 1`] = `
+Object {
+  "state": Object {
+    "activeChartIndex": 0,
+    "albumIDCounter": 3,
+    "apiKey": "Test API key",
+    "charts": Array [
+      Object {
+        "albums": Array [
+          Object {
+            "id": 1,
+            "name": "Test album 1",
+            "placeholder": false,
+            "url": "https://test.com/1",
+          },
+          Object {
+            "id": 2,
+            "name": "Test album 2",
+            "placeholder": false,
+            "url": "https://test.com/2",
+          },
+          Object {
+            "id": 3,
+            "name": "Test album 3",
+            "placeholder": false,
+            "url": "https://test.com/3",
+          },
+        ],
+        "name": "Test chart 1",
+        "rowsX": 10,
+        "rowsY": 10,
+        "shape": Object {
+          "size": 40,
+          "tag": "Top",
+        },
+      },
+    ],
+    "highlightedID": 1,
+    "screenshot": Object {
+      "loading": false,
+      "scale": 2,
+    },
+    "search": Object {
+      "query": "Test query",
+      "tag": "Waiting",
     },
   },
   "tag": "Update",
@@ -3050,6 +3200,7 @@ Object {
         },
       },
     ],
+    "highlightedID": undefined,
     "screenshot": Object {
       "loading": false,
       "scale": 2,

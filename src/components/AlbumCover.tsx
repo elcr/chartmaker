@@ -2,12 +2,12 @@ import React, { FC, DragEvent } from 'react'
 import { css, cx } from 'emotion'
 
 import { TEXT_COLOUR, ALBUM_PADDING_SIZE } from '@/style'
-import { Size, Album } from '@/types'
+import { Album } from '@/types'
 
 
 export type AlbumCoverProps = {
     album: Album
-    size: Size
+    size: string
     onDragStart: (event: DragEvent<HTMLDivElement>) => void
     onDragOver?: (event: DragEvent<HTMLDivElement>) => void
     onDragEnter?: (event: DragEvent<HTMLDivElement>) => void
@@ -18,7 +18,7 @@ export type AlbumCoverProps = {
 
 const baseContainerStyle = css({
     position: 'relative',
-    backgroundColor: TEXT_COLOUR,
+    background: TEXT_COLOUR,
     margin: ALBUM_PADDING_SIZE
 })
 
@@ -68,6 +68,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
     let image: JSX.Element | undefined
     if (!album.placeholder) {
         image = (
+            // lazy loading causes problems with html2canvas so keep it default
             <img className={imageStyle}
                 src={album.url}
                 alt={album.name}

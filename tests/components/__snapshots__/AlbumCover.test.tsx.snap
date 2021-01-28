@@ -3,7 +3,7 @@
 exports[`overlayClass prop merges styles 1`] = `
 .emotion-1 {
   position: relative;
-  background-color: white;
+  background: white;
   margin: 0.15rem;
   width: 2rem;
   height: 2rem;
@@ -65,7 +65,7 @@ exports[`renders with image for named album 1`] = `
 
 .emotion-2 {
   position: relative;
-  background-color: white;
+  background: white;
   margin: 0.15rem;
   width: 2rem;
   height: 2rem;
@@ -112,7 +112,7 @@ exports[`renders without image for placeholder album 1`] = `
 
 .emotion-1 {
   position: relative;
-  background-color: white;
+  background: white;
   margin: 0.15rem;
   width: 2rem;
   height: 2rem;

@@ -128,12 +128,3 @@ export type Chart = Static<typeof Chart>
 export type SearchState = Static<typeof SearchState>
 export type ScreenshotState = Static<typeof ScreenshotState>
 export type State = Static<typeof State>
-
-
-type Branded<TBase, TBrand extends string> = TBase & {
-    __brand: TBrand
-}
-
-export type Colour = Branded<string, 'Colour'>
-export type Border = Branded<string, 'Border'>
-export type Size = Branded<string, 'Size'>

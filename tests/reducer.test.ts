@@ -8,7 +8,7 @@ import { MAX_SCREENSHOT_SCALE, MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/
 import { createTestState, createTestNamedAlbums } from './utils'
 
 
-type ActionParams = [ Action ]
+type ActionParams = [ Action ];
 
 
 jest.mock('@/api')
@@ -286,6 +286,55 @@ describe('DeleteActiveChart', () => {
         createTestState({ charts: 3 })
     ])('replaces active chart if only one chart, otherwise removes', state => {
         const result = reducer(state, { tag: 'DeleteActiveChart' })
+        expect(result).toMatchSnapshot()
+    })
+})
+
+
+describe('MoveActiveChart', () => {
+    test.each([ 'Up', 'Down' ] as const)('noUpdate when only one chart', direction => {
+        const result = reducer(state, { tag: 'MoveActiveChart', direction })
+        expect(result).toBe(noUpdate)
+    })
+
+    test('noUpdate when direction is up but chart is already at top', () => {
+        const result = reducer(
+            createTestState({ charts: 3 }),
+            { tag: 'MoveActiveChart', direction: 'Up' }
+        )
+        expect(result).toBe(noUpdate)
+    })
+
+    test('noUpdate when direction is down but chart is already at bottom', () => {
+        const result = reducer(
+            {
+                ...createTestState({ charts: 3 }),
+                activeChartIndex: 2
+            },
+            { tag: 'MoveActiveChart', direction: 'Down' }
+        )
+        expect(result).toBe(noUpdate)
+    })
+
+    test.each([ 1, 2 ])('moves chart up', activeChartIndex => {
+        const result = reducer(
+            {
+                ...createTestState({ charts: 3 }),
+                activeChartIndex
+            },
+            { tag: 'MoveActiveChart', direction: 'Up' }
+        )
+        expect(result).toMatchSnapshot()
+    })
+
+    test.each([ 0, 1 ])('moves chart down', activeChartIndex => {
+        const result = reducer(
+            {
+                ...createTestState({ charts: 3 }),
+                activeChartIndex
+            },
+            { tag: 'MoveActiveChart', direction: 'Down' }
+        )
         expect(result).toMatchSnapshot()
     })
 })

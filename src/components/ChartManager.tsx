@@ -8,6 +8,7 @@ import { NewChartButton } from '@/components/NewChartButton'
 import { RenameActiveChartButton } from '@/components/RenameActiveChartButton'
 import { DeleteActiveChartButton } from '@/components/DeleteActiveChartButton'
 import { SidebarGroup } from '@/components/SidebarGroup'
+import { MoveChartButton } from '@/components/MoveChartButton'
 
 
 export type ChartManagerProps = DispatchProps<
@@ -15,6 +16,7 @@ export type ChartManagerProps = DispatchProps<
     | 'PromptForNewChart'
     | 'PromptToRenameActiveChart'
     | 'PromptToDeleteActiveChart'
+    | 'MoveActiveChart'
 > & {
     charts: Chart[]
     activeChartIndex: number
@@ -22,6 +24,12 @@ export type ChartManagerProps = DispatchProps<
 
 
 const buttonsContainerStyle = css({
+    display: 'flex',
+    justifyContent: 'space-between'
+})
+
+
+const groupStyle = css({
     display: 'flex'
 })
 
@@ -36,8 +44,22 @@ export const ChartManager: FC<ChartManagerProps> = ({
             charts={charts}
             activeChartIndex={activeChartIndex}/>
         <div className={buttonsContainerStyle}>
-            <NewChartButton dispatch={dispatch}/>
-            <RenameActiveChartButton dispatch={dispatch}/>
-            <DeleteActiveChartButton dispatch={dispatch}/>
+            <div className={groupStyle}>
+                <NewChartButton dispatch={dispatch}/>
+                <RenameActiveChartButton dispatch={dispatch}/>
+                <DeleteActiveChartButton dispatch={dispatch}/>
+            </div>
+            <div className={groupStyle}>
+                <MoveChartButton dispatch={dispatch}
+                        direction='Up'
+                        disabled={activeChartIndex === 0}>
+                    ↑
+                </MoveChartButton>
+                <MoveChartButton dispatch={dispatch}
+                        direction='Down'
+                        disabled={activeChartIndex === charts.length - 1}>
+                    ↓
+                </MoveChartButton>
+            </div>
         </div>
     </SidebarGroup>

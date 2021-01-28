@@ -36,6 +36,7 @@ export type Action =
     | { tag: 'RenameActiveChart', name: string }
     | { tag: 'PromptToDeleteActiveChart' }
     | { tag: 'DeleteActiveChart' }
+    | { tag: 'MoveActiveChart', direction: 'Up' | 'Down' }
     | { tag: 'ImportStateFile', file: File }
     | { tag: 'ShowInvalidStateImportMessage' }
     | { tag: 'LoadState', state: State }
@@ -166,6 +167,39 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                     state.activeChartIndex = state.activeChartIndex - 1 < 0
                         ? state.charts.length - 1
                         : state.activeChartIndex - 1
+                })
+            )
+        }
+
+        case 'MoveActiveChart': {
+            if (state.charts.length === 1) {
+                return noUpdate
+            }
+
+            if (action.direction === 'Up') {
+                if (state.activeChartIndex === 0) {
+                    return noUpdate
+                }
+                return update(
+                    produce(state, state => {
+                        const temp = state.charts[state.activeChartIndex - 1]
+                        state.charts[state.activeChartIndex - 1] = state.charts[state.activeChartIndex]
+                        state.charts[state.activeChartIndex] = temp
+                        state.activeChartIndex--
+                    })
+                )
+            }
+
+            if (state.activeChartIndex === state.charts.length - 1) {
+                return noUpdate
+            }
+
+            return update(
+                produce(state, state => {
+                    const temp = state.charts[state.activeChartIndex + 1]
+                    state.charts[state.activeChartIndex + 1] = state.charts[state.activeChartIndex]
+                    state.charts[state.activeChartIndex] = temp
+                    state.activeChartIndex++
                 })
             )
         }

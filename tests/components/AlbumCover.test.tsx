@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { css } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
-import { Album, Size } from '@/types'
+import { Album } from '@/types'
 import { AlbumCover } from '@/components/AlbumCover'
 
 import { ignore, fireEvent, RenderContainer } from '../utils'
@@ -30,7 +30,7 @@ const placeholderAlbum: Album = {
 test('renders without image for placeholder album', () => {
     render(
         <AlbumCover album={placeholderAlbum}
-                size={'2rem' as Size}
+                size='2rem'
                 onDragStart={ignore}>
             Test children
         </AlbumCover>,
@@ -44,7 +44,7 @@ test('renders without image for placeholder album', () => {
 test('renders with image for named album', () => {
     render(
         <AlbumCover album={namedAlbum}
-                size={'2rem' as Size}
+                size='2rem'
                 onDragStart={ignore}>
             Test children
         </AlbumCover>,
@@ -58,7 +58,7 @@ test('renders with image for named album', () => {
 test('overlayClass prop merges styles', () => {
     render(
         <AlbumCover album={placeholderAlbum}
-                size={'2rem' as Size}
+                size='2rem'
                 onDragStart={ignore}
                 overlayClass={css({ color: 'red' })}>
             Test children
@@ -73,7 +73,7 @@ test('overlayClass prop merges styles', () => {
 test('dragStart event calls onDragStart prop', () => {
     render(
         <AlbumCover album={namedAlbum}
-                size={'2rem' as Size}
+                size='2rem'
                 onDragStart={dragMock}>
             Test children
         </AlbumCover>,
@@ -89,7 +89,7 @@ test('dragStart event calls onDragStart prop', () => {
 test('dragEnter event calls onDragEnter prop', () => {
     render(
         <AlbumCover album={namedAlbum}
-                size={'2rem' as Size}
+                size='2rem'
                 onDragStart={ignore}
                 onDragEnter={dragMock}>
             Test children
@@ -106,7 +106,7 @@ test('dragEnter event calls onDragEnter prop', () => {
 test('dragOver event calls onDragOver prop', () => {
     render(
         <AlbumCover album={namedAlbum}
-                size={'2rem' as Size}
+                size='2rem'
                 onDragStart={ignore}
                 onDragOver={dragMock}>
             Test children
@@ -123,7 +123,7 @@ test('dragOver event calls onDragOver prop', () => {
 test('drop event calls onDrop prop', () => {
     render(
         <AlbumCover album={namedAlbum}
-                size={'2rem' as Size}
+                size='2rem'
                 onDragStart={ignore}
                 onDrop={dragMock}>
             Test children

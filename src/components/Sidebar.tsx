@@ -26,6 +26,7 @@ export type SidebarProps = DispatchProps<
     | 'UpdateScreenshotScale'
     | 'TakeScreenshot'
     | 'UpdateChartShape'
+    | 'MoveActiveChart'
 > & {
     charts: Chart[]
     activeChartIndex: number

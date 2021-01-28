@@ -1,6 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders chart selector and buttons 1`] = `
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <div
+      class="mock-chart-selector"
+    >
+      Charts: [{"name":"test chart 1","rowsX":5,"rowsY":5,"shape":{"tag":"Collage"},"albums":[]},{"name":"test chart 2","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":100},"albums":[]},{"name":"test chart 3","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":42},"albums":[]}]
+      Active chart index: 0
+    </div>
+    <div
+      class="emotion-2"
+    >
+      <div
+        class="emotion-0"
+      >
+        <div
+          class="mock-new-chart-button"
+        />
+        <div
+          class="mock-rename-active-chart-button"
+        />
+        <div
+          class="mock-delete-active-chart-button"
+        />
+      </div>
+      <div
+        class="emotion-0"
+      >
+        <div
+          class="mock-move-chart-button"
+        >
+          Disabled: true
+          Direction: Up
+          ↑
+        </div>
+        <div
+          class="mock-move-chart-button"
+        >
+          Disabled: false
+          Direction: Down
+          ↓
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders chart selector and buttons 2`] = `
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -21,17 +102,109 @@ exports[`renders chart selector and buttons 1`] = `
       Active chart index: 1
     </div>
     <div
-      class="emotion-0"
+      class="emotion-2"
     >
       <div
-        class="mock-new-chart-button"
-      />
+        class="emotion-0"
+      >
+        <div
+          class="mock-new-chart-button"
+        />
+        <div
+          class="mock-rename-active-chart-button"
+        />
+        <div
+          class="mock-delete-active-chart-button"
+        />
+      </div>
       <div
-        class="mock-rename-active-chart-button"
-      />
+        class="emotion-0"
+      >
+        <div
+          class="mock-move-chart-button"
+        >
+          Disabled: false
+          Direction: Up
+          ↑
+        </div>
+        <div
+          class="mock-move-chart-button"
+        >
+          Disabled: false
+          Direction: Down
+          ↓
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders chart selector and buttons 3`] = `
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar-group"
+  >
+    <div
+      class="mock-chart-selector"
+    >
+      Charts: [{"name":"test chart 1","rowsX":5,"rowsY":5,"shape":{"tag":"Collage"},"albums":[]},{"name":"test chart 2","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":100},"albums":[]},{"name":"test chart 3","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":42},"albums":[]}]
+      Active chart index: 2
+    </div>
+    <div
+      class="emotion-2"
+    >
       <div
-        class="mock-delete-active-chart-button"
-      />
+        class="emotion-0"
+      >
+        <div
+          class="mock-new-chart-button"
+        />
+        <div
+          class="mock-rename-active-chart-button"
+        />
+        <div
+          class="mock-delete-active-chart-button"
+        />
+      </div>
+      <div
+        class="emotion-0"
+      >
+        <div
+          class="mock-move-chart-button"
+        >
+          Disabled: false
+          Direction: Up
+          ↑
+        </div>
+        <div
+          class="mock-move-chart-button"
+        >
+          Disabled: true
+          Direction: Down
+          ↓
+        </div>
+      </div>
     </div>
   </div>
 </div>

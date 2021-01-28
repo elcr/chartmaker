@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { css } from 'emotion'
 
-import { Album, Size } from '@/types'
+import { Album } from '@/types'
 import { DispatchProps } from '@/reducer'
 import { ChartAlbumCover } from '@/components/ChartAlbumCover'
 
@@ -14,7 +14,7 @@ export type AlbumRowProps = DispatchProps<
     | 'DropExternalFile'
 > & {
     albums: Album[]
-    size: Size
+    size: string
 }
 
 

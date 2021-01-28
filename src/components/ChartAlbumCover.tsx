@@ -1,7 +1,7 @@
 import React, { FC, DragEvent } from 'react'
 import { css } from 'emotion'
 
-import { Album, Size } from '@/types'
+import { Album } from '@/types'
 import { DispatchProps } from '@/reducer'
 import { ALBUM_BUTTONS_PADDING_SIZE } from '@/style'
 import { AlbumCover } from '@/components/AlbumCover'
@@ -60,7 +60,7 @@ export type ChartAlbumCoverProps = DispatchProps<
     | 'DropExternalFile'
 > & {
     album: Album
-    size: Size
+    size: string
 }
 
 

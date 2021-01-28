@@ -1,12 +1,7 @@
 import React, { FC, Ref } from 'react'
 import { css } from 'emotion'
 
-import {
-    Chart as ChartDetails,
-    Album,
-    NamedAlbum,
-    Size
-} from '@/types'
+import { Chart as ChartDetails, Album, NamedAlbum } from '@/types'
 import { DispatchProps } from '@/reducer'
 import {
     VERY_LARGE_ALBUM_SIZE,
@@ -56,7 +51,7 @@ const chartStyle = css({
 
 type AlbumRow = {
     albums: Album[]
-    size: Size
+    size: string
 }
 
 

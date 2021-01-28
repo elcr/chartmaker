@@ -12,12 +12,13 @@ jest.mock('@/components/NewChartButton')
 jest.mock('@/components/RenameActiveChartButton')
 jest.mock('@/components/DeleteActiveChartButton')
 jest.mock('@/components/SidebarGroup')
+jest.mock('@/components/MoveChartButton')
 
 
 const container = new RenderContainer()
 
 
-test('renders chart selector and buttons', () => {
+test.each([ 0, 1, 2 ])('renders chart selector and buttons', activeChartIndex => {
     const charts: Chart[] = [
         {
             name: 'test chart 1',
@@ -46,7 +47,7 @@ test('renders chart selector and buttons', () => {
 
     render(
         <ChartManager dispatch={ignore}
-            activeChartIndex={1}
+            activeChartIndex={activeChartIndex}
             charts={charts}/>,
         container.element
     )

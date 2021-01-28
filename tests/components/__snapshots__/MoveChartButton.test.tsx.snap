@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders button 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-button"
+  >
+    Disabled: true
+    Test
+  </div>
+</div>
+`;
+
+exports[`renders button 2`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-button"
+  >
+    Disabled: false
+    Test
+  </div>
+</div>
+`;

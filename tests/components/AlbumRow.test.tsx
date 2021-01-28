@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import { Size } from '@/types'
 import { AlbumRow } from '@/components/AlbumRow'
 
 import { RenderContainer, ignore, createTestPlaceholderAlbums } from '../utils'
@@ -17,7 +16,7 @@ test('renders album covers', () => {
     render(
         <AlbumRow dispatch={ignore}
             albums={createTestPlaceholderAlbums(5)}
-            size={'5rem' as Size}/>,
+            size='5rem'/>,
         container.element
     )
 

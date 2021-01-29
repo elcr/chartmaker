@@ -21,7 +21,8 @@ export type AlbumCoverProps = {
 const baseContainerStyle = css({
     position: 'relative',
     background: TEXT_COLOUR,
-    margin: ALBUM_PADDING_SIZE
+    margin: ALBUM_PADDING_SIZE,
+    cursor: 'grab'
 })
 
 const imageStyle = css({

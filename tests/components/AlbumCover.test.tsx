@@ -1,9 +1,9 @@
-import React, { DragEvent } from 'react'
+import type { DragEvent } from 'react'
 import { render } from 'react-dom'
 import { css } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
-import { Album } from '@/types'
+import type { Album } from '@/types'
 import { AlbumCover } from '@/components/AlbumCover'
 
 import { ignore, fireEvent, RenderContainer } from '../utils'

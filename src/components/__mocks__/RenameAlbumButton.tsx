@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { RenameAlbumButtonProps } from '@/components/RenameAlbumButton'
+import type { RenameAlbumButtonProps } from '@/components/RenameAlbumButton'
 
 
 export const RenameAlbumButton: FC<RenameAlbumButtonProps> = ({ id }) =>

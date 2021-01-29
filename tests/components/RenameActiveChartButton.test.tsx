@@ -1,9 +1,8 @@
-import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import { RenameActiveChartButton } from '@/components/RenameActiveChartButton'
-import { Action } from '@/reducer'
+import type { Action } from '@/reducer'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
 

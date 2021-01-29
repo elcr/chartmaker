@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { css } from 'emotion'
 
-import { DispatchProps } from '@/reducer'
-import { ChartShape } from '@/types'
+import type { DispatchProps } from '@/reducer'
+import type { ChartShape } from '@/types'
 import { MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
 import { ControlledSlider } from '@/components/ControlledSlider'
 import { ControlledRadioButton } from '@/components/ControlledRadioButton'

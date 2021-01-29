@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { DeleteActiveChartButtonProps } from '@/components/DeleteActiveChartButton'
+import type { DeleteActiveChartButtonProps } from '@/components/DeleteActiveChartButton'
 
 
 export const DeleteActiveChartButton: FC<DeleteActiveChartButtonProps> = () =>

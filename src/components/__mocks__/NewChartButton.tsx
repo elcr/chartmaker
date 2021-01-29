@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { NewChartButtonProps } from '@/components/NewChartButton'
+import type { NewChartButtonProps } from '@/components/NewChartButton'
 
 
 export const NewChartButton: FC<NewChartButtonProps> = () =>

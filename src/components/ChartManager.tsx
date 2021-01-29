@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { css } from 'emotion'
 
-import { DispatchProps } from '@/reducer'
-import { Chart } from '@/types'
+import type { DispatchProps } from '@/reducer'
+import type { Chart } from '@/types'
 import { ChartSelector } from '@/components/ChartSelector'
 import { NewChartButton } from '@/components/NewChartButton'
 import { RenameActiveChartButton } from '@/components/RenameActiveChartButton'

@@ -1,8 +1,8 @@
-import React, { FC, Ref } from 'react'
+import type { FC, Ref } from 'react'
 import { css } from 'emotion'
 
 import { Chart as ChartDetails, Album, NamedAlbum } from '@/types'
-import { DispatchProps } from '@/reducer'
+import type { DispatchProps } from '@/reducer'
 import {
     VERY_LARGE_ALBUM_SIZE,
     LARGE_ALBUM_SIZE,
@@ -180,7 +180,7 @@ function titleGroupsFromRows(rows: AlbumRow[]): AlbumTitleGroup[] {
 
         if (row.size === lastSize) {
             for (const album of named) {
-                groups[groups.length - 1].push(album)
+                groups[groups.length - 1]!.push(album)
             }
         }
         else {

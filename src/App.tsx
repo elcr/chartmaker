@@ -50,7 +50,7 @@ export const App: FC = () => {
                 searchState={state.search}
                 screenshotState={state.screenshot}
                 chartRef={chartRef}/>
-            <Chart {...state.charts[state.activeChartIndex]}
+            <Chart {...state.charts[state.activeChartIndex]!}
                 innerRef={chartRef}
                 dispatch={dispatch}
                 highlighted={state.highlightedID}/>

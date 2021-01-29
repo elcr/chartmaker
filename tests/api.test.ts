@@ -7,7 +7,7 @@ import { ignore } from './utils'
 const fetchMock = jest.fn()
 beforeAll(() => global.fetch = fetchMock)
 afterEach(jest.resetAllMocks)
-afterAll(() => delete global.fetch)
+afterAll(() => delete (global as any).fetch)
 
 
 function lastFMAlbum(x: number): LastFMAlbum {

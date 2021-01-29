@@ -1,11 +1,10 @@
-import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import { AlbumTitle } from '@/components/AlbumTitle'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
-import { Action } from '@/reducer'
+import type { Action } from '@/reducer'
 
 
 jest.mock('@/components/RenameAlbumButton')

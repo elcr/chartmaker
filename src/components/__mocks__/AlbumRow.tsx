@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { AlbumRowProps } from '@/components/AlbumRow'
+import type { AlbumRowProps } from '@/components/AlbumRow'
 
 
 export const AlbumRow: FC<AlbumRowProps> = ({ albums, highlighted, size }) => {

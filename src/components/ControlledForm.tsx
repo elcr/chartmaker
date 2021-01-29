@@ -1,4 +1,4 @@
-import React, { FC, FormEvent } from 'react'
+import type { FC, FormEvent } from 'react'
 
 
 type Props = {

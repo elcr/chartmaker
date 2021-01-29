@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { AlbumTitleGroupProps } from '@/components/AlbumTitleGroup'
+import type { AlbumTitleGroupProps } from '@/components/AlbumTitleGroup'
 
 
 export const AlbumTitleGroup: FC<AlbumTitleGroupProps> = ({ albums, highlighted }) => {

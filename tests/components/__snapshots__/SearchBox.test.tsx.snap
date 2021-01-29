@@ -18,7 +18,7 @@ exports[`renders form with labelled text input 1`] = `
         class="mock-controlled-input"
         id="search"
       >
-        Type: undefined
+        Type: search
         Value: Test query
         Disabled: false
       </div>
@@ -45,7 +45,7 @@ exports[`renders form with labelled text input 2`] = `
         class="mock-controlled-input"
         id="search"
       >
-        Type: undefined
+        Type: search
         Value: Test query
         Disabled: true
       </div>
@@ -86,7 +86,7 @@ exports[`renders form with labelled text input 3`] = `
         class="mock-controlled-input"
         id="search"
       >
-        Type: undefined
+        Type: search
         Value: Test query
         Disabled: false
       </div>
@@ -113,7 +113,7 @@ exports[`renders form with labelled text input 4`] = `
         class="mock-controlled-input"
         id="search"
       >
-        Type: undefined
+        Type: search
         Value: Test query
         Disabled: false
       </div>

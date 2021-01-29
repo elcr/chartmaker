@@ -1,9 +1,8 @@
-import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import { APIKeyInput, id } from '@/components/APIKeyInput'
-import { Action } from '@/reducer'
+import type { Action } from '@/reducer'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
 

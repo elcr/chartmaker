@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { SidebarProps } from '@/components/Sidebar'
+import type { SidebarProps } from '@/components/Sidebar'
 
 
 export const Sidebar: FC<SidebarProps> = ({

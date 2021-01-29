@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
+import type { ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
 
 
 export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({ album, size, highlighted }) => {

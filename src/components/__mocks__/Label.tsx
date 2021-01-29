@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { LabelProps } from '@/components/Label'
+import type { LabelProps } from '@/components/Label'
 
 
 export const Label: FC<LabelProps> = ({ target, children }) =>

@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent } from 'react'
+import type { FC, ChangeEvent } from 'react'
 import { css, cx } from 'emotion'
 
 import { inputStyle, SIDEBAR_ITEM_PADDING_SIZE } from '@/style'

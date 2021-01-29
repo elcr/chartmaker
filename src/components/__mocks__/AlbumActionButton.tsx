@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { AlbumActionButtonProps } from '@/components/AlbumActionButton'
+import type { AlbumActionButtonProps } from '@/components/AlbumActionButton'
 
 
 export const AlbumActionButton: FC<AlbumActionButtonProps> = props =>

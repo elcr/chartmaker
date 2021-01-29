@@ -16,6 +16,7 @@ exports[`renders disabled prop 1`] = `
     class="emotion-0"
     disabled=""
     id="test-input"
+    type="search"
     value="test value"
   />
 </div>
@@ -36,6 +37,7 @@ exports[`renders disabled prop 2`] = `
   <input
     class="emotion-0"
     id="test-input"
+    type="search"
     value="test value"
   />
 </div>
@@ -56,6 +58,7 @@ exports[`renders disabled prop 3`] = `
   <input
     class="emotion-0"
     id="test-input"
+    type="search"
     value="test value"
   />
 </div>
@@ -76,7 +79,7 @@ exports[`renders text type input 1`] = `
   <input
     class="emotion-0"
     id="test-input"
-    type="text"
+    type="search"
     value="test value"
   />
 </div>
@@ -98,26 +101,6 @@ exports[`renders text type input 2`] = `
     class="emotion-0"
     id="test-input"
     type="password"
-    value="test value"
-  />
-</div>
-`;
-
-exports[`renders text type input 3`] = `
-.emotion-0 {
-  background: black;
-  color: white;
-  border: 1px solid white;
-  padding: 0.25rem;
-  width: 100%;
-}
-
-<div
-  id="test-render-container"
->
-  <input
-    class="emotion-0"
-    id="test-input"
     value="test value"
   />
 </div>

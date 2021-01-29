@@ -2,9 +2,9 @@ import React, { createRef } from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { Album } from '@/types'
+import type { Album } from '@/types'
 import { Chart, rowsID, titlesID } from '@/components/Chart'
-import { Action } from '@/reducer'
+import type { Action } from '@/reducer'
 
 import { RenderContainer, ignore, createTestNamedAlbums, fireEvent } from '../utils'
 

@@ -1,7 +1,6 @@
-import React from 'react'
 import { render } from 'react-dom'
 
-import { State } from '@/types'
+import type { State } from '@/types'
 import { App } from '@/App'
 
 import { RenderContainer, createTestPlaceholderAlbums, createTestNamedAlbums } from './utils'

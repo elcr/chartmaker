@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { ImportExportScreenshotButtonsProps } from '@/components/ImportExportScreenshotButtons'
+import type { ImportExportScreenshotButtonsProps } from '@/components/ImportExportScreenshotButtons'
 
 
 export const ImportExportScreenshotButtons: FC<ImportExportScreenshotButtonsProps> = ({

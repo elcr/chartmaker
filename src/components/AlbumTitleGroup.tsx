@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { css } from 'emotion'
 
 import { TITLES_PADDING_SIZE, TITLES_FONT_SIZE } from '@/style'
-import { DispatchProps } from '@/reducer'
-import { NamedAlbum } from '@/types'
+import type { DispatchProps } from '@/reducer'
+import type { NamedAlbum } from '@/types'
 import { AlbumTitle } from '@/components/AlbumTitle'
 
 

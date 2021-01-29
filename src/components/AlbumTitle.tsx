@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { css, cx } from 'emotion'
 
-import { DispatchProps } from '@/reducer'
+import type { DispatchProps } from '@/reducer'
 import { RenameAlbumButton } from '@/components/RenameAlbumButton'
 import { DeleteAlbumButton } from '@/components/DeleteAlbumButton'
 import { SIDEBAR_LABEL_PADDING_SIZE, highlightBackgroundStyle } from '@/style'

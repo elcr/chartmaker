@@ -1,4 +1,4 @@
-import React, { MutableRefObject } from 'react'
+import type { MutableRefObject } from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
@@ -7,8 +7,8 @@ import {
     sliderID,
     buttonID
 } from '@/components/ImportExportScreenshotButtons'
-import { ScreenshotState } from '@/types'
-import { Action } from '@/reducer'
+import type { ScreenshotState } from '@/types'
+import type { Action } from '@/reducer'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
 

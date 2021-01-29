@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { cx } from 'emotion'
 
-import { SidebarGroupProps } from '@/components/SidebarGroup'
+import type { SidebarGroupProps } from '@/components/SidebarGroup'
 
 
 export const SidebarGroup: FC<SidebarGroupProps> = ({ children, className }) => {

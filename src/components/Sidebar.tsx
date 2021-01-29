@@ -1,8 +1,8 @@
-import React, { FC, RefObject } from 'react'
+import type { FC, RefObject } from 'react'
 import { css } from 'emotion'
 
-import { DispatchProps } from '@/reducer'
-import { Chart, SearchState, ScreenshotState } from '@/types'
+import type { DispatchProps } from '@/reducer'
+import type { Chart, SearchState, ScreenshotState } from '@/types'
 import { SIDEBAR_WIDTH, CONTAINER_PADDING_SIZE } from '@/style'
 import { ChartManager } from '@/components/ChartManager'
 import { APIKeyInput } from '@/components/APIKeyInput'
@@ -54,7 +54,7 @@ export const Sidebar: FC<SidebarProps> = ({
             <ImportExportScreenshotButtons dispatch={dispatch}
                 chartRef={chartRef}
                 screenshotState={screenshotState}/>
-            <ChartShapeControls {...charts[activeChartIndex]}
+            <ChartShapeControls {...charts[activeChartIndex]!}
                 dispatch={dispatch}/>
             <APIKeyInput dispatch={dispatch} apiKey={apiKey}/>
             <SearchBox dispatch={dispatch} searchState={searchState}/>

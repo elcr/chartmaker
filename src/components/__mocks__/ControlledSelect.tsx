@@ -1,6 +1,6 @@
-import React, { FC, ChangeEvent } from 'react'
+import type { FC, ChangeEvent } from 'react'
 
-import { ControlledSelectProps } from '@/components/ControlledSelect'
+import type { ControlledSelectProps } from '@/components/ControlledSelect'
 
 
 export const ControlledSelect: FC<ControlledSelectProps> = ({

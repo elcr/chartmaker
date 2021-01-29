@@ -1,10 +1,9 @@
-import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { Chart } from '@/types'
+import type { Chart } from '@/types'
 import { ChartSelector, id } from '@/components/ChartSelector'
-import { Action } from '@/reducer'
+import type { Action } from '@/reducer'
 
 import {
     RenderContainer,

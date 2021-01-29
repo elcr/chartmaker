@@ -1,8 +1,8 @@
-import React, { FC, DragEvent } from 'react'
+import type { FC, DragEvent } from 'react'
 import { css } from 'emotion'
 
-import { Album } from '@/types'
-import { DispatchProps } from '@/reducer'
+import type { Album } from '@/types'
+import type { DispatchProps } from '@/reducer'
 import { ALBUM_BUTTONS_PADDING_SIZE } from '@/style'
 import { AlbumCover } from '@/components/AlbumCover'
 import { RenameAlbumButton } from '@/components/RenameAlbumButton'

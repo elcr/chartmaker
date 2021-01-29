@@ -1,8 +1,8 @@
-import React, { FC, RefObject } from 'react'
+import type { FC, RefObject } from 'react'
 import { css } from 'emotion'
 
-import { DispatchProps } from '@/reducer'
-import { ScreenshotState } from '@/types'
+import type { DispatchProps } from '@/reducer'
+import type { ScreenshotState } from '@/types'
 import { MAX_SCREENSHOT_SCALE } from '@/constants'
 import { ControlledSlider } from '@/components/ControlledSlider'
 import { SidebarGroup } from '@/components/SidebarGroup'

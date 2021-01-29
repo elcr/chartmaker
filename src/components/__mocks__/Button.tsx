@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { ButtonProps } from '@/components/Button'
+import type { ButtonProps } from '@/components/Button'
 import { cx } from 'emotion'
 
 

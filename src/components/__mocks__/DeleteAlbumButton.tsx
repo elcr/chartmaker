@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { DeleteAlbumButtonProps } from '@/components/DeleteAlbumButton'
+import type { DeleteAlbumButtonProps } from '@/components/DeleteAlbumButton'
 
 
 export const DeleteAlbumButton: FC<DeleteAlbumButtonProps> = ({ id }) =>

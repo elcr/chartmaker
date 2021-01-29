@@ -1,6 +1,6 @@
-import React, { FC, DragEvent } from 'react'
+import type { FC, DragEvent } from 'react'
 
-import { NamedAlbum } from '@/types'
+import type { NamedAlbum } from '@/types'
 import { AlbumCover } from '@/components/AlbumCover'
 import { SMALL_ALBUM_SIZE } from '@/style'
 

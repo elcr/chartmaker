@@ -2,7 +2,7 @@ import { SideEffectUpdate, update, noUpdate } from 'react-use-side-effect-reduce
 
 import { reducer, Action } from '@/reducer'
 import { search, SearchResultAlbum } from '@/api'
-import { State, SearchState, ChartShape } from '@/types'
+import type { State, SearchState, ChartShape } from '@/types'
 import { MAX_SCREENSHOT_SCALE, MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
 
 import { createTestState, createTestNamedAlbums } from './utils'
@@ -45,7 +45,7 @@ describe('PromptForNewChart', () => {
     const promptMock = jest.fn<string | null, [ string | undefined, string | undefined ]>()
     beforeAll(() => global.prompt = promptMock)
     afterEach(() => promptMock.mockRestore())
-    afterAll(() => delete global.prompt)
+    afterAll(() => delete (global as any).prompt)
 
     test('cancelling the prompt dispatches nothing', async () => {
         promptMock.mockImplementation(() => null)
@@ -110,7 +110,7 @@ describe('ShowChartNameTakenMessage', () => {
     const alertMock = jest.fn<void, [ string ]>()
     beforeAll(() => global.alert = alertMock)
     afterEach(() => alertMock.mockRestore())
-    afterAll(() => delete global.alert)
+    afterAll(() => delete (global as any).alert)
 
     test('calls alert', async () => {
         const result = reducer(state, { tag: 'ShowChartNameTakenMessage' })
@@ -145,7 +145,7 @@ describe('PromptToRenameActiveChart', () => {
     const promptMock = jest.fn<string | null, [ string | undefined, string | undefined ]>()
     beforeAll(() => global.prompt = promptMock)
     afterEach(() => promptMock.mockRestore())
-    afterAll(() => delete global.prompt)
+    afterAll(() => delete (global as any).prompt)
 
     test('cancelling the prompt dispatches nothing', async () => {
         promptMock.mockImplementation(() => null)
@@ -172,7 +172,7 @@ describe('PromptToRenameActiveChart', () => {
     })
 
     test('entering the same name as active chart in the prompt dispatches nothing', async () => {
-        promptMock.mockImplementation(() => state.charts[state.activeChartIndex].name)
+        promptMock.mockImplementation(() => state.charts[state.activeChartIndex]!.name)
 
         const result = reducer(state, { tag: 'PromptToRenameActiveChart' })
         expect(result).toMatchSnapshot()
@@ -191,7 +191,7 @@ describe('PromptToRenameActiveChart', () => {
             ...state,
             charts: [
                 ...state.charts,
-                { ...state.charts[0], name }
+                { ...state.charts[0]!, name }
             ]
         }
         const result = reducer(
@@ -246,7 +246,7 @@ describe('PromptToDeleteActiveChart', () => {
     const confirmMock = jest.fn<boolean, [ string | undefined ]>()
     beforeAll(() => global.confirm = confirmMock)
     afterEach(() => confirmMock.mockRestore())
-    afterAll(() => delete global.confirm)
+    afterAll(() => delete (global as any).confirm)
 
     test('declining the prompt dispatches nothing', async () => {
         confirmMock.mockImplementation(() => false)
@@ -437,7 +437,7 @@ describe('ShowInvalidStateImportMessage', () => {
     const alertMock = jest.fn<void, [ string ]>()
     beforeAll(() => global.alert = alertMock)
     afterEach(() => alertMock.mockRestore())
-    afterAll(() => delete global.alert)
+    afterAll(() => delete (global as any).alert)
 
     test('shows alert', async () => {
         const result = reducer(state, { tag: 'ShowInvalidStateImportMessage' })
@@ -520,7 +520,7 @@ describe('SendSearchRequest', () => {
         }) as any)
     )
     afterEach(() => abortControllerMock.mockReset())
-    afterAll(() => delete global.AbortController)
+    afterAll(() => delete (global as any).AbortController)
 
     test.each<SearchState>([
         {
@@ -882,7 +882,7 @@ describe('PromptToRenameAlbum', () => {
     const promptMock = jest.fn<string | null, [ string | undefined, string | undefined ]>()
     beforeAll(() => global.prompt = promptMock)
     afterEach(() => promptMock.mockRestore())
-    afterAll(() => delete global.prompt)
+    afterAll(() => delete (global as any).prompt)
 
     test.each([
         123,
@@ -918,7 +918,7 @@ describe('PromptToRenameAlbum', () => {
             ...state,
             charts: [
                 {
-                    ...state.charts[0],
+                    ...state.charts[0]!,
                     albums: createTestNamedAlbums(3)
                 }
             ]
@@ -946,7 +946,7 @@ describe('PromptToRenameAlbum', () => {
             ...state,
             charts: [
                 {
-                    ...state.charts[0],
+                    ...state.charts[0]!,
                     albums: createTestNamedAlbums(3)
                 }
             ]
@@ -988,7 +988,7 @@ describe('RenameAlbum', () => {
                 ...state,
                 charts: [
                     {
-                        ...state.charts[0],
+                        ...state.charts[0]!,
                         albums: createTestNamedAlbums(3)
                     }
                 ]
@@ -1016,7 +1016,7 @@ describe('DeleteAlbum', () => {
                 ...state,
                 charts: [
                     {
-                        ...state.charts[0],
+                        ...state.charts[0]!,
                         albums: createTestNamedAlbums(3)
                     }
                 ]
@@ -1178,7 +1178,7 @@ describe('HighlightAlbum', () => {
     test('clears highlightedID if targetID does not exist', () => {
         const result = reducer(
             produce(state, state => {
-                state.charts[state.activeChartIndex].albums = createTestNamedAlbums(3)
+                state.charts[state.activeChartIndex]!.albums = createTestNamedAlbums(3)
                 state.highlightedID = 123
             }),
             {
@@ -1203,7 +1203,7 @@ describe('HighlightAlbum', () => {
     test('sets highlightedID to targetID', () => {
         const result = reducer(
             produce(state, state => {
-                state.charts[state.activeChartIndex].albums = createTestNamedAlbums(3)
+                state.charts[state.activeChartIndex]!.albums = createTestNamedAlbums(3)
                 state.highlightedID = 123
             }),
             {

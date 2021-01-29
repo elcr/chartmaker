@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent } from 'react'
+import type { FC, ChangeEvent } from 'react'
 
 import { inputStyle } from '@/style'
 

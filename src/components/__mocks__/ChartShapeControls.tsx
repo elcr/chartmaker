@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { ChartShapeControlsProps } from '@/components/ChartShapeControls'
+import type { ChartShapeControlsProps } from '@/components/ChartShapeControls'
 
 
 export const ChartShapeControls: FC<ChartShapeControlsProps> = ({

@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { SearchAlbumCoverProps } from '@/components/SearchAlbumCover'
+import type { SearchAlbumCoverProps } from '@/components/SearchAlbumCover'
 
 
 export const SearchAlbumCover: FC<SearchAlbumCoverProps> = ({ album }) => {

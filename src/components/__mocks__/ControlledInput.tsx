@@ -1,6 +1,6 @@
-import React, { FC, ChangeEvent } from 'react'
+import type { FC, ChangeEvent } from 'react'
 
-import { ControlledInputProps } from '@/components/ControlledInput'
+import type { ControlledInputProps } from '@/components/ControlledInput'
 
 
 export const ControlledInput: FC<ControlledInputProps> = ({

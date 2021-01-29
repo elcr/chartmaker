@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { APIKeyInputProps } from '@/components/APIKeyInput'
+import type { APIKeyInputProps } from '@/components/APIKeyInput'
 
 
 export const APIKeyInput: FC<APIKeyInputProps> = ({ apiKey }) =>

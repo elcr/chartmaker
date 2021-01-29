@@ -1,8 +1,7 @@
-import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { NamedAlbum } from '@/types'
+import type { NamedAlbum } from '@/types'
 import { SearchAlbumCover } from '@/components/SearchAlbumCover'
 
 import {

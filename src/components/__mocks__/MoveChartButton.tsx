@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { MoveChartButtonProps } from '@/components/MoveChartButton'
+import type { MoveChartButtonProps } from '@/components/MoveChartButton'
 
 
 export const MoveChartButton: FC<MoveChartButtonProps> = ({ direction, disabled, children }) =>

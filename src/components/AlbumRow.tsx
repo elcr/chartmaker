@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { css } from 'emotion'
 
-import { Album } from '@/types'
-import { DispatchProps } from '@/reducer'
+import type { Album } from '@/types'
+import type { DispatchProps } from '@/reducer'
 import { ChartAlbumCover } from '@/components/ChartAlbumCover'
 
 

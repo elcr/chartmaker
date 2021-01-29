@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { cx } from 'emotion'
 
-import { AlbumCoverProps } from '@/components/AlbumCover'
+import type { AlbumCoverProps } from '@/components/AlbumCover'
 
 
 export const AlbumCover: FC<AlbumCoverProps> = ({

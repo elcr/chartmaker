@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { ImportStateButtonProps } from '@/components/ImportStateButton'
+import type { ImportStateButtonProps } from '@/components/ImportStateButton'
 
 
 export const ImportStateButton: FC<ImportStateButtonProps> = () =>

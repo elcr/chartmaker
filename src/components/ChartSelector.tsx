@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { css } from 'emotion'
 
-import { DispatchProps } from '@/reducer'
-import { Chart } from '@/types'
+import type { DispatchProps } from '@/reducer'
+import type { Chart } from '@/types'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
 import { Label } from '@/components/Label'
 import { ControlledSelect } from '@/components/ControlledSelect'

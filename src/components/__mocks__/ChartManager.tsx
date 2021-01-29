@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { ChartManagerProps } from '@/components/ChartManager'
+import type { ChartManagerProps } from '@/components/ChartManager'
 
 
 export const ChartManager: FC<ChartManagerProps> = ({

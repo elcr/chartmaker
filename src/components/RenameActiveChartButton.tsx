@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { css } from 'emotion'
 
-import { DispatchProps } from '@/reducer'
+import type { DispatchProps } from '@/reducer'
 import { Button } from '@/components/Button'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
 

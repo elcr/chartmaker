@@ -1,10 +1,9 @@
-import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { SearchState } from '@/types'
+import type { SearchState } from '@/types'
 import { SearchBox, id } from '@/components/SearchBox'
-import { Action } from '@/reducer'
+import type { Action } from '@/reducer'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
 

@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { css } from 'emotion'
 
-import { NamedAlbum } from '@/types'
+import type { NamedAlbum } from '@/types'
 import { SidebarGroup } from '@/components/SidebarGroup'
 import { SearchAlbumCover } from '@/components/SearchAlbumCover'
 

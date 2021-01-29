@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { DispatchProps } from '@/reducer'
+import type { DispatchProps } from '@/reducer'
 import { SidebarGroup } from '@/components/SidebarGroup'
 import { Label } from '@/components/Label'
 import { ControlledInput } from '@/components/ControlledInput'

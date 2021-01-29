@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { SearchResultsProps } from '@/components/SearchResults'
+import type { SearchResultsProps } from '@/components/SearchResults'
 
 
 export const SearchResults: FC<SearchResultsProps> = ({

@@ -1,7 +1,6 @@
-import React from 'react'
 import { render } from 'react-dom'
 
-import { SearchState, Chart } from '@/types'
+import type { SearchState, Chart } from '@/types'
 import { Sidebar } from '@/components/Sidebar'
 
 import { RenderContainer, ignore, createTestNamedAlbums } from '../utils'

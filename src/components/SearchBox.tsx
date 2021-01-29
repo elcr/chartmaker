@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { css } from 'emotion'
 
-import { DispatchProps } from '@/reducer'
+import type { DispatchProps } from '@/reducer'
 import { SIDEBAR_LABEL_PADDING_SIZE, ERROR_TEXT_COLOUR } from '@/style'
-import { SearchState } from '@/types'
+import type { SearchState } from '@/types'
 import { Label } from '@/components/Label'
 import { ControlledForm } from '@/components/ControlledForm'
 import { SidebarGroup } from '@/components/SidebarGroup'

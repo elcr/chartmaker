@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { css, cx } from 'emotion'
 
 import { BORDER, CONTAINER_PADDING_SIZE } from '@/style'

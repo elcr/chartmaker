@@ -16,6 +16,9 @@ exports[`highlighted prop merges styles when false 1`] = `
   position: relative;
   background: white;
   margin: 0.15rem;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
   width: 2rem;
   height: 2rem;
 }
@@ -56,6 +59,9 @@ exports[`highlighted prop merges styles when false 2`] = `
   position: relative;
   background: white;
   margin: 0.15rem;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
   width: 2rem;
   height: 2rem;
   opacity: calc(100% / 3 * 2);
@@ -86,6 +92,9 @@ exports[`overlayClass prop merges styles 1`] = `
   position: relative;
   background: white;
   margin: 0.15rem;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
   width: 2rem;
   height: 2rem;
 }
@@ -148,6 +157,9 @@ exports[`renders with image for named album 1`] = `
   position: relative;
   background: white;
   margin: 0.15rem;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
   width: 2rem;
   height: 2rem;
 }
@@ -195,6 +207,9 @@ exports[`renders without image for placeholder album 1`] = `
   position: relative;
   background: white;
   margin: 0.15rem;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
   width: 2rem;
   height: 2rem;
 }

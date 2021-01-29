@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { cx } from 'emotion'
 
 import { buttonStyle } from '@/style'

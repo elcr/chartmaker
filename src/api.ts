@@ -54,7 +54,7 @@ function formatLastFMResult(result: LastFMResult): SearchResultAlbum[] {
         }
         albums.push({
             name: `${album.artist} - ${album.name}`,
-            url: album.image[album.image.length - 1]['#text']
+            url: album.image[album.image.length - 1]!['#text']
         })
     }
     return albums

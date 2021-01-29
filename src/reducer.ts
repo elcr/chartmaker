@@ -89,7 +89,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'PromptForNewChart':
             return sideEffect((dispatch, state) => {
-                const activeChart = state.charts[state.activeChartIndex]
+                const activeChart = state.charts[state.activeChartIndex]!
                 const name = prompt('Enter new chart name:', activeChart.name)?.trim()
                 if (name === undefined || name.length === 0) {
                     return
@@ -123,13 +123,13 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'PromptToRenameActiveChart':
             return sideEffect((dispatch, state) => {
-                const activeChart = state.charts[state.activeChartIndex]
+                const activeChart = state.charts[state.activeChartIndex]!
                 const name = prompt('Enter new chart name:', activeChart.name)?.trim()
                 if (name === undefined || name.length === 0) {
                     return
                 }
                 for (let index = 0; index < state.charts.length; index++) {
-                    const chart = state.charts[index]
+                    const chart = state.charts[index]!
                     if (chart.name === name) {
                         if (index !== state.activeChartIndex) {
                             dispatch({ tag: 'ShowChartNameTakenMessage' })
@@ -143,7 +143,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         case 'RenameActiveChart':
             return update(
                 produce(state, state => {
-                    state.charts[state.activeChartIndex].name = action.name
+                    state.charts[state.activeChartIndex]!.name = action.name
                 })
             )
 
@@ -191,8 +191,8 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                 }
                 return update(
                     produce(state, state => {
-                        const temp = state.charts[state.activeChartIndex - 1]
-                        state.charts[state.activeChartIndex - 1] = state.charts[state.activeChartIndex]
+                        const temp = state.charts[state.activeChartIndex - 1]!
+                        state.charts[state.activeChartIndex - 1] = state.charts[state.activeChartIndex]!
                         state.charts[state.activeChartIndex] = temp
                         state.activeChartIndex--
                     })
@@ -205,8 +205,8 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
             return update(
                 produce(state, state => {
-                    const temp = state.charts[state.activeChartIndex + 1]
-                    state.charts[state.activeChartIndex + 1] = state.charts[state.activeChartIndex]
+                    const temp = state.charts[state.activeChartIndex + 1]!
+                    state.charts[state.activeChartIndex + 1] = state.charts[state.activeChartIndex]!
                     state.charts[state.activeChartIndex] = temp
                     state.activeChartIndex++
                 })
@@ -374,7 +374,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                 return noUpdate
             }
 
-            const activeChart = state.charts[state.activeChartIndex]
+            const activeChart = state.charts[state.activeChartIndex]!
 
             const sourceIndex = findIndex(activeChart.albums, album => album.id === action.sourceID)
             if (sourceIndex === null) {
@@ -388,16 +388,16 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
             return update(
                 produce(state, state => {
-                    const albums = state.charts[state.activeChartIndex].albums
-                    const source = { ...albums[sourceIndex] }
+                    const albums = state.charts[state.activeChartIndex]!.albums
+                    const source = { ...albums[sourceIndex]! }
                     if (sourceIndex < targetIndex) {
                         for (let index = sourceIndex; index < targetIndex; index++) {
-                            albums[index] = albums[index + 1]
+                            albums[index] = albums[index + 1]!
                         }
                     }
                     else {
                         for (let index = sourceIndex; index > targetIndex; index--) {
-                            albums[index] = albums[index - 1]
+                            albums[index] = albums[index - 1]!
                         }
                     }
                     albums[targetIndex] = source
@@ -416,7 +416,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             }
 
             const targetIndex = findIndex(
-                state.charts[state.activeChartIndex].albums,
+                state.charts[state.activeChartIndex]!.albums,
                 album => album.id === action.targetID
             )
             if (targetIndex === null) {
@@ -425,7 +425,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
             return update(
                 produce(state, state => {
-                    const chart = state.charts[state.activeChartIndex]
+                    const chart = state.charts[state.activeChartIndex]!
                     chart.albums[targetIndex] = produce(source, album => {
                         album.id = state.albumIDCounter + 1
                     })
@@ -436,7 +436,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'PromptToRenameAlbum':
             return sideEffect((dispatch, state) => {
-                const album = state.charts[state.activeChartIndex]
+                const album = state.charts[state.activeChartIndex]!
                     .albums
                     .find(album => album.id === action.id)
                 if (album === undefined || album.placeholder) {
@@ -455,21 +455,21 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             })
 
         case 'RenameAlbum': {
-            const chart = state.charts[state.activeChartIndex]
+            const chart = state.charts[state.activeChartIndex]!
 
             const index = findIndex(chart.albums, album => album.id === action.id)
             if (index === null) {
                 return noUpdate
             }
 
-            const album = chart.albums[index]
+            const album = chart.albums[index]!
             if (album.placeholder) {
                 return noUpdate
             }
 
             return update(
                 produce(state, state => {
-                    const chart = state.charts[state.activeChartIndex]
+                    const chart = state.charts[state.activeChartIndex]!
                     chart.albums[index] = produce(album, album => {
                         album.name = action.name
                     })
@@ -479,7 +479,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'DeleteAlbum': {
             const index = findIndex(
-                state.charts[state.activeChartIndex].albums,
+                state.charts[state.activeChartIndex]!.albums,
                 album => album.id === action.id
             )
             if (index === null) {
@@ -487,7 +487,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             }
             return update(
                 produce(state, state => {
-                    state.charts[state.activeChartIndex].albums[index] = {
+                    state.charts[state.activeChartIndex]!.albums[index] = {
                         placeholder: true,
                         id: action.id
                     }
@@ -546,7 +546,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             }
             return update(
                 produce(state, state => {
-                    const chart = state.charts[state.activeChartIndex]
+                    const chart = state.charts[state.activeChartIndex]!
                     chart.shape = action.shape
                     chart.rowsX = action.rowsX
                     chart.rowsY = action.rowsY
@@ -555,7 +555,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         }
 
         case 'DropExternalFile': {
-            const exists = state.charts[state.activeChartIndex].albums.some(album =>
+            const exists = state.charts[state.activeChartIndex]!.albums.some(album =>
                 album.id === action.targetID
             )
             if (!exists) {
@@ -574,7 +574,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'LoadExternalFile': {
             const targetIndex = findIndex(
-                state.charts[state.activeChartIndex].albums,
+                state.charts[state.activeChartIndex]!.albums,
                 album => album.id === action.targetID
             )
             if (targetIndex === null) {
@@ -583,7 +583,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
             return update(
                 produce(state, state => {
-                    state.charts[state.activeChartIndex].albums[targetIndex] = {
+                    state.charts[state.activeChartIndex]!.albums[targetIndex] = {
                         placeholder: false,
                         id: action.targetID,
                         name: action.name,
@@ -594,7 +594,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         }
 
         case 'HighlightAlbum': {
-            const target = state.charts[state.activeChartIndex].albums.find(album =>
+            const target = state.charts[state.activeChartIndex]!.albums.find(album =>
                 !album.placeholder && album.id === action.targetID
             )
             if (target === undefined) {

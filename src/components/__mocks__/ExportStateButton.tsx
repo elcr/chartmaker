@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 
-import { ExportStateButtonProps } from '@/components/ExportStateButton'
+import type { ExportStateButtonProps } from '@/components/ExportStateButton'
 
 
 export const ExportStateButton: FC<ExportStateButtonProps> = () =>

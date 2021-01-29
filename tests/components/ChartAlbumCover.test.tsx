@@ -1,10 +1,9 @@
-import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { Album } from '@/types'
+import type { Album } from '@/types'
 import { ChartAlbumCover } from '@/components/ChartAlbumCover'
-import { Action } from '@/reducer'
+import type { Action } from '@/reducer'
 
 import {
     RenderContainer,

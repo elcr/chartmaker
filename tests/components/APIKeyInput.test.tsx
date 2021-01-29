@@ -2,8 +2,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { ActionWithTag } from '@/reducer'
 import { APIKeyInput, id } from '@/components/APIKeyInput'
+import { Action } from '@/reducer'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
 
@@ -26,7 +26,7 @@ test('renders labelled input', () => {
 
 
 test('dispatches action on input change', () => {
-    const mock = jest.fn<void, [ ActionWithTag<'UpdateAPIKey'> ]>()
+    const mock = jest.fn<void, [ Action ]>()
     render(
         <APIKeyInput dispatch={mock} apiKey='test api key'/>,
         container.element
@@ -41,7 +41,7 @@ test('dispatches action on input change', () => {
     )
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<[ ActionWithTag<'UpdateAPIKey'> ]>({
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'UpdateAPIKey',
         apiKey: 'test new api key'
     })

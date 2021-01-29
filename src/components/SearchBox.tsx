@@ -13,11 +13,7 @@ import { ControlledInput } from '@/components/ControlledInput'
 export const id = 'search'
 
 
-export type SearchBoxProps = DispatchProps<
-    | 'UpdateSearchQuery'
-    | 'SendSearchRequest'
-    | 'CancelSearchRequest'
-> & {
+export type SearchBoxProps = DispatchProps & {
     searchState: SearchState
 }
 
@@ -58,6 +54,7 @@ export const SearchBox: FC<SearchBoxProps> = ({ dispatch, searchState }) => {
                 </Label>
                 {errorMessage}
                 <ControlledInput id={id}
+                    type='search'
                     value={searchState.query}
                     onChange={updateQuery}
                     disabled={searchState.tag === 'Loading'}/>

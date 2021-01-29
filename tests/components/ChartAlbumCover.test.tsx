@@ -3,7 +3,8 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import { Album } from '@/types'
-import { ChartAlbumCover, ChartAlbumCoverProps } from '@/components/ChartAlbumCover'
+import { ChartAlbumCover } from '@/components/ChartAlbumCover'
+import { Action } from '@/reducer'
 
 import {
     RenderContainer,
@@ -20,7 +21,7 @@ jest.mock('@/components/DeleteAlbumButton')
 
 const container = new RenderContainer()
 
-const dispatchMock = jest.fn<void, ActionParams>()
+const dispatchMock = jest.fn<void, [ Action ]>()
 afterEach(() => dispatchMock.mockClear())
 
 
@@ -35,10 +36,6 @@ const namedAlbum: Album = {
     name: 'Test named album',
     url: 'https://test.com'
 }
-
-
-// delete the semicolon and watch as vscode's syntax highlighting dies
-type ActionParams = Parameters<ChartAlbumCoverProps['dispatch']>;
 
 
 test('renders album cover for placeholder album', () => {
@@ -117,7 +114,7 @@ test('chart album drag enter dispatches action', () => {
     })
 
     expect(dispatchMock).toHaveBeenCalledTimes(1)
-    expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+    expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'DragChartAlbum',
         sourceID: 1,
         targetID: namedAlbum.id
@@ -271,7 +268,7 @@ test('dropping search album dispatches action', () => {
     })
 
     expect(dispatchMock).toHaveBeenCalledTimes(1)
-    expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+    expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'DropSearchAlbum',
         sourceID: 1,
         targetID: namedAlbum.id
@@ -308,7 +305,7 @@ test('dropping file dispatches action', () => {
     })
 
     expect(dispatchMock).toHaveBeenCalledTimes(1)
-    expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+    expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'DropExternalFile',
         file,
         targetID: namedAlbum.id
@@ -357,7 +354,7 @@ test('dispatches highlight event on mouse enter', () => {
     act(() => fireEvent('mouseEnter', container.element?.firstChild))
 
     expect(dispatchMock).toHaveBeenCalledTimes(1)
-    expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+    expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'HighlightAlbum',
         targetID: namedAlbum.id
     })

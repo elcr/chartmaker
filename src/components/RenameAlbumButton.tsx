@@ -4,7 +4,7 @@ import { DispatchProps } from '@/reducer'
 import { AlbumActionButton } from '@/components/AlbumActionButton'
 
 
-export type RenameAlbumButtonProps = DispatchProps<'PromptToRenameAlbum'> & {
+export type RenameAlbumButtonProps = DispatchProps & {
     id: number
 }
 

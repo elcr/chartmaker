@@ -4,7 +4,7 @@ import { DispatchProps } from '@/reducer'
 import { Button } from '@/components/Button'
 
 
-export type MoveChartButtonProps = DispatchProps<'MoveActiveChart'> & {
+export type MoveChartButtonProps = DispatchProps & {
     direction: 'Up' | 'Down'
     disabled: boolean
 }

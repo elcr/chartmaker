@@ -64,10 +64,9 @@ export type Action =
     | { tag: 'UnhighlightAlbum' }
 
 
-export type ActionWithTag<T extends Action['tag']> = Extract<Action, { tag: T }>
-export type Dispatch<T extends Action['tag'] = Action['tag']> = Dispatch_<ActionWithTag<T>>
-export type DispatchProps<T extends Action['tag'] = Action['tag']> = {
-    dispatch: Dispatch<T>
+export type Dispatch = Dispatch_<Action>
+export type DispatchProps = {
+    dispatch: Dispatch
 }
 
 

@@ -20,8 +20,8 @@ describe('findIndex', () => {
 
 describe('elementToDataURI', () => {
     // This will likely stay todo for now - jsdom doesn't implement
-    // window.scrollTo which html2canvas needs, and my I only found that out
-    // after my initial attempts at implementing this test caused some nasty
+    // window.scrollTo which html2canvas needs, and I only found that out after
+    // my initial attempts at implementing this test caused some nasty
     // out of memory errors
     test.todo('returns data uri for scaled image')
 })

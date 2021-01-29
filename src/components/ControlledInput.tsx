@@ -5,7 +5,7 @@ import { inputStyle } from '@/style'
 
 export type ControlledInputProps = {
     id: string
-    type?: 'text' | 'password'
+    type: 'search' | 'password'
     value: string
     onChange: (value: string) => void
     disabled?: boolean

@@ -9,11 +9,8 @@ import { createTestState, createTestNamedAlbums } from './utils'
 import produce from 'immer'
 
 
-type ActionParams = [ Action ];
-
-
 jest.mock('@/api')
-const dispatchMock = jest.fn<void, ActionParams>()
+const dispatchMock = jest.fn<void, [ Action ]>()
 const searchMock = search as jest.MockedFunction<typeof search>
 afterEach(jest.resetAllMocks)
 
@@ -84,7 +81,7 @@ describe('PromptForNewChart', () => {
         await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(1)
-        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
             tag: 'ShowChartNameTakenMessage'
         })
     })
@@ -100,7 +97,7 @@ describe('PromptForNewChart', () => {
         await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(1)
-        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
             tag: 'AddNewChart',
             name
         })
@@ -207,7 +204,7 @@ describe('PromptToRenameActiveChart', () => {
         await sideEffect(dispatchMock, stateWithExtraChart)
 
         expect(dispatchMock).toHaveBeenCalledTimes(1)
-        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
             tag: 'ShowChartNameTakenMessage'
         })
     })
@@ -223,7 +220,7 @@ describe('PromptToRenameActiveChart', () => {
         await sideEffect(dispatchMock, state)
 
         expect(dispatchMock).toHaveBeenCalledTimes(1)
-        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
             tag: 'RenameActiveChart',
             name
         })
@@ -277,7 +274,7 @@ describe('PromptToDeleteActiveChart', () => {
         expect(confirmMock).toHaveBeenCalledTimes(1)
         expect(confirmMock).toHaveBeenCalledWith('Really delete active chart? This cannot be undone')
         expect(dispatchMock).toHaveBeenCalledTimes(1)
-        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
             tag: 'DeleteActiveChart'
         })
     })
@@ -363,7 +360,7 @@ describe('ImportStateFile', () => {
 
         expect(fileTextMock).toHaveBeenCalledTimes(1)
         expect(dispatchMock).toHaveBeenCalledTimes(1)
-        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
             tag: 'ShowInvalidStateImportMessage'
         })
     })
@@ -384,7 +381,7 @@ describe('ImportStateFile', () => {
 
         expect(fileTextMock).toHaveBeenCalledTimes(1)
         expect(dispatchMock).toHaveBeenCalledTimes(1)
-        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
             tag: 'ShowInvalidStateImportMessage'
         })
     })
@@ -405,7 +402,7 @@ describe('ImportStateFile', () => {
 
         expect(fileTextMock).toHaveBeenCalledTimes(1)
         expect(dispatchMock).toHaveBeenCalledTimes(1)
-        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
             tag: 'ShowInvalidStateImportMessage'
         })
     })
@@ -428,7 +425,7 @@ describe('ImportStateFile', () => {
 
         expect(fileTextMock).toHaveBeenCalledTimes(1)
         expect(dispatchMock).toHaveBeenCalledTimes(1)
-        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
             tag: 'LoadState',
             state
         })
@@ -958,7 +955,7 @@ describe('PromptToRenameAlbum', () => {
         expect(promptMock).toHaveBeenCalledTimes(1)
         expect(promptMock.mock.calls[0]).toMatchSnapshot()
         expect(dispatchMock).toHaveBeenCalledTimes(1)
-        expect(dispatchMock).toHaveBeenCalledWith<ActionParams>({
+        expect(dispatchMock).toHaveBeenCalledWith<[ Action ]>({
             tag: 'RenameAlbum',
             id,
             name

@@ -3,7 +3,8 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import { Chart } from '@/types'
-import { ChartSelector, ChartSelectorProps, id } from '@/components/ChartSelector'
+import { ChartSelector, id } from '@/components/ChartSelector'
+import { Action } from '@/reducer'
 
 import {
     RenderContainer,
@@ -45,9 +46,6 @@ const charts: Chart[] = [
 ]
 
 
-type ActionParams = Parameters<ChartSelectorProps['dispatch']>;
-
-
 test('renders labelled select', () => {
     render(
         <ChartSelector dispatch={ignore}
@@ -61,7 +59,7 @@ test('renders labelled select', () => {
 
 
 test('changing selected chart dispatches action', () => {
-    const mock = jest.fn<void, ActionParams>()
+    const mock = jest.fn<void, [ Action ]>()
 
     render(
         <ChartSelector dispatch={mock}
@@ -79,7 +77,7 @@ test('changing selected chart dispatches action', () => {
     )
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<ActionParams>({
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'UpdateActiveChart',
         index: 1
     })

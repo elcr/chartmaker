@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import { RenameActiveChartButton } from '@/components/RenameActiveChartButton'
-import { ActionWithTag } from '@/reducer'
+import { Action } from '@/reducer'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
 
@@ -25,7 +25,7 @@ test('renders button', () => {
 
 
 test('dispatches action when clicked', () => {
-    const mock = jest.fn<void, [ ActionWithTag<'PromptToRenameActiveChart'> ]>()
+    const mock = jest.fn<void, [ Action ]>()
 
     render(
         <RenameActiveChartButton dispatch={mock}/>,
@@ -35,7 +35,7 @@ test('dispatches action when clicked', () => {
     act(() => fireEvent('click', container.element?.firstChild))
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<[ ActionWithTag<'PromptToRenameActiveChart'> ]>({
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'PromptToRenameActiveChart'
     })
 })

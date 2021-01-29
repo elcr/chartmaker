@@ -6,14 +6,7 @@ import { DispatchProps } from '@/reducer'
 import { ChartAlbumCover } from '@/components/ChartAlbumCover'
 
 
-export type AlbumRowProps = DispatchProps<
-    | 'DragChartAlbum'
-    | 'DropSearchAlbum'
-    | 'PromptToRenameAlbum'
-    | 'DeleteAlbum'
-    | 'DropExternalFile'
-    | 'HighlightAlbum'
-> & {
+export type AlbumRowProps = DispatchProps & {
     albums: Album[]
     size: string
     highlighted: number | undefined

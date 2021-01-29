@@ -6,7 +6,7 @@ import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
 import { Button } from '@/components/Button'
 
 
-export type ImportStateButtonProps = DispatchProps<'ImportStateFile'>
+export type ImportStateButtonProps = DispatchProps
 
 
 const inputStyle = css({

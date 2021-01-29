@@ -52,14 +52,7 @@ const overlayStyle = css({
 })
 
 
-export type ChartAlbumCoverProps = DispatchProps<
-    | 'DragChartAlbum'
-    | 'DropSearchAlbum'
-    | 'PromptToRenameAlbum'
-    | 'DeleteAlbum'
-    | 'DropExternalFile'
-    | 'HighlightAlbum'
-> & {
+export type ChartAlbumCoverProps = DispatchProps & {
     album: Album
     size: string
     highlighted: boolean | undefined

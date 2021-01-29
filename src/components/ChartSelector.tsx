@@ -11,7 +11,7 @@ import { ControlledSelect } from '@/components/ControlledSelect'
 export const id = 'chartSelector'
 
 
-export type ChartSelectorProps = DispatchProps<'UpdateActiveChart'> & {
+export type ChartSelectorProps = DispatchProps & {
     charts: Chart[]
     activeChartIndex: number
 }

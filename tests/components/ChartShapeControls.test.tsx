@@ -2,12 +2,10 @@ import React from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import {
-    RenderContainer,
-    ignore,
-    fireEvent,
-} from '../utils'
-import { ChartShapeControls, ChartShapeControlsProps } from '@/components/ChartShapeControls'
+import { ChartShapeControls } from '@/components/ChartShapeControls'
+import { Action } from '@/reducer'
+
+import { RenderContainer, ignore, fireEvent } from '../utils'
 
 
 jest.mock('@/components/SidebarGroup')
@@ -16,9 +14,6 @@ jest.mock('@/components/ControlledSlider')
 
 
 const container = new RenderContainer()
-
-
-type ActionParams = Parameters<ChartShapeControlsProps['dispatch']>;
 
 
 test.each([ 40, 42, 100 ] as const)('top shape renders radio buttons', size => {
@@ -48,7 +43,7 @@ test('collage shape renders radio buttons and sliders', () => {
 
 
 test.each([ 40, 42, 100 ] as const)('checking top radio buttons dispatches action', size => {
-    const mock = jest.fn<void, ActionParams>()
+    const mock = jest.fn<void, [ Action ]>()
 
     render(
         <ChartShapeControls dispatch={mock}
@@ -66,7 +61,7 @@ test.each([ 40, 42, 100 ] as const)('checking top radio buttons dispatches actio
     )
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<ActionParams>({
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'UpdateChartShape',
         shape: { tag: 'Top', size },
         rowsX: 5,
@@ -76,7 +71,7 @@ test.each([ 40, 42, 100 ] as const)('checking top radio buttons dispatches actio
 
 
 test('checking collage radio button dispatches action', () => {
-    const mock = jest.fn<void, ActionParams>()
+    const mock = jest.fn<void, [ Action ]>()
 
     render(
         <ChartShapeControls dispatch={mock}
@@ -94,7 +89,7 @@ test('checking collage radio button dispatches action', () => {
     )
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<ActionParams>({
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'UpdateChartShape',
         shape: { tag: 'Collage' },
         rowsX: 5,
@@ -104,7 +99,7 @@ test('checking collage radio button dispatches action', () => {
 
 
 test('moving collage x slider dispatches action', () => {
-    const mock = jest.fn<void, ActionParams>()
+    const mock = jest.fn<void, [ Action ]>()
 
     render(
         <ChartShapeControls dispatch={mock}
@@ -123,7 +118,7 @@ test('moving collage x slider dispatches action', () => {
     )
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<ActionParams>({
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'UpdateChartShape',
         shape: { tag: 'Collage' },
         rowsX: 6,
@@ -133,7 +128,7 @@ test('moving collage x slider dispatches action', () => {
 
 
 test('moving collage y slider dispatches action', () => {
-    const mock = jest.fn<void, ActionParams>()
+    const mock = jest.fn<void, [ Action ]>()
 
     render(
         <ChartShapeControls dispatch={mock}
@@ -152,7 +147,7 @@ test('moving collage y slider dispatches action', () => {
     )
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<ActionParams>({
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'UpdateChartShape',
         shape: { tag: 'Collage' },
         rowsX: 5,

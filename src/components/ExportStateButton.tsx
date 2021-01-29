@@ -4,7 +4,7 @@ import { DispatchProps } from '@/reducer'
 import { Button } from '@/components/Button'
 
 
-export type ExportStateButtonProps = DispatchProps<'PromptToExportState'>
+export type ExportStateButtonProps = DispatchProps
 
 
 export const ExportStateButton: FC<ExportStateButtonProps> = ({ dispatch }) => {

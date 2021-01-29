@@ -15,12 +15,7 @@ export const sliderID = 'screenshotScale'
 export const buttonID = 'screenshot'
 
 
-export type ImportExportScreenshotButtonsProps = DispatchProps<
-    | 'UpdateScreenshotScale'
-    | 'TakeScreenshot'
-    | 'ImportStateFile'
-    | 'PromptToExportState'
-> & {
+export type ImportExportScreenshotButtonsProps = DispatchProps & {
     screenshotState: ScreenshotState
     chartRef: RefObject<HTMLElement>
 }

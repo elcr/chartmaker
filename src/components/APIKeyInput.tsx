@@ -9,7 +9,7 @@ import { ControlledInput } from '@/components/ControlledInput'
 export const id = 'apiKeyInput'
 
 
-export type APIKeyInputProps = DispatchProps<'UpdateAPIKey'> & {
+export type APIKeyInputProps = DispatchProps & {
     apiKey: string
 }
 

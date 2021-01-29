@@ -10,7 +10,7 @@ import { RenderContainer, ignore, fireEvent } from '../utils'
 const container = new RenderContainer()
 
 
-test.each([ 'text', 'password', undefined ] as const)('renders text type input', type => {
+test.each([ 'search', 'password' ] as const)('renders text type input', type => {
     render(
         <ControlledInput type={type}
             id='test-input'
@@ -26,6 +26,7 @@ test.each([ 'text', 'password', undefined ] as const)('renders text type input',
 test.each([ true, false, undefined ])('renders disabled prop', disabled => {
     render(
         <ControlledInput id='test-input'
+            type='search'
             value='test value'
             disabled={disabled}
             onChange={ignore}/>,
@@ -41,6 +42,7 @@ test('change event calls onChange prop', () => {
 
     render(
         <ControlledInput id='test-input'
+            type='search'
             value='test value'
             onChange={mock}/>,
         container.element

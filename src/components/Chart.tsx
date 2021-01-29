@@ -21,18 +21,13 @@ export const rowsID = 'rows'
 export const titlesID = 'titles'
 
 
-export type ChartProps = DispatchProps<
-    | 'DragChartAlbum'
-    | 'DropSearchAlbum'
-    | 'PromptToRenameAlbum'
-    | 'DeleteAlbum'
-    | 'DropExternalFile'
-    | 'HighlightAlbum'
-    | 'UnhighlightAlbum'
-> & {
-    innerRef: Ref<HTMLElement>
-    highlighted: number | undefined
-} & ChartDetails
+export type ChartProps =
+    & DispatchProps
+    & {
+        innerRef: Ref<HTMLElement>
+        highlighted: number | undefined
+    }
+    & ChartDetails
 
 
 const outContainerStyle = css({

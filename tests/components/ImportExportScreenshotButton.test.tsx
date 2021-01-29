@@ -4,11 +4,11 @@ import { act } from 'react-dom/test-utils'
 
 import {
     ImportExportScreenshotButtons,
-    ImportExportScreenshotButtonsProps,
     sliderID,
     buttonID
 } from '@/components/ImportExportScreenshotButtons'
 import { ScreenshotState } from '@/types'
+import { Action } from '@/reducer'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
 
@@ -21,9 +21,6 @@ jest.mock('@/components/SidebarGroup')
 
 
 const container = new RenderContainer()
-
-
-type ActionParams = Parameters<ImportExportScreenshotButtonsProps['dispatch']>;
 
 
 test.each<ScreenshotState>([
@@ -42,7 +39,7 @@ test.each<ScreenshotState>([
 
 
 test('dispatches action when slider moved', () => {
-    const mock = jest.fn<void, ActionParams>()
+    const mock = jest.fn<void, [ Action ]>()
 
     render(
         <ImportExportScreenshotButtons dispatch={mock}
@@ -60,7 +57,7 @@ test('dispatches action when slider moved', () => {
     )
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<ActionParams>({
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'UpdateScreenshotScale',
         scale: 3
     })
@@ -68,7 +65,7 @@ test('dispatches action when slider moved', () => {
 
 
 test('dispatches action when screenshot button clicked', () => {
-    const mock = jest.fn<void, ActionParams>()
+    const mock = jest.fn<void, [ Action ]>()
     const ref: MutableRefObject<HTMLElement> = {
         current: container.element!
     }
@@ -88,7 +85,7 @@ test('dispatches action when screenshot button clicked', () => {
     )
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<ActionParams>({
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'TakeScreenshot',
         element: container.element!
     })

@@ -6,7 +6,7 @@ import { Button } from '@/components/Button'
 import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
 
 
-export type RenameActiveChartButtonProps = DispatchProps<'PromptToRenameActiveChart'>
+export type RenameActiveChartButtonProps = DispatchProps
 
 
 const style = css({

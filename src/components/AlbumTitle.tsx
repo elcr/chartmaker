@@ -20,11 +20,7 @@ const childrenStyle = css({
 })
 
 
-export type AlbumTitleProps = DispatchProps<
-    | 'PromptToRenameAlbum'
-    | 'DeleteAlbum'
-    | 'HighlightAlbum'
-> & {
+export type AlbumTitleProps = DispatchProps & {
     id: number
     highlighted: boolean | undefined
 }

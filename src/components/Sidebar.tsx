@@ -12,22 +12,7 @@ import { SearchResults } from '@/components/SearchResults'
 import { ChartShapeControls } from '@/components/ChartShapeControls'
 
 
-export type SidebarProps = DispatchProps<
-    | 'UpdateActiveChart'
-    | 'PromptForNewChart'
-    | 'PromptToRenameActiveChart'
-    | 'PromptToDeleteActiveChart'
-    | 'UpdateAPIKey'
-    | 'ImportStateFile'
-    | 'PromptToExportState'
-    | 'UpdateSearchQuery'
-    | 'SendSearchRequest'
-    | 'CancelSearchRequest'
-    | 'UpdateScreenshotScale'
-    | 'TakeScreenshot'
-    | 'UpdateChartShape'
-    | 'MoveActiveChart'
-> & {
+export type SidebarProps = DispatchProps & {
     charts: Chart[]
     activeChartIndex: number
     apiKey: string

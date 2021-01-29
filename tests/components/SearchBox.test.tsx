@@ -3,7 +3,8 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import { SearchState } from '@/types'
-import { SearchBox, SearchBoxProps, id } from '@/components/SearchBox'
+import { SearchBox, id } from '@/components/SearchBox'
+import { Action } from '@/reducer'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
 
@@ -16,9 +17,6 @@ jest.mock('@/components/ControlledInput')
 
 
 const container = new RenderContainer()
-
-
-type ActionParams = Parameters<SearchBoxProps['dispatch']>;
 
 
 test.each<SearchState>([
@@ -55,7 +53,7 @@ test.each<SearchState>([
 
 
 test('dispatches action on input change', () => {
-    const mock = jest.fn<void, ActionParams>()
+    const mock = jest.fn<void, [ Action ]>()
 
     render(
         <SearchBox dispatch={mock}
@@ -72,7 +70,7 @@ test('dispatches action on input change', () => {
     )
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith<ActionParams>({
+    expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'UpdateSearchQuery',
         query: 'New query'
     })
@@ -80,7 +78,7 @@ test('dispatches action on input change', () => {
 
 
 test('dispatches action on form submit', () => {
-    const mock = jest.fn<void, ActionParams>()
+    const mock = jest.fn<void, [ Action ]>()
 
     render(
         <SearchBox dispatch={mock}
@@ -96,11 +94,11 @@ test('dispatches action on form submit', () => {
     )
 
     expect(mock).toHaveBeenCalledTimes(2)
-    expect(mock).toHaveBeenNthCalledWith<ActionParams>(
+    expect(mock).toHaveBeenNthCalledWith<[ Action ]>(
         1,
         { tag: 'CancelSearchRequest' }
     )
-    expect(mock).toHaveBeenNthCalledWith<ActionParams>(
+    expect(mock).toHaveBeenNthCalledWith<[ Action ]>(
         2,
         { tag: 'SendSearchRequest' }
     )

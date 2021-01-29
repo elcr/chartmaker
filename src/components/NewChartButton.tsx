@@ -4,7 +4,7 @@ import { DispatchProps } from '@/reducer'
 import { Button } from '@/components/Button'
 
 
-export type NewChartButtonProps = DispatchProps<'PromptForNewChart'>
+export type NewChartButtonProps = DispatchProps
 
 
 export const NewChartButton: FC<NewChartButtonProps> = ({ dispatch }) => {

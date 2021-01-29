@@ -11,13 +11,7 @@ import { SidebarGroup } from '@/components/SidebarGroup'
 import { MoveChartButton } from '@/components/MoveChartButton'
 
 
-export type ChartManagerProps = DispatchProps<
-    | 'UpdateActiveChart'
-    | 'PromptForNewChart'
-    | 'PromptToRenameActiveChart'
-    | 'PromptToDeleteActiveChart'
-    | 'MoveActiveChart'
-> & {
+export type ChartManagerProps = DispatchProps & {
     charts: Chart[]
     activeChartIndex: number
 }

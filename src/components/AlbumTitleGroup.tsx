@@ -13,11 +13,7 @@ const style = css({
 })
 
 
-export type AlbumTitleGroupProps = DispatchProps<
-    | 'PromptToRenameAlbum'
-    | 'DeleteAlbum'
-    | 'HighlightAlbum'
-> & {
+export type AlbumTitleGroupProps = DispatchProps & {
     albums: NamedAlbum[]
     highlighted: number | undefined
 }

@@ -9,46 +9,35 @@ import {
     DEFAULT_CHART_SHAPE,
     LOCAL_STORAGE_KEY
 } from '@/constants'
+import { getRandomIDs } from '@/utils'
 
 
-type CreateChartArguments = {
-    albumIDCounter?: number
-    name?: string
-}
-
-
-export function createChart({
-    albumIDCounter = 0,
-    name = DEFAULT_CHART_NAME
-}: CreateChartArguments = {}): [ number, Chart ] {
+export function createChart(name = DEFAULT_CHART_NAME): Chart {
+    const ids = getRandomIDs(CHART_ALBUMS_COUNT)
     const albums: Album[] = []
-    for (let id = albumIDCounter + 1; id < albumIDCounter + CHART_ALBUMS_COUNT + 1; id++) {
+    for (let index = 0; index < CHART_ALBUMS_COUNT - 1; index++) {
+        const id = ids[index]!
         albums.push({ placeholder: true, id })
     }
-    return [
-        albumIDCounter + CHART_ALBUMS_COUNT,
-        {
-            name,
-            albums,
-            shape: DEFAULT_CHART_SHAPE,
-            rowsX: DEFAULT_COLLAGE_ROWS_X,
-            rowsY: DEFAULT_COLLAGE_ROWS_Y
-        }
-    ]
+    return {
+        name,
+        albums,
+        shape: DEFAULT_CHART_SHAPE,
+        rowsX: DEFAULT_COLLAGE_ROWS_X,
+        rowsY: DEFAULT_COLLAGE_ROWS_Y
+    }
 }
 
 
 export function createInitialState(): State {
-    const [ albumIDCounter, chart ] = createChart()
     return {
         apiKey: '',
-        charts: [ chart ],
+        charts: [ createChart() ],
         activeChartIndex: 0,
         search: {
             tag: 'Waiting',
             query: ''
         },
-        albumIDCounter,
         screenshot: {
             loading: false,
             scale: 1

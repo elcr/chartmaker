@@ -17,12 +17,7 @@ import {
     fileToDataURI
 } from '@/utils'
 import { search } from '@/api'
-import {
-    State,
-    SearchState,
-    ChartShape,
-    NamedAlbum
-} from '@/types'
+import { State, SearchState, ChartShape } from '@/types'
 import {
     MAX_SCREENSHOT_SCALE,
     MAX_COLLAGE_ROWS_X,
@@ -50,7 +45,7 @@ export type Action =
     | { tag: 'UpdateSearchState', state: SearchState }
     | { tag: 'UpdateSearchQuery', query: string }
     | { tag: 'DragChartAlbum', sourceID: number, targetID: number }
-    | { tag: 'DropSearchAlbum', sourceID: number, targetID: number }
+    | { tag: 'DropSearchAlbum', sourceIndex: number, targetID: number }
     | { tag: 'PromptToRenameAlbum', id: number }
     | { tag: 'RenameAlbum', id: number, name: string }
     | { tag: 'DeleteAlbum', id: number }
@@ -107,14 +102,10 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             )
 
         case 'AddNewChart': {
-            const [ albumIDCounter, chart ] = createChart({
-                albumIDCounter: state.albumIDCounter,
-                name: action.name
-            })
+            const chart = createChart(action.name)
             return update(
                 produce(state, state => {
                     state.charts.push(chart)
-                    state.albumIDCounter = albumIDCounter
                     state.activeChartIndex = state.charts.length - 1
                     state.highlightedID = undefined
                 })
@@ -156,14 +147,10 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'DeleteActiveChart': {
             if (state.charts.length === 1) {
-                const [ albumIDCounter, chart ] = createChart({
-                    albumIDCounter: state.albumIDCounter
-                })
                 return update(
                     produce(state, state => {
-                        state.charts = [ chart ]
+                        state.charts = [ createChart() ]
                         state.activeChartIndex = 0
-                        state.albumIDCounter = albumIDCounter
                         state.highlightedID = undefined
                     })
                 )
@@ -292,20 +279,14 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                     })
                     switch (result.tag) {
                         case 'Ok': {
-                            const albums: NamedAlbum[] = result.albums.map((album, index) => ({
-                                ...album,
-                                placeholder: false,
-                                id: state.albumIDCounter + index + 1
-                            }))
                             dispatch({
                                 tag: 'LoadState',
                                 state: produce(state, state => {
                                     state.search = {
                                         tag: 'Complete',
                                         query: state.search.query,
-                                        albums
+                                        albums: result.albums
                                     }
-                                    state.albumIDCounter += result.albums.length
                                 })
                             })
                             break
@@ -410,26 +391,29 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                 return noUpdate
             }
 
-            const source = state.search.albums.find(album => album.id === action.sourceID)
+            const source = state.search.albums[action.sourceIndex]
             if (source === undefined) {
                 return noUpdate
             }
 
+            const chart = state.charts[state.activeChartIndex]!
+
             const targetIndex = findIndex(
-                state.charts[state.activeChartIndex]!.albums,
+                chart.albums,
                 album => album.id === action.targetID
             )
             if (targetIndex === null) {
                 return noUpdate
             }
+            const { id } = chart.albums[targetIndex]!
 
             return update(
                 produce(state, state => {
-                    const chart = state.charts[state.activeChartIndex]!
-                    chart.albums[targetIndex] = produce(source, album => {
-                        album.id = state.albumIDCounter + 1
-                    })
-                    state.albumIDCounter++
+                    state.charts[state.activeChartIndex]!.albums[targetIndex] = {
+                        ...source,
+                        placeholder: false,
+                        id
+                    }
                 })
             )
         }

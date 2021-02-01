@@ -2,11 +2,11 @@ import type { FC, DragEvent } from 'react'
 import { css, cx } from 'emotion'
 
 import { TEXT_COLOUR, ALBUM_PADDING_SIZE, highlightBackgroundStyle } from '@/style'
-import type { Album } from '@/types'
+import type { SearchAlbum } from '@/types'
 
 
 export type AlbumCoverProps = {
-    album: Album
+    album?: SearchAlbum
     size: string
     onDragStart: (event: DragEvent<HTMLDivElement>) => void
     onDragOver?: (event: DragEvent<HTMLDivElement>) => void
@@ -74,7 +74,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
     )
 
     let image: JSX.Element | undefined
-    if (!album.placeholder) {
+    if (album !== undefined) {
         image = (
             // lazy loading causes problems with html2canvas so keep it default
             <img className={imageStyle}
@@ -86,13 +86,13 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
 
     return (
         <div className={containerStyle}
-                draggable={!album.placeholder}
+                draggable={album !== undefined}
                 onDragStart={onDragStart}
                 onDragEnter={onDragEnter}
                 onDragOver={onDragOver}
                 onDrop={onDrop}
                 onMouseEnter={onMouseEnter}
-                title={album.placeholder ? undefined : album.name}>
+                title={album?.name}>
             {image}
             <div className={overlayStyle}>
                 {children}

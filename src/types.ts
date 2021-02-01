@@ -47,12 +47,18 @@ export const PlaceholderAlbum = Record_({
 })
 
 
-export const NamedAlbum = Record_({
-    placeholder: Literal(false),
-    id: IntegerRange(1),
+export const SearchAlbum = Record_({
     name: NonEmptyString,
     url: NonEmptyString
 })
+
+
+export const NamedAlbum = SearchAlbum.And(
+    Record_({
+        placeholder: Literal(false),
+        id: IntegerRange(1)
+    })
+)
 
 
 const Album = Union(PlaceholderAlbum, NamedAlbum)
@@ -92,7 +98,7 @@ const SearchState = Union(
     }),
     Record_({
         tag: Literal('Complete'),
-        albums: NonEmptyArray(NamedAlbum)
+        albums: NonEmptyArray(SearchAlbum)
     }),
     Record_({
         tag: Literal('Error'),
@@ -116,7 +122,6 @@ export const State = Record_({
     charts: NonEmptyArray(Chart),
     activeChartIndex: IntegerRange(0),
     search: SearchState,
-    albumIDCounter: IntegerRange(1),
     screenshot: ScreenshotState
 }).And(
     Partial_({
@@ -126,6 +131,7 @@ export const State = Record_({
 
 
 export type NamedAlbum = Static<typeof NamedAlbum>
+export type SearchAlbum = Static<typeof SearchAlbum>
 export type PlaceholderAlbum = Static<typeof PlaceholderAlbum>
 export type Album = Static<typeof Album>
 export type ChartShape = Static<typeof ChartShape>

@@ -9,8 +9,8 @@ import { RenameAlbumButton } from '@/components/RenameAlbumButton'
 import { DeleteAlbumButton } from '@/components/DeleteAlbumButton'
 
 
-const chartPattern = /^chart-(.+)$/
-const searchPattern = /^search-(.+)$/
+const chartPattern = /^chart-([0-9]+)$/
+const searchPattern = /^search-([0-9]+)$/
 
 
 function getAlbumID(
@@ -19,9 +19,8 @@ function getAlbumID(
 ): number | null {
     for (const type of event.dataTransfer.types) {
         const match = type.match(pattern)?.[1]
-        const id = Number(match)
-        if (!Number.isNaN(id)) {
-            return id
+        if (match !== undefined) {
+            return Number(match)
         }
     }
     return null
@@ -95,25 +94,27 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
             return
         }
 
-        const sourceID = getAlbumID(event, searchPattern)
-        if (sourceID === null) {
+        const sourceIndex = getAlbumID(event, searchPattern)
+        if (sourceIndex === null) {
             return
         }
         dispatch({
             tag: 'DropSearchAlbum',
-            sourceID,
+            sourceIndex,
             targetID: album.id
         })
         event.preventDefault()
     }
 
-    let mouseEnter: (() => void) | undefined
-    let buttons: JSX.Element | undefined
-    if (!album.placeholder) {
-        mouseEnter = () => dispatch({
+    function mouseEnter() {
+        dispatch({
             tag: 'HighlightAlbum',
             targetID: album.id
         })
+    }
+
+    let buttons: JSX.Element | undefined
+    if (!album.placeholder) {
         buttons = (
             <>
                 <RenameAlbumButton dispatch={dispatch} id={album.id}/>
@@ -123,7 +124,7 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
     }
 
     return (
-        <AlbumCover album={album}
+        <AlbumCover album={album.placeholder ? undefined : album}
                 size={size}
                 onDragStart={dragStart}
                 onDragOver={dragOver}

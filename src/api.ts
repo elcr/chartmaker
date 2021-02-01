@@ -5,29 +5,26 @@ import {
     Static
 } from 'runtypes'
 
-
-const LastFMAlbum = Record_({
-    name: String_,
-    artist: String_,
-    image: Array_(
-        Record_({
-            '#text': String_
-        })
-    )
-})
+import type { SearchAlbum } from '@/types'
 
 
 const LastFMResult = Record_({
     results: Record_({
         albummatches: Record_({
-            album: Array_(LastFMAlbum)
+            album: Array_(
+                Record_({
+                    name: String_,
+                    artist: String_,
+                    image: Array_(
+                        Record_({
+                            '#text': String_
+                        })
+                    )
+                })
+            )
         })
     })
 })
-
-
-export type LastFMAlbum = Static<typeof LastFMAlbum>
-export type LastFMResult = Static<typeof LastFMResult>
 
 
 function isLastFMNullString(value: string): boolean {
@@ -38,17 +35,12 @@ function isLastFMNullString(value: string): boolean {
 }
 
 
-export type SearchResultAlbum = {
-    name: string
-    url: string
-}
-
-
-function formatLastFMResult(result: LastFMResult): SearchResultAlbum[] {
-    const albums: SearchResultAlbum[] = []
+function formatLastFMResult(result: Static<typeof LastFMResult>): SearchAlbum[] {
+    const albums: SearchAlbum[] = []
     for (const album of result.results.albummatches.album) {
         if (isLastFMNullString(album.artist)
                 || isLastFMNullString(album.name)
+                || album.image.length === 0
                 || album.image.some(image => isLastFMNullString(image['#text']))) {
             continue
         }
@@ -69,7 +61,7 @@ export type SearchArguments = {
 
 
 export type SearchResult =
-    | { tag: 'Ok', albums: SearchResultAlbum[] }
+    | { tag: 'Ok', albums: SearchAlbum[] }
     | { tag: 'StatusError', status: number }
     | { tag: 'JSONDecodeError' }
     | { tag: 'InvalidResponseData' }

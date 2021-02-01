@@ -1,13 +1,13 @@
 import type { FC } from 'react'
 import { css } from 'emotion'
 
-import type { NamedAlbum } from '@/types'
+import type { SearchAlbum } from '@/types'
 import { SidebarGroup } from '@/components/SidebarGroup'
 import { SearchAlbumCover } from '@/components/SearchAlbumCover'
 
 
 export type SearchResultsProps = {
-    albums: NamedAlbum[]
+    albums: SearchAlbum[]
 }
 
 
@@ -24,8 +24,8 @@ const groupStyle = css({
 
 
 export const SearchResults: FC<SearchResultsProps> = ({ albums }) => {
-    const albumCovers = albums.map(album =>
-        <SearchAlbumCover key={album.id} album={album}/>
+    const albumCovers = albums.map((album, index) =>
+        <SearchAlbumCover key={index} album={album} index={index}/>
     )
 
     return (

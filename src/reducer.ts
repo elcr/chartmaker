@@ -8,16 +8,15 @@ import {
 } from 'react-use-side-effect-reducer'
 import { produce } from 'immer'
 
-import { createChart, escapeStateForExport, } from '@/state'
+import { createChart, escapeStateForExport, findAlbumIndexWithID, getAlbumID, isPlaceholderAlbum, validateState, } from '@/state'
 import {
-    findIndex,
     elementToDataURI,
     downloadURI,
     jsonToDataURI,
     fileToDataURI
 } from '@/utils'
 import { search } from '@/api'
-import { State, SearchState, ChartShape } from '@/types'
+import type { State, SearchState, ChartShape } from '@/types'
 import {
     MAX_SCREENSHOT_SCALE,
     MAX_COLLAGE_ROWS_X,
@@ -202,15 +201,21 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'ImportStateFile':
             return sideEffect(async dispatch => {
+                let state: State | null
                 try {
                     const json = await action.file.text()
                     const parsed: unknown = JSON.parse(json)
-                    const state = State.check(parsed)
-                    dispatch({ tag: 'LoadState', state })
+                    state = validateState(parsed)
                 }
                 catch {
                     dispatch({ tag: 'ShowInvalidStateImportMessage' })
+                    return
                 }
+                if (state === null) {
+                    dispatch({ tag: 'ShowInvalidStateImportMessage' })
+                    return
+                }
+                dispatch({ tag: 'LoadState', state })
             })
 
         case 'ShowInvalidStateImportMessage':
@@ -357,31 +362,37 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
             const activeChart = state.charts[state.activeChartIndex]!
 
-            const sourceIndex = findIndex(activeChart.albums, album => album.id === action.sourceID)
-            if (sourceIndex === null) {
-                return noUpdate
+            let sourceIndex: number | undefined
+            let targetIndex: number | undefined
+            for (let index = 0; index < activeChart.albums.length; index++) {
+                const album = activeChart.albums[index]!
+                const id = getAlbumID(album)
+                if (id === action.sourceID) {
+                    sourceIndex = index
+                }
+                else if (id === action.targetID) {
+                    targetIndex = index
+                }
             }
-
-            const targetIndex = findIndex(activeChart.albums, album => album.id === action.targetID)
-            if (targetIndex === null) {
+            if (sourceIndex === undefined || targetIndex === undefined) {
                 return noUpdate
             }
 
             return update(
                 produce(state, state => {
                     const albums = state.charts[state.activeChartIndex]!.albums
-                    const source = { ...albums[sourceIndex]! }
-                    if (sourceIndex < targetIndex) {
-                        for (let index = sourceIndex; index < targetIndex; index++) {
+                    const source = albums[sourceIndex!]!
+                    if (sourceIndex! < targetIndex!) {
+                        for (let index = sourceIndex!; index < targetIndex!; index++) {
                             albums[index] = albums[index + 1]!
                         }
                     }
                     else {
-                        for (let index = sourceIndex; index > targetIndex; index--) {
+                        for (let index = sourceIndex!; index > targetIndex!; index--) {
                             albums[index] = albums[index - 1]!
                         }
                     }
-                    albums[targetIndex] = source
+                    albums[targetIndex!] = source
                 })
             )
         }
@@ -398,20 +409,16 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
             const chart = state.charts[state.activeChartIndex]!
 
-            const targetIndex = findIndex(
-                chart.albums,
-                album => album.id === action.targetID
-            )
+            const targetIndex = findAlbumIndexWithID(chart.albums, action.targetID)
             if (targetIndex === null) {
                 return noUpdate
             }
-            const { id } = chart.albums[targetIndex]!
+            const id = getAlbumID(chart.albums[targetIndex]!)
 
             return update(
                 produce(state, state => {
                     state.charts[state.activeChartIndex]!.albums[targetIndex] = {
                         ...source,
-                        placeholder: false,
                         id
                     }
                 })
@@ -422,8 +429,8 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             return sideEffect((dispatch, state) => {
                 const album = state.charts[state.activeChartIndex]!
                     .albums
-                    .find(album => album.id === action.id)
-                if (album === undefined || album.placeholder) {
+                    .find(album => getAlbumID(album) === action.id)
+                if (album === undefined || isPlaceholderAlbum(album)) {
                     return
                 }
 
@@ -441,13 +448,13 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         case 'RenameAlbum': {
             const chart = state.charts[state.activeChartIndex]!
 
-            const index = findIndex(chart.albums, album => album.id === action.id)
+            const index = findAlbumIndexWithID(chart.albums, action.id)
             if (index === null) {
                 return noUpdate
             }
 
             const album = chart.albums[index]!
-            if (album.placeholder) {
+            if (isPlaceholderAlbum(album)) {
                 return noUpdate
             }
 
@@ -462,19 +469,16 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         }
 
         case 'DeleteAlbum': {
-            const index = findIndex(
+            const index = findAlbumIndexWithID(
                 state.charts[state.activeChartIndex]!.albums,
-                album => album.id === action.id
+                action.id
             )
             if (index === null) {
                 return noUpdate
             }
             return update(
                 produce(state, state => {
-                    state.charts[state.activeChartIndex]!.albums[index] = {
-                        placeholder: true,
-                        id: action.id
-                    }
+                    state.charts[state.activeChartIndex]!.albums[index] = action.id
                 })
             )
         }
@@ -540,7 +544,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'DropExternalFile': {
             const exists = state.charts[state.activeChartIndex]!.albums.some(album =>
-                album.id === action.targetID
+                getAlbumID(album) === action.targetID
             )
             if (!exists) {
                 return noUpdate
@@ -557,9 +561,9 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         }
 
         case 'LoadExternalFile': {
-            const targetIndex = findIndex(
+            const targetIndex = findAlbumIndexWithID(
                 state.charts[state.activeChartIndex]!.albums,
-                album => album.id === action.targetID
+                action.targetID
             )
             if (targetIndex === null) {
                 return noUpdate
@@ -568,7 +572,6 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             return update(
                 produce(state, state => {
                     state.charts[state.activeChartIndex]!.albums[targetIndex] = {
-                        placeholder: false,
                         id: action.targetID,
                         name: action.name,
                         url: action.uri
@@ -579,7 +582,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'HighlightAlbum': {
             const target = state.charts[state.activeChartIndex]!.albums.find(album =>
-                !album.placeholder && album.id === action.targetID
+                !isPlaceholderAlbum(album) && album.id === action.targetID
             )
             if (target === undefined) {
                 return update(

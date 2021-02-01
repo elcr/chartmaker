@@ -4,12 +4,6 @@ import { fromUint8Array as base64FromUint8Array } from 'js-base64'
 import { BACKGROUND_COLOUR } from '@/style'
 
 
-export function findIndex<T>(array: ReadonlyArray<T>, predicate: (item: T) => boolean): number | null {
-    const index = array.findIndex(predicate)
-    return index === -1 ? null : index
-}
-
-
 export async function elementToDataURI(element: HTMLElement, scale: number) {
     const canvas = await html2canvas(element, {
         allowTaint: true,
@@ -44,7 +38,7 @@ export function downloadURI(uri: string, filename: string) {
 }
 
 
-export function getRandomIDs(count: number) {
+export function getRandomIntegers(count: number) {
     const array = new Uint32Array(count)
     return crypto.getRandomValues(array)
 }

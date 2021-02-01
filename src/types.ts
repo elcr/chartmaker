@@ -20,48 +20,59 @@ import {
 } from '@/constants'
 
 
-export const Integer = Number_.withConstraint(Number.isSafeInteger)
+const Integer = Number_.withConstraint(Number.isSafeInteger)
 
 
-export function IntegerRange(minimum: number, maximum = Number.MAX_SAFE_INTEGER) {
+function IntegerRange(minimum: number, maximum = Number.MAX_SAFE_INTEGER) {
     return Integer.withConstraint(number => number >= minimum && number <= maximum)
 }
 
 
-export function FixedSizeArray<T extends Runtype>(element: T, size: number) {
+function FixedSizeArray<T extends Runtype>(element: T, size: number) {
     return Array_(element).withConstraint(array => array.length === size)
 }
 
 
-export function NonEmptyArray<T extends Runtype>(element: T) {
+function NonEmptyArray<T extends Runtype>(element: T) {
     return Array_(element).withConstraint(array => array.length > 0)
 }
 
 
-export const NonEmptyString = String.withConstraint(string => string.length !== 0)
+const NonEmptyString = String.withConstraint(string => string.length !== 0)
 
 
-export const PlaceholderAlbum = Record_({
+const AlbumID = IntegerRange(1)
+
+
+const V1PlaceholderAlbum = Record_({
     placeholder: Literal(true),
-    id: IntegerRange(1)
+    id: AlbumID
 })
 
 
-export const SearchAlbum = Record_({
+const SearchAlbum = Record_({
     name: NonEmptyString,
     url: NonEmptyString
 })
 
 
-export const NamedAlbum = SearchAlbum.And(
+const V1NamedAlbum = SearchAlbum.And(
     Record_({
         placeholder: Literal(false),
-        id: IntegerRange(1)
+        id: AlbumID
     })
 )
+const V2NamedAlbum = SearchAlbum.And(
+    Record_({
+        id: AlbumID
+    })
+)
+export const NamedAlbum = V2NamedAlbum
 
 
-const Album = Union(PlaceholderAlbum, NamedAlbum)
+const V1Album = V1NamedAlbum.Or(V1PlaceholderAlbum)
+const V2Album = V2NamedAlbum.Or(AlbumID)
+const Album = V2Album
 
 
 const ChartShape = Union(
@@ -79,13 +90,21 @@ const ChartShape = Union(
 )
 
 
-const Chart = Record_({
+const V1Chart = Record_({
+    name: NonEmptyString,
+    albums: FixedSizeArray(V1Album, CHART_ALBUMS_COUNT),
+    shape: ChartShape,
+    rowsX: IntegerRange(1, MAX_COLLAGE_ROWS_X),
+    rowsY: IntegerRange(1, MAX_COLLAGE_ROWS_Y)
+})
+const V2Chart = Record_({
     name: NonEmptyString,
     albums: FixedSizeArray(Album, CHART_ALBUMS_COUNT),
     shape: ChartShape,
     rowsX: IntegerRange(1, MAX_COLLAGE_ROWS_X),
     rowsY: IntegerRange(1, MAX_COLLAGE_ROWS_Y)
 })
+const Chart = V2Chart
 
 
 const SearchState = Union(
@@ -117,25 +136,39 @@ const ScreenshotState = Record_({
 })
 
 
-export const State = Record_({
+export const V1State = Record_({
     apiKey: String,
-    charts: NonEmptyArray(Chart),
+    charts: NonEmptyArray(V1Chart),
     activeChartIndex: IntegerRange(0),
     search: SearchState,
     screenshot: ScreenshotState
 }).And(
     Partial_({
-        highlightedID: IntegerRange(1)
+        version: Literal(1),
+        highlightedID: AlbumID
     })
 )
+const V2State = Record_({
+    version: Literal(2),
+    apiKey: String,
+    charts: NonEmptyArray(V2Chart),
+    activeChartIndex: IntegerRange(0),
+    search: SearchState,
+    screenshot: ScreenshotState
+}).And(
+    Partial_({
+        highlightedID: AlbumID
+    })
+)
+export const State = V2State
 
 
 export type NamedAlbum = Static<typeof NamedAlbum>
 export type SearchAlbum = Static<typeof SearchAlbum>
-export type PlaceholderAlbum = Static<typeof PlaceholderAlbum>
 export type Album = Static<typeof Album>
 export type ChartShape = Static<typeof ChartShape>
 export type Chart = Static<typeof Chart>
 export type SearchState = Static<typeof SearchState>
 export type ScreenshotState = Static<typeof ScreenshotState>
 export type State = Static<typeof State>
+export type V1State = Static<typeof V1State>

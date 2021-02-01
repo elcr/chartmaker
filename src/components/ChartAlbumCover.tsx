@@ -7,13 +7,14 @@ import { ALBUM_BUTTONS_PADDING_SIZE } from '@/style'
 import { AlbumCover } from '@/components/AlbumCover'
 import { RenameAlbumButton } from '@/components/RenameAlbumButton'
 import { DeleteAlbumButton } from '@/components/DeleteAlbumButton'
+import { getAlbumID, isPlaceholderAlbum } from '@/state'
 
 
 const chartPattern = /^chart-([0-9]+)$/
 const searchPattern = /^search-([0-9]+)$/
 
 
-function getAlbumID(
+function matchDragEventData(
     event: DragEvent<HTMLDivElement>,
     pattern: RegExp
 ): number | null {
@@ -64,20 +65,22 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
     size,
     highlighted
 }) => {
+    const id = getAlbumID(album)
+
     function dragStart(event: DragEvent<HTMLDivElement>) {
-        event.dataTransfer.setData(`chart-${album.id}`, '')
+        event.dataTransfer.setData(`chart-${id}`, '')
         event.dataTransfer.effectAllowed = 'copyMove'
     }
 
     function dragEnter(event: DragEvent<HTMLDivElement>) {
-        const sourceID = getAlbumID(event, chartPattern)
+        const sourceID = matchDragEventData(event, chartPattern)
         if (sourceID === null) {
             return
         }
         dispatch({
             tag: 'DragChartAlbum',
             sourceID,
-            targetID: album.id
+            targetID: id
         })
         event.preventDefault()
     }
@@ -88,20 +91,20 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
             dispatch({
                 tag: 'DropExternalFile',
                 file,
-                targetID: album.id
+                targetID: id
             })
             event.preventDefault()
             return
         }
 
-        const sourceIndex = getAlbumID(event, searchPattern)
+        const sourceIndex = matchDragEventData(event, searchPattern)
         if (sourceIndex === null) {
             return
         }
         dispatch({
             tag: 'DropSearchAlbum',
             sourceIndex,
-            targetID: album.id
+            targetID: id
         })
         event.preventDefault()
     }
@@ -109,22 +112,22 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
     function mouseEnter() {
         dispatch({
             tag: 'HighlightAlbum',
-            targetID: album.id
+            targetID: id
         })
     }
 
     let buttons: JSX.Element | undefined
-    if (!album.placeholder) {
+    if (!isPlaceholderAlbum(album)) {
         buttons = (
             <>
-                <RenameAlbumButton dispatch={dispatch} id={album.id}/>
-                <DeleteAlbumButton dispatch={dispatch} id={album.id}/>
+                <RenameAlbumButton dispatch={dispatch} id={id}/>
+                <DeleteAlbumButton dispatch={dispatch} id={id}/>
             </>
         )
     }
 
     return (
-        <AlbumCover album={album.placeholder ? undefined : album}
+        <AlbumCover album={isPlaceholderAlbum(album) ? undefined : album}
                 size={size}
                 onDragStart={dragStart}
                 onDragOver={dragOver}

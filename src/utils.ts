@@ -36,9 +36,3 @@ export function downloadURI(uri: string, filename: string) {
     link.click()
     link.remove()
 }
-
-
-export function getRandomIntegers(count: number) {
-    const array = new Uint32Array(count)
-    return crypto.getRandomValues(array)
-}

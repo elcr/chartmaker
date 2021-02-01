@@ -41,12 +41,12 @@ function NonEmptyArray<T extends Runtype>(element: T) {
 const NonEmptyString = String.withConstraint(string => string.length !== 0)
 
 
-const AlbumID = IntegerRange(1)
+const PositiveInteger = IntegerRange(0)
 
 
 const V1PlaceholderAlbum = Record_({
     placeholder: Literal(true),
-    id: AlbumID
+    id: PositiveInteger
 })
 
 
@@ -59,19 +59,19 @@ const SearchAlbum = Record_({
 const V1NamedAlbum = SearchAlbum.And(
     Record_({
         placeholder: Literal(false),
-        id: AlbumID
+        id: PositiveInteger
     })
 )
 const V2NamedAlbum = SearchAlbum.And(
     Record_({
-        id: AlbumID
+        id: PositiveInteger
     })
 )
 export const NamedAlbum = V2NamedAlbum
 
 
 const V1Album = V1NamedAlbum.Or(V1PlaceholderAlbum)
-const V2Album = V2NamedAlbum.Or(AlbumID)
+const V2Album = V2NamedAlbum.Or(PositiveInteger)
 const Album = V2Album
 
 
@@ -98,11 +98,8 @@ const V1Chart = Record_({
     rowsY: IntegerRange(1, MAX_COLLAGE_ROWS_Y)
 })
 const V2Chart = Record_({
-    name: NonEmptyString,
-    albums: FixedSizeArray(Album, CHART_ALBUMS_COUNT),
-    shape: ChartShape,
-    rowsX: IntegerRange(1, MAX_COLLAGE_ROWS_X),
-    rowsY: IntegerRange(1, MAX_COLLAGE_ROWS_Y)
+    ...V1Chart.fields,
+    albums: FixedSizeArray(Album, CHART_ALBUMS_COUNT)
 })
 const Chart = V2Chart
 
@@ -139,25 +136,22 @@ const ScreenshotState = Record_({
 export const V1State = Record_({
     apiKey: String,
     charts: NonEmptyArray(V1Chart),
-    activeChartIndex: IntegerRange(0),
+    activeChartIndex: PositiveInteger,
     search: SearchState,
     screenshot: ScreenshotState
 }).And(
     Partial_({
         version: Literal(1),
-        highlightedID: AlbumID
+        highlightedID: PositiveInteger
     })
 )
 const V2State = Record_({
+    ...V1State.intersectees[0].fields,
     version: Literal(2),
-    apiKey: String,
-    charts: NonEmptyArray(V2Chart),
-    activeChartIndex: IntegerRange(0),
-    search: SearchState,
-    screenshot: ScreenshotState
+    charts: NonEmptyArray(V2Chart)
 }).And(
     Partial_({
-        highlightedID: AlbumID
+        highlightedID: PositiveInteger
     })
 )
 export const State = V2State

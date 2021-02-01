@@ -8,23 +8,27 @@ import {
 import type { SearchAlbum } from '@/types'
 
 
+const LastFMAlbum = Record_({
+    name: String_,
+    artist: String_,
+    image: Array_(
+        Record_({
+            '#text': String_
+        })
+    )
+})
+
 const LastFMResult = Record_({
     results: Record_({
         albummatches: Record_({
-            album: Array_(
-                Record_({
-                    name: String_,
-                    artist: String_,
-                    image: Array_(
-                        Record_({
-                            '#text': String_
-                        })
-                    )
-                })
-            )
+            album: Array_(LastFMAlbum)
         })
     })
 })
+
+
+export type LastFMAlbum = Static<typeof LastFMAlbum>
+export type LastFMResult = Static<typeof LastFMResult>
 
 
 function isLastFMNullString(value: string): boolean {
@@ -35,7 +39,7 @@ function isLastFMNullString(value: string): boolean {
 }
 
 
-function formatLastFMResult(result: Static<typeof LastFMResult>): SearchAlbum[] {
+function formatLastFMResult(result: LastFMResult): SearchAlbum[] {
     const albums: SearchAlbum[] = []
     for (const album of result.results.albummatches.album) {
         if (isLastFMNullString(album.artist)

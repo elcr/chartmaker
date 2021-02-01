@@ -8,13 +8,12 @@ import {
     LOCAL_STORAGE_KEY,
     STATE_VERSION
 } from '@/constants'
-import { getRandomIntegers } from '@/utils'
 
 
 export function createChart(name = DEFAULT_CHART_NAME): Chart {
     return {
         name,
-        albums: [ ...getRandomIntegers(CHART_ALBUMS_COUNT) ],
+        albums: [ ...Array(CHART_ALBUMS_COUNT).keys() ],
         shape: DEFAULT_CHART_SHAPE,
         rowsX: DEFAULT_COLLAGE_ROWS_X,
         rowsY: DEFAULT_COLLAGE_ROWS_Y
@@ -67,7 +66,7 @@ export function loadStateFromLocalStorage(): State | null {
 }
 
 
-export function v1StateToCurrentState(state: V1State): State {
+function v1StateToCurrentState(state: V1State): State {
     return {
         version: STATE_VERSION,
         activeChartIndex: state.activeChartIndex,
@@ -77,11 +76,11 @@ export function v1StateToCurrentState(state: V1State): State {
         search: state.search,
         charts: state.charts.map(chart => ({
             ...chart,
-            albums: chart.albums.map(album =>
+            albums: chart.albums.map((album, index) =>
                 album.placeholder
-                    ? album.id
+                    ? index
                     : {
-                        id: album.id,
+                        id: index,
                         name: album.name,
                         url: album.url
                     }

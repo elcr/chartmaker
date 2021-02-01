@@ -67,11 +67,6 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
 }) => {
     const id = getAlbumID(album)
 
-    function dragStart(event: DragEvent<HTMLDivElement>) {
-        event.dataTransfer.setData(`chart-${id}`, '')
-        event.dataTransfer.effectAllowed = 'copyMove'
-    }
-
     function dragEnter(event: DragEvent<HTMLDivElement>) {
         const sourceID = matchDragEventData(event, chartPattern)
         if (sourceID === null) {
@@ -116,8 +111,13 @@ export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
         })
     }
 
+    let dragStart: ((event: DragEvent<HTMLDivElement>) => void) | undefined
     let buttons: JSX.Element | undefined
     if (!isPlaceholderAlbum(album)) {
+        dragStart = event => {
+            event.dataTransfer.setData(`chart-${id}`, '')
+            event.dataTransfer.effectAllowed = 'copyMove'
+        }
         buttons = (
             <>
                 <RenameAlbumButton dispatch={dispatch} id={id}/>

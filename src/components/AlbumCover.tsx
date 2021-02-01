@@ -8,7 +8,7 @@ import type { SearchAlbum } from '@/types'
 export type AlbumCoverProps = {
     album?: SearchAlbum
     size: string
-    onDragStart: (event: DragEvent<HTMLDivElement>) => void
+    onDragStart?: (event: DragEvent<HTMLDivElement>) => void
     onDragOver?: (event: DragEvent<HTMLDivElement>) => void
     onDragEnter?: (event: DragEvent<HTMLDivElement>) => void
     onDrop?: (event: DragEvent<HTMLDivElement>) => void

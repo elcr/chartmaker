@@ -269,12 +269,12 @@ exports[`renders groups with no search results unless complete and album present
     <div
       class="mock-search-box"
     >
-      Search state: {"tag":"Complete","query":"Test query","albums":[{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}]}
+      Search state: {"tag":"Complete","query":"Test query","albums":[{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"}]}
     </div>
     <div
       class="mock-search-results"
     >
-      Albums: [{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}]
+      Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"}]
     </div>
   </aside>
 </div>

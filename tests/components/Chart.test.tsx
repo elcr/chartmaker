@@ -56,7 +56,7 @@ test('excludes placeholder albums from titles', () => {
     const albumsWithPlaceholders: Album[] = albums.map((album, index) =>
         index % 2 == 0
             ? album
-            : { placeholder: true, id: album.id }
+            : album.id
     )
     render(
         <Chart albums={albumsWithPlaceholders}

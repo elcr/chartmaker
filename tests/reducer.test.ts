@@ -1,12 +1,12 @@
 import { SideEffectUpdate, update, noUpdate } from 'react-use-side-effect-reducer'
+import produce from 'immer'
 
 import { reducer, Action } from '@/reducer'
-import { search, SearchResultAlbum } from '@/api'
-import type { State, SearchState, ChartShape } from '@/types'
+import { search } from '@/api'
+import type { State, SearchState, ChartShape, SearchAlbum } from '@/types'
 import { MAX_SCREENSHOT_SCALE, MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
 
 import { createTestState, createTestNamedAlbums } from './utils'
-import produce from 'immer'
 
 
 jest.mock('@/api')
@@ -559,7 +559,7 @@ describe('SendSearchRequest', () => {
     })
 
     test('side effect dispatches load state action on request success', async () => {
-        const albums: SearchResultAlbum[] = []
+        const albums: SearchAlbum[] = []
         for (let index = 1; index < 4; index++) {
             albums.push({
                 name: `Test album ${index}`,
@@ -644,8 +644,6 @@ test.each<SearchState>([
         tag: 'Complete',
         albums: [
             {
-                placeholder: false,
-                id: 123,
                 name: 'Test search album',
                 url: 'https://test.com'
             }
@@ -699,8 +697,6 @@ describe('UpdateSearchQuery', () => {
             tag: 'Complete',
             albums: [
                 {
-                    placeholder: false,
-                    id: 123,
                     name: 'Test search album',
                     url: 'https://test.com'
                 }
@@ -790,25 +786,30 @@ describe('DropSearchAlbum', () => {
     test('no update when search state not complete', () => {
         const result = reducer(state, {
             tag: 'DropSearchAlbum',
-            sourceID: 123,
+            sourceIndex: 0,
             targetID: 456
         })
         expect(result).toEqual(noUpdate)
     })
 
-    test.each([ 123, 456 ])('no update when album with source id cannot be found', id => {
+    test.each([ 123, 456 ])('no update when album with source index cannot be found', id => {
         const result = reducer(
             {
                 ...state,
                 search: {
                     ...state.search,
                     tag: 'Complete',
-                    albums: []
+                    albums: [
+                        {
+                            name: 'Test search album',
+                            url: 'https://test.com'
+                        }
+                    ]
                 }
             },
             {
                 tag: 'DropSearchAlbum',
-                sourceID: id,
+                sourceIndex: id,
                 targetID: 1
             }
         )
@@ -824,8 +825,6 @@ describe('DropSearchAlbum', () => {
                     tag: 'Complete',
                     albums: [
                         {
-                            placeholder: false,
-                            id: 1,
                             name: 'Test search album',
                             url: 'https://test.com'
                         }
@@ -834,7 +833,7 @@ describe('DropSearchAlbum', () => {
             },
             {
                 tag: 'DropSearchAlbum',
-                sourceID: 1,
+                sourceIndex: 0,
                 targetID: id
             }
         )
@@ -842,9 +841,9 @@ describe('DropSearchAlbum', () => {
     })
 
     test.each<[ number, number ]>([
-        [ 4, 1 ],
-        [ 5, 3 ]
-    ])('replaces album at target id', (sourceID, targetID) => {
+        [ 0, 1 ],
+        [ 1, 3 ]
+    ])('replaces album at target index', (sourceIndex, targetID) => {
         const result = reducer(
             {
                 ...state,
@@ -853,14 +852,10 @@ describe('DropSearchAlbum', () => {
                     tag: 'Complete',
                     albums: [
                         {
-                            placeholder: false,
-                            id: 4,
                             name: 'Test search album 4',
                             url: 'https://test.com'
                         },
                         {
-                            placeholder: false,
-                            id: 5,
                             name: 'Test search album 5',
                             url: 'https://test.com'
                         }
@@ -869,7 +864,7 @@ describe('DropSearchAlbum', () => {
             },
             {
                 tag: 'DropSearchAlbum',
-                sourceID,
+                sourceIndex,
                 targetID
             }
         )

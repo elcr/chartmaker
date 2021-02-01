@@ -1,4 +1,4 @@
-import { LastFMResult, search, LastFMAlbum, SearchResult } from '@/api'
+import { LastFMAlbum, LastFMResult, search, SearchResult } from '@/api'
 
 import { ignore } from './utils'
 

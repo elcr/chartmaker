@@ -3,9 +3,13 @@ import {
     createInitialState,
     loadStateFromLocalStorage,
     escapeStateForExport,
-    saveStateToLocalStorage
+    saveStateToLocalStorage,
+    isPlaceholderAlbum,
+    getAlbumID,
+    findAlbumIndexWithID
 } from '@/state'
 import { LOCAL_STORAGE_KEY } from '@/constants'
+import type { Album } from '@/types'
 
 import {
     createTestState,
@@ -20,13 +24,9 @@ describe('createChart', () => {
         expect(result).toMatchSnapshot()
     })
 
-    test('albumIDCounter argument affects new album IDs', () => {
-        const result = createChart({ albumIDCounter: 100 })
-        expect(result).toMatchSnapshot()
-    })
-
     test('name argument changes chart name', () => {
-        const result = createChart({ name: 'Test chart' })
+        const name = 'Test chart'
+        const result = createChart(name)
         expect(result).toMatchSnapshot()
     })
 })
@@ -35,6 +35,15 @@ describe('createChart', () => {
 test('createInitialState', () => {
     const state = createInitialState()
     expect(state).toMatchSnapshot()
+})
+
+
+describe('validateState', () => {
+    test.todo('returns state when valid state passed')
+
+    test.todo('returns updated state when outdated but valid state passed')
+
+    test.todo('returns null when invalid state passed')
 })
 
 
@@ -49,6 +58,8 @@ describe('loadStateFromLocalStorage', () => {
         const returnedState = loadStateFromLocalStorage()
         expect(returnedState).toEqual(state)
     })
+
+    test.todo('returns updated state when outdated state in local storage')
 
     test.each([
         '{',
@@ -87,11 +98,59 @@ describe('saveStateToLocalStorage', () => {
         localStorageMock.mockImplementation(ignore)
 
         saveStateToLocalStorage(createTestStateForEscaping())
-
         expect(localStorageMock).toHaveBeenCalledTimes(1)
-        expect(localStorageMock).toHaveBeenCalledWith(
-            LOCAL_STORAGE_KEY,
-            JSON.stringify(createTestState())
-        )
+        const [ key, json ] = localStorageMock.mock.calls[0]!
+        expect(key).toBe(LOCAL_STORAGE_KEY)
+        const state = JSON.parse(json)
+        expect(state).toEqual(createTestState())
+    })
+})
+
+
+describe('isPlaceholderAlbum', () => {
+    test('returns false for album objects', () => {
+        const result = isPlaceholderAlbum({ id: 1, name: '', url: '' })
+        expect(result).toBe(false)
+    })
+
+    test('returns true for numbers', () => {
+        const result = isPlaceholderAlbum(1)
+        expect(result).toBe(true)
+    })
+})
+
+
+describe('getAlbumID', () => {
+    test.each([ 123, 456 ])('returns placeholder id', id => {
+        const result = getAlbumID(id)
+        expect(result).toBe(id)
+    })
+
+    test.each([ 123, 456 ])('returns named id', id => {
+        const result = getAlbumID({ id, name: '', url: '' })
+        expect(result).toBe(id)
+    })
+})
+
+
+describe('findAlbumIndexWithID', () => {
+    const albums: ReadonlyArray<Album> = [
+        123,
+        456,
+        { id: 789, name: '', url: '' }
+    ]
+
+    test.each<[ number, number ]>([
+        [ 123, 0 ],
+        [ 456, 1 ],
+        [ 789, 2 ]
+    ])('returns index when album with id in array', (id, index) => {
+        const result = findAlbumIndexWithID(albums, id)
+        expect(result).toBe(index)
+    })
+
+    test('returns null when no album with id in array', () => {
+        const result = findAlbumIndexWithID(albums, 1234)
+        expect(result).toBeNull()
     })
 })

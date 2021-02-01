@@ -7,7 +7,7 @@ exports[`renders album cover 1`] = `
   <div
     class="mock-album-cover"
   >
-    Album: {"placeholder":false,"id":123,"name":"Test Album","url":"https://test.com"}
+    Album: {"name":"Test Album","url":"https://test.com"}
     Size: 8.6rem
     Highlighted: undefined
   </div>

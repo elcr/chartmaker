@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { css } from 'emotion'
 import { act } from 'react-dom/test-utils'
 
-import type { Album } from '@/types'
+import type { NamedAlbum } from '@/types'
 import { AlbumCover } from '@/components/AlbumCover'
 
 import { ignore, fireEvent, RenderContainer } from '../utils'
@@ -15,23 +15,16 @@ const dragMock = jest.fn<void, DragEvent<HTMLDivElement>[]>()
 afterEach(jest.resetAllMocks)
 
 
-const namedAlbum: Album = {
-    placeholder: false,
+const namedAlbum: NamedAlbum = {
     id: 123,
     name: 'Test album',
     url: 'https://test.com'
-}
-const placeholderAlbum: Album = {
-    placeholder: true,
-    id: 123
 }
 
 
 test('renders without image for placeholder album', () => {
     render(
-        <AlbumCover album={placeholderAlbum}
-                size='2rem'
-                onDragStart={ignore}>
+        <AlbumCover size='2rem' onDragStart={ignore}>
             Test children
         </AlbumCover>,
         container.element
@@ -57,8 +50,7 @@ test('renders with image for named album', () => {
 
 test('overlayClass prop merges styles', () => {
     render(
-        <AlbumCover album={placeholderAlbum}
-                size='2rem'
+        <AlbumCover size='2rem'
                 onDragStart={ignore}
                 overlayClass={css({ color: 'red' })}>
             Test children
@@ -72,8 +64,7 @@ test('overlayClass prop merges styles', () => {
 
 test.each([ true, false ])('highlighted prop merges styles when false', highlighted => {
     render(
-        <AlbumCover album={placeholderAlbum}
-                size='2rem'
+        <AlbumCover size='2rem'
                 onDragStart={ignore}
                 highlighted={highlighted}>
             Test children

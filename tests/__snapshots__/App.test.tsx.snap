@@ -33,406 +33,106 @@ exports[`renders sidebar and chart 1`] = `
   {
     "name": "Untitled chart",
     "albums": [
-      {
-        "placeholder": true,
-        "id": 1
-      },
-      {
-        "placeholder": true,
-        "id": 2
-      },
-      {
-        "placeholder": true,
-        "id": 3
-      },
-      {
-        "placeholder": true,
-        "id": 4
-      },
-      {
-        "placeholder": true,
-        "id": 5
-      },
-      {
-        "placeholder": true,
-        "id": 6
-      },
-      {
-        "placeholder": true,
-        "id": 7
-      },
-      {
-        "placeholder": true,
-        "id": 8
-      },
-      {
-        "placeholder": true,
-        "id": 9
-      },
-      {
-        "placeholder": true,
-        "id": 10
-      },
-      {
-        "placeholder": true,
-        "id": 11
-      },
-      {
-        "placeholder": true,
-        "id": 12
-      },
-      {
-        "placeholder": true,
-        "id": 13
-      },
-      {
-        "placeholder": true,
-        "id": 14
-      },
-      {
-        "placeholder": true,
-        "id": 15
-      },
-      {
-        "placeholder": true,
-        "id": 16
-      },
-      {
-        "placeholder": true,
-        "id": 17
-      },
-      {
-        "placeholder": true,
-        "id": 18
-      },
-      {
-        "placeholder": true,
-        "id": 19
-      },
-      {
-        "placeholder": true,
-        "id": 20
-      },
-      {
-        "placeholder": true,
-        "id": 21
-      },
-      {
-        "placeholder": true,
-        "id": 22
-      },
-      {
-        "placeholder": true,
-        "id": 23
-      },
-      {
-        "placeholder": true,
-        "id": 24
-      },
-      {
-        "placeholder": true,
-        "id": 25
-      },
-      {
-        "placeholder": true,
-        "id": 26
-      },
-      {
-        "placeholder": true,
-        "id": 27
-      },
-      {
-        "placeholder": true,
-        "id": 28
-      },
-      {
-        "placeholder": true,
-        "id": 29
-      },
-      {
-        "placeholder": true,
-        "id": 30
-      },
-      {
-        "placeholder": true,
-        "id": 31
-      },
-      {
-        "placeholder": true,
-        "id": 32
-      },
-      {
-        "placeholder": true,
-        "id": 33
-      },
-      {
-        "placeholder": true,
-        "id": 34
-      },
-      {
-        "placeholder": true,
-        "id": 35
-      },
-      {
-        "placeholder": true,
-        "id": 36
-      },
-      {
-        "placeholder": true,
-        "id": 37
-      },
-      {
-        "placeholder": true,
-        "id": 38
-      },
-      {
-        "placeholder": true,
-        "id": 39
-      },
-      {
-        "placeholder": true,
-        "id": 40
-      },
-      {
-        "placeholder": true,
-        "id": 41
-      },
-      {
-        "placeholder": true,
-        "id": 42
-      },
-      {
-        "placeholder": true,
-        "id": 43
-      },
-      {
-        "placeholder": true,
-        "id": 44
-      },
-      {
-        "placeholder": true,
-        "id": 45
-      },
-      {
-        "placeholder": true,
-        "id": 46
-      },
-      {
-        "placeholder": true,
-        "id": 47
-      },
-      {
-        "placeholder": true,
-        "id": 48
-      },
-      {
-        "placeholder": true,
-        "id": 49
-      },
-      {
-        "placeholder": true,
-        "id": 50
-      },
-      {
-        "placeholder": true,
-        "id": 51
-      },
-      {
-        "placeholder": true,
-        "id": 52
-      },
-      {
-        "placeholder": true,
-        "id": 53
-      },
-      {
-        "placeholder": true,
-        "id": 54
-      },
-      {
-        "placeholder": true,
-        "id": 55
-      },
-      {
-        "placeholder": true,
-        "id": 56
-      },
-      {
-        "placeholder": true,
-        "id": 57
-      },
-      {
-        "placeholder": true,
-        "id": 58
-      },
-      {
-        "placeholder": true,
-        "id": 59
-      },
-      {
-        "placeholder": true,
-        "id": 60
-      },
-      {
-        "placeholder": true,
-        "id": 61
-      },
-      {
-        "placeholder": true,
-        "id": 62
-      },
-      {
-        "placeholder": true,
-        "id": 63
-      },
-      {
-        "placeholder": true,
-        "id": 64
-      },
-      {
-        "placeholder": true,
-        "id": 65
-      },
-      {
-        "placeholder": true,
-        "id": 66
-      },
-      {
-        "placeholder": true,
-        "id": 67
-      },
-      {
-        "placeholder": true,
-        "id": 68
-      },
-      {
-        "placeholder": true,
-        "id": 69
-      },
-      {
-        "placeholder": true,
-        "id": 70
-      },
-      {
-        "placeholder": true,
-        "id": 71
-      },
-      {
-        "placeholder": true,
-        "id": 72
-      },
-      {
-        "placeholder": true,
-        "id": 73
-      },
-      {
-        "placeholder": true,
-        "id": 74
-      },
-      {
-        "placeholder": true,
-        "id": 75
-      },
-      {
-        "placeholder": true,
-        "id": 76
-      },
-      {
-        "placeholder": true,
-        "id": 77
-      },
-      {
-        "placeholder": true,
-        "id": 78
-      },
-      {
-        "placeholder": true,
-        "id": 79
-      },
-      {
-        "placeholder": true,
-        "id": 80
-      },
-      {
-        "placeholder": true,
-        "id": 81
-      },
-      {
-        "placeholder": true,
-        "id": 82
-      },
-      {
-        "placeholder": true,
-        "id": 83
-      },
-      {
-        "placeholder": true,
-        "id": 84
-      },
-      {
-        "placeholder": true,
-        "id": 85
-      },
-      {
-        "placeholder": true,
-        "id": 86
-      },
-      {
-        "placeholder": true,
-        "id": 87
-      },
-      {
-        "placeholder": true,
-        "id": 88
-      },
-      {
-        "placeholder": true,
-        "id": 89
-      },
-      {
-        "placeholder": true,
-        "id": 90
-      },
-      {
-        "placeholder": true,
-        "id": 91
-      },
-      {
-        "placeholder": true,
-        "id": 92
-      },
-      {
-        "placeholder": true,
-        "id": 93
-      },
-      {
-        "placeholder": true,
-        "id": 94
-      },
-      {
-        "placeholder": true,
-        "id": 95
-      },
-      {
-        "placeholder": true,
-        "id": 96
-      },
-      {
-        "placeholder": true,
-        "id": 97
-      },
-      {
-        "placeholder": true,
-        "id": 98
-      },
-      {
-        "placeholder": true,
-        "id": 99
-      },
-      {
-        "placeholder": true,
-        "id": 100
-      }
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99
     ],
     "shape": {
       "tag": "Top",
@@ -457,406 +157,106 @@ exports[`renders sidebar and chart 1`] = `
       class="mock-chart"
     >
       Albums: [
-  {
-    "placeholder": true,
-    "id": 1
-  },
-  {
-    "placeholder": true,
-    "id": 2
-  },
-  {
-    "placeholder": true,
-    "id": 3
-  },
-  {
-    "placeholder": true,
-    "id": 4
-  },
-  {
-    "placeholder": true,
-    "id": 5
-  },
-  {
-    "placeholder": true,
-    "id": 6
-  },
-  {
-    "placeholder": true,
-    "id": 7
-  },
-  {
-    "placeholder": true,
-    "id": 8
-  },
-  {
-    "placeholder": true,
-    "id": 9
-  },
-  {
-    "placeholder": true,
-    "id": 10
-  },
-  {
-    "placeholder": true,
-    "id": 11
-  },
-  {
-    "placeholder": true,
-    "id": 12
-  },
-  {
-    "placeholder": true,
-    "id": 13
-  },
-  {
-    "placeholder": true,
-    "id": 14
-  },
-  {
-    "placeholder": true,
-    "id": 15
-  },
-  {
-    "placeholder": true,
-    "id": 16
-  },
-  {
-    "placeholder": true,
-    "id": 17
-  },
-  {
-    "placeholder": true,
-    "id": 18
-  },
-  {
-    "placeholder": true,
-    "id": 19
-  },
-  {
-    "placeholder": true,
-    "id": 20
-  },
-  {
-    "placeholder": true,
-    "id": 21
-  },
-  {
-    "placeholder": true,
-    "id": 22
-  },
-  {
-    "placeholder": true,
-    "id": 23
-  },
-  {
-    "placeholder": true,
-    "id": 24
-  },
-  {
-    "placeholder": true,
-    "id": 25
-  },
-  {
-    "placeholder": true,
-    "id": 26
-  },
-  {
-    "placeholder": true,
-    "id": 27
-  },
-  {
-    "placeholder": true,
-    "id": 28
-  },
-  {
-    "placeholder": true,
-    "id": 29
-  },
-  {
-    "placeholder": true,
-    "id": 30
-  },
-  {
-    "placeholder": true,
-    "id": 31
-  },
-  {
-    "placeholder": true,
-    "id": 32
-  },
-  {
-    "placeholder": true,
-    "id": 33
-  },
-  {
-    "placeholder": true,
-    "id": 34
-  },
-  {
-    "placeholder": true,
-    "id": 35
-  },
-  {
-    "placeholder": true,
-    "id": 36
-  },
-  {
-    "placeholder": true,
-    "id": 37
-  },
-  {
-    "placeholder": true,
-    "id": 38
-  },
-  {
-    "placeholder": true,
-    "id": 39
-  },
-  {
-    "placeholder": true,
-    "id": 40
-  },
-  {
-    "placeholder": true,
-    "id": 41
-  },
-  {
-    "placeholder": true,
-    "id": 42
-  },
-  {
-    "placeholder": true,
-    "id": 43
-  },
-  {
-    "placeholder": true,
-    "id": 44
-  },
-  {
-    "placeholder": true,
-    "id": 45
-  },
-  {
-    "placeholder": true,
-    "id": 46
-  },
-  {
-    "placeholder": true,
-    "id": 47
-  },
-  {
-    "placeholder": true,
-    "id": 48
-  },
-  {
-    "placeholder": true,
-    "id": 49
-  },
-  {
-    "placeholder": true,
-    "id": 50
-  },
-  {
-    "placeholder": true,
-    "id": 51
-  },
-  {
-    "placeholder": true,
-    "id": 52
-  },
-  {
-    "placeholder": true,
-    "id": 53
-  },
-  {
-    "placeholder": true,
-    "id": 54
-  },
-  {
-    "placeholder": true,
-    "id": 55
-  },
-  {
-    "placeholder": true,
-    "id": 56
-  },
-  {
-    "placeholder": true,
-    "id": 57
-  },
-  {
-    "placeholder": true,
-    "id": 58
-  },
-  {
-    "placeholder": true,
-    "id": 59
-  },
-  {
-    "placeholder": true,
-    "id": 60
-  },
-  {
-    "placeholder": true,
-    "id": 61
-  },
-  {
-    "placeholder": true,
-    "id": 62
-  },
-  {
-    "placeholder": true,
-    "id": 63
-  },
-  {
-    "placeholder": true,
-    "id": 64
-  },
-  {
-    "placeholder": true,
-    "id": 65
-  },
-  {
-    "placeholder": true,
-    "id": 66
-  },
-  {
-    "placeholder": true,
-    "id": 67
-  },
-  {
-    "placeholder": true,
-    "id": 68
-  },
-  {
-    "placeholder": true,
-    "id": 69
-  },
-  {
-    "placeholder": true,
-    "id": 70
-  },
-  {
-    "placeholder": true,
-    "id": 71
-  },
-  {
-    "placeholder": true,
-    "id": 72
-  },
-  {
-    "placeholder": true,
-    "id": 73
-  },
-  {
-    "placeholder": true,
-    "id": 74
-  },
-  {
-    "placeholder": true,
-    "id": 75
-  },
-  {
-    "placeholder": true,
-    "id": 76
-  },
-  {
-    "placeholder": true,
-    "id": 77
-  },
-  {
-    "placeholder": true,
-    "id": 78
-  },
-  {
-    "placeholder": true,
-    "id": 79
-  },
-  {
-    "placeholder": true,
-    "id": 80
-  },
-  {
-    "placeholder": true,
-    "id": 81
-  },
-  {
-    "placeholder": true,
-    "id": 82
-  },
-  {
-    "placeholder": true,
-    "id": 83
-  },
-  {
-    "placeholder": true,
-    "id": 84
-  },
-  {
-    "placeholder": true,
-    "id": 85
-  },
-  {
-    "placeholder": true,
-    "id": 86
-  },
-  {
-    "placeholder": true,
-    "id": 87
-  },
-  {
-    "placeholder": true,
-    "id": 88
-  },
-  {
-    "placeholder": true,
-    "id": 89
-  },
-  {
-    "placeholder": true,
-    "id": 90
-  },
-  {
-    "placeholder": true,
-    "id": 91
-  },
-  {
-    "placeholder": true,
-    "id": 92
-  },
-  {
-    "placeholder": true,
-    "id": 93
-  },
-  {
-    "placeholder": true,
-    "id": 94
-  },
-  {
-    "placeholder": true,
-    "id": 95
-  },
-  {
-    "placeholder": true,
-    "id": 96
-  },
-  {
-    "placeholder": true,
-    "id": 97
-  },
-  {
-    "placeholder": true,
-    "id": 98
-  },
-  {
-    "placeholder": true,
-    "id": 99
-  },
-  {
-    "placeholder": true,
-    "id": 100
-  }
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  58,
+  59,
+  60,
+  61,
+  62,
+  63,
+  64,
+  65,
+  66,
+  67,
+  68,
+  69,
+  70,
+  71,
+  72,
+  73,
+  74,
+  75,
+  76,
+  77,
+  78,
+  79,
+  80,
+  81,
+  82,
+  83,
+  84,
+  85,
+  86,
+  87,
+  88,
+  89,
+  90,
+  91,
+  92,
+  93,
+  94,
+  95,
+  96,
+  97,
+  98,
+  99
 ]
       Name: Untitled chart
       Rows X: 5

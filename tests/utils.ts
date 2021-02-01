@@ -1,7 +1,8 @@
 import { unmountComponentAtNode } from 'react-dom'
 import { Simulate } from 'react-dom/test-utils'
 
-import type { NamedAlbum, PlaceholderAlbum, State, Chart } from '@/types'
+import type { NamedAlbum, State, Chart } from '@/types'
+import { STATE_VERSION } from '@/constants'
 
 
 export function fireEvent(
@@ -74,7 +75,6 @@ export function createTestNamedAlbums(count: number, start = 1): NamedAlbum[] {
     const albums: NamedAlbum[] = []
     for (let index = start; index < count + 1; index++) {
         albums.push({
-            placeholder: false,
             id: index,
             name: `Test album ${index}`,
             url: `https://test.com/${index}`
@@ -84,13 +84,10 @@ export function createTestNamedAlbums(count: number, start = 1): NamedAlbum[] {
 }
 
 
-export function createTestPlaceholderAlbums(count: number, startID = 1): PlaceholderAlbum[] {
-    const albums: PlaceholderAlbum[] = []
+export function createTestPlaceholderAlbums(count: number, startID = 1): number[] {
+    const albums: number[] = []
     for (let index = 0; index < count; index++) {
-        albums.push({
-            placeholder: true,
-            id: index + startID
-        })
+        albums.push(index + startID)
     }
     return albums
 }
@@ -114,9 +111,9 @@ export function createTestState({ albums = 3, charts: chartsCount = 1 } = {}): S
         charts.push(chart)
     }
     return {
+        version: STATE_VERSION,
         charts,
         activeChartIndex: 0,
-        albumIDCounter: albums,
         apiKey: 'Test API key',
         screenshot: {
             loading: false,

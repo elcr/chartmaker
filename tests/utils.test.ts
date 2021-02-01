@@ -2,20 +2,7 @@ import fs from 'fs'
 import util from 'util'
 import path from 'path'
 
-import { findIndex, jsonToDataURI, downloadURI, fileToDataURI } from '@/utils'
-
-
-describe('findIndex', () => {
-    test('returns index when item matching predicate is in array', () => {
-        const index = findIndex([ 'a', 'b', 'c', 'd' ], char => char === 'c')
-        expect(index).toBe(2)
-    })
-
-    test('returns null when no item in array matches predicate', () => {
-        const index = findIndex([ 'a', 'b', 'c', 'd' ], char => char === 'e')
-        expect(index).toBeNull()
-    })
-})
+import { jsonToDataURI, downloadURI, fileToDataURI } from '@/utils'
 
 
 describe('elementToDataURI', () => {

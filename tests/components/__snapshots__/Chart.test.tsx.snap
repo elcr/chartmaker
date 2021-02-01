@@ -58,35 +58,35 @@ exports[`excludes placeholder albums from titles 1`] = `
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":true,"id":2},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":true,"id":4},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}]
+          Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},2,{"id":3,"name":"Test album 3","url":"https://test.com/3"},4,{"id":5,"name":"Test album 5","url":"https://test.com/5"}]
           Size: 13.2rem
           Highlighted: 3
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":true,"id":6},{"placeholder":false,"id":7,"name":"Test album 7","url":"https://test.com/7"},{"placeholder":true,"id":8},{"placeholder":false,"id":9,"name":"Test album 9","url":"https://test.com/9"},{"placeholder":true,"id":10}]
+          Albums: [6,{"id":7,"name":"Test album 7","url":"https://test.com/7"},8,{"id":9,"name":"Test album 9","url":"https://test.com/9"},10]
           Size: 13.2rem
           Highlighted: 3
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":11,"name":"Test album 11","url":"https://test.com/11"},{"placeholder":true,"id":12},{"placeholder":false,"id":13,"name":"Test album 13","url":"https://test.com/13"},{"placeholder":true,"id":14},{"placeholder":false,"id":15,"name":"Test album 15","url":"https://test.com/15"}]
+          Albums: [{"id":11,"name":"Test album 11","url":"https://test.com/11"},12,{"id":13,"name":"Test album 13","url":"https://test.com/13"},14,{"id":15,"name":"Test album 15","url":"https://test.com/15"}]
           Size: 13.2rem
           Highlighted: 3
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":true,"id":16},{"placeholder":false,"id":17,"name":"Test album 17","url":"https://test.com/17"},{"placeholder":true,"id":18},{"placeholder":false,"id":19,"name":"Test album 19","url":"https://test.com/19"},{"placeholder":true,"id":20}]
+          Albums: [16,{"id":17,"name":"Test album 17","url":"https://test.com/17"},18,{"id":19,"name":"Test album 19","url":"https://test.com/19"},20]
           Size: 13.2rem
           Highlighted: 3
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":21,"name":"Test album 21","url":"https://test.com/21"},{"placeholder":true,"id":22},{"placeholder":false,"id":23,"name":"Test album 23","url":"https://test.com/23"},{"placeholder":true,"id":24},{"placeholder":false,"id":25,"name":"Test album 25","url":"https://test.com/25"}]
+          Albums: [{"id":21,"name":"Test album 21","url":"https://test.com/21"},22,{"id":23,"name":"Test album 23","url":"https://test.com/23"},24,{"id":25,"name":"Test album 25","url":"https://test.com/25"}]
           Size: 13.2rem
           Highlighted: 3
         </div>
@@ -97,31 +97,31 @@ exports[`excludes placeholder albums from titles 1`] = `
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}]
+          Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":5,"name":"Test album 5","url":"https://test.com/5"}]
           Highlighted: 3
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":7,"name":"Test album 7","url":"https://test.com/7"},{"placeholder":false,"id":9,"name":"Test album 9","url":"https://test.com/9"}]
+          Albums: [{"id":7,"name":"Test album 7","url":"https://test.com/7"},{"id":9,"name":"Test album 9","url":"https://test.com/9"}]
           Highlighted: 3
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":11,"name":"Test album 11","url":"https://test.com/11"},{"placeholder":false,"id":13,"name":"Test album 13","url":"https://test.com/13"},{"placeholder":false,"id":15,"name":"Test album 15","url":"https://test.com/15"}]
+          Albums: [{"id":11,"name":"Test album 11","url":"https://test.com/11"},{"id":13,"name":"Test album 13","url":"https://test.com/13"},{"id":15,"name":"Test album 15","url":"https://test.com/15"}]
           Highlighted: 3
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":17,"name":"Test album 17","url":"https://test.com/17"},{"placeholder":false,"id":19,"name":"Test album 19","url":"https://test.com/19"}]
+          Albums: [{"id":17,"name":"Test album 17","url":"https://test.com/17"},{"id":19,"name":"Test album 19","url":"https://test.com/19"}]
           Highlighted: 3
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":21,"name":"Test album 21","url":"https://test.com/21"},{"placeholder":false,"id":23,"name":"Test album 23","url":"https://test.com/23"},{"placeholder":false,"id":25,"name":"Test album 25","url":"https://test.com/25"}]
+          Albums: [{"id":21,"name":"Test album 21","url":"https://test.com/21"},{"id":23,"name":"Test album 23","url":"https://test.com/23"},{"id":25,"name":"Test album 25","url":"https://test.com/25"}]
           Highlighted: 3
         </div>
       </div>
@@ -188,49 +188,49 @@ exports[`renders with collage shape 1`] = `
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}]
+          Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"}]
           Size: 13.2rem
           Highlighted: undefined
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":6,"name":"Test album 6","url":"https://test.com/6"},{"placeholder":false,"id":7,"name":"Test album 7","url":"https://test.com/7"},{"placeholder":false,"id":8,"name":"Test album 8","url":"https://test.com/8"},{"placeholder":false,"id":9,"name":"Test album 9","url":"https://test.com/9"},{"placeholder":false,"id":10,"name":"Test album 10","url":"https://test.com/10"}]
+          Albums: [{"id":6,"name":"Test album 6","url":"https://test.com/6"},{"id":7,"name":"Test album 7","url":"https://test.com/7"},{"id":8,"name":"Test album 8","url":"https://test.com/8"},{"id":9,"name":"Test album 9","url":"https://test.com/9"},{"id":10,"name":"Test album 10","url":"https://test.com/10"}]
           Size: 13.2rem
           Highlighted: undefined
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":11,"name":"Test album 11","url":"https://test.com/11"},{"placeholder":false,"id":12,"name":"Test album 12","url":"https://test.com/12"},{"placeholder":false,"id":13,"name":"Test album 13","url":"https://test.com/13"},{"placeholder":false,"id":14,"name":"Test album 14","url":"https://test.com/14"},{"placeholder":false,"id":15,"name":"Test album 15","url":"https://test.com/15"}]
+          Albums: [{"id":11,"name":"Test album 11","url":"https://test.com/11"},{"id":12,"name":"Test album 12","url":"https://test.com/12"},{"id":13,"name":"Test album 13","url":"https://test.com/13"},{"id":14,"name":"Test album 14","url":"https://test.com/14"},{"id":15,"name":"Test album 15","url":"https://test.com/15"}]
           Size: 13.2rem
           Highlighted: undefined
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":16,"name":"Test album 16","url":"https://test.com/16"},{"placeholder":false,"id":17,"name":"Test album 17","url":"https://test.com/17"},{"placeholder":false,"id":18,"name":"Test album 18","url":"https://test.com/18"},{"placeholder":false,"id":19,"name":"Test album 19","url":"https://test.com/19"},{"placeholder":false,"id":20,"name":"Test album 20","url":"https://test.com/20"}]
+          Albums: [{"id":16,"name":"Test album 16","url":"https://test.com/16"},{"id":17,"name":"Test album 17","url":"https://test.com/17"},{"id":18,"name":"Test album 18","url":"https://test.com/18"},{"id":19,"name":"Test album 19","url":"https://test.com/19"},{"id":20,"name":"Test album 20","url":"https://test.com/20"}]
           Size: 13.2rem
           Highlighted: undefined
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":21,"name":"Test album 21","url":"https://test.com/21"},{"placeholder":false,"id":22,"name":"Test album 22","url":"https://test.com/22"},{"placeholder":false,"id":23,"name":"Test album 23","url":"https://test.com/23"},{"placeholder":false,"id":24,"name":"Test album 24","url":"https://test.com/24"},{"placeholder":false,"id":25,"name":"Test album 25","url":"https://test.com/25"}]
+          Albums: [{"id":21,"name":"Test album 21","url":"https://test.com/21"},{"id":22,"name":"Test album 22","url":"https://test.com/22"},{"id":23,"name":"Test album 23","url":"https://test.com/23"},{"id":24,"name":"Test album 24","url":"https://test.com/24"},{"id":25,"name":"Test album 25","url":"https://test.com/25"}]
           Size: 13.2rem
           Highlighted: undefined
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":26,"name":"Test album 26","url":"https://test.com/26"},{"placeholder":false,"id":27,"name":"Test album 27","url":"https://test.com/27"},{"placeholder":false,"id":28,"name":"Test album 28","url":"https://test.com/28"},{"placeholder":false,"id":29,"name":"Test album 29","url":"https://test.com/29"},{"placeholder":false,"id":30,"name":"Test album 30","url":"https://test.com/30"}]
+          Albums: [{"id":26,"name":"Test album 26","url":"https://test.com/26"},{"id":27,"name":"Test album 27","url":"https://test.com/27"},{"id":28,"name":"Test album 28","url":"https://test.com/28"},{"id":29,"name":"Test album 29","url":"https://test.com/29"},{"id":30,"name":"Test album 30","url":"https://test.com/30"}]
           Size: 13.2rem
           Highlighted: undefined
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":31,"name":"Test album 31","url":"https://test.com/31"},{"placeholder":false,"id":32,"name":"Test album 32","url":"https://test.com/32"},{"placeholder":false,"id":33,"name":"Test album 33","url":"https://test.com/33"},{"placeholder":false,"id":34,"name":"Test album 34","url":"https://test.com/34"},{"placeholder":false,"id":35,"name":"Test album 35","url":"https://test.com/35"}]
+          Albums: [{"id":31,"name":"Test album 31","url":"https://test.com/31"},{"id":32,"name":"Test album 32","url":"https://test.com/32"},{"id":33,"name":"Test album 33","url":"https://test.com/33"},{"id":34,"name":"Test album 34","url":"https://test.com/34"},{"id":35,"name":"Test album 35","url":"https://test.com/35"}]
           Size: 13.2rem
           Highlighted: undefined
         </div>
@@ -241,43 +241,43 @@ exports[`renders with collage shape 1`] = `
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}]
+          Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"}]
           Highlighted: undefined
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":6,"name":"Test album 6","url":"https://test.com/6"},{"placeholder":false,"id":7,"name":"Test album 7","url":"https://test.com/7"},{"placeholder":false,"id":8,"name":"Test album 8","url":"https://test.com/8"},{"placeholder":false,"id":9,"name":"Test album 9","url":"https://test.com/9"},{"placeholder":false,"id":10,"name":"Test album 10","url":"https://test.com/10"}]
+          Albums: [{"id":6,"name":"Test album 6","url":"https://test.com/6"},{"id":7,"name":"Test album 7","url":"https://test.com/7"},{"id":8,"name":"Test album 8","url":"https://test.com/8"},{"id":9,"name":"Test album 9","url":"https://test.com/9"},{"id":10,"name":"Test album 10","url":"https://test.com/10"}]
           Highlighted: undefined
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":11,"name":"Test album 11","url":"https://test.com/11"},{"placeholder":false,"id":12,"name":"Test album 12","url":"https://test.com/12"},{"placeholder":false,"id":13,"name":"Test album 13","url":"https://test.com/13"},{"placeholder":false,"id":14,"name":"Test album 14","url":"https://test.com/14"},{"placeholder":false,"id":15,"name":"Test album 15","url":"https://test.com/15"}]
+          Albums: [{"id":11,"name":"Test album 11","url":"https://test.com/11"},{"id":12,"name":"Test album 12","url":"https://test.com/12"},{"id":13,"name":"Test album 13","url":"https://test.com/13"},{"id":14,"name":"Test album 14","url":"https://test.com/14"},{"id":15,"name":"Test album 15","url":"https://test.com/15"}]
           Highlighted: undefined
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":16,"name":"Test album 16","url":"https://test.com/16"},{"placeholder":false,"id":17,"name":"Test album 17","url":"https://test.com/17"},{"placeholder":false,"id":18,"name":"Test album 18","url":"https://test.com/18"},{"placeholder":false,"id":19,"name":"Test album 19","url":"https://test.com/19"},{"placeholder":false,"id":20,"name":"Test album 20","url":"https://test.com/20"}]
+          Albums: [{"id":16,"name":"Test album 16","url":"https://test.com/16"},{"id":17,"name":"Test album 17","url":"https://test.com/17"},{"id":18,"name":"Test album 18","url":"https://test.com/18"},{"id":19,"name":"Test album 19","url":"https://test.com/19"},{"id":20,"name":"Test album 20","url":"https://test.com/20"}]
           Highlighted: undefined
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":21,"name":"Test album 21","url":"https://test.com/21"},{"placeholder":false,"id":22,"name":"Test album 22","url":"https://test.com/22"},{"placeholder":false,"id":23,"name":"Test album 23","url":"https://test.com/23"},{"placeholder":false,"id":24,"name":"Test album 24","url":"https://test.com/24"},{"placeholder":false,"id":25,"name":"Test album 25","url":"https://test.com/25"}]
+          Albums: [{"id":21,"name":"Test album 21","url":"https://test.com/21"},{"id":22,"name":"Test album 22","url":"https://test.com/22"},{"id":23,"name":"Test album 23","url":"https://test.com/23"},{"id":24,"name":"Test album 24","url":"https://test.com/24"},{"id":25,"name":"Test album 25","url":"https://test.com/25"}]
           Highlighted: undefined
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":26,"name":"Test album 26","url":"https://test.com/26"},{"placeholder":false,"id":27,"name":"Test album 27","url":"https://test.com/27"},{"placeholder":false,"id":28,"name":"Test album 28","url":"https://test.com/28"},{"placeholder":false,"id":29,"name":"Test album 29","url":"https://test.com/29"},{"placeholder":false,"id":30,"name":"Test album 30","url":"https://test.com/30"}]
+          Albums: [{"id":26,"name":"Test album 26","url":"https://test.com/26"},{"id":27,"name":"Test album 27","url":"https://test.com/27"},{"id":28,"name":"Test album 28","url":"https://test.com/28"},{"id":29,"name":"Test album 29","url":"https://test.com/29"},{"id":30,"name":"Test album 30","url":"https://test.com/30"}]
           Highlighted: undefined
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":31,"name":"Test album 31","url":"https://test.com/31"},{"placeholder":false,"id":32,"name":"Test album 32","url":"https://test.com/32"},{"placeholder":false,"id":33,"name":"Test album 33","url":"https://test.com/33"},{"placeholder":false,"id":34,"name":"Test album 34","url":"https://test.com/34"},{"placeholder":false,"id":35,"name":"Test album 35","url":"https://test.com/35"}]
+          Albums: [{"id":31,"name":"Test album 31","url":"https://test.com/31"},{"id":32,"name":"Test album 32","url":"https://test.com/32"},{"id":33,"name":"Test album 33","url":"https://test.com/33"},{"id":34,"name":"Test album 34","url":"https://test.com/34"},{"id":35,"name":"Test album 35","url":"https://test.com/35"}]
           Highlighted: undefined
         </div>
       </div>
@@ -344,42 +344,42 @@ exports[`renders with top shape 1`] = `
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}]
+          Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"}]
           Size: 16rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":6,"name":"Test album 6","url":"https://test.com/6"},{"placeholder":false,"id":7,"name":"Test album 7","url":"https://test.com/7"},{"placeholder":false,"id":8,"name":"Test album 8","url":"https://test.com/8"},{"placeholder":false,"id":9,"name":"Test album 9","url":"https://test.com/9"},{"placeholder":false,"id":10,"name":"Test album 10","url":"https://test.com/10"},{"placeholder":false,"id":11,"name":"Test album 11","url":"https://test.com/11"}]
+          Albums: [{"id":6,"name":"Test album 6","url":"https://test.com/6"},{"id":7,"name":"Test album 7","url":"https://test.com/7"},{"id":8,"name":"Test album 8","url":"https://test.com/8"},{"id":9,"name":"Test album 9","url":"https://test.com/9"},{"id":10,"name":"Test album 10","url":"https://test.com/10"},{"id":11,"name":"Test album 11","url":"https://test.com/11"}]
           Size: 13.2rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":12,"name":"Test album 12","url":"https://test.com/12"},{"placeholder":false,"id":13,"name":"Test album 13","url":"https://test.com/13"},{"placeholder":false,"id":14,"name":"Test album 14","url":"https://test.com/14"},{"placeholder":false,"id":15,"name":"Test album 15","url":"https://test.com/15"},{"placeholder":false,"id":16,"name":"Test album 16","url":"https://test.com/16"},{"placeholder":false,"id":17,"name":"Test album 17","url":"https://test.com/17"}]
+          Albums: [{"id":12,"name":"Test album 12","url":"https://test.com/12"},{"id":13,"name":"Test album 13","url":"https://test.com/13"},{"id":14,"name":"Test album 14","url":"https://test.com/14"},{"id":15,"name":"Test album 15","url":"https://test.com/15"},{"id":16,"name":"Test album 16","url":"https://test.com/16"},{"id":17,"name":"Test album 17","url":"https://test.com/17"}]
           Size: 13.2rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":18,"name":"Test album 18","url":"https://test.com/18"},{"placeholder":false,"id":19,"name":"Test album 19","url":"https://test.com/19"},{"placeholder":false,"id":20,"name":"Test album 20","url":"https://test.com/20"},{"placeholder":false,"id":21,"name":"Test album 21","url":"https://test.com/21"},{"placeholder":false,"id":22,"name":"Test album 22","url":"https://test.com/22"},{"placeholder":false,"id":23,"name":"Test album 23","url":"https://test.com/23"},{"placeholder":false,"id":24,"name":"Test album 24","url":"https://test.com/24"}]
+          Albums: [{"id":18,"name":"Test album 18","url":"https://test.com/18"},{"id":19,"name":"Test album 19","url":"https://test.com/19"},{"id":20,"name":"Test album 20","url":"https://test.com/20"},{"id":21,"name":"Test album 21","url":"https://test.com/21"},{"id":22,"name":"Test album 22","url":"https://test.com/22"},{"id":23,"name":"Test album 23","url":"https://test.com/23"},{"id":24,"name":"Test album 24","url":"https://test.com/24"}]
           Size: 11.25rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":25,"name":"Test album 25","url":"https://test.com/25"},{"placeholder":false,"id":26,"name":"Test album 26","url":"https://test.com/26"},{"placeholder":false,"id":27,"name":"Test album 27","url":"https://test.com/27"},{"placeholder":false,"id":28,"name":"Test album 28","url":"https://test.com/28"},{"placeholder":false,"id":29,"name":"Test album 29","url":"https://test.com/29"},{"placeholder":false,"id":30,"name":"Test album 30","url":"https://test.com/30"},{"placeholder":false,"id":31,"name":"Test album 31","url":"https://test.com/31"}]
+          Albums: [{"id":25,"name":"Test album 25","url":"https://test.com/25"},{"id":26,"name":"Test album 26","url":"https://test.com/26"},{"id":27,"name":"Test album 27","url":"https://test.com/27"},{"id":28,"name":"Test album 28","url":"https://test.com/28"},{"id":29,"name":"Test album 29","url":"https://test.com/29"},{"id":30,"name":"Test album 30","url":"https://test.com/30"},{"id":31,"name":"Test album 31","url":"https://test.com/31"}]
           Size: 11.25rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":32,"name":"Test album 32","url":"https://test.com/32"},{"placeholder":false,"id":33,"name":"Test album 33","url":"https://test.com/33"},{"placeholder":false,"id":34,"name":"Test album 34","url":"https://test.com/34"},{"placeholder":false,"id":35,"name":"Test album 35","url":"https://test.com/35"},{"placeholder":false,"id":36,"name":"Test album 36","url":"https://test.com/36"},{"placeholder":false,"id":37,"name":"Test album 37","url":"https://test.com/37"},{"placeholder":false,"id":38,"name":"Test album 38","url":"https://test.com/38"},{"placeholder":false,"id":39,"name":"Test album 39","url":"https://test.com/39"},{"placeholder":false,"id":40,"name":"Test album 40","url":"https://test.com/40"}]
+          Albums: [{"id":32,"name":"Test album 32","url":"https://test.com/32"},{"id":33,"name":"Test album 33","url":"https://test.com/33"},{"id":34,"name":"Test album 34","url":"https://test.com/34"},{"id":35,"name":"Test album 35","url":"https://test.com/35"},{"id":36,"name":"Test album 36","url":"https://test.com/36"},{"id":37,"name":"Test album 37","url":"https://test.com/37"},{"id":38,"name":"Test album 38","url":"https://test.com/38"},{"id":39,"name":"Test album 39","url":"https://test.com/39"},{"id":40,"name":"Test album 40","url":"https://test.com/40"}]
           Size: 8.6rem
           Highlighted: 5
         </div>
@@ -390,25 +390,25 @@ exports[`renders with top shape 1`] = `
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}]
+          Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"}]
           Highlighted: 5
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":6,"name":"Test album 6","url":"https://test.com/6"},{"placeholder":false,"id":7,"name":"Test album 7","url":"https://test.com/7"},{"placeholder":false,"id":8,"name":"Test album 8","url":"https://test.com/8"},{"placeholder":false,"id":9,"name":"Test album 9","url":"https://test.com/9"},{"placeholder":false,"id":10,"name":"Test album 10","url":"https://test.com/10"},{"placeholder":false,"id":11,"name":"Test album 11","url":"https://test.com/11"},{"placeholder":false,"id":12,"name":"Test album 12","url":"https://test.com/12"},{"placeholder":false,"id":13,"name":"Test album 13","url":"https://test.com/13"},{"placeholder":false,"id":14,"name":"Test album 14","url":"https://test.com/14"},{"placeholder":false,"id":15,"name":"Test album 15","url":"https://test.com/15"},{"placeholder":false,"id":16,"name":"Test album 16","url":"https://test.com/16"},{"placeholder":false,"id":17,"name":"Test album 17","url":"https://test.com/17"}]
+          Albums: [{"id":6,"name":"Test album 6","url":"https://test.com/6"},{"id":7,"name":"Test album 7","url":"https://test.com/7"},{"id":8,"name":"Test album 8","url":"https://test.com/8"},{"id":9,"name":"Test album 9","url":"https://test.com/9"},{"id":10,"name":"Test album 10","url":"https://test.com/10"},{"id":11,"name":"Test album 11","url":"https://test.com/11"},{"id":12,"name":"Test album 12","url":"https://test.com/12"},{"id":13,"name":"Test album 13","url":"https://test.com/13"},{"id":14,"name":"Test album 14","url":"https://test.com/14"},{"id":15,"name":"Test album 15","url":"https://test.com/15"},{"id":16,"name":"Test album 16","url":"https://test.com/16"},{"id":17,"name":"Test album 17","url":"https://test.com/17"}]
           Highlighted: 5
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":18,"name":"Test album 18","url":"https://test.com/18"},{"placeholder":false,"id":19,"name":"Test album 19","url":"https://test.com/19"},{"placeholder":false,"id":20,"name":"Test album 20","url":"https://test.com/20"},{"placeholder":false,"id":21,"name":"Test album 21","url":"https://test.com/21"},{"placeholder":false,"id":22,"name":"Test album 22","url":"https://test.com/22"},{"placeholder":false,"id":23,"name":"Test album 23","url":"https://test.com/23"},{"placeholder":false,"id":24,"name":"Test album 24","url":"https://test.com/24"},{"placeholder":false,"id":25,"name":"Test album 25","url":"https://test.com/25"},{"placeholder":false,"id":26,"name":"Test album 26","url":"https://test.com/26"},{"placeholder":false,"id":27,"name":"Test album 27","url":"https://test.com/27"},{"placeholder":false,"id":28,"name":"Test album 28","url":"https://test.com/28"},{"placeholder":false,"id":29,"name":"Test album 29","url":"https://test.com/29"},{"placeholder":false,"id":30,"name":"Test album 30","url":"https://test.com/30"},{"placeholder":false,"id":31,"name":"Test album 31","url":"https://test.com/31"}]
+          Albums: [{"id":18,"name":"Test album 18","url":"https://test.com/18"},{"id":19,"name":"Test album 19","url":"https://test.com/19"},{"id":20,"name":"Test album 20","url":"https://test.com/20"},{"id":21,"name":"Test album 21","url":"https://test.com/21"},{"id":22,"name":"Test album 22","url":"https://test.com/22"},{"id":23,"name":"Test album 23","url":"https://test.com/23"},{"id":24,"name":"Test album 24","url":"https://test.com/24"},{"id":25,"name":"Test album 25","url":"https://test.com/25"},{"id":26,"name":"Test album 26","url":"https://test.com/26"},{"id":27,"name":"Test album 27","url":"https://test.com/27"},{"id":28,"name":"Test album 28","url":"https://test.com/28"},{"id":29,"name":"Test album 29","url":"https://test.com/29"},{"id":30,"name":"Test album 30","url":"https://test.com/30"},{"id":31,"name":"Test album 31","url":"https://test.com/31"}]
           Highlighted: 5
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":32,"name":"Test album 32","url":"https://test.com/32"},{"placeholder":false,"id":33,"name":"Test album 33","url":"https://test.com/33"},{"placeholder":false,"id":34,"name":"Test album 34","url":"https://test.com/34"},{"placeholder":false,"id":35,"name":"Test album 35","url":"https://test.com/35"},{"placeholder":false,"id":36,"name":"Test album 36","url":"https://test.com/36"},{"placeholder":false,"id":37,"name":"Test album 37","url":"https://test.com/37"},{"placeholder":false,"id":38,"name":"Test album 38","url":"https://test.com/38"},{"placeholder":false,"id":39,"name":"Test album 39","url":"https://test.com/39"},{"placeholder":false,"id":40,"name":"Test album 40","url":"https://test.com/40"}]
+          Albums: [{"id":32,"name":"Test album 32","url":"https://test.com/32"},{"id":33,"name":"Test album 33","url":"https://test.com/33"},{"id":34,"name":"Test album 34","url":"https://test.com/34"},{"id":35,"name":"Test album 35","url":"https://test.com/35"},{"id":36,"name":"Test album 36","url":"https://test.com/36"},{"id":37,"name":"Test album 37","url":"https://test.com/37"},{"id":38,"name":"Test album 38","url":"https://test.com/38"},{"id":39,"name":"Test album 39","url":"https://test.com/39"},{"id":40,"name":"Test album 40","url":"https://test.com/40"}]
           Highlighted: 5
         </div>
       </div>
@@ -475,42 +475,42 @@ exports[`renders with top shape 2`] = `
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}]
+          Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"}]
           Size: 16rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":6,"name":"Test album 6","url":"https://test.com/6"},{"placeholder":false,"id":7,"name":"Test album 7","url":"https://test.com/7"},{"placeholder":false,"id":8,"name":"Test album 8","url":"https://test.com/8"},{"placeholder":false,"id":9,"name":"Test album 9","url":"https://test.com/9"},{"placeholder":false,"id":10,"name":"Test album 10","url":"https://test.com/10"}]
+          Albums: [{"id":6,"name":"Test album 6","url":"https://test.com/6"},{"id":7,"name":"Test album 7","url":"https://test.com/7"},{"id":8,"name":"Test album 8","url":"https://test.com/8"},{"id":9,"name":"Test album 9","url":"https://test.com/9"},{"id":10,"name":"Test album 10","url":"https://test.com/10"}]
           Size: 16rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":11,"name":"Test album 11","url":"https://test.com/11"},{"placeholder":false,"id":12,"name":"Test album 12","url":"https://test.com/12"},{"placeholder":false,"id":13,"name":"Test album 13","url":"https://test.com/13"},{"placeholder":false,"id":14,"name":"Test album 14","url":"https://test.com/14"},{"placeholder":false,"id":15,"name":"Test album 15","url":"https://test.com/15"},{"placeholder":false,"id":16,"name":"Test album 16","url":"https://test.com/16"}]
+          Albums: [{"id":11,"name":"Test album 11","url":"https://test.com/11"},{"id":12,"name":"Test album 12","url":"https://test.com/12"},{"id":13,"name":"Test album 13","url":"https://test.com/13"},{"id":14,"name":"Test album 14","url":"https://test.com/14"},{"id":15,"name":"Test album 15","url":"https://test.com/15"},{"id":16,"name":"Test album 16","url":"https://test.com/16"}]
           Size: 13.2rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":17,"name":"Test album 17","url":"https://test.com/17"},{"placeholder":false,"id":18,"name":"Test album 18","url":"https://test.com/18"},{"placeholder":false,"id":19,"name":"Test album 19","url":"https://test.com/19"},{"placeholder":false,"id":20,"name":"Test album 20","url":"https://test.com/20"},{"placeholder":false,"id":21,"name":"Test album 21","url":"https://test.com/21"},{"placeholder":false,"id":22,"name":"Test album 22","url":"https://test.com/22"}]
+          Albums: [{"id":17,"name":"Test album 17","url":"https://test.com/17"},{"id":18,"name":"Test album 18","url":"https://test.com/18"},{"id":19,"name":"Test album 19","url":"https://test.com/19"},{"id":20,"name":"Test album 20","url":"https://test.com/20"},{"id":21,"name":"Test album 21","url":"https://test.com/21"},{"id":22,"name":"Test album 22","url":"https://test.com/22"}]
           Size: 13.2rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":23,"name":"Test album 23","url":"https://test.com/23"},{"placeholder":false,"id":24,"name":"Test album 24","url":"https://test.com/24"},{"placeholder":false,"id":25,"name":"Test album 25","url":"https://test.com/25"},{"placeholder":false,"id":26,"name":"Test album 26","url":"https://test.com/26"},{"placeholder":false,"id":27,"name":"Test album 27","url":"https://test.com/27"},{"placeholder":false,"id":28,"name":"Test album 28","url":"https://test.com/28"},{"placeholder":false,"id":29,"name":"Test album 29","url":"https://test.com/29"},{"placeholder":false,"id":30,"name":"Test album 30","url":"https://test.com/30"},{"placeholder":false,"id":31,"name":"Test album 31","url":"https://test.com/31"},{"placeholder":false,"id":32,"name":"Test album 32","url":"https://test.com/32"}]
+          Albums: [{"id":23,"name":"Test album 23","url":"https://test.com/23"},{"id":24,"name":"Test album 24","url":"https://test.com/24"},{"id":25,"name":"Test album 25","url":"https://test.com/25"},{"id":26,"name":"Test album 26","url":"https://test.com/26"},{"id":27,"name":"Test album 27","url":"https://test.com/27"},{"id":28,"name":"Test album 28","url":"https://test.com/28"},{"id":29,"name":"Test album 29","url":"https://test.com/29"},{"id":30,"name":"Test album 30","url":"https://test.com/30"},{"id":31,"name":"Test album 31","url":"https://test.com/31"},{"id":32,"name":"Test album 32","url":"https://test.com/32"}]
           Size: 7.75rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":33,"name":"Test album 33","url":"https://test.com/33"},{"placeholder":false,"id":34,"name":"Test album 34","url":"https://test.com/34"},{"placeholder":false,"id":35,"name":"Test album 35","url":"https://test.com/35"},{"placeholder":false,"id":36,"name":"Test album 36","url":"https://test.com/36"},{"placeholder":false,"id":37,"name":"Test album 37","url":"https://test.com/37"},{"placeholder":false,"id":38,"name":"Test album 38","url":"https://test.com/38"},{"placeholder":false,"id":39,"name":"Test album 39","url":"https://test.com/39"},{"placeholder":false,"id":40,"name":"Test album 40","url":"https://test.com/40"},{"placeholder":false,"id":41,"name":"Test album 41","url":"https://test.com/41"},{"placeholder":false,"id":42,"name":"Test album 42","url":"https://test.com/42"}]
+          Albums: [{"id":33,"name":"Test album 33","url":"https://test.com/33"},{"id":34,"name":"Test album 34","url":"https://test.com/34"},{"id":35,"name":"Test album 35","url":"https://test.com/35"},{"id":36,"name":"Test album 36","url":"https://test.com/36"},{"id":37,"name":"Test album 37","url":"https://test.com/37"},{"id":38,"name":"Test album 38","url":"https://test.com/38"},{"id":39,"name":"Test album 39","url":"https://test.com/39"},{"id":40,"name":"Test album 40","url":"https://test.com/40"},{"id":41,"name":"Test album 41","url":"https://test.com/41"},{"id":42,"name":"Test album 42","url":"https://test.com/42"}]
           Size: 7.75rem
           Highlighted: 5
         </div>
@@ -521,19 +521,19 @@ exports[`renders with top shape 2`] = `
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"},{"placeholder":false,"id":6,"name":"Test album 6","url":"https://test.com/6"},{"placeholder":false,"id":7,"name":"Test album 7","url":"https://test.com/7"},{"placeholder":false,"id":8,"name":"Test album 8","url":"https://test.com/8"},{"placeholder":false,"id":9,"name":"Test album 9","url":"https://test.com/9"},{"placeholder":false,"id":10,"name":"Test album 10","url":"https://test.com/10"}]
+          Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"},{"id":6,"name":"Test album 6","url":"https://test.com/6"},{"id":7,"name":"Test album 7","url":"https://test.com/7"},{"id":8,"name":"Test album 8","url":"https://test.com/8"},{"id":9,"name":"Test album 9","url":"https://test.com/9"},{"id":10,"name":"Test album 10","url":"https://test.com/10"}]
           Highlighted: 5
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":11,"name":"Test album 11","url":"https://test.com/11"},{"placeholder":false,"id":12,"name":"Test album 12","url":"https://test.com/12"},{"placeholder":false,"id":13,"name":"Test album 13","url":"https://test.com/13"},{"placeholder":false,"id":14,"name":"Test album 14","url":"https://test.com/14"},{"placeholder":false,"id":15,"name":"Test album 15","url":"https://test.com/15"},{"placeholder":false,"id":16,"name":"Test album 16","url":"https://test.com/16"},{"placeholder":false,"id":17,"name":"Test album 17","url":"https://test.com/17"},{"placeholder":false,"id":18,"name":"Test album 18","url":"https://test.com/18"},{"placeholder":false,"id":19,"name":"Test album 19","url":"https://test.com/19"},{"placeholder":false,"id":20,"name":"Test album 20","url":"https://test.com/20"},{"placeholder":false,"id":21,"name":"Test album 21","url":"https://test.com/21"},{"placeholder":false,"id":22,"name":"Test album 22","url":"https://test.com/22"}]
+          Albums: [{"id":11,"name":"Test album 11","url":"https://test.com/11"},{"id":12,"name":"Test album 12","url":"https://test.com/12"},{"id":13,"name":"Test album 13","url":"https://test.com/13"},{"id":14,"name":"Test album 14","url":"https://test.com/14"},{"id":15,"name":"Test album 15","url":"https://test.com/15"},{"id":16,"name":"Test album 16","url":"https://test.com/16"},{"id":17,"name":"Test album 17","url":"https://test.com/17"},{"id":18,"name":"Test album 18","url":"https://test.com/18"},{"id":19,"name":"Test album 19","url":"https://test.com/19"},{"id":20,"name":"Test album 20","url":"https://test.com/20"},{"id":21,"name":"Test album 21","url":"https://test.com/21"},{"id":22,"name":"Test album 22","url":"https://test.com/22"}]
           Highlighted: 5
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":23,"name":"Test album 23","url":"https://test.com/23"},{"placeholder":false,"id":24,"name":"Test album 24","url":"https://test.com/24"},{"placeholder":false,"id":25,"name":"Test album 25","url":"https://test.com/25"},{"placeholder":false,"id":26,"name":"Test album 26","url":"https://test.com/26"},{"placeholder":false,"id":27,"name":"Test album 27","url":"https://test.com/27"},{"placeholder":false,"id":28,"name":"Test album 28","url":"https://test.com/28"},{"placeholder":false,"id":29,"name":"Test album 29","url":"https://test.com/29"},{"placeholder":false,"id":30,"name":"Test album 30","url":"https://test.com/30"},{"placeholder":false,"id":31,"name":"Test album 31","url":"https://test.com/31"},{"placeholder":false,"id":32,"name":"Test album 32","url":"https://test.com/32"},{"placeholder":false,"id":33,"name":"Test album 33","url":"https://test.com/33"},{"placeholder":false,"id":34,"name":"Test album 34","url":"https://test.com/34"},{"placeholder":false,"id":35,"name":"Test album 35","url":"https://test.com/35"},{"placeholder":false,"id":36,"name":"Test album 36","url":"https://test.com/36"},{"placeholder":false,"id":37,"name":"Test album 37","url":"https://test.com/37"},{"placeholder":false,"id":38,"name":"Test album 38","url":"https://test.com/38"},{"placeholder":false,"id":39,"name":"Test album 39","url":"https://test.com/39"},{"placeholder":false,"id":40,"name":"Test album 40","url":"https://test.com/40"},{"placeholder":false,"id":41,"name":"Test album 41","url":"https://test.com/41"},{"placeholder":false,"id":42,"name":"Test album 42","url":"https://test.com/42"}]
+          Albums: [{"id":23,"name":"Test album 23","url":"https://test.com/23"},{"id":24,"name":"Test album 24","url":"https://test.com/24"},{"id":25,"name":"Test album 25","url":"https://test.com/25"},{"id":26,"name":"Test album 26","url":"https://test.com/26"},{"id":27,"name":"Test album 27","url":"https://test.com/27"},{"id":28,"name":"Test album 28","url":"https://test.com/28"},{"id":29,"name":"Test album 29","url":"https://test.com/29"},{"id":30,"name":"Test album 30","url":"https://test.com/30"},{"id":31,"name":"Test album 31","url":"https://test.com/31"},{"id":32,"name":"Test album 32","url":"https://test.com/32"},{"id":33,"name":"Test album 33","url":"https://test.com/33"},{"id":34,"name":"Test album 34","url":"https://test.com/34"},{"id":35,"name":"Test album 35","url":"https://test.com/35"},{"id":36,"name":"Test album 36","url":"https://test.com/36"},{"id":37,"name":"Test album 37","url":"https://test.com/37"},{"id":38,"name":"Test album 38","url":"https://test.com/38"},{"id":39,"name":"Test album 39","url":"https://test.com/39"},{"id":40,"name":"Test album 40","url":"https://test.com/40"},{"id":41,"name":"Test album 41","url":"https://test.com/41"},{"id":42,"name":"Test album 42","url":"https://test.com/42"}]
           Highlighted: 5
         </div>
       </div>
@@ -600,77 +600,77 @@ exports[`renders with top shape 3`] = `
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}]
+          Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"}]
           Size: 16rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":6,"name":"Test album 6","url":"https://test.com/6"},{"placeholder":false,"id":7,"name":"Test album 7","url":"https://test.com/7"},{"placeholder":false,"id":8,"name":"Test album 8","url":"https://test.com/8"},{"placeholder":false,"id":9,"name":"Test album 9","url":"https://test.com/9"},{"placeholder":false,"id":10,"name":"Test album 10","url":"https://test.com/10"}]
+          Albums: [{"id":6,"name":"Test album 6","url":"https://test.com/6"},{"id":7,"name":"Test album 7","url":"https://test.com/7"},{"id":8,"name":"Test album 8","url":"https://test.com/8"},{"id":9,"name":"Test album 9","url":"https://test.com/9"},{"id":10,"name":"Test album 10","url":"https://test.com/10"}]
           Size: 16rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":11,"name":"Test album 11","url":"https://test.com/11"},{"placeholder":false,"id":12,"name":"Test album 12","url":"https://test.com/12"},{"placeholder":false,"id":13,"name":"Test album 13","url":"https://test.com/13"},{"placeholder":false,"id":14,"name":"Test album 14","url":"https://test.com/14"},{"placeholder":false,"id":15,"name":"Test album 15","url":"https://test.com/15"},{"placeholder":false,"id":16,"name":"Test album 16","url":"https://test.com/16"}]
+          Albums: [{"id":11,"name":"Test album 11","url":"https://test.com/11"},{"id":12,"name":"Test album 12","url":"https://test.com/12"},{"id":13,"name":"Test album 13","url":"https://test.com/13"},{"id":14,"name":"Test album 14","url":"https://test.com/14"},{"id":15,"name":"Test album 15","url":"https://test.com/15"},{"id":16,"name":"Test album 16","url":"https://test.com/16"}]
           Size: 13.2rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":17,"name":"Test album 17","url":"https://test.com/17"},{"placeholder":false,"id":18,"name":"Test album 18","url":"https://test.com/18"},{"placeholder":false,"id":19,"name":"Test album 19","url":"https://test.com/19"},{"placeholder":false,"id":20,"name":"Test album 20","url":"https://test.com/20"},{"placeholder":false,"id":21,"name":"Test album 21","url":"https://test.com/21"},{"placeholder":false,"id":22,"name":"Test album 22","url":"https://test.com/22"}]
+          Albums: [{"id":17,"name":"Test album 17","url":"https://test.com/17"},{"id":18,"name":"Test album 18","url":"https://test.com/18"},{"id":19,"name":"Test album 19","url":"https://test.com/19"},{"id":20,"name":"Test album 20","url":"https://test.com/20"},{"id":21,"name":"Test album 21","url":"https://test.com/21"},{"id":22,"name":"Test album 22","url":"https://test.com/22"}]
           Size: 13.2rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":23,"name":"Test album 23","url":"https://test.com/23"},{"placeholder":false,"id":24,"name":"Test album 24","url":"https://test.com/24"},{"placeholder":false,"id":25,"name":"Test album 25","url":"https://test.com/25"},{"placeholder":false,"id":26,"name":"Test album 26","url":"https://test.com/26"},{"placeholder":false,"id":27,"name":"Test album 27","url":"https://test.com/27"},{"placeholder":false,"id":28,"name":"Test album 28","url":"https://test.com/28"}]
+          Albums: [{"id":23,"name":"Test album 23","url":"https://test.com/23"},{"id":24,"name":"Test album 24","url":"https://test.com/24"},{"id":25,"name":"Test album 25","url":"https://test.com/25"},{"id":26,"name":"Test album 26","url":"https://test.com/26"},{"id":27,"name":"Test album 27","url":"https://test.com/27"},{"id":28,"name":"Test album 28","url":"https://test.com/28"}]
           Size: 13.2rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":29,"name":"Test album 29","url":"https://test.com/29"},{"placeholder":false,"id":30,"name":"Test album 30","url":"https://test.com/30"},{"placeholder":false,"id":31,"name":"Test album 31","url":"https://test.com/31"},{"placeholder":false,"id":32,"name":"Test album 32","url":"https://test.com/32"},{"placeholder":false,"id":33,"name":"Test album 33","url":"https://test.com/33"},{"placeholder":false,"id":34,"name":"Test album 34","url":"https://test.com/34"},{"placeholder":false,"id":35,"name":"Test album 35","url":"https://test.com/35"},{"placeholder":false,"id":36,"name":"Test album 36","url":"https://test.com/36"},{"placeholder":false,"id":37,"name":"Test album 37","url":"https://test.com/37"},{"placeholder":false,"id":38,"name":"Test album 38","url":"https://test.com/38"}]
+          Albums: [{"id":29,"name":"Test album 29","url":"https://test.com/29"},{"id":30,"name":"Test album 30","url":"https://test.com/30"},{"id":31,"name":"Test album 31","url":"https://test.com/31"},{"id":32,"name":"Test album 32","url":"https://test.com/32"},{"id":33,"name":"Test album 33","url":"https://test.com/33"},{"id":34,"name":"Test album 34","url":"https://test.com/34"},{"id":35,"name":"Test album 35","url":"https://test.com/35"},{"id":36,"name":"Test album 36","url":"https://test.com/36"},{"id":37,"name":"Test album 37","url":"https://test.com/37"},{"id":38,"name":"Test album 38","url":"https://test.com/38"}]
           Size: 7.75rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":39,"name":"Test album 39","url":"https://test.com/39"},{"placeholder":false,"id":40,"name":"Test album 40","url":"https://test.com/40"},{"placeholder":false,"id":41,"name":"Test album 41","url":"https://test.com/41"},{"placeholder":false,"id":42,"name":"Test album 42","url":"https://test.com/42"},{"placeholder":false,"id":43,"name":"Test album 43","url":"https://test.com/43"},{"placeholder":false,"id":44,"name":"Test album 44","url":"https://test.com/44"},{"placeholder":false,"id":45,"name":"Test album 45","url":"https://test.com/45"},{"placeholder":false,"id":46,"name":"Test album 46","url":"https://test.com/46"},{"placeholder":false,"id":47,"name":"Test album 47","url":"https://test.com/47"},{"placeholder":false,"id":48,"name":"Test album 48","url":"https://test.com/48"}]
+          Albums: [{"id":39,"name":"Test album 39","url":"https://test.com/39"},{"id":40,"name":"Test album 40","url":"https://test.com/40"},{"id":41,"name":"Test album 41","url":"https://test.com/41"},{"id":42,"name":"Test album 42","url":"https://test.com/42"},{"id":43,"name":"Test album 43","url":"https://test.com/43"},{"id":44,"name":"Test album 44","url":"https://test.com/44"},{"id":45,"name":"Test album 45","url":"https://test.com/45"},{"id":46,"name":"Test album 46","url":"https://test.com/46"},{"id":47,"name":"Test album 47","url":"https://test.com/47"},{"id":48,"name":"Test album 48","url":"https://test.com/48"}]
           Size: 7.75rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":49,"name":"Test album 49","url":"https://test.com/49"},{"placeholder":false,"id":50,"name":"Test album 50","url":"https://test.com/50"},{"placeholder":false,"id":51,"name":"Test album 51","url":"https://test.com/51"},{"placeholder":false,"id":52,"name":"Test album 52","url":"https://test.com/52"},{"placeholder":false,"id":53,"name":"Test album 53","url":"https://test.com/53"},{"placeholder":false,"id":54,"name":"Test album 54","url":"https://test.com/54"},{"placeholder":false,"id":55,"name":"Test album 55","url":"https://test.com/55"},{"placeholder":false,"id":56,"name":"Test album 56","url":"https://test.com/56"},{"placeholder":false,"id":57,"name":"Test album 57","url":"https://test.com/57"},{"placeholder":false,"id":58,"name":"Test album 58","url":"https://test.com/58"}]
+          Albums: [{"id":49,"name":"Test album 49","url":"https://test.com/49"},{"id":50,"name":"Test album 50","url":"https://test.com/50"},{"id":51,"name":"Test album 51","url":"https://test.com/51"},{"id":52,"name":"Test album 52","url":"https://test.com/52"},{"id":53,"name":"Test album 53","url":"https://test.com/53"},{"id":54,"name":"Test album 54","url":"https://test.com/54"},{"id":55,"name":"Test album 55","url":"https://test.com/55"},{"id":56,"name":"Test album 56","url":"https://test.com/56"},{"id":57,"name":"Test album 57","url":"https://test.com/57"},{"id":58,"name":"Test album 58","url":"https://test.com/58"}]
           Size: 7.75rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":59,"name":"Test album 59","url":"https://test.com/59"},{"placeholder":false,"id":60,"name":"Test album 60","url":"https://test.com/60"},{"placeholder":false,"id":61,"name":"Test album 61","url":"https://test.com/61"},{"placeholder":false,"id":62,"name":"Test album 62","url":"https://test.com/62"},{"placeholder":false,"id":63,"name":"Test album 63","url":"https://test.com/63"},{"placeholder":false,"id":64,"name":"Test album 64","url":"https://test.com/64"},{"placeholder":false,"id":65,"name":"Test album 65","url":"https://test.com/65"},{"placeholder":false,"id":66,"name":"Test album 66","url":"https://test.com/66"},{"placeholder":false,"id":67,"name":"Test album 67","url":"https://test.com/67"},{"placeholder":false,"id":68,"name":"Test album 68","url":"https://test.com/68"},{"placeholder":false,"id":69,"name":"Test album 69","url":"https://test.com/69"},{"placeholder":false,"id":70,"name":"Test album 70","url":"https://test.com/70"},{"placeholder":false,"id":71,"name":"Test album 71","url":"https://test.com/71"},{"placeholder":false,"id":72,"name":"Test album 72","url":"https://test.com/72"}]
+          Albums: [{"id":59,"name":"Test album 59","url":"https://test.com/59"},{"id":60,"name":"Test album 60","url":"https://test.com/60"},{"id":61,"name":"Test album 61","url":"https://test.com/61"},{"id":62,"name":"Test album 62","url":"https://test.com/62"},{"id":63,"name":"Test album 63","url":"https://test.com/63"},{"id":64,"name":"Test album 64","url":"https://test.com/64"},{"id":65,"name":"Test album 65","url":"https://test.com/65"},{"id":66,"name":"Test album 66","url":"https://test.com/66"},{"id":67,"name":"Test album 67","url":"https://test.com/67"},{"id":68,"name":"Test album 68","url":"https://test.com/68"},{"id":69,"name":"Test album 69","url":"https://test.com/69"},{"id":70,"name":"Test album 70","url":"https://test.com/70"},{"id":71,"name":"Test album 71","url":"https://test.com/71"},{"id":72,"name":"Test album 72","url":"https://test.com/72"}]
           Size: 5.4rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":73,"name":"Test album 73","url":"https://test.com/73"},{"placeholder":false,"id":74,"name":"Test album 74","url":"https://test.com/74"},{"placeholder":false,"id":75,"name":"Test album 75","url":"https://test.com/75"},{"placeholder":false,"id":76,"name":"Test album 76","url":"https://test.com/76"},{"placeholder":false,"id":77,"name":"Test album 77","url":"https://test.com/77"},{"placeholder":false,"id":78,"name":"Test album 78","url":"https://test.com/78"},{"placeholder":false,"id":79,"name":"Test album 79","url":"https://test.com/79"},{"placeholder":false,"id":80,"name":"Test album 80","url":"https://test.com/80"},{"placeholder":false,"id":81,"name":"Test album 81","url":"https://test.com/81"},{"placeholder":false,"id":82,"name":"Test album 82","url":"https://test.com/82"},{"placeholder":false,"id":83,"name":"Test album 83","url":"https://test.com/83"},{"placeholder":false,"id":84,"name":"Test album 84","url":"https://test.com/84"},{"placeholder":false,"id":85,"name":"Test album 85","url":"https://test.com/85"},{"placeholder":false,"id":86,"name":"Test album 86","url":"https://test.com/86"}]
+          Albums: [{"id":73,"name":"Test album 73","url":"https://test.com/73"},{"id":74,"name":"Test album 74","url":"https://test.com/74"},{"id":75,"name":"Test album 75","url":"https://test.com/75"},{"id":76,"name":"Test album 76","url":"https://test.com/76"},{"id":77,"name":"Test album 77","url":"https://test.com/77"},{"id":78,"name":"Test album 78","url":"https://test.com/78"},{"id":79,"name":"Test album 79","url":"https://test.com/79"},{"id":80,"name":"Test album 80","url":"https://test.com/80"},{"id":81,"name":"Test album 81","url":"https://test.com/81"},{"id":82,"name":"Test album 82","url":"https://test.com/82"},{"id":83,"name":"Test album 83","url":"https://test.com/83"},{"id":84,"name":"Test album 84","url":"https://test.com/84"},{"id":85,"name":"Test album 85","url":"https://test.com/85"},{"id":86,"name":"Test album 86","url":"https://test.com/86"}]
           Size: 5.4rem
           Highlighted: 5
         </div>
         <div
           class="mock-album-row"
         >
-          Albums: [{"placeholder":false,"id":87,"name":"Test album 87","url":"https://test.com/87"},{"placeholder":false,"id":88,"name":"Test album 88","url":"https://test.com/88"},{"placeholder":false,"id":89,"name":"Test album 89","url":"https://test.com/89"},{"placeholder":false,"id":90,"name":"Test album 90","url":"https://test.com/90"},{"placeholder":false,"id":91,"name":"Test album 91","url":"https://test.com/91"},{"placeholder":false,"id":92,"name":"Test album 92","url":"https://test.com/92"},{"placeholder":false,"id":93,"name":"Test album 93","url":"https://test.com/93"},{"placeholder":false,"id":94,"name":"Test album 94","url":"https://test.com/94"},{"placeholder":false,"id":95,"name":"Test album 95","url":"https://test.com/95"},{"placeholder":false,"id":96,"name":"Test album 96","url":"https://test.com/96"},{"placeholder":false,"id":97,"name":"Test album 97","url":"https://test.com/97"},{"placeholder":false,"id":98,"name":"Test album 98","url":"https://test.com/98"},{"placeholder":false,"id":99,"name":"Test album 99","url":"https://test.com/99"},{"placeholder":false,"id":100,"name":"Test album 100","url":"https://test.com/100"}]
+          Albums: [{"id":87,"name":"Test album 87","url":"https://test.com/87"},{"id":88,"name":"Test album 88","url":"https://test.com/88"},{"id":89,"name":"Test album 89","url":"https://test.com/89"},{"id":90,"name":"Test album 90","url":"https://test.com/90"},{"id":91,"name":"Test album 91","url":"https://test.com/91"},{"id":92,"name":"Test album 92","url":"https://test.com/92"},{"id":93,"name":"Test album 93","url":"https://test.com/93"},{"id":94,"name":"Test album 94","url":"https://test.com/94"},{"id":95,"name":"Test album 95","url":"https://test.com/95"},{"id":96,"name":"Test album 96","url":"https://test.com/96"},{"id":97,"name":"Test album 97","url":"https://test.com/97"},{"id":98,"name":"Test album 98","url":"https://test.com/98"},{"id":99,"name":"Test album 99","url":"https://test.com/99"},{"id":100,"name":"Test album 100","url":"https://test.com/100"}]
           Size: 5.4rem
           Highlighted: 5
         </div>
@@ -681,25 +681,25 @@ exports[`renders with top shape 3`] = `
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"},{"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"},{"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"},{"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"},{"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"},{"placeholder":false,"id":6,"name":"Test album 6","url":"https://test.com/6"},{"placeholder":false,"id":7,"name":"Test album 7","url":"https://test.com/7"},{"placeholder":false,"id":8,"name":"Test album 8","url":"https://test.com/8"},{"placeholder":false,"id":9,"name":"Test album 9","url":"https://test.com/9"},{"placeholder":false,"id":10,"name":"Test album 10","url":"https://test.com/10"}]
+          Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"},{"id":6,"name":"Test album 6","url":"https://test.com/6"},{"id":7,"name":"Test album 7","url":"https://test.com/7"},{"id":8,"name":"Test album 8","url":"https://test.com/8"},{"id":9,"name":"Test album 9","url":"https://test.com/9"},{"id":10,"name":"Test album 10","url":"https://test.com/10"}]
           Highlighted: 5
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":11,"name":"Test album 11","url":"https://test.com/11"},{"placeholder":false,"id":12,"name":"Test album 12","url":"https://test.com/12"},{"placeholder":false,"id":13,"name":"Test album 13","url":"https://test.com/13"},{"placeholder":false,"id":14,"name":"Test album 14","url":"https://test.com/14"},{"placeholder":false,"id":15,"name":"Test album 15","url":"https://test.com/15"},{"placeholder":false,"id":16,"name":"Test album 16","url":"https://test.com/16"},{"placeholder":false,"id":17,"name":"Test album 17","url":"https://test.com/17"},{"placeholder":false,"id":18,"name":"Test album 18","url":"https://test.com/18"},{"placeholder":false,"id":19,"name":"Test album 19","url":"https://test.com/19"},{"placeholder":false,"id":20,"name":"Test album 20","url":"https://test.com/20"},{"placeholder":false,"id":21,"name":"Test album 21","url":"https://test.com/21"},{"placeholder":false,"id":22,"name":"Test album 22","url":"https://test.com/22"},{"placeholder":false,"id":23,"name":"Test album 23","url":"https://test.com/23"},{"placeholder":false,"id":24,"name":"Test album 24","url":"https://test.com/24"},{"placeholder":false,"id":25,"name":"Test album 25","url":"https://test.com/25"},{"placeholder":false,"id":26,"name":"Test album 26","url":"https://test.com/26"},{"placeholder":false,"id":27,"name":"Test album 27","url":"https://test.com/27"},{"placeholder":false,"id":28,"name":"Test album 28","url":"https://test.com/28"}]
+          Albums: [{"id":11,"name":"Test album 11","url":"https://test.com/11"},{"id":12,"name":"Test album 12","url":"https://test.com/12"},{"id":13,"name":"Test album 13","url":"https://test.com/13"},{"id":14,"name":"Test album 14","url":"https://test.com/14"},{"id":15,"name":"Test album 15","url":"https://test.com/15"},{"id":16,"name":"Test album 16","url":"https://test.com/16"},{"id":17,"name":"Test album 17","url":"https://test.com/17"},{"id":18,"name":"Test album 18","url":"https://test.com/18"},{"id":19,"name":"Test album 19","url":"https://test.com/19"},{"id":20,"name":"Test album 20","url":"https://test.com/20"},{"id":21,"name":"Test album 21","url":"https://test.com/21"},{"id":22,"name":"Test album 22","url":"https://test.com/22"},{"id":23,"name":"Test album 23","url":"https://test.com/23"},{"id":24,"name":"Test album 24","url":"https://test.com/24"},{"id":25,"name":"Test album 25","url":"https://test.com/25"},{"id":26,"name":"Test album 26","url":"https://test.com/26"},{"id":27,"name":"Test album 27","url":"https://test.com/27"},{"id":28,"name":"Test album 28","url":"https://test.com/28"}]
           Highlighted: 5
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":29,"name":"Test album 29","url":"https://test.com/29"},{"placeholder":false,"id":30,"name":"Test album 30","url":"https://test.com/30"},{"placeholder":false,"id":31,"name":"Test album 31","url":"https://test.com/31"},{"placeholder":false,"id":32,"name":"Test album 32","url":"https://test.com/32"},{"placeholder":false,"id":33,"name":"Test album 33","url":"https://test.com/33"},{"placeholder":false,"id":34,"name":"Test album 34","url":"https://test.com/34"},{"placeholder":false,"id":35,"name":"Test album 35","url":"https://test.com/35"},{"placeholder":false,"id":36,"name":"Test album 36","url":"https://test.com/36"},{"placeholder":false,"id":37,"name":"Test album 37","url":"https://test.com/37"},{"placeholder":false,"id":38,"name":"Test album 38","url":"https://test.com/38"},{"placeholder":false,"id":39,"name":"Test album 39","url":"https://test.com/39"},{"placeholder":false,"id":40,"name":"Test album 40","url":"https://test.com/40"},{"placeholder":false,"id":41,"name":"Test album 41","url":"https://test.com/41"},{"placeholder":false,"id":42,"name":"Test album 42","url":"https://test.com/42"},{"placeholder":false,"id":43,"name":"Test album 43","url":"https://test.com/43"},{"placeholder":false,"id":44,"name":"Test album 44","url":"https://test.com/44"},{"placeholder":false,"id":45,"name":"Test album 45","url":"https://test.com/45"},{"placeholder":false,"id":46,"name":"Test album 46","url":"https://test.com/46"},{"placeholder":false,"id":47,"name":"Test album 47","url":"https://test.com/47"},{"placeholder":false,"id":48,"name":"Test album 48","url":"https://test.com/48"},{"placeholder":false,"id":49,"name":"Test album 49","url":"https://test.com/49"},{"placeholder":false,"id":50,"name":"Test album 50","url":"https://test.com/50"},{"placeholder":false,"id":51,"name":"Test album 51","url":"https://test.com/51"},{"placeholder":false,"id":52,"name":"Test album 52","url":"https://test.com/52"},{"placeholder":false,"id":53,"name":"Test album 53","url":"https://test.com/53"},{"placeholder":false,"id":54,"name":"Test album 54","url":"https://test.com/54"},{"placeholder":false,"id":55,"name":"Test album 55","url":"https://test.com/55"},{"placeholder":false,"id":56,"name":"Test album 56","url":"https://test.com/56"},{"placeholder":false,"id":57,"name":"Test album 57","url":"https://test.com/57"},{"placeholder":false,"id":58,"name":"Test album 58","url":"https://test.com/58"}]
+          Albums: [{"id":29,"name":"Test album 29","url":"https://test.com/29"},{"id":30,"name":"Test album 30","url":"https://test.com/30"},{"id":31,"name":"Test album 31","url":"https://test.com/31"},{"id":32,"name":"Test album 32","url":"https://test.com/32"},{"id":33,"name":"Test album 33","url":"https://test.com/33"},{"id":34,"name":"Test album 34","url":"https://test.com/34"},{"id":35,"name":"Test album 35","url":"https://test.com/35"},{"id":36,"name":"Test album 36","url":"https://test.com/36"},{"id":37,"name":"Test album 37","url":"https://test.com/37"},{"id":38,"name":"Test album 38","url":"https://test.com/38"},{"id":39,"name":"Test album 39","url":"https://test.com/39"},{"id":40,"name":"Test album 40","url":"https://test.com/40"},{"id":41,"name":"Test album 41","url":"https://test.com/41"},{"id":42,"name":"Test album 42","url":"https://test.com/42"},{"id":43,"name":"Test album 43","url":"https://test.com/43"},{"id":44,"name":"Test album 44","url":"https://test.com/44"},{"id":45,"name":"Test album 45","url":"https://test.com/45"},{"id":46,"name":"Test album 46","url":"https://test.com/46"},{"id":47,"name":"Test album 47","url":"https://test.com/47"},{"id":48,"name":"Test album 48","url":"https://test.com/48"},{"id":49,"name":"Test album 49","url":"https://test.com/49"},{"id":50,"name":"Test album 50","url":"https://test.com/50"},{"id":51,"name":"Test album 51","url":"https://test.com/51"},{"id":52,"name":"Test album 52","url":"https://test.com/52"},{"id":53,"name":"Test album 53","url":"https://test.com/53"},{"id":54,"name":"Test album 54","url":"https://test.com/54"},{"id":55,"name":"Test album 55","url":"https://test.com/55"},{"id":56,"name":"Test album 56","url":"https://test.com/56"},{"id":57,"name":"Test album 57","url":"https://test.com/57"},{"id":58,"name":"Test album 58","url":"https://test.com/58"}]
           Highlighted: 5
         </div>
         <div
           class="mock-album-title-group"
         >
-          Albums: [{"placeholder":false,"id":59,"name":"Test album 59","url":"https://test.com/59"},{"placeholder":false,"id":60,"name":"Test album 60","url":"https://test.com/60"},{"placeholder":false,"id":61,"name":"Test album 61","url":"https://test.com/61"},{"placeholder":false,"id":62,"name":"Test album 62","url":"https://test.com/62"},{"placeholder":false,"id":63,"name":"Test album 63","url":"https://test.com/63"},{"placeholder":false,"id":64,"name":"Test album 64","url":"https://test.com/64"},{"placeholder":false,"id":65,"name":"Test album 65","url":"https://test.com/65"},{"placeholder":false,"id":66,"name":"Test album 66","url":"https://test.com/66"},{"placeholder":false,"id":67,"name":"Test album 67","url":"https://test.com/67"},{"placeholder":false,"id":68,"name":"Test album 68","url":"https://test.com/68"},{"placeholder":false,"id":69,"name":"Test album 69","url":"https://test.com/69"},{"placeholder":false,"id":70,"name":"Test album 70","url":"https://test.com/70"},{"placeholder":false,"id":71,"name":"Test album 71","url":"https://test.com/71"},{"placeholder":false,"id":72,"name":"Test album 72","url":"https://test.com/72"},{"placeholder":false,"id":73,"name":"Test album 73","url":"https://test.com/73"},{"placeholder":false,"id":74,"name":"Test album 74","url":"https://test.com/74"},{"placeholder":false,"id":75,"name":"Test album 75","url":"https://test.com/75"},{"placeholder":false,"id":76,"name":"Test album 76","url":"https://test.com/76"},{"placeholder":false,"id":77,"name":"Test album 77","url":"https://test.com/77"},{"placeholder":false,"id":78,"name":"Test album 78","url":"https://test.com/78"},{"placeholder":false,"id":79,"name":"Test album 79","url":"https://test.com/79"},{"placeholder":false,"id":80,"name":"Test album 80","url":"https://test.com/80"},{"placeholder":false,"id":81,"name":"Test album 81","url":"https://test.com/81"},{"placeholder":false,"id":82,"name":"Test album 82","url":"https://test.com/82"},{"placeholder":false,"id":83,"name":"Test album 83","url":"https://test.com/83"},{"placeholder":false,"id":84,"name":"Test album 84","url":"https://test.com/84"},{"placeholder":false,"id":85,"name":"Test album 85","url":"https://test.com/85"},{"placeholder":false,"id":86,"name":"Test album 86","url":"https://test.com/86"},{"placeholder":false,"id":87,"name":"Test album 87","url":"https://test.com/87"},{"placeholder":false,"id":88,"name":"Test album 88","url":"https://test.com/88"},{"placeholder":false,"id":89,"name":"Test album 89","url":"https://test.com/89"},{"placeholder":false,"id":90,"name":"Test album 90","url":"https://test.com/90"},{"placeholder":false,"id":91,"name":"Test album 91","url":"https://test.com/91"},{"placeholder":false,"id":92,"name":"Test album 92","url":"https://test.com/92"},{"placeholder":false,"id":93,"name":"Test album 93","url":"https://test.com/93"},{"placeholder":false,"id":94,"name":"Test album 94","url":"https://test.com/94"},{"placeholder":false,"id":95,"name":"Test album 95","url":"https://test.com/95"},{"placeholder":false,"id":96,"name":"Test album 96","url":"https://test.com/96"},{"placeholder":false,"id":97,"name":"Test album 97","url":"https://test.com/97"},{"placeholder":false,"id":98,"name":"Test album 98","url":"https://test.com/98"},{"placeholder":false,"id":99,"name":"Test album 99","url":"https://test.com/99"},{"placeholder":false,"id":100,"name":"Test album 100","url":"https://test.com/100"}]
+          Albums: [{"id":59,"name":"Test album 59","url":"https://test.com/59"},{"id":60,"name":"Test album 60","url":"https://test.com/60"},{"id":61,"name":"Test album 61","url":"https://test.com/61"},{"id":62,"name":"Test album 62","url":"https://test.com/62"},{"id":63,"name":"Test album 63","url":"https://test.com/63"},{"id":64,"name":"Test album 64","url":"https://test.com/64"},{"id":65,"name":"Test album 65","url":"https://test.com/65"},{"id":66,"name":"Test album 66","url":"https://test.com/66"},{"id":67,"name":"Test album 67","url":"https://test.com/67"},{"id":68,"name":"Test album 68","url":"https://test.com/68"},{"id":69,"name":"Test album 69","url":"https://test.com/69"},{"id":70,"name":"Test album 70","url":"https://test.com/70"},{"id":71,"name":"Test album 71","url":"https://test.com/71"},{"id":72,"name":"Test album 72","url":"https://test.com/72"},{"id":73,"name":"Test album 73","url":"https://test.com/73"},{"id":74,"name":"Test album 74","url":"https://test.com/74"},{"id":75,"name":"Test album 75","url":"https://test.com/75"},{"id":76,"name":"Test album 76","url":"https://test.com/76"},{"id":77,"name":"Test album 77","url":"https://test.com/77"},{"id":78,"name":"Test album 78","url":"https://test.com/78"},{"id":79,"name":"Test album 79","url":"https://test.com/79"},{"id":80,"name":"Test album 80","url":"https://test.com/80"},{"id":81,"name":"Test album 81","url":"https://test.com/81"},{"id":82,"name":"Test album 82","url":"https://test.com/82"},{"id":83,"name":"Test album 83","url":"https://test.com/83"},{"id":84,"name":"Test album 84","url":"https://test.com/84"},{"id":85,"name":"Test album 85","url":"https://test.com/85"},{"id":86,"name":"Test album 86","url":"https://test.com/86"},{"id":87,"name":"Test album 87","url":"https://test.com/87"},{"id":88,"name":"Test album 88","url":"https://test.com/88"},{"id":89,"name":"Test album 89","url":"https://test.com/89"},{"id":90,"name":"Test album 90","url":"https://test.com/90"},{"id":91,"name":"Test album 91","url":"https://test.com/91"},{"id":92,"name":"Test album 92","url":"https://test.com/92"},{"id":93,"name":"Test album 93","url":"https://test.com/93"},{"id":94,"name":"Test album 94","url":"https://test.com/94"},{"id":95,"name":"Test album 95","url":"https://test.com/95"},{"id":96,"name":"Test album 96","url":"https://test.com/96"},{"id":97,"name":"Test album 97","url":"https://test.com/97"},{"id":98,"name":"Test album 98","url":"https://test.com/98"},{"id":99,"name":"Test album 99","url":"https://test.com/99"},{"id":100,"name":"Test album 100","url":"https://test.com/100"}]
           Highlighted: 5
         </div>
       </div>

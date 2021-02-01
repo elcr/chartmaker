@@ -2,6 +2,7 @@ import { render } from 'react-dom'
 
 import type { State } from '@/types'
 import { App } from '@/App'
+import { STATE_VERSION } from '@/constants'
 
 import { RenderContainer, createTestPlaceholderAlbums, createTestNamedAlbums } from './utils'
 
@@ -13,6 +14,7 @@ jest.mock('@/components/Chart')
 const localStorageMock = jest.spyOn(Storage.prototype, 'getItem')
     .mockImplementation(() => {
         const state: State = {
+            version: STATE_VERSION,
             charts: [
                 {
                     name: 'Test chart 1',
@@ -40,7 +42,6 @@ const localStorageMock = jest.spyOn(Storage.prototype, 'getItem')
                 albums: createTestNamedAlbums(5, 20)
             },
             activeChartIndex: 1,
-            albumIDCounter: 25,
             highlightedID: 5
         }
         return JSON.stringify(state)

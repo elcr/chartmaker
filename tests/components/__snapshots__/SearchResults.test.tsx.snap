@@ -31,27 +31,32 @@ exports[`renders album covers 1`] = `
       <div
         class="mock-search-album-cover"
       >
-        Album: {"placeholder":false,"id":1,"name":"Test album 1","url":"https://test.com/1"}
+        Album: {"id":1,"name":"Test album 1","url":"https://test.com/1"}
+        Index: 0
       </div>
       <div
         class="mock-search-album-cover"
       >
-        Album: {"placeholder":false,"id":2,"name":"Test album 2","url":"https://test.com/2"}
+        Album: {"id":2,"name":"Test album 2","url":"https://test.com/2"}
+        Index: 1
       </div>
       <div
         class="mock-search-album-cover"
       >
-        Album: {"placeholder":false,"id":3,"name":"Test album 3","url":"https://test.com/3"}
+        Album: {"id":3,"name":"Test album 3","url":"https://test.com/3"}
+        Index: 2
       </div>
       <div
         class="mock-search-album-cover"
       >
-        Album: {"placeholder":false,"id":4,"name":"Test album 4","url":"https://test.com/4"}
+        Album: {"id":4,"name":"Test album 4","url":"https://test.com/4"}
+        Index: 3
       </div>
       <div
         class="mock-search-album-cover"
       >
-        Album: {"placeholder":false,"id":5,"name":"Test album 5","url":"https://test.com/5"}
+        Album: {"id":5,"name":"Test album 5","url":"https://test.com/5"}
+        Index: 4
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import type { NamedAlbum } from '@/types'
+import type { SearchAlbum } from '@/types'
 import { SearchAlbumCover } from '@/components/SearchAlbumCover'
 
 import {
@@ -16,9 +16,7 @@ jest.mock('@/components/AlbumCover')
 
 const container = new RenderContainer()
 
-const album: NamedAlbum = {
-    placeholder: false,
-    id: 123,
+const album: SearchAlbum = {
     name: 'Test Album',
     url: 'https://test.com'
 }
@@ -26,7 +24,7 @@ const album: NamedAlbum = {
 
 test('renders album cover', () => {
     render(
-        <SearchAlbumCover album={album}/>,
+        <SearchAlbumCover album={album} index={1}/>,
         container.element
     )
 
@@ -34,9 +32,9 @@ test('renders album cover', () => {
 })
 
 
-test('starting drag sets event data', () => {
+test.each([ 1, 2 ])('starting drag sets event data', index => {
     render(
-        <SearchAlbumCover album={album}/>,
+        <SearchAlbumCover album={album} index={index}/>,
         container.element
     )
 
@@ -51,7 +49,7 @@ test('starting drag sets event data', () => {
     )
 
     expect(mock.setDataMock).toHaveBeenCalledTimes(1)
-    expect(mock.setDataMock).toHaveBeenCalledWith(`search-${album.id}`, '')
+    expect(mock.setDataMock).toHaveBeenCalledWith(`search-${index}`, '')
     expect(mock.effectAllowedMock).toHaveBeenCalledTimes(1)
     expect(mock.effectAllowedMock).toHaveBeenCalledWith('copy')
 })

@@ -23,7 +23,7 @@ exports[`renders album cover for placeholder album 1`] = `
   <div
     class="mock-album-cover emotion-0"
   >
-    Album: {"placeholder":true,"id":123}
+    Album: undefined
     Size: 3rem
     Highlighted: true
   </div>
@@ -53,8 +53,8 @@ exports[`renders album cover with overlay buttons for named album 1`] = `
   <div
     class="mock-album-cover emotion-0"
   >
-    Album: {"placeholder":false,"id":456,"name":"Test named album","url":"https://test.com"}
-    Size: 3rem
+    Album: {"id":456,"name":"Test named album","url":"https://test.com"}
+    Size: 5rem
     Highlighted: false
     <div
       class="mock-rename-album-button"

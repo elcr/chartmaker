@@ -2,7 +2,7 @@ import { render } from 'react-dom'
 
 import { AlbumTitleGroup } from '@/components/AlbumTitleGroup'
 
-import { RenderContainer, createTestNamedAlbums, ignore } from '../utils'
+import { RenderContainer } from '../utils'
 
 
 jest.mock('@/components/AlbumTitle')
@@ -11,11 +11,11 @@ jest.mock('@/components/AlbumTitle')
 const container = new RenderContainer()
 
 
-test('renders album titles', () => {
-    const albums = createTestNamedAlbums(3)
-
+test('renders styled children', () => {
     render(
-        <AlbumTitleGroup dispatch={ignore} albums={albums} highlighted={2}/>,
+        <AlbumTitleGroup>
+            Test children
+        </AlbumTitleGroup>,
         container.element
     )
 

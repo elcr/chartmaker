@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders album titles 1`] = `
+exports[`renders styled children 1`] = `
 .emotion-0 {
   margin-bottom: 0.5rem;
   font-size: 0.8rem;
@@ -12,27 +12,7 @@ exports[`renders album titles 1`] = `
   <div
     class="emotion-0"
   >
-    <div
-      class="mock-album-title"
-    >
-      ID: 1
-      Highlighted: false
-      Test album 1
-    </div>
-    <div
-      class="mock-album-title"
-    >
-      ID: 2
-      Highlighted: true
-      Test album 2
-    </div>
-    <div
-      class="mock-album-title"
-    >
-      ID: 3
-      Highlighted: false
-      Test album 3
-    </div>
+    Test children
   </div>
 </div>
 `;

@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders group with titles 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-album-title-group"
+  >
+    <div
+      class="mock-editor-album-title"
+    >
+      Album: {"id":1,"name":"Test album 1","url":"https://test.com/1"}
+      Highlighted: 123
+    </div>
+    <div
+      class="mock-editor-album-title"
+    >
+      Album: {"id":2,"name":"Test album 2","url":"https://test.com/2"}
+      Highlighted: 123
+    </div>
+    <div
+      class="mock-editor-album-title"
+    >
+      Album: {"id":3,"name":"Test album 3","url":"https://test.com/3"}
+      Highlighted: 123
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders group with titles 2`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-album-title-group"
+  >
+    <div
+      class="mock-editor-album-title"
+    >
+      Album: {"id":1,"name":"Test album 1","url":"https://test.com/1"}
+      Highlighted: undefined
+    </div>
+    <div
+      class="mock-editor-album-title"
+    >
+      Album: {"id":2,"name":"Test album 2","url":"https://test.com/2"}
+      Highlighted: undefined
+    </div>
+    <div
+      class="mock-editor-album-title"
+    >
+      Album: {"id":3,"name":"Test album 3","url":"https://test.com/3"}
+      Highlighted: undefined
+    </div>
+  </div>
+</div>
+`;

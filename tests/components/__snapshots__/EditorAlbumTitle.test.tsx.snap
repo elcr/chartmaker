@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders title and buttons 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-album-title"
+  >
+    ID: 123
+    Name: Test album
+    Highlighted: undefined
+    <div
+      class="mock-rename-album-button"
+    >
+      ID: 123
+    </div>
+    <div
+      class="mock-delete-album-button"
+    >
+      ID: 123
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders title and buttons 2`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-album-title"
+  >
+    ID: 123
+    Name: Test album
+    Highlighted: true
+    <div
+      class="mock-rename-album-button"
+    >
+      ID: 123
+    </div>
+    <div
+      class="mock-delete-album-button"
+    >
+      ID: 123
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders title and buttons 3`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-album-title"
+  >
+    ID: 123
+    Name: Test album
+    Highlighted: false
+    <div
+      class="mock-rename-album-button"
+    >
+      ID: 123
+    </div>
+    <div
+      class="mock-delete-album-button"
+    >
+      ID: 123
+    </div>
+  </div>
+</div>
+`;

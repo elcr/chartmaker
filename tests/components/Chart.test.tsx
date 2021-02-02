@@ -10,7 +10,7 @@ import { RenderContainer, ignore, createTestNamedAlbums, fireEvent } from '../ut
 
 
 jest.mock('@/components/AlbumRow')
-jest.mock('@/components/AlbumTitleGroup')
+jest.mock('@/components/EditorAlbumTitleGroup')
 
 
 const container = new RenderContainer()

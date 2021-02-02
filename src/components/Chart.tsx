@@ -14,7 +14,7 @@ import {
     BORDER
 } from '@/style'
 import { AlbumRow } from '@/components/AlbumRow'
-import { AlbumTitleGroup } from '@/components/AlbumTitleGroup'
+import { EditorAlbumTitleGroup } from '@/components/EditorAlbumTitleGroup'
 
 
 export const rowsID = 'rows'
@@ -248,7 +248,7 @@ export const Chart: FC<ChartProps> = ({
             highlighted={highlighted}/>
     )
     const titleElements = groups.map((albums, index) =>
-        <AlbumTitleGroup key={index}
+        <EditorAlbumTitleGroup key={index}
             dispatch={dispatch}
             albums={albums}
             highlighted={highlighted}/>

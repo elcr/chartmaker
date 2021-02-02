@@ -21,7 +21,7 @@ exports[`renders button and hidden file input 1`] = `
     class="mock-button emotion-1"
   >
     Disabled: undefined
-    Import state
+    Load state
   </div>
 </div>
 `;

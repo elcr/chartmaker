@@ -16,7 +16,9 @@ import {
     CHART_ALBUMS_COUNT,
     MAX_SCREENSHOT_SCALE,
     MAX_COLLAGE_ROWS_X,
-    MAX_COLLAGE_ROWS_Y
+    MAX_COLLAGE_ROWS_Y,
+    STATE_VERSION,
+    EXPORT_CHART_PLACEHOLDER
 } from '@/constants'
 
 
@@ -133,6 +135,24 @@ const ScreenshotState = Record_({
 })
 
 
+const ExportChartAlbum = SearchAlbum.Or(Literal(EXPORT_CHART_PLACEHOLDER))
+
+const ExportChartShape = ChartShape.alternatives[0].Or(
+    ChartShape.alternatives[1].And(
+        Record_({
+            rowsX: V2Chart.fields.rowsX,
+            rowsY: V2Chart.fields.rowsY,
+        })
+    )
+)
+
+const ExportChart = Record_({
+    name: V2Chart.fields.name,
+    albums: FixedSizeArray(ExportChartAlbum, CHART_ALBUMS_COUNT),
+    shape: ExportChartShape
+})
+
+
 export const V1State = Record_({
     apiKey: String,
     charts: NonEmptyArray(V1Chart),
@@ -145,7 +165,7 @@ export const V1State = Record_({
         highlightedID: PositiveInteger
     })
 )
-const V2State = Record_({
+export const V2State = Record_({
     ...V1State.intersectees[0].fields,
     version: Literal(2),
     charts: NonEmptyArray(V2Chart)
@@ -154,7 +174,16 @@ const V2State = Record_({
         highlightedID: PositiveInteger
     })
 )
-export const State = V2State
+const V3State = Record_({
+    ...V2State.intersectees[0].fields,
+    version: Literal(STATE_VERSION)
+}).And(
+    Partial_({
+        ...V2State.intersectees[1].fields,
+        viewing: ExportChart
+    })
+)
+export const State = V3State
 
 
 export type NamedAlbum = Static<typeof NamedAlbum>
@@ -166,3 +195,7 @@ export type SearchState = Static<typeof SearchState>
 export type ScreenshotState = Static<typeof ScreenshotState>
 export type State = Static<typeof State>
 export type V1State = Static<typeof V1State>
+export type V2State = Static<typeof V2State>
+export type ExportChart = Static<typeof ExportChart>
+export type ExportChartShape = Static<typeof ExportChartShape>
+export type ExportChartAlbum = Static<typeof ExportChartAlbum>

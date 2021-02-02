@@ -8,7 +8,7 @@ exports[`renders button 1`] = `
     class="mock-button"
   >
     Disabled: undefined
-    Export state
+    Save state
   </div>
 </div>
 `;

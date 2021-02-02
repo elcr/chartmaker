@@ -228,6 +228,59 @@ Object {
 }
 `;
 
+exports[`createExportChart 1`] = `
+Object {
+  "albums": Array [
+    Object {
+      "name": "Test album 1",
+      "url": "https://test.com/1",
+    },
+    Object {
+      "name": "Test album 2",
+      "url": "https://test.com/2",
+    },
+    Object {
+      "name": "Test album 3",
+      "url": "https://test.com/3",
+    },
+    Object {
+      "name": "Test album 4",
+      "url": "https://test.com/4",
+    },
+    Object {
+      "name": "Test album 5",
+      "url": "https://test.com/5",
+    },
+    0,
+    0,
+    0,
+    0,
+    0,
+  ],
+  "name": "Test chart 2",
+  "shape": Object {
+    "size": 40,
+    "tag": "Top",
+  },
+}
+`;
+
+exports[`createExportChart 2`] = `
+Object {
+  "albums": Array [
+    0,
+    0,
+    0,
+  ],
+  "name": "Test chart 1",
+  "shape": Object {
+    "rowsX": 1,
+    "rowsY": 2,
+    "tag": "Collage",
+  },
+}
+`;
+
 exports[`createInitialState 1`] = `
 Object {
   "activeChartIndex": 0,
@@ -353,6 +406,6 @@ Object {
     "query": "",
     "tag": "Waiting",
   },
-  "version": 2,
+  "version": 3,
 }
 `;

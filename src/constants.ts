@@ -10,4 +10,5 @@ export const DEFAULT_COLLAGE_ROWS_Y = 5
 export const DEFAULT_CHART_NAME = 'Untitled chart'
 export const MAX_SCREENSHOT_SCALE = 3
 export const LOCAL_STORAGE_KEY = 'state'
-export const STATE_VERSION = 2
+export const STATE_VERSION = 3
+export const EXPORT_CHART_PLACEHOLDER = 0

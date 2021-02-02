@@ -50,10 +50,10 @@ exports[`renders slider and buttons 1`] = `
         class="emotion-0"
       >
         <div
-          class="mock-import-state-button"
+          class="mock-load-state-button"
         />
         <div
-          class="mock-export-state-button"
+          class="mock-save-state-button"
         />
       </div>
     </div>
@@ -111,10 +111,10 @@ exports[`renders slider and buttons 2`] = `
         class="emotion-0"
       >
         <div
-          class="mock-import-state-button"
+          class="mock-load-state-button"
         />
         <div
-          class="mock-export-state-button"
+          class="mock-save-state-button"
         />
       </div>
     </div>

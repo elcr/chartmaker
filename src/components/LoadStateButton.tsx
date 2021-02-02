@@ -6,7 +6,7 @@ import { SIDEBAR_ITEM_PADDING_SIZE } from '@/style'
 import { Button } from '@/components/Button'
 
 
-export type ImportStateButtonProps = DispatchProps
+export type LoadStateButtonProps = DispatchProps
 
 
 const inputStyle = css({
@@ -19,7 +19,7 @@ const buttonStyle = css({
 })
 
 
-export const ImportStateButton: FC<ImportStateButtonProps> = ({ dispatch }) => {
+export const LoadStateButton: FC<LoadStateButtonProps> = ({ dispatch }) => {
     const inputRef = useRef<HTMLInputElement>(null)
 
     function loadSelectedFile(event: ChangeEvent<HTMLInputElement>) {
@@ -30,7 +30,7 @@ export const ImportStateButton: FC<ImportStateButtonProps> = ({ dispatch }) => {
             return
         }
         dispatch({
-            tag: 'ImportStateFile',
+            tag: 'LoadStateFile',
             file
         })
     }
@@ -47,7 +47,7 @@ export const ImportStateButton: FC<ImportStateButtonProps> = ({ dispatch }) => {
                 accept='application/json'
                 onChange={loadSelectedFile}/>
             <Button className={buttonStyle} onClick={clickInput}>
-                Import state
+                Load state
             </Button>
         </>
     )

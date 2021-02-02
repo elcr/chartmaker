@@ -1,17 +1,22 @@
+import produce from 'immer'
+
 import {
     createChart,
     createInitialState,
     loadStateFromLocalStorage,
-    escapeStateForExport,
+    escapeStateForSave,
     saveStateToLocalStorage,
     isPlaceholderAlbum,
     getAlbumID,
-    findAlbumIndexWithID
+    findAlbumIndexWithID,
+    createExportChart
 } from '@/state'
 import { LOCAL_STORAGE_KEY } from '@/constants'
-import type { Album } from '@/types'
+import type { Album, State } from '@/types'
 
 import {
+    createTestNamedAlbums,
+    createTestPlaceholderAlbums,
     createTestState,
     createTestStateForEscaping,
     ignore
@@ -41,7 +46,9 @@ test('createInitialState', () => {
 describe('validateState', () => {
     test.todo('returns state when valid state passed')
 
-    test.todo('returns updated state when outdated but valid state passed')
+    test.todo('returns updated state when valid v1 state passed')
+
+    test.todo('returns updated state when valid v2 state passed')
 
     test.todo('returns null when invalid state passed')
 })
@@ -59,7 +66,9 @@ describe('loadStateFromLocalStorage', () => {
         expect(returnedState).toEqual(state)
     })
 
-    test.todo('returns updated state when outdated state in local storage')
+    test.todo('returns updated state when valid v1 in local storage')
+
+    test.todo('returns updated state when valid v2 in local storage')
 
     test.each([
         '{',
@@ -83,8 +92,8 @@ describe('loadStateFromLocalStorage', () => {
 })
 
 
-test('escapeStateForExport', () => {
-    const escaped = escapeStateForExport(createTestStateForEscaping())
+test('escapeStateForSave', () => {
+    const escaped = escapeStateForSave(createTestStateForEscaping())
     expect(escaped).toEqual(createTestState())
 })
 
@@ -153,4 +162,32 @@ describe('findAlbumIndexWithID', () => {
         const result = findAlbumIndexWithID(albums, 1234)
         expect(result).toBeNull()
     })
+})
+
+
+test.each<State>([
+    produce(
+        createTestState({
+            charts: 3
+        }),
+        state => {
+            state.activeChartIndex = 1
+            state.charts[state.activeChartIndex]!.albums = [
+                ...createTestNamedAlbums(5),
+                ...createTestPlaceholderAlbums(5, 6)
+            ]
+        }
+    ),
+    produce(
+        createTestState(),
+        state => {
+            const chart = state.charts[state.activeChartIndex]!
+            chart.shape.tag = 'Collage'
+            chart.rowsX = 1
+            chart.rowsY = 2
+        }
+    )
+])('createExportChart', state => {
+    const result = createExportChart(state)
+    expect(result).toMatchSnapshot()
 })

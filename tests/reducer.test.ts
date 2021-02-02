@@ -347,12 +347,12 @@ describe('MoveActiveChart', () => {
 })
 
 
-describe('ImportStateFile', () => {
+describe('LoadStateFile', () => {
     test('read error dispatches error action', async () => {
         const fileTextMock = jest.fn<Promise<string>, []>(Promise.reject)
         const file: File = { text: fileTextMock } as any
 
-        const result = reducer(state, { tag: 'ImportStateFile', file })
+        const result = reducer(state, { tag: 'LoadStateFile', file })
         expect(result).toMatchSnapshot()
 
         const { sideEffect } = result as SideEffectUpdate<State, Action>
@@ -371,7 +371,7 @@ describe('ImportStateFile', () => {
         )
 
         const result = reducer(state, {
-            tag: 'ImportStateFile',
+            tag: 'LoadStateFile',
             file: { text: fileTextMock } as any
         })
         expect(result).toMatchSnapshot()
@@ -392,7 +392,7 @@ describe('ImportStateFile', () => {
         )
 
         const result = reducer(state, {
-            tag: 'ImportStateFile',
+            tag: 'LoadStateFile',
             file: { text: fileTextMock } as any
         })
         expect(result).toMatchSnapshot()
@@ -415,7 +415,7 @@ describe('ImportStateFile', () => {
         })
 
         const result = reducer(state, {
-            tag: 'ImportStateFile',
+            tag: 'LoadStateFile',
             file: { text: fileTextMock } as any
         })
         expect(result).toMatchSnapshot()
@@ -464,7 +464,7 @@ test('LoadState', () => {
 
 
 // TODO: extract to separate test suite to mock utils module
-test.todo('PromptToExportState')
+test.todo('PromptToSaveState')
 
 
 describe('CancelSearchRequest', () => {

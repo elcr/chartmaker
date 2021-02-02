@@ -8,7 +8,7 @@ import {
 } from 'react-use-side-effect-reducer'
 import { produce } from 'immer'
 
-import { createChart, escapeStateForExport, findAlbumIndexWithID, getAlbumID, isPlaceholderAlbum, validateState, } from '@/state'
+import { createChart, escapeStateForSave, findAlbumIndexWithID, getAlbumID, isPlaceholderAlbum, validateState, } from '@/state'
 import {
     elementToDataURI,
     downloadURI,
@@ -35,10 +35,10 @@ export type Action =
     | { tag: 'PromptToDeleteActiveChart' }
     | { tag: 'DeleteActiveChart' }
     | { tag: 'MoveActiveChart', direction: 'Up' | 'Down' }
-    | { tag: 'ImportStateFile', file: File }
+    | { tag: 'LoadStateFile', file: File }
     | { tag: 'ShowInvalidStateImportMessage' }
     | { tag: 'LoadState', state: State }
-    | { tag: 'PromptToExportState' }
+    | { tag: 'PromptToSaveState' }
     | { tag: 'CancelSearchRequest' }
     | { tag: 'SendSearchRequest' }
     | { tag: 'UpdateSearchState', state: SearchState }
@@ -199,7 +199,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             )
         }
 
-        case 'ImportStateFile':
+        case 'LoadStateFile':
             return sideEffect(async dispatch => {
                 let state: State | null
                 try {
@@ -226,9 +226,9 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         case 'LoadState':
             return update(action.state)
 
-        case 'PromptToExportState':
+        case 'PromptToSaveState':
             return sideEffect((_dispatch, state) => {
-                const json = JSON.stringify(escapeStateForExport(state))
+                const json = JSON.stringify(escapeStateForSave(state))
                 const uri = jsonToDataURI(json)
                 downloadURI(uri, 'state.json')
             })

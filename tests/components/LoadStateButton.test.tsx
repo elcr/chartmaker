@@ -1,7 +1,7 @@
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { ImportStateButton } from '@/components/ImportStateButton'
+import { LoadStateButton } from '@/components/LoadStateButton'
 import type { Action } from '@/reducer'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
@@ -15,7 +15,7 @@ const container = new RenderContainer()
 
 test('renders button and hidden file input', () => {
     render(
-        <ImportStateButton dispatch={ignore}/>,
+        <LoadStateButton dispatch={ignore}/>,
         container.element
     )
 
@@ -25,7 +25,7 @@ test('renders button and hidden file input', () => {
 
 test('clicking button actually clicks input', () => {
     render(
-        <ImportStateButton dispatch={ignore}/>,
+        <LoadStateButton dispatch={ignore}/>,
         container.element
     )
 
@@ -44,7 +44,7 @@ test('dispatches action when input changed and file selected', () => {
     const mock = jest.fn<void, [ Action ]>()
 
     render(
-        <ImportStateButton dispatch={mock}/>,
+        <LoadStateButton dispatch={mock}/>,
         container.element
     )
 
@@ -60,7 +60,7 @@ test('dispatches action when input changed and file selected', () => {
 
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith<[ Action ]>({
-        tag: 'ImportStateFile',
+        tag: 'LoadStateFile',
         file: fakeFile
     })
 })
@@ -70,7 +70,7 @@ test('does nothing when input changed but no file selected', () => {
     const mock = jest.fn<void, [ Action ]>()
 
     render(
-        <ImportStateButton dispatch={mock}/>,
+        <LoadStateButton dispatch={mock}/>,
         container.element
     )
 

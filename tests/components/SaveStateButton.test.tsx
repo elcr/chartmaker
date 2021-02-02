@@ -1,7 +1,7 @@
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import { ExportStateButton } from '@/components/ExportStateButton'
+import { SaveStateButton } from '@/components/SaveStateButton'
 import type { Action } from '@/reducer'
 
 import { RenderContainer, ignore, fireEvent } from '../utils'
@@ -15,7 +15,7 @@ const container = new RenderContainer()
 
 test('renders button', () => {
     render(
-        <ExportStateButton dispatch={ignore}/>,
+        <SaveStateButton dispatch={ignore}/>,
         container.element
     )
 
@@ -27,7 +27,7 @@ test('dispatches action when clicked', () => {
     const mock = jest.fn<void, [ Action ]>()
 
     render(
-        <ExportStateButton dispatch={mock}/>,
+        <SaveStateButton dispatch={mock}/>,
         container.element
     )
 
@@ -35,6 +35,6 @@ test('dispatches action when clicked', () => {
 
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith<[ Action ]>({
-        tag: 'PromptToExportState'
+        tag: 'PromptToSaveState'
     })
 })

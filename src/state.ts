@@ -1,4 +1,4 @@
-import { Album, Chart, State, V1State } from '@/types'
+import { Album, Chart, State, V1State, V2State, ExportChart } from '@/types'
 import {
     DEFAULT_CHART_NAME,
     CHART_ALBUMS_COUNT,
@@ -6,7 +6,8 @@ import {
     DEFAULT_COLLAGE_ROWS_Y,
     DEFAULT_CHART_SHAPE,
     LOCAL_STORAGE_KEY,
-    STATE_VERSION
+    STATE_VERSION,
+    EXPORT_CHART_PLACEHOLDER
 } from '@/constants'
 
 
@@ -43,6 +44,9 @@ export function validateState(state: unknown): State | null {
     if (State.guard(state)) {
         return state
     }
+    if (V2State.guard(state)) {
+        return v2StateToCurrentState(state)
+    }
     if (V1State.guard(state)) {
         return v1StateToCurrentState(state)
     }
@@ -67,6 +71,8 @@ export function loadStateFromLocalStorage(): State | null {
 
 
 function v1StateToCurrentState(state: V1State): State {
+    // all fields specified manually rather than using spread to strip unused
+    // legacy fields
     return {
         version: STATE_VERSION,
         activeChartIndex: state.activeChartIndex,
@@ -90,7 +96,16 @@ function v1StateToCurrentState(state: V1State): State {
 }
 
 
-export function escapeStateForExport(state: State): State {
+function v2StateToCurrentState(state: V2State): State {
+    // v2 -> v3 has no legacy fields so spread ok
+    return {
+        ...state,
+        version: STATE_VERSION
+    }
+}
+
+
+export function escapeStateForSave(state: State): State {
     return {
         version: state.version,
         activeChartIndex: state.activeChartIndex,
@@ -104,13 +119,14 @@ export function escapeStateForExport(state: State): State {
             tag: 'Waiting',
             query: state.search.query
         },
-        highlightedID: undefined
+        highlightedID: undefined,
+        viewing: undefined
     }
 }
 
 
 export function saveStateToLocalStorage(state: State) {
-    const escaped = escapeStateForExport(state)
+    const escaped = escapeStateForSave(state)
     const json = JSON.stringify(escaped)
     localStorage.setItem(LOCAL_STORAGE_KEY, json)
 }
@@ -131,4 +147,27 @@ export function findAlbumIndexWithID(albums: ReadonlyArray<Album>, id: number): 
     return index === -1
         ? null
         : index
+}
+
+
+export function createExportChart(state: State): ExportChart {
+    const chart = state.charts[state.activeChartIndex]!
+    return {
+        name: chart.name,
+        shape: chart.shape.tag === 'Top'
+            ? chart.shape
+            : {
+                tag: 'Collage',
+                rowsX: chart.rowsX,
+                rowsY: chart.rowsY
+            },
+        albums: chart.albums.map(album =>
+            isPlaceholderAlbum(album)
+                ? EXPORT_CHART_PLACEHOLDER
+                : {
+                    name: album.name,
+                    url: album.url
+                }
+        )
+    }
 }

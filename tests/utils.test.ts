@@ -58,3 +58,6 @@ describe('downloadURI', () => {
         expect(removeMock).toHaveBeenCalledTimes(1)
     })
 })
+
+
+test.todo('base64EncodeString')

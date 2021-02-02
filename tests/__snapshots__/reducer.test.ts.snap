@@ -141,7 +141,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -177,7 +177,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "UpdateWithSideEffect",
 }
@@ -310,7 +310,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -360,7 +360,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -403,7 +403,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -446,7 +446,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -483,7 +483,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -520,7 +520,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -557,7 +557,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -594,7 +594,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -643,7 +643,7 @@ Object {
       "query": "Test query",
       "tag": "Complete",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -692,7 +692,7 @@ Object {
       "query": "Test query",
       "tag": "Complete",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -740,7 +740,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -776,7 +776,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -824,37 +824,9 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
-}
-`;
-
-exports[`ImportStateFile json parse error dispatches error action 1`] = `
-Object {
-  "sideEffect": [Function],
-  "tag": "SideEffect",
-}
-`;
-
-exports[`ImportStateFile read error dispatches error action 1`] = `
-Object {
-  "sideEffect": [Function],
-  "tag": "SideEffect",
-}
-`;
-
-exports[`ImportStateFile validation error dispatches error action 1`] = `
-Object {
-  "sideEffect": [Function],
-  "tag": "SideEffect",
-}
-`;
-
-exports[`ImportStateFile validation success dispatches load state action 1`] = `
-Object {
-  "sideEffect": [Function],
-  "tag": "SideEffect",
 }
 `;
 
@@ -891,7 +863,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -930,9 +902,37 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
+}
+`;
+
+exports[`LoadStateFile json parse error dispatches error action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`LoadStateFile read error dispatches error action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`LoadStateFile validation error dispatches error action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
+}
+`;
+
+exports[`LoadStateFile validation success dispatches load state action 1`] = `
+Object {
+  "sideEffect": [Function],
+  "tag": "SideEffect",
 }
 `;
 
@@ -993,7 +993,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -1056,7 +1056,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -1119,7 +1119,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -1182,7 +1182,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -1392,7 +1392,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -1441,7 +1441,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -1504,7 +1504,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -1551,7 +1551,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -1598,7 +1598,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -1634,7 +1634,7 @@ Object {
       "query": "Test query",
       "tag": "Error",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -1673,7 +1673,7 @@ Object {
       "query": "Test query",
       "tag": "Loading",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "UpdateWithSideEffect",
 }
@@ -1735,7 +1735,7 @@ Object {
       "query": "Test query",
       "tag": "Loading",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "UpdateWithSideEffect",
 }
@@ -1797,7 +1797,7 @@ Object {
       "query": "Test query",
       "tag": "Loading",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "UpdateWithSideEffect",
 }
@@ -1859,7 +1859,7 @@ Object {
       "query": "Test query",
       "tag": "Loading",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "UpdateWithSideEffect",
 }
@@ -1921,7 +1921,7 @@ Object {
       "query": "Test query",
       "tag": "Loading",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "UpdateWithSideEffect",
 }
@@ -1983,7 +1983,7 @@ Object {
       "query": "Test query",
       "tag": "Loading",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "UpdateWithSideEffect",
 }
@@ -2043,7 +2043,7 @@ Array [
         "query": "Test query",
         "tag": "Complete",
       },
-      "version": 2,
+      "version": 3,
     },
     "tag": "LoadState",
   },
@@ -2083,7 +2083,7 @@ Object {
       "query": "Test query",
       "tag": "Loading",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "UpdateWithSideEffect",
 }
@@ -2142,7 +2142,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2178,7 +2178,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2240,7 +2240,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2303,7 +2303,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2338,7 +2338,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2373,7 +2373,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2408,7 +2408,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2443,7 +2443,7 @@ Object {
       "query": "Test query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2484,7 +2484,7 @@ Object {
       "query": "Test new query",
       "tag": "Complete",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2520,7 +2520,7 @@ Object {
       "query": "Test new query",
       "tag": "Error",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2555,7 +2555,7 @@ Object {
       "query": "Test new query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2596,7 +2596,7 @@ Object {
       "query": "Test complete query",
       "tag": "Complete",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2632,7 +2632,7 @@ Object {
       "query": "Test error query",
       "tag": "Error",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2668,7 +2668,7 @@ Object {
       "query": "Test loading query",
       "tag": "Loading",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }
@@ -2703,7 +2703,7 @@ Object {
       "query": "Test waiting query",
       "tag": "Waiting",
     },
-    "version": 2,
+    "version": 3,
   },
   "tag": "Update",
 }

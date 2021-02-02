@@ -7,8 +7,8 @@ import { MAX_SCREENSHOT_SCALE } from '@/constants'
 import { ControlledSlider } from '@/components/ControlledSlider'
 import { SidebarGroup } from '@/components/SidebarGroup'
 import { Button } from '@/components/Button'
-import { ImportStateButton } from '@/components/ImportStateButton'
-import { ExportStateButton } from '@/components/ExportStateButton'
+import { LoadStateButton } from '@/components/LoadStateButton'
+import { SaveStateButton } from '@/components/SaveStateButton'
 
 
 export const sliderID = 'screenshotScale'
@@ -67,8 +67,8 @@ export const ImportExportScreenshotButtons: FC<ImportExportScreenshotButtonsProp
                     Screenshot
                 </Button>
                 <div className={stateButtonsContainerStyle}>
-                    <ImportStateButton dispatch={dispatch}/>
-                    <ExportStateButton dispatch={dispatch}/>
+                    <LoadStateButton dispatch={dispatch}/>
+                    <SaveStateButton dispatch={dispatch}/>
                 </div>
             </div>
         </SidebarGroup>

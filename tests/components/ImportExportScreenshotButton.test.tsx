@@ -15,8 +15,8 @@ import { RenderContainer, ignore, fireEvent } from '../utils'
 
 jest.mock('@/components/Button')
 jest.mock('@/components/ControlledSlider')
-jest.mock('@/components/ImportStateButton')
-jest.mock('@/components/ExportStateButton')
+jest.mock('@/components/LoadStateButton')
+jest.mock('@/components/SaveStateButton')
 jest.mock('@/components/SidebarGroup')
 
 

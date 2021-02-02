@@ -1,5 +1,5 @@
 import html2canvas from 'html2canvas'
-import { fromUint8Array as base64FromUint8Array } from 'js-base64'
+import { fromUint8Array as base64FromUint8Array, encode } from 'js-base64'
 
 import { BACKGROUND_COLOUR } from '@/style'
 
@@ -35,4 +35,9 @@ export function downloadURI(uri: string, filename: string) {
     link.download = filename
     link.click()
     link.remove()
+}
+
+
+export function base64EncodeString(value: string): string {
+    return encode(value, true)
 }

@@ -139,6 +139,14 @@ export function createTestStateForEscaping(): State {
             loading: true,
             scale: 2
         },
-        highlightedID: 123
+        highlightedID: 123,
+        viewing: {
+            name: 'Test export chart',
+            albums: [],
+            shape: {
+                tag: 'Top',
+                size: 40
+            }
+        }
     }
 }

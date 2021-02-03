@@ -6,20 +6,29 @@ import { EditorChart } from '@/components/EditorChart'
 import { RenderContainer, ignore, createTestNamedAlbums } from '../utils'
 
 
-jest.mock('@/components/EditorAlbumRow')
-jest.mock('@/components/EditorAlbumTitleGroup')
+jest.mock('@/components/EditorAlbumRowsContainer')
+jest.mock('@/components/EditorAlbumTitlesContainer')
 jest.mock('@/components/Chart')
 
 
 const container = new RenderContainer()
 
+const albums = createTestNamedAlbums(100).map((album, index) =>
+    index % 3 === 0
+        ? album.id
+        : album
+)
+
 
 test.each<[ string, ChartShape, number, number, number | undefined ]>([
-    [ 'Test chart', { tag: 'Top', size: 100 }, 1, 2, 1 ],
-    [ 'Test chart 2', { tag: 'Collage' }, 3, 4, undefined ],
+    [ 'Test chart', { tag: 'Top', size: 100 }, 10, 10, 1 ],
+    [ 'Test chart 2', { tag: 'Top', size: 42 }, 10, 10, 2 ],
+    [ 'Test chart 3', { tag: 'Top', size: 40 }, 10, 10, undefined ],
+    [ 'Test chart 4', { tag: 'Collage' }, 4, 5, undefined ],
+    [ 'Test chart 5', { tag: 'Collage' }, 10, 10, undefined ],
 ])('renders chart with editor rows and titles', (name, shape, rowsX, rowsY, highlighted) => {
     render(
-        <EditorChart albums={createTestNamedAlbums(5)}
+        <EditorChart albums={albums}
             name={name}
             shape={shape}
             rowsX={rowsX}

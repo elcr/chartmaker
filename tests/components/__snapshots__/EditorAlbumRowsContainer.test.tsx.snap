@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders container and rows 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-album-rows-container"
+  >
+    <div
+      class="mock-editor-album-title"
+    >
+      Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"}]
+      Size: 1rem
+      Highlighted: 1
+    </div>
+    <div
+      class="mock-editor-album-title"
+    >
+      Albums: [4,5,6,7,8]
+      Size: 2rem
+      Highlighted: 1
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders container and rows 2`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-album-rows-container"
+  >
+    <div
+      class="mock-editor-album-title"
+    >
+      Albums: [1,2,3]
+      Size: 3rem
+      Highlighted: undefined
+    </div>
+    <div
+      class="mock-editor-album-title"
+    >
+      Albums: [{"id":4,"name":"Test album 4","url":"https://test.com/4"}]
+      Size: 2rem
+      Highlighted: undefined
+    </div>
+    <div
+      class="mock-editor-album-title"
+    >
+      Albums: [8,9]
+      Size: 1rem
+      Highlighted: undefined
+    </div>
+  </div>
+</div>
+`;

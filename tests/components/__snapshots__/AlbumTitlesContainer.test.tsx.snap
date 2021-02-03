@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders children and dispatches on mouse leave 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    id="titles"
+  >
+    Test children
+  </div>
+</div>
+`;

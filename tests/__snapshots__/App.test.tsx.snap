@@ -27,7 +27,7 @@ exports[`renders sidebar and editor chart 1`] = `
     class="emotion-0"
   >
     <div
-      class="mock-sidebar"
+      class="mock-editor-sidebar"
     >
       Charts: [
   {

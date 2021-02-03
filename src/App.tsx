@@ -14,7 +14,7 @@ import {
     FONT_SIZE,
     CONTAINER_PADDING_SIZE
 } from '@/style'
-import { Sidebar } from '@/components/Sidebar'
+import { EditorSidebar } from '@/components/EditorSidebar'
 import { EditorChart } from '@/components/EditorChart'
 
 
@@ -43,7 +43,7 @@ export const App: FC = () => {
 
     return (
         <div className={rootStyle}>
-            <Sidebar dispatch={dispatch}
+            <EditorSidebar dispatch={dispatch}
                 charts={state.charts}
                 activeChartIndex={state.activeChartIndex}
                 apiKey={state.apiKey}

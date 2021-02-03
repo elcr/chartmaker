@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders groups with no search results unless complete and album present 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar"
+  >
+    <div
+      class="mock-chart-manager"
+    >
+      Charts: [{"name":"Test chart 1","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":40},"albums":[]},{"name":"Test chart 2","rowsX":3,"rowsY":7,"shape":{"tag":"Collage"},"albums":[]}]
+      Active chart index: 1
+    </div>
+    <div
+      class="mock-import-export-screenshot-buttons"
+    >
+      Screenshot state: {"loading":false,"scale":2}
+    </div>
+    <div
+      class="mock-chart-shape-controls"
+    >
+      Shape: {"tag":"Collage"}
+      Rows X: 3
+      Rows Y: 7
+    </div>
+    <div
+      class="mock-api-key-input"
+    >
+      API Key: Test api key
+    </div>
+    <div
+      class="mock-search-box"
+    >
+      Search state: {"tag":"Waiting","query":"Test query"}
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders groups with no search results unless complete and album present 2`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar"
+  >
+    <div
+      class="mock-chart-manager"
+    >
+      Charts: [{"name":"Test chart 1","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":40},"albums":[]},{"name":"Test chart 2","rowsX":3,"rowsY":7,"shape":{"tag":"Collage"},"albums":[]}]
+      Active chart index: 1
+    </div>
+    <div
+      class="mock-import-export-screenshot-buttons"
+    >
+      Screenshot state: {"loading":false,"scale":2}
+    </div>
+    <div
+      class="mock-chart-shape-controls"
+    >
+      Shape: {"tag":"Collage"}
+      Rows X: 3
+      Rows Y: 7
+    </div>
+    <div
+      class="mock-api-key-input"
+    >
+      API Key: Test api key
+    </div>
+    <div
+      class="mock-search-box"
+    >
+      Search state: {"tag":"Loading","query":"Test query"}
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders groups with no search results unless complete and album present 3`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar"
+  >
+    <div
+      class="mock-chart-manager"
+    >
+      Charts: [{"name":"Test chart 1","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":40},"albums":[]},{"name":"Test chart 2","rowsX":3,"rowsY":7,"shape":{"tag":"Collage"},"albums":[]}]
+      Active chart index: 1
+    </div>
+    <div
+      class="mock-import-export-screenshot-buttons"
+    >
+      Screenshot state: {"loading":false,"scale":2}
+    </div>
+    <div
+      class="mock-chart-shape-controls"
+    >
+      Shape: {"tag":"Collage"}
+      Rows X: 3
+      Rows Y: 7
+    </div>
+    <div
+      class="mock-api-key-input"
+    >
+      API Key: Test api key
+    </div>
+    <div
+      class="mock-search-box"
+    >
+      Search state: {"tag":"Error","query":"Test query","message":"Test error"}
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders groups with no search results unless complete and album present 4`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar"
+  >
+    <div
+      class="mock-chart-manager"
+    >
+      Charts: [{"name":"Test chart 1","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":40},"albums":[]},{"name":"Test chart 2","rowsX":3,"rowsY":7,"shape":{"tag":"Collage"},"albums":[]}]
+      Active chart index: 1
+    </div>
+    <div
+      class="mock-import-export-screenshot-buttons"
+    >
+      Screenshot state: {"loading":false,"scale":2}
+    </div>
+    <div
+      class="mock-chart-shape-controls"
+    >
+      Shape: {"tag":"Collage"}
+      Rows X: 3
+      Rows Y: 7
+    </div>
+    <div
+      class="mock-api-key-input"
+    >
+      API Key: Test api key
+    </div>
+    <div
+      class="mock-search-box"
+    >
+      Search state: {"tag":"Complete","query":"Test query","albums":[]}
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders groups with no search results unless complete and album present 5`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-sidebar"
+  >
+    <div
+      class="mock-chart-manager"
+    >
+      Charts: [{"name":"Test chart 1","rowsX":10,"rowsY":10,"shape":{"tag":"Top","size":40},"albums":[]},{"name":"Test chart 2","rowsX":3,"rowsY":7,"shape":{"tag":"Collage"},"albums":[]}]
+      Active chart index: 1
+    </div>
+    <div
+      class="mock-import-export-screenshot-buttons"
+    >
+      Screenshot state: {"loading":false,"scale":2}
+    </div>
+    <div
+      class="mock-chart-shape-controls"
+    >
+      Shape: {"tag":"Collage"}
+      Rows X: 3
+      Rows Y: 7
+    </div>
+    <div
+      class="mock-api-key-input"
+    >
+      API Key: Test api key
+    </div>
+    <div
+      class="mock-search-box"
+    >
+      Search state: {"tag":"Complete","query":"Test query","albums":[{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"}]}
+    </div>
+    <div
+      class="mock-search-results"
+    >
+      Albums: [{"id":1,"name":"Test album 1","url":"https://test.com/1"},{"id":2,"name":"Test album 2","url":"https://test.com/2"},{"id":3,"name":"Test album 3","url":"https://test.com/3"},{"id":4,"name":"Test album 4","url":"https://test.com/4"},{"id":5,"name":"Test album 5","url":"https://test.com/5"}]
+    </div>
+  </div>
+</div>
+`;

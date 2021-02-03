@@ -1,25 +1,7 @@
-import type { FC, RefObject } from 'react'
+import type { FC } from 'react'
 import { css } from 'emotion'
 
-import type { DispatchProps } from '@/reducer'
-import type { Chart, SearchState, ScreenshotState } from '@/types'
 import { SIDEBAR_WIDTH, CONTAINER_PADDING_SIZE } from '@/style'
-import { ChartManager } from '@/components/ChartManager'
-import { APIKeyInput } from '@/components/APIKeyInput'
-import { ImportExportScreenshotButtons } from '@/components/ImportExportScreenshotButtons'
-import { SearchBox } from '@/components/SearchBox'
-import { SearchResults } from '@/components/SearchResults'
-import { ChartShapeControls } from '@/components/ChartShapeControls'
-
-
-export type SidebarProps = DispatchProps & {
-    charts: Chart[]
-    activeChartIndex: number
-    apiKey: string
-    searchState: SearchState
-    screenshotState: ScreenshotState
-    chartRef: RefObject<HTMLElement>
-}
 
 
 const style = css({
@@ -32,33 +14,7 @@ const style = css({
 })
 
 
-export const Sidebar: FC<SidebarProps> = ({
-    dispatch,
-    charts,
-    activeChartIndex,
-    apiKey,
-    searchState,
-    screenshotState,
-    chartRef
-}) => {
-    let searchResults: JSX.Element | undefined
-    if (searchState.tag === 'Complete' && searchState.albums.length > 0) {
-        searchResults = <SearchResults albums={searchState.albums}/>
-    }
-
-    return (
-        <aside className={style}>
-            <ChartManager dispatch={dispatch}
-                charts={charts}
-                activeChartIndex={activeChartIndex}/>
-            <ImportExportScreenshotButtons dispatch={dispatch}
-                chartRef={chartRef}
-                screenshotState={screenshotState}/>
-            <ChartShapeControls {...charts[activeChartIndex]!}
-                dispatch={dispatch}/>
-            <APIKeyInput dispatch={dispatch} apiKey={apiKey}/>
-            <SearchBox dispatch={dispatch} searchState={searchState}/>
-            {searchResults}
-        </aside>
-    )
-}
+export const Sidebar: FC = ({ children }) =>
+    <aside className={style}>
+        {children}
+    </aside>

@@ -7,7 +7,7 @@ import { STATE_VERSION } from '@/constants'
 import { RenderContainer, createTestPlaceholderAlbums, createTestNamedAlbums } from './utils'
 
 
-jest.mock('@/components/Sidebar')
+jest.mock('@/components/EditorSidebar')
 jest.mock('@/components/EditorChart')
 
 

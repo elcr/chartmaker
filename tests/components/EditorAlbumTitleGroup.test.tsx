@@ -15,7 +15,7 @@ const container = new RenderContainer()
 test.each([ 123, undefined ])('renders group with titles', highlighted => {
     render(
         <EditorAlbumTitleGroup dispatch={ignore}
-            albums={createTestNamedAlbums(3)}
+            group={createTestNamedAlbums(3)}
             highlighted={highlighted}/>,
         container.element
     )

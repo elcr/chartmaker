@@ -14,8 +14,8 @@ import {
     FONT_SIZE,
     CONTAINER_PADDING_SIZE
 } from '@/style'
-import { Chart } from '@/components/Chart'
 import { Sidebar } from '@/components/Sidebar'
+import { EditorChart } from '@/components/EditorChart'
 
 
 const rootStyle = css({
@@ -50,7 +50,7 @@ export const App: FC = () => {
                 searchState={state.search}
                 screenshotState={state.screenshot}
                 chartRef={chartRef}/>
-            <Chart {...state.charts[state.activeChartIndex]!}
+            <EditorChart {...state.charts[state.activeChartIndex]!}
                 innerRef={chartRef}
                 dispatch={dispatch}
                 highlighted={state.highlightedID}/>

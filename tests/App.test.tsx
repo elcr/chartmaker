@@ -8,7 +8,7 @@ import { RenderContainer, createTestPlaceholderAlbums, createTestNamedAlbums } f
 
 
 jest.mock('@/components/Sidebar')
-jest.mock('@/components/Chart')
+jest.mock('@/components/EditorChart')
 
 
 const localStorageMock = jest.spyOn(Storage.prototype, 'getItem')
@@ -52,7 +52,7 @@ afterEach(() => localStorageMock.mockReset())
 const container = new RenderContainer()
 
 
-test('renders sidebar and chart', () => {
+test('renders sidebar and editor chart', () => {
     render(
         <App/>,
         container.element

@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders chart with editor rows and titles 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-chart"
+  >
+    Albums: [
+  {
+    "id": 1,
+    "name": "Test album 1",
+    "url": "https://test.com/1"
+  },
+  {
+    "id": 2,
+    "name": "Test album 2",
+    "url": "https://test.com/2"
+  },
+  {
+    "id": 3,
+    "name": "Test album 3",
+    "url": "https://test.com/3"
+  },
+  {
+    "id": 4,
+    "name": "Test album 4",
+    "url": "https://test.com/4"
+  },
+  {
+    "id": 5,
+    "name": "Test album 5",
+    "url": "https://test.com/5"
+  }
+]
+    Name: Test chart
+    Rows X: 1
+    Rows Y: 2
+    Shape: {"tag":"Top","size":100}
+    <div
+      class="mock-editor-album-title"
+    >
+      Albums: []
+      Size: Mock chart size
+      Highlighted: 1
+    </div>
+    <div
+      class="mock-editor-album-title-group"
+    >
+      Albums: []
+      Highlighted: 1
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders chart with editor rows and titles 2`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-chart"
+  >
+    Albums: [
+  {
+    "id": 1,
+    "name": "Test album 1",
+    "url": "https://test.com/1"
+  },
+  {
+    "id": 2,
+    "name": "Test album 2",
+    "url": "https://test.com/2"
+  },
+  {
+    "id": 3,
+    "name": "Test album 3",
+    "url": "https://test.com/3"
+  },
+  {
+    "id": 4,
+    "name": "Test album 4",
+    "url": "https://test.com/4"
+  },
+  {
+    "id": 5,
+    "name": "Test album 5",
+    "url": "https://test.com/5"
+  }
+]
+    Name: Test chart 2
+    Rows X: 3
+    Rows Y: 4
+    Shape: {"tag":"Collage"}
+    <div
+      class="mock-editor-album-title"
+    >
+      Albums: []
+      Size: Mock chart size
+      Highlighted: undefined
+    </div>
+    <div
+      class="mock-editor-album-title-group"
+    >
+      Albums: []
+      Highlighted: undefined
+    </div>
+  </div>
+</div>
+`;

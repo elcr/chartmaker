@@ -1,7 +1,7 @@
-import type { FC, Ref } from 'react'
+import type { ComponentType, Ref } from 'react'
 import { css } from 'emotion'
 
-import { Chart as ChartDetails, Album, NamedAlbum } from '@/types'
+import type { ChartShape } from '@/types'
 import type { DispatchProps } from '@/reducer'
 import {
     VERY_LARGE_ALBUM_SIZE,
@@ -13,21 +13,10 @@ import {
     TINY_ALBUM_SIZE,
     BORDER
 } from '@/style'
-import { EditorAlbumRow } from '@/components/EditorAlbumRow'
-import { EditorAlbumTitleGroup } from '@/components/EditorAlbumTitleGroup'
 
 
 export const rowsID = 'rows'
 export const titlesID = 'titles'
-
-
-export type ChartProps =
-    & DispatchProps
-    & {
-        innerRef: Ref<HTMLElement>
-        highlighted: number | undefined
-    }
-    & ChartDetails
 
 
 const outContainerStyle = css({
@@ -52,13 +41,31 @@ const chartStyle = css({
 })
 
 
-type AlbumRow = {
-    albums: Album[]
+type AlbumRow<TAlbum> = {
+    albums: TAlbum[]
     size: string
 }
 
+export type AlbumRowComponentProps<TAlbum> = AlbumRow<TAlbum>
 
-function top40Rows(albums: Album[]): AlbumRow[] {
+export type TitleGroupComponentProps<TNamedAlbum> = {
+    group: TNamedAlbum[]
+}
+
+export type ChartProps<TNamedAlbum, TPlaceholderAlbum> = DispatchProps & {
+    albums: (TNamedAlbum | TPlaceholderAlbum)[]
+    isNamedAlbum: (album: TNamedAlbum | TPlaceholderAlbum) => album is TNamedAlbum
+    name: string
+    shape: ChartShape
+    rowsX: number
+    rowsY: number
+    innerRef: Ref<HTMLElement>
+    albumRowComponent: ComponentType<AlbumRowComponentProps<TNamedAlbum | TPlaceholderAlbum>>
+    titleGroupComponent: ComponentType<TitleGroupComponentProps<TNamedAlbum>>
+}
+
+
+function top40Rows<TAlbum>(albums: TAlbum[]): AlbumRow<TAlbum>[] {
     return [
         {
             albums: albums.slice(0, 5),
@@ -88,7 +95,7 @@ function top40Rows(albums: Album[]): AlbumRow[] {
 }
 
 
-function top42Rows(albums: Album[]): AlbumRow[] {
+function top42Rows<TAlbum>(albums: TAlbum[]): AlbumRow<TAlbum>[] {
     return [
         {
             albums: albums.slice(0, 5),
@@ -118,7 +125,7 @@ function top42Rows(albums: Album[]): AlbumRow[] {
 }
 
 
-function top100Rows(albums: Album[]): AlbumRow[] {
+function top100Rows<TAlbum>(albums: TAlbum[]): AlbumRow<TAlbum>[] {
     return [
         {
             albums: albums.slice(0, 5),
@@ -168,15 +175,15 @@ function top100Rows(albums: Album[]): AlbumRow[] {
 }
 
 
-type AlbumTitleGroup = NamedAlbum[]
-
-
-function titleGroupsFromRows(rows: AlbumRow[]): AlbumTitleGroup[] {
-    const groups: AlbumTitleGroup[] = []
+function titleGroupsFromRows<TNamedAlbum, TPlaceholderAlbum>(
+    rows: AlbumRow<TNamedAlbum | TPlaceholderAlbum>[],
+    isNamedAlbum: (album: TNamedAlbum | TPlaceholderAlbum) => album is TNamedAlbum
+): TNamedAlbum[][] {
+    const groups: TNamedAlbum[][] = []
     let lastSize = ''
 
     for (const row of rows) {
-        const named = row.albums.filter(NamedAlbum.guard)
+        const named = row.albums.filter(isNamedAlbum)
 
         if (row.size === lastSize) {
             for (const album of named) {
@@ -193,9 +200,14 @@ function titleGroupsFromRows(rows: AlbumRow[]): AlbumTitleGroup[] {
 }
 
 
-function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRow[], AlbumTitleGroup[] ] {
-    const rows: AlbumRow[] = []
-    const groups: AlbumTitleGroup[] = []
+function collageGroups<TNamedAlbum, TPlaceholderAlbum>(
+    albums: (TNamedAlbum | TPlaceholderAlbum)[],
+    rowsX: number,
+    rowsY: number,
+    isNamedAlbum: (album: TNamedAlbum | TPlaceholderAlbum) => album is TNamedAlbum
+): [ AlbumRow<TNamedAlbum | TPlaceholderAlbum>[], TNamedAlbum[][] ] {
+    const rows: AlbumRow<TNamedAlbum | TPlaceholderAlbum>[] = []
+    const groups: TNamedAlbum[][] = []
 
     for (let y = 0; y < rowsY; y++) {
         const slice = albums.slice(rowsX * y, (rowsX * y) + rowsX)
@@ -204,7 +216,7 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
             size: LARGE_ALBUM_SIZE
         })
         groups.push(
-            slice.filter(NamedAlbum.guard)
+            slice.filter(isNamedAlbum)
         )
     }
 
@@ -212,7 +224,7 @@ function collageGroups(albums: Album[], rowsX: number, rowsY: number): [ AlbumRo
 }
 
 
-export const Chart: FC<ChartProps> = ({
+export function Chart<TNamedAlbum, TPlaceholderAlbum>({
     dispatch,
     albums,
     name,
@@ -220,10 +232,12 @@ export const Chart: FC<ChartProps> = ({
     rowsX,
     rowsY,
     innerRef,
-    highlighted
-}) => {
-    let rows: AlbumRow[]
-    let groups: AlbumTitleGroup[]
+    isNamedAlbum,
+    albumRowComponent: AlbumRowComponent,
+    titleGroupComponent: TitleGroupComponent
+}: ChartProps<TNamedAlbum, TPlaceholderAlbum>) {
+    let rows: AlbumRow<TNamedAlbum | TPlaceholderAlbum>[]
+    let groups: TNamedAlbum[][]
     if (shape.tag === 'Top') {
         switch (shape.size) {
             case 40:
@@ -235,23 +249,17 @@ export const Chart: FC<ChartProps> = ({
             case 100:
                 rows = top100Rows(albums)
         }
-        groups = titleGroupsFromRows(rows)
+        groups = titleGroupsFromRows(rows, isNamedAlbum)
     }
     else {
-        [ rows, groups ] = collageGroups(albums, rowsX, rowsY)
+        [ rows, groups ] = collageGroups(albums, rowsX, rowsY, isNamedAlbum)
     }
 
     const rowElements = rows.map((row, index) =>
-        <EditorAlbumRow {...row}
-            key={index}
-            dispatch={dispatch}
-            highlighted={highlighted}/>
+        <AlbumRowComponent {...row} key={index}/>
     )
-    const titleElements = groups.map((albums, index) =>
-        <EditorAlbumTitleGroup key={index}
-            dispatch={dispatch}
-            albums={albums}
-            highlighted={highlighted}/>
+    const titleElements = groups.map((group, index) =>
+        <TitleGroupComponent key={index} group={group}/>
     )
 
     function mouseLeave() {

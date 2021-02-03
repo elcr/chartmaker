@@ -7,17 +7,17 @@ import { EditorAlbumTitle } from '@/components/EditorAlbumTitle'
 
 
 export type EditorAlbumTitleGroupProps = DispatchProps & {
-    albums: NamedAlbum[]
+    group: NamedAlbum[]
     highlighted: number | undefined
 }
 
 
 export const EditorAlbumTitleGroup: FC<EditorAlbumTitleGroupProps> = ({
     dispatch,
-    albums,
+    group,
     highlighted
 }) => {
-    const titles = albums.map((album, index) =>
+    const titles = group.map((album, index) =>
         <EditorAlbumTitle key={index}
             dispatch={dispatch}
             album={album}

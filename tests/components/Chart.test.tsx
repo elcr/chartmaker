@@ -1,22 +1,51 @@
-import React, { createRef } from 'react'
+import { createRef, FC } from 'react'
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import type { Album } from '@/types'
-import { Chart, rowsID, titlesID } from '@/components/Chart'
+import type { Album, NamedAlbum } from '@/types'
+import {
+    AlbumRowComponentProps,
+    Chart,
+    rowsID,
+    TitleGroupComponentProps,
+    titlesID
+} from '@/components/Chart'
 import type { Action } from '@/reducer'
 
 import { RenderContainer, ignore, createTestNamedAlbums, fireEvent } from '../utils'
-
-
-jest.mock('@/components/EditorAlbumRow')
-jest.mock('@/components/EditorAlbumTitleGroup')
+import { identifiedAlbumIsPlaceholder } from '@/state'
 
 
 const container = new RenderContainer()
 
 
 const albums = createTestNamedAlbums(100)
+
+function isNamedAlbum(album: Album): album is NamedAlbum {
+    return !identifiedAlbumIsPlaceholder(album)
+}
+
+
+const TestAlbumRow: FC<AlbumRowComponentProps<Album>> = ({ albums, size }) => {
+    const json = JSON.stringify(albums)
+    return (
+        <div className='test-album-row'>
+            {`Albums: ${json}`}
+            {`Size: ${size}`}
+        </div>
+    )
+}
+
+
+const TestTitleGroup: FC<TitleGroupComponentProps<Album>> = ({ group }) => {
+    const json = JSON.stringify(group)
+    return (
+        <div className='test-title-group'>
+            {`Albums: ${json}`}
+        </div>
+    )
+}
+
 
 test.each([ 40, 42, 100 ] as const)('renders with top shape', size => {
     render(
@@ -27,7 +56,9 @@ test.each([ 40, 42, 100 ] as const)('renders with top shape', size => {
             rowsY={10}
             innerRef={ignore}
             dispatch={ignore}
-            highlighted={5}/>,
+            isNamedAlbum={isNamedAlbum}
+            albumRowComponent={TestAlbumRow}
+            titleGroupComponent={TestTitleGroup}/>,
         container.element
     )
 
@@ -44,7 +75,9 @@ test('renders with collage shape', () => {
             rowsY={7}
             innerRef={ignore}
             dispatch={ignore}
-            highlighted={undefined}/>,
+            isNamedAlbum={isNamedAlbum}
+            albumRowComponent={TestAlbumRow}
+            titleGroupComponent={TestTitleGroup}/>,
         container.element
     )
 
@@ -66,7 +99,9 @@ test('excludes placeholder albums from titles', () => {
             rowsY={5}
             innerRef={ignore}
             dispatch={ignore}
-            highlighted={3}/>,
+            isNamedAlbum={isNamedAlbum}
+            albumRowComponent={TestAlbumRow}
+            titleGroupComponent={TestTitleGroup}/>,
         container.element
     )
 
@@ -85,7 +120,9 @@ test('passes ref', () => {
             rowsY={7}
             innerRef={ref}
             dispatch={ignore}
-            highlighted={undefined}/>,
+            isNamedAlbum={isNamedAlbum}
+            albumRowComponent={TestAlbumRow}
+            titleGroupComponent={TestTitleGroup}/>,
         container.element
     )
 
@@ -104,11 +141,16 @@ test('dispatches unhighlight action on mouse leaving albums container', () => {
             rowsY={7}
             innerRef={ignore}
             dispatch={mock}
-            highlighted={undefined}/>,
+            isNamedAlbum={isNamedAlbum}
+            albumRowComponent={TestAlbumRow}
+            titleGroupComponent={TestTitleGroup}/>,
         container.element
     )
 
-    act(() => fireEvent('mouseLeave', container.element?.querySelector(`#${rowsID}`)))
+    act(() => {
+        debugger
+        fireEvent('mouseLeave', container.element?.querySelector(`#${rowsID}`))
+    })
 
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith<[ Action ]>({
@@ -128,7 +170,9 @@ test('dispatches unhighlight action on mouse leaving titles container', () => {
             rowsY={7}
             innerRef={ignore}
             dispatch={mock}
-            highlighted={undefined}/>,
+            isNamedAlbum={isNamedAlbum}
+            albumRowComponent={TestAlbumRow}
+            titleGroupComponent={TestTitleGroup}/>,
         container.element
     )
 

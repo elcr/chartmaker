@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders sidebar and chart 1`] = `
+exports[`renders sidebar and editor chart 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -154,7 +154,7 @@ exports[`renders sidebar and chart 1`] = `
       Active chart index: 0
     </div>
     <div
-      class="mock-chart"
+      class="mock-editor-chart"
     >
       Albums: [
   0,
@@ -258,11 +258,11 @@ exports[`renders sidebar and chart 1`] = `
   98,
   99
 ]
+      Highlighted: undefined
       Name: Untitled chart
       Rows X: 5
       Rows Y: 5
       Shape: {"tag":"Top","size":40}
-      Highlighted: undefined
     </div>
   </div>
 </div>

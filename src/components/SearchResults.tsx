@@ -1,13 +1,13 @@
 import type { FC } from 'react'
 import { css } from 'emotion'
 
-import type { SearchAlbum } from '@/types'
+import type { UnidentifiedNamedAlbum } from '@/types'
 import { SidebarGroup } from '@/components/SidebarGroup'
 import { SearchAlbumCover } from '@/components/SearchAlbumCover'
 
 
 export type SearchResultsProps = {
-    albums: SearchAlbum[]
+    albums: UnidentifiedNamedAlbum[]
 }
 
 

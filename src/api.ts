@@ -5,7 +5,7 @@ import {
     Static
 } from 'runtypes'
 
-import type { SearchAlbum } from '@/types'
+import type { UnidentifiedNamedAlbum } from '@/types'
 
 
 const LastFMAlbum = Record_({
@@ -39,8 +39,8 @@ function isLastFMNullString(value: string): boolean {
 }
 
 
-function formatLastFMResult(result: LastFMResult): SearchAlbum[] {
-    const albums: SearchAlbum[] = []
+function formatLastFMResult(result: LastFMResult): UnidentifiedNamedAlbum[] {
+    const albums: UnidentifiedNamedAlbum[] = []
     for (const album of result.results.albummatches.album) {
         if (isLastFMNullString(album.artist)
                 || isLastFMNullString(album.name)
@@ -65,7 +65,7 @@ export type SearchArguments = {
 
 
 export type SearchResult =
-    | { tag: 'Ok', albums: SearchAlbum[] }
+    | { tag: 'Ok', albums: UnidentifiedNamedAlbum[] }
     | { tag: 'StatusError', status: number }
     | { tag: 'JSONDecodeError' }
     | { tag: 'InvalidResponseData' }

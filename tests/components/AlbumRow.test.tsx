@@ -2,21 +2,17 @@ import { render } from 'react-dom'
 
 import { AlbumRow } from '@/components/AlbumRow'
 
-import { RenderContainer, ignore, createTestPlaceholderAlbums } from '../utils'
-
-
-jest.mock('@/components/ChartAlbumCover')
+import { RenderContainer } from '../utils'
 
 
 const container = new RenderContainer()
 
 
-test('renders album covers', () => {
+test('renders styled container and children', () => {
     render(
-        <AlbumRow dispatch={ignore}
-            albums={createTestPlaceholderAlbums(5)}
-            size='5rem'
-            highlighted={3}/>,
+        <AlbumRow>
+            Test children
+        </AlbumRow>,
         container.element
     )
 

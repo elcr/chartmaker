@@ -2,11 +2,12 @@ import type { FC, DragEvent } from 'react'
 import { css, cx } from 'emotion'
 
 import { TEXT_COLOUR, ALBUM_PADDING_SIZE, highlightBackgroundStyle } from '@/style'
-import type { SearchAlbum } from '@/types'
+import type { UnidentifiedAlbum } from '@/types'
+import { unidentifiedAlbumIsPlaceholder } from '@/state'
 
 
 export type AlbumCoverProps = {
-    album?: SearchAlbum
+    album: UnidentifiedAlbum
     size: string
     onDragStart?: (event: DragEvent<HTMLDivElement>) => void
     onDragOver?: (event: DragEvent<HTMLDivElement>) => void
@@ -35,12 +36,7 @@ const imageStyle = css({
     objectFit: 'contain'
 })
 
-// the overlay is given an additional non-emotion class so it can be used as a
-// selector in the container's style
-const overlaySelector = 'overlay'
-
 const baseOverlayStyle = cx(
-    overlaySelector,
     imageStyle,
     css({ zIndex: 10 })
 )
@@ -58,13 +54,12 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
     overlayClass,
     highlighted
 }) => {
-    const overlayStyle = cx(baseOverlayStyle, overlayClass)
     const containerStyle = cx(
         baseContainerStyle,
         css({
             width: size,
             height: size,
-            [`:not(:hover) .${overlaySelector}`]: {
+            ':not(:hover) > div': {
                 display: 'none'
             }
         }),
@@ -74,7 +69,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
     )
 
     let image: JSX.Element | undefined
-    if (album !== undefined) {
+    if (!unidentifiedAlbumIsPlaceholder(album)) {
         image = (
             // lazy loading causes problems with html2canvas so keep it default
             <img className={imageStyle}
@@ -82,11 +77,16 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
                 alt={album.name}
                 crossOrigin='anonymous'/>
         )
+        children = (
+            <div className={cx(baseOverlayStyle, overlayClass)}>
+                {children}
+            </div>
+        )
     }
 
     return (
         <div className={containerStyle}
-                draggable={album !== undefined}
+                draggable={!unidentifiedAlbumIsPlaceholder(album)}
                 onDragStart={onDragStart}
                 onDragEnter={onDragEnter}
                 onDragOver={onDragOver}
@@ -94,9 +94,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({
                 onMouseEnter={onMouseEnter}
                 title={album?.name}>
             {image}
-            <div className={overlayStyle}>
-                {children}
-            </div>
+            {children}
         </div>
     )
 }

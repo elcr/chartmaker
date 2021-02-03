@@ -1,7 +1,7 @@
 import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-import type { SearchAlbum } from '@/types'
+import type { UnidentifiedNamedAlbum } from '@/types'
 import { SearchAlbumCover } from '@/components/SearchAlbumCover'
 
 import {
@@ -16,7 +16,7 @@ jest.mock('@/components/AlbumCover')
 
 const container = new RenderContainer()
 
-const album: SearchAlbum = {
+const album: UnidentifiedNamedAlbum = {
     name: 'Test Album',
     url: 'https://test.com'
 }

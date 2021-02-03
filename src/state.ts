@@ -1,4 +1,12 @@
-import { Album, Chart, State, V1State, V2State, ExportChart } from '@/types'
+import {
+    Album,
+    Chart,
+    State,
+    V1State,
+    V2State,
+    ExportChart,
+    UnidentifiedAlbum
+} from '@/types'
 import {
     DEFAULT_CHART_NAME,
     CHART_ALBUMS_COUNT,
@@ -6,8 +14,7 @@ import {
     DEFAULT_COLLAGE_ROWS_Y,
     DEFAULT_CHART_SHAPE,
     LOCAL_STORAGE_KEY,
-    STATE_VERSION,
-    EXPORT_CHART_PLACEHOLDER
+    STATE_VERSION
 } from '@/constants'
 
 
@@ -132,13 +139,18 @@ export function saveStateToLocalStorage(state: State) {
 }
 
 
-export function isPlaceholderAlbum(album: Album): album is number {
+export function identifiedAlbumIsPlaceholder(album: Album): album is number {
     return typeof album === 'number'
 }
 
 
+export function unidentifiedAlbumIsPlaceholder(album: UnidentifiedAlbum): album is null {
+    return album === null
+}
+
+
 export function getAlbumID(album: Album): number {
-    return isPlaceholderAlbum(album) ? album : album.id
+    return identifiedAlbumIsPlaceholder(album) ? album : album.id
 }
 
 
@@ -162,8 +174,8 @@ export function createExportChart(state: State): ExportChart {
                 rowsY: chart.rowsY
             },
         albums: chart.albums.map(album =>
-            isPlaceholderAlbum(album)
-                ? EXPORT_CHART_PLACEHOLDER
+            identifiedAlbumIsPlaceholder(album)
+                ? null
                 : {
                     name: album.name,
                     url: album.url

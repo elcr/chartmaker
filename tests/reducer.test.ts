@@ -3,7 +3,7 @@ import produce from 'immer'
 
 import { reducer, Action } from '@/reducer'
 import { search } from '@/api'
-import type { State, SearchState, ChartShape, SearchAlbum } from '@/types'
+import type { State, SearchState, ChartShape, UnidentifiedNamedAlbum } from '@/types'
 import { MAX_SCREENSHOT_SCALE, MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
 
 import { createTestState, createTestNamedAlbums } from './utils'
@@ -559,7 +559,7 @@ describe('SendSearchRequest', () => {
     })
 
     test('side effect dispatches load state action on request success', async () => {
-        const albums: SearchAlbum[] = []
+        const albums: UnidentifiedNamedAlbum[] = []
         for (let index = 1; index < 4; index++) {
             albums.push({
                 name: `Test album ${index}`,

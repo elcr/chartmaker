@@ -6,7 +6,7 @@ import {
     loadStateFromLocalStorage,
     escapeStateForSave,
     saveStateToLocalStorage,
-    isPlaceholderAlbum,
+    identifiedAlbumIsPlaceholder,
     getAlbumID,
     findAlbumIndexWithID,
     createExportChart
@@ -116,14 +116,14 @@ describe('saveStateToLocalStorage', () => {
 })
 
 
-describe('isPlaceholderAlbum', () => {
+describe('identifiedAlbumIsPlaceholder', () => {
     test('returns false for album objects', () => {
-        const result = isPlaceholderAlbum({ id: 1, name: '', url: '' })
+        const result = identifiedAlbumIsPlaceholder({ id: 1, name: '', url: '' })
         expect(result).toBe(false)
     })
 
     test('returns true for numbers', () => {
-        const result = isPlaceholderAlbum(1)
+        const result = identifiedAlbumIsPlaceholder(1)
         expect(result).toBe(true)
     })
 })

@@ -13,7 +13,7 @@ import {
     TINY_ALBUM_SIZE,
     BORDER
 } from '@/style'
-import { AlbumRow } from '@/components/AlbumRow'
+import { EditorAlbumRow } from '@/components/EditorAlbumRow'
 import { EditorAlbumTitleGroup } from '@/components/EditorAlbumTitleGroup'
 
 
@@ -242,7 +242,7 @@ export const Chart: FC<ChartProps> = ({
     }
 
     const rowElements = rows.map((row, index) =>
-        <AlbumRow {...row}
+        <EditorAlbumRow {...row}
             key={index}
             dispatch={dispatch}
             highlighted={highlighted}/>

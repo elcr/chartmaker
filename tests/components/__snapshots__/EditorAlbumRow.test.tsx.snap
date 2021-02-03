@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders album row with covers 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-album-row"
+  >
+    <div
+      class="mock-editor-chart-album-cover"
+    >
+      Album: 1
+      Size: 5rem
+      Highlighted: false
+    </div>
+    <div
+      class="mock-editor-chart-album-cover"
+    >
+      Album: 2
+      Size: 5rem
+      Highlighted: false
+    </div>
+    <div
+      class="mock-editor-chart-album-cover"
+    >
+      Album: 3
+      Size: 5rem
+      Highlighted: true
+    </div>
+    <div
+      class="mock-editor-chart-album-cover"
+    >
+      Album: 4
+      Size: 5rem
+      Highlighted: false
+    </div>
+    <div
+      class="mock-editor-chart-album-cover"
+    >
+      Album: 5
+      Size: 5rem
+      Highlighted: false
+    </div>
+  </div>
+</div>
+`;

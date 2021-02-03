@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders album cover for placeholder album 1`] = `
+exports[`renders album cover 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -23,14 +23,15 @@ exports[`renders album cover for placeholder album 1`] = `
   <div
     class="mock-album-cover emotion-0"
   >
-    Album: undefined
-    Size: 3rem
+    Album: {"name":"Test album","url":"http://test.com"}
+    Size: Test size
     Highlighted: true
+    Test children
   </div>
 </div>
 `;
 
-exports[`renders album cover with overlay buttons for named album 1`] = `
+exports[`renders album cover 2`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -53,19 +54,41 @@ exports[`renders album cover with overlay buttons for named album 1`] = `
   <div
     class="mock-album-cover emotion-0"
   >
-    Album: {"id":456,"name":"Test named album","url":"https://test.com"}
-    Size: 5rem
+    Album: {"name":"Test album 2","url":"http://test2.com"}
+    Size: Test size 2
     Highlighted: false
-    <div
-      class="mock-rename-album-button"
-    >
-      ID: 456
-    </div>
-    <div
-      class="mock-delete-album-button"
-    >
-      ID: 456
-    </div>
+    Test children
+  </div>
+</div>
+`;
+
+exports[`renders album cover 3`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  padding: 0.5rem;
+}
+
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-album-cover emotion-0"
+  >
+    Album: null
+    Size: Test size 3
+    Highlighted: undefined
+    Test children
   </div>
 </div>
 `;

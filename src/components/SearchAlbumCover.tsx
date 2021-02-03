@@ -1,12 +1,12 @@
 import type { FC, DragEvent } from 'react'
 
-import type { SearchAlbum } from '@/types'
+import type { UnidentifiedNamedAlbum } from '@/types'
 import { AlbumCover } from '@/components/AlbumCover'
 import { SMALL_ALBUM_SIZE } from '@/style'
 
 
 export type SearchAlbumCoverProps = {
-    album: SearchAlbum
+    album: UnidentifiedNamedAlbum
     index: number
 }
 

@@ -251,11 +251,11 @@ Object {
       "name": "Test album 5",
       "url": "https://test.com/5",
     },
-    0,
-    0,
-    0,
-    0,
-    0,
+    null,
+    null,
+    null,
+    null,
+    null,
   ],
   "name": "Test chart 2",
   "shape": Object {
@@ -268,9 +268,9 @@ Object {
 exports[`createExportChart 2`] = `
 Object {
   "albums": Array [
-    0,
-    0,
-    0,
+    null,
+    null,
+    null,
   ],
   "name": "Test chart 1",
   "shape": Object {

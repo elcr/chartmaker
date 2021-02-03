@@ -9,7 +9,7 @@ import type { Action } from '@/reducer'
 import { RenderContainer, ignore, createTestNamedAlbums, fireEvent } from '../utils'
 
 
-jest.mock('@/components/AlbumRow')
+jest.mock('@/components/EditorAlbumRow')
 jest.mock('@/components/EditorAlbumTitleGroup')
 
 

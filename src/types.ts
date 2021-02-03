@@ -1,7 +1,7 @@
 import {
     Record as Record_,
     Literal,
-    String,
+    String as String_,
     Union,
     InstanceOf,
     Boolean,
@@ -9,7 +9,8 @@ import {
     Number as Number_,
     Array as Array_,
     Runtype,
-    Partial as Partial_
+    Partial as Partial_,
+    Null
 } from 'runtypes'
 
 import {
@@ -17,8 +18,7 @@ import {
     MAX_SCREENSHOT_SCALE,
     MAX_COLLAGE_ROWS_X,
     MAX_COLLAGE_ROWS_Y,
-    STATE_VERSION,
-    EXPORT_CHART_PLACEHOLDER
+    STATE_VERSION
 } from '@/constants'
 
 
@@ -35,12 +35,15 @@ function FixedSizeArray<T extends Runtype>(element: T, size: number) {
 }
 
 
+function positiveLength(sized: { length: number }): boolean {
+    return sized.length > 0
+}
 function NonEmptyArray<T extends Runtype>(element: T) {
-    return Array_(element).withConstraint(array => array.length > 0)
+    return Array_(element).withConstraint(positiveLength)
 }
 
 
-const NonEmptyString = String.withConstraint(string => string.length !== 0)
+const NonEmptyString = String_.withConstraint(positiveLength)
 
 
 const PositiveInteger = IntegerRange(0)
@@ -52,19 +55,20 @@ const V1PlaceholderAlbum = Record_({
 })
 
 
-const SearchAlbum = Record_({
+const UnidentifiedNamedAlbum = Record_({
     name: NonEmptyString,
     url: NonEmptyString
 })
+export const UnidentifiedAlbum = UnidentifiedNamedAlbum.Or(Null)
 
 
-const V1NamedAlbum = SearchAlbum.And(
+const V1NamedAlbum = UnidentifiedNamedAlbum.And(
     Record_({
         placeholder: Literal(false),
         id: PositiveInteger
     })
 )
-const V2NamedAlbum = SearchAlbum.And(
+const V2NamedAlbum = UnidentifiedNamedAlbum.And(
     Record_({
         id: PositiveInteger
     })
@@ -116,15 +120,15 @@ const SearchState = Union(
     }),
     Record_({
         tag: Literal('Complete'),
-        albums: NonEmptyArray(SearchAlbum)
+        albums: NonEmptyArray(UnidentifiedNamedAlbum)
     }),
     Record_({
         tag: Literal('Error'),
-        message: String
+        message: String_
     })
 ).And(
     Record_({
-        query: String
+        query: String_
     })
 )
 
@@ -134,8 +138,6 @@ const ScreenshotState = Record_({
     scale: IntegerRange(1, MAX_SCREENSHOT_SCALE)
 })
 
-
-const ExportChartAlbum = SearchAlbum.Or(Literal(EXPORT_CHART_PLACEHOLDER))
 
 const ExportChartShape = ChartShape.alternatives[0].Or(
     ChartShape.alternatives[1].And(
@@ -148,13 +150,13 @@ const ExportChartShape = ChartShape.alternatives[0].Or(
 
 const ExportChart = Record_({
     name: V2Chart.fields.name,
-    albums: FixedSizeArray(ExportChartAlbum, CHART_ALBUMS_COUNT),
+    albums: FixedSizeArray(UnidentifiedAlbum, CHART_ALBUMS_COUNT),
     shape: ExportChartShape
 })
 
 
 export const V1State = Record_({
-    apiKey: String,
+    apiKey: String_,
     charts: NonEmptyArray(V1Chart),
     activeChartIndex: PositiveInteger,
     search: SearchState,
@@ -187,7 +189,8 @@ export const State = V3State
 
 
 export type NamedAlbum = Static<typeof NamedAlbum>
-export type SearchAlbum = Static<typeof SearchAlbum>
+export type UnidentifiedNamedAlbum = Static<typeof UnidentifiedNamedAlbum>
+export type UnidentifiedAlbum = Static<typeof UnidentifiedAlbum>
 export type Album = Static<typeof Album>
 export type ChartShape = Static<typeof ChartShape>
 export type Chart = Static<typeof Chart>
@@ -198,4 +201,3 @@ export type V1State = Static<typeof V1State>
 export type V2State = Static<typeof V2State>
 export type ExportChart = Static<typeof ExportChart>
 export type ExportChartShape = Static<typeof ExportChartShape>
-export type ExportChartAlbum = Static<typeof ExportChartAlbum>

@@ -24,7 +24,7 @@ const namedAlbum: NamedAlbum = {
 
 test('renders without image for placeholder album', () => {
     render(
-        <AlbumCover size='2rem' onDragStart={ignore}>
+        <AlbumCover album={null} size='2rem' onDragStart={ignore}>
             Test children
         </AlbumCover>,
         container.element
@@ -50,7 +50,8 @@ test('renders with image for named album', () => {
 
 test('overlayClass prop merges styles', () => {
     render(
-        <AlbumCover size='2rem'
+        <AlbumCover album={null}
+                size='2rem'
                 onDragStart={ignore}
                 overlayClass={css({ color: 'red' })}>
             Test children
@@ -64,7 +65,8 @@ test('overlayClass prop merges styles', () => {
 
 test.each([ true, false ])('highlighted prop merges styles when false', highlighted => {
     render(
-        <AlbumCover size='2rem'
+        <AlbumCover album={null}
+                size='2rem'
                 onDragStart={ignore}
                 highlighted={highlighted}>
             Test children

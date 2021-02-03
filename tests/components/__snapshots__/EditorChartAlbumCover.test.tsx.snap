@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders album cover for placeholder album 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-chart-album-cover"
+  >
+    Album: null
+    Size: 3rem
+    Highlighted: true
+  </div>
+</div>
+`;
+
+exports[`renders album cover with overlay buttons for named album 1`] = `
+<div
+  id="test-render-container"
+>
+  <div
+    class="mock-chart-album-cover"
+  >
+    Album: {"id":456,"name":"Test named album","url":"https://test.com"}
+    Size: 5rem
+    Highlighted: false
+    <div
+      class="mock-rename-album-button"
+    >
+      ID: 456
+    </div>
+    <div
+      class="mock-delete-album-button"
+    >
+      ID: 456
+    </div>
+  </div>
+</div>
+`;

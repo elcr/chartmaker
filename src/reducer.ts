@@ -8,7 +8,7 @@ import {
 } from 'react-use-side-effect-reducer'
 import { produce } from 'immer'
 
-import { createChart, escapeStateForSave, findAlbumIndexWithID, getAlbumID, isPlaceholderAlbum, validateState, } from '@/state'
+import { createChart, escapeStateForSave, findAlbumIndexWithID, getAlbumID, identifiedAlbumIsPlaceholder, validateState, } from '@/state'
 import {
     elementToDataURI,
     downloadURI,
@@ -430,7 +430,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                 const album = state.charts[state.activeChartIndex]!
                     .albums
                     .find(album => getAlbumID(album) === action.id)
-                if (album === undefined || isPlaceholderAlbum(album)) {
+                if (album === undefined || identifiedAlbumIsPlaceholder(album)) {
                     return
                 }
 
@@ -454,7 +454,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             }
 
             const album = chart.albums[index]!
-            if (isPlaceholderAlbum(album)) {
+            if (identifiedAlbumIsPlaceholder(album)) {
                 return noUpdate
             }
 
@@ -582,7 +582,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'HighlightAlbum': {
             const target = state.charts[state.activeChartIndex]!.albums.find(album =>
-                !isPlaceholderAlbum(album) && album.id === action.targetID
+                !identifiedAlbumIsPlaceholder(album) && album.id === action.targetID
             )
             if (target === undefined) {
                 return update(

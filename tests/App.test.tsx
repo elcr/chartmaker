@@ -7,8 +7,7 @@ import { STATE_VERSION } from '@/constants'
 import { RenderContainer, createTestPlaceholderAlbums, createTestNamedAlbums } from './utils'
 
 
-jest.mock('@/components/EditorSidebar')
-jest.mock('@/components/EditorChart')
+jest.mock('@/pages/Editor')
 
 
 const localStorageMock = jest.spyOn(Storage.prototype, 'getItem')
@@ -52,7 +51,7 @@ afterEach(() => localStorageMock.mockReset())
 const container = new RenderContainer()
 
 
-test('renders sidebar and editor chart', () => {
+test('renders editor page', () => {
     render(
         <App/>,
         container.element

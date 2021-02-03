@@ -14,8 +14,7 @@ import {
     FONT_SIZE,
     CONTAINER_PADDING_SIZE
 } from '@/style'
-import { EditorSidebar } from '@/components/EditorSidebar'
-import { EditorChart } from '@/components/EditorChart'
+import { Editor } from '@/pages/Editor'
 
 
 const rootStyle = css({
@@ -43,17 +42,7 @@ export const App: FC = () => {
 
     return (
         <div className={rootStyle}>
-            <EditorSidebar dispatch={dispatch}
-                charts={state.charts}
-                activeChartIndex={state.activeChartIndex}
-                apiKey={state.apiKey}
-                searchState={state.search}
-                screenshotState={state.screenshot}
-                chartRef={chartRef}/>
-            <EditorChart {...state.charts[state.activeChartIndex]!}
-                innerRef={chartRef}
-                dispatch={dispatch}
-                highlighted={state.highlightedID}/>
+            <Editor {...state} dispatch={dispatch} chartRef={chartRef}/>
         </div>
     )
 }

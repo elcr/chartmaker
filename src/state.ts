@@ -4,9 +4,10 @@ import {
     State,
     V1State,
     V2State,
-    ExportChart,
+    ViewerChart,
     UnidentifiedAlbum,
-    ChartShape
+    ChartShape,
+    NamedAlbum
 } from '@/types'
 import {
     DEFAULT_CHART_NAME,
@@ -146,6 +147,11 @@ export function identifiedAlbumIsPlaceholder(album: Album): album is number {
 }
 
 
+export function identifiedAlbumIsNamed(album: Album): album is NamedAlbum {
+    return !identifiedAlbumIsPlaceholder(album)
+}
+
+
 export function unidentifiedAlbumIsPlaceholder(album: UnidentifiedAlbum): album is null {
     return album === null
 }
@@ -164,7 +170,7 @@ export function findAlbumIndexWithID(albums: ReadonlyArray<Album>, id: number): 
 }
 
 
-export function createExportChart(state: State): ExportChart {
+export function createViewerChart(state: State): ViewerChart {
     const chart = state.charts[state.activeChartIndex]!
     return {
         name: chart.name,
@@ -187,13 +193,13 @@ export function createExportChart(state: State): ExportChart {
 }
 
 
-export type AlbumRow<TAlbum> = {
-    albums: TAlbum[]
+export type AlbumRow = {
+    albums: Album[]
     size: string
 }
 
 
-function top40Rows<TAlbum>(albums: TAlbum[]): AlbumRow<TAlbum>[] {
+function top40Rows(albums: Album[]): AlbumRow[] {
     return [
         {
             albums: albums.slice(0, 5),
@@ -223,7 +229,7 @@ function top40Rows<TAlbum>(albums: TAlbum[]): AlbumRow<TAlbum>[] {
 }
 
 
-function top42Rows<TAlbum>(albums: TAlbum[]): AlbumRow<TAlbum>[] {
+function top42Rows(albums: Album[]): AlbumRow[] {
     return [
         {
             albums: albums.slice(0, 5),
@@ -253,7 +259,7 @@ function top42Rows<TAlbum>(albums: TAlbum[]): AlbumRow<TAlbum>[] {
 }
 
 
-function top100Rows<TAlbum>(albums: TAlbum[]): AlbumRow<TAlbum>[] {
+function top100Rows(albums: Album[]): AlbumRow[] {
     return [
         {
             albums: albums.slice(0, 5),
@@ -303,15 +309,12 @@ function top100Rows<TAlbum>(albums: TAlbum[]): AlbumRow<TAlbum>[] {
 }
 
 
-function titleGroupsFromRows<TNamedAlbum, TPlaceholderAlbum>(
-    rows: AlbumRow<TNamedAlbum | TPlaceholderAlbum>[],
-    isNamedAlbum: (album: TNamedAlbum | TPlaceholderAlbum) => album is TNamedAlbum
-): TNamedAlbum[][] {
-    const groups: TNamedAlbum[][] = []
+function titleGroupsFromRows(rows: AlbumRow[]): NamedAlbum[][] {
+    const groups: NamedAlbum[][] = []
     let lastSize = ''
 
     for (const row of rows) {
-        const named = row.albums.filter(isNamedAlbum)
+        const named = row.albums.filter(identifiedAlbumIsNamed)
 
         if (row.size === lastSize) {
             for (const album of named) {
@@ -328,14 +331,13 @@ function titleGroupsFromRows<TNamedAlbum, TPlaceholderAlbum>(
 }
 
 
-function collageGroups<TNamedAlbum, TPlaceholderAlbum>(
-    albums: (TNamedAlbum | TPlaceholderAlbum)[],
+function collageGroups(
+    albums: Album[],
     rowsX: number,
-    rowsY: number,
-    isNamedAlbum: (album: TNamedAlbum | TPlaceholderAlbum) => album is TNamedAlbum
-): [ AlbumRow<TNamedAlbum | TPlaceholderAlbum>[], TNamedAlbum[][] ] {
-    const rows: AlbumRow<TNamedAlbum | TPlaceholderAlbum>[] = []
-    const groups: TNamedAlbum[][] = []
+    rowsY: number
+): [ AlbumRow[], NamedAlbum[][] ] {
+    const rows: AlbumRow[] = []
+    const groups: NamedAlbum[][] = []
 
     for (let y = 0; y < rowsY; y++) {
         const slice = albums.slice(rowsX * y, (rowsX * y) + rowsX)
@@ -344,7 +346,7 @@ function collageGroups<TNamedAlbum, TPlaceholderAlbum>(
             size: LARGE_ALBUM_SIZE
         })
         groups.push(
-            slice.filter(isNamedAlbum)
+            slice.filter(identifiedAlbumIsNamed)
         )
     }
 
@@ -352,18 +354,17 @@ function collageGroups<TNamedAlbum, TPlaceholderAlbum>(
 }
 
 
-export function splitAlbumsAccordingToShape<TNamedAlbum, TPlaceholderAlbum>(
-    albums: (TNamedAlbum | TPlaceholderAlbum)[],
-    isNamedAlbum: (album: TNamedAlbum | TPlaceholderAlbum) => album is TNamedAlbum,
+export function splitAlbumsAccordingToShape(
+    albums: Album[],
     shape: ChartShape,
     rowsX: number,
     rowsY: number
-): [ AlbumRow<TNamedAlbum | TPlaceholderAlbum>[], TNamedAlbum[][] ] {
+): [ AlbumRow[], NamedAlbum[][] ] {
     if (shape.tag === 'Collage') {
-        return collageGroups(albums, rowsX, rowsY, isNamedAlbum)
+        return collageGroups(albums, rowsX, rowsY)
     }
 
-    let rows: AlbumRow<TNamedAlbum | TPlaceholderAlbum>[]
+    let rows: AlbumRow[]
     switch (shape.size) {
         case 40:
             rows = top40Rows(albums)
@@ -374,5 +375,5 @@ export function splitAlbumsAccordingToShape<TNamedAlbum, TPlaceholderAlbum>(
         case 100:
             rows = top100Rows(albums)
     }
-    return [ rows, titleGroupsFromRows(rows, isNamedAlbum) ]
+    return [ rows, titleGroupsFromRows(rows) ]
 }

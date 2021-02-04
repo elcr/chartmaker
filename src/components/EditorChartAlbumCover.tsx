@@ -94,13 +94,6 @@ export const EditorChartAlbumCover: FC<EditorChartAlbumCoverProps> = ({
         event.preventDefault()
     }
 
-    function mouseEnter() {
-        dispatch({
-            tag: 'HighlightAlbum',
-            targetID: id
-        })
-    }
-
     let dragStart: ((event: DragEvent<HTMLDivElement>) => void) | undefined
     let buttons: JSX.Element | undefined
     if (!identifiedAlbumIsPlaceholder(album)) {
@@ -117,13 +110,13 @@ export const EditorChartAlbumCover: FC<EditorChartAlbumCoverProps> = ({
     }
 
     return (
-        <ChartAlbumCover album={identifiedAlbumIsPlaceholder(album) ? null : album}
+        <ChartAlbumCover dispatch={dispatch}
+                album={album}
                 size={size}
                 onDragStart={dragStart}
                 onDragOver={dragOver}
                 onDragEnter={dragEnter}
                 onDrop={drop}
-                onMouseEnter={mouseEnter}
                 highlighted={highlighted}>
             {buttons}
         </ChartAlbumCover>

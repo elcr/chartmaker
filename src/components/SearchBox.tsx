@@ -38,13 +38,14 @@ export const SearchBox: FC<SearchBoxProps> = ({ dispatch, searchState }) => {
         })
     }
 
-    const errorMessage = searchState.tag === 'Error'
-        ? (
+    let errorMessage: JSX.Element | undefined
+    if (searchState.tag === 'Error') {
+        errorMessage = (
             <div className={errorStyle}>
                 {searchState.message}
             </div>
         )
-        : null
+    }
 
     return (
         <SidebarGroup>

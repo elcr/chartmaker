@@ -9,7 +9,7 @@ import {
     identifiedAlbumIsPlaceholder,
     getAlbumID,
     findAlbumIndexWithID,
-    createExportChart
+    createViewerChart
 } from '@/state'
 import { LOCAL_STORAGE_KEY } from '@/constants'
 import type { Album, State } from '@/types'
@@ -187,7 +187,7 @@ test.each<State>([
             chart.rowsY = 2
         }
     )
-])('createExportChart', state => {
-    const result = createExportChart(state)
+])('createViewerChart', state => {
+    const result = createViewerChart(state)
     expect(result).toMatchSnapshot()
 })

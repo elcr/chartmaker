@@ -4,11 +4,12 @@ import type { DispatchProps } from '@/reducer'
 import type { Chart, SearchState, ScreenshotState } from '@/types'
 import { ChartManager } from '@/components/ChartManager'
 import { APIKeyInput } from '@/components/APIKeyInput'
-import { ImportExportScreenshotButtons } from '@/components/ImportExportScreenshotButtons'
+import { ScreenshotButtons } from '@/components/ScreenshotButtons'
 import { SearchBox } from '@/components/SearchBox'
 import { SearchResults } from '@/components/SearchResults'
 import { ChartShapeControls } from '@/components/ChartShapeControls'
 import { Sidebar } from '@/components/Sidebar'
+import { LoadSaveButtons } from '@/components/LoadSaveButtons'
 
 
 export type EditorSidebarProps = DispatchProps & {
@@ -37,10 +38,11 @@ export const EditorSidebar: FC<EditorSidebarProps> = ({
 
     return (
         <Sidebar>
+            <LoadSaveButtons dispatch={dispatch}/>
             <ChartManager dispatch={dispatch}
                 charts={charts}
                 activeChartIndex={activeChartIndex}/>
-            <ImportExportScreenshotButtons dispatch={dispatch}
+            <ScreenshotButtons dispatch={dispatch}
                 chartRef={chartRef}
                 screenshotState={screenshotState}/>
             <ChartShapeControls {...charts[activeChartIndex]!}

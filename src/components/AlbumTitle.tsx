@@ -21,7 +21,7 @@ const labelStyle = css({
 export type AlbumTitleProps = DispatchProps & {
     id: number
     name: string
-    highlighted: boolean | undefined
+    highlighted: number | undefined
 }
 
 
@@ -40,7 +40,7 @@ export const AlbumTitle: FC<AlbumTitleProps> = ({
     }
 
     let className = style
-    if (highlighted === false) {
+    if (highlighted !== undefined && id !== highlighted) {
         className = cx(style, highlightBackgroundStyle)
     }
 

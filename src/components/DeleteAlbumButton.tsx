@@ -11,10 +11,7 @@ export type DeleteAlbumButtonProps = DispatchProps & {
 
 export const DeleteAlbumButton: FC<DeleteAlbumButtonProps> = ({ dispatch, id }) => {
     function remove() {
-        dispatch({
-            tag: 'DeleteAlbum',
-            id
-        })
+        dispatch({ tag: 'DeleteAlbum', id })
     }
 
     return (

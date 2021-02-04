@@ -5,6 +5,10 @@ import { BORDER, CONTAINER_PADDING_SIZE } from '@/style'
 
 
 const style = css({
+    ':first-of-type': {
+        borderTop: BORDER,
+        paddingTop: CONTAINER_PADDING_SIZE
+    },
     ':not(:last-of-type)': {
         borderBottom: BORDER,
         paddingBottom: CONTAINER_PADDING_SIZE,

@@ -1,14 +1,14 @@
 import type { FC, Ref } from 'react'
 
-import type { Chart as ChartState } from '@/types'
 import type { DispatchProps } from '@/reducer'
-import { Chart } from '@/components/Chart'
+import type { Chart as ChartState } from '@/types'
 import { splitAlbumsAccordingToShape } from '@/state'
-import { EditorAlbumRows } from '@/components/EditorAlbumRows'
-import { EditorAlbumTitles } from '@/components/EditorAlbumTitles'
+import { Chart } from '@/components/Chart'
+import { ViewerAlbumRows } from '@/components/ViewerAlbumRows'
+import { ViewerAlbumTitles } from '@/components/ViewerAlbumTitles'
 
 
-export type EditorChartProps =
+export type ViewerChartProps =
     & DispatchProps
     & ChartState
     & {
@@ -17,15 +17,15 @@ export type EditorChartProps =
     }
 
 
-export const EditorChart: FC<EditorChartProps> = ({
+export const ViewerChart: FC<ViewerChartProps> = ({
     dispatch,
     albums,
     highlighted,
     innerRef,
     name,
+    shape,
     rowsX,
-    rowsY,
-    shape
+    rowsY
 }) => {
     const [ rows, groups ] = splitAlbumsAccordingToShape(
         albums,
@@ -36,10 +36,10 @@ export const EditorChart: FC<EditorChartProps> = ({
 
     return (
         <Chart innerRef={innerRef} name={name}>
-            <EditorAlbumRows dispatch={dispatch}
+            <ViewerAlbumRows dispatch={dispatch}
                 rows={rows}
                 highlighted={highlighted}/>
-            <EditorAlbumTitles dispatch={dispatch}
+            <ViewerAlbumTitles dispatch={dispatch}
                 groups={groups}
                 highlighted={highlighted}/>
         </Chart>

@@ -16,7 +16,7 @@ import {
     fileToDataURI
 } from '@/utils'
 import { search } from '@/api'
-import type { State, SearchState, ChartShape } from '@/types'
+import type { State, SearchState, ChartShape, ViewerChart } from '@/types'
 import {
     MAX_SCREENSHOT_SCALE,
     MAX_COLLAGE_ROWS_X,
@@ -56,6 +56,10 @@ export type Action =
     | { tag: 'LoadExternalFile', uri: string, name: string, targetID: number }
     | { tag: 'HighlightAlbum', targetID: number }
     | { tag: 'UnhighlightAlbum' }
+    | { tag: 'CopyActiveChartLink' }
+    | { tag: 'RouteToEditor' }
+    | { tag: 'RouteToViewer', chart: ViewerChart }
+    | { tag: 'ImportViewerChart' }
 
 
 export type Dispatch = Dispatch_<Action>
@@ -605,5 +609,17 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                     state.highlightedID = undefined
                 })
             )
+
+        case 'CopyActiveChartLink':
+            return noUpdate
+
+        case 'RouteToEditor':
+            return noUpdate
+
+        case 'RouteToViewer':
+            return noUpdate
+
+        case 'ImportViewerChart':
+            return noUpdate
     }
 }

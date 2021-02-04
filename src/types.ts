@@ -139,7 +139,7 @@ const ScreenshotState = Record_({
 })
 
 
-const ExportChartShape = ChartShape.alternatives[0].Or(
+const ViewerChartShape = ChartShape.alternatives[0].Or(
     ChartShape.alternatives[1].And(
         Record_({
             rowsX: V2Chart.fields.rowsX,
@@ -148,10 +148,10 @@ const ExportChartShape = ChartShape.alternatives[0].Or(
     )
 )
 
-const ExportChart = Record_({
+const ViewerChart = Record_({
     name: V2Chart.fields.name,
     albums: FixedSizeArray(UnidentifiedAlbum, CHART_ALBUMS_COUNT),
-    shape: ExportChartShape
+    shape: ViewerChartShape
 })
 
 
@@ -182,7 +182,7 @@ const V3State = Record_({
 }).And(
     Partial_({
         ...V2State.intersectees[1].fields,
-        viewing: ExportChart
+        viewing: Chart
     })
 )
 export const State = V3State
@@ -199,5 +199,5 @@ export type ScreenshotState = Static<typeof ScreenshotState>
 export type State = Static<typeof State>
 export type V1State = Static<typeof V1State>
 export type V2State = Static<typeof V2State>
-export type ExportChart = Static<typeof ExportChart>
-export type ExportChartShape = Static<typeof ExportChartShape>
+export type ViewerChart = Static<typeof ViewerChart>
+export type ViewerChartShape = Static<typeof ViewerChartShape>

@@ -1,7 +1,7 @@
 import { render } from 'react-dom'
 
 import type { NamedAlbum } from '@/types'
-import { EditorAlbumTitlesContainer } from '@/components/EditorAlbumTitlesContainer'
+import { EditorAlbumTitles } from '@/components/EditorAlbumTitles'
 
 import { createTestNamedAlbums, ignore, RenderContainer } from '../utils'
 
@@ -31,7 +31,7 @@ test.each<[ NamedAlbum[][], number | undefined ]>([
     ],
 ])('renders container and rows', (groups, highlighted) => {
     render(
-        <EditorAlbumTitlesContainer dispatch={ignore}
+        <EditorAlbumTitles dispatch={ignore}
             groups={groups}
             highlighted={highlighted}/>,
         container.element

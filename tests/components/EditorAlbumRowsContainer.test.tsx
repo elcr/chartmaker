@@ -2,7 +2,7 @@ import { render } from 'react-dom'
 
 import type { AlbumRow } from '@/state'
 import type { Album } from '@/types'
-import { EditorAlbumRowsContainer } from '@/components/EditorAlbumRowsContainer'
+import { EditorAlbumRows } from '@/components/EditorAlbumRows'
 
 import { createTestNamedAlbums, createTestPlaceholderAlbums, ignore, RenderContainer } from '../utils'
 
@@ -47,7 +47,7 @@ test.each<[ AlbumRow<Album>[], number | undefined ]>([
     ]
 ])('renders container and rows', (rows, highlighted) => {
     render(
-        <EditorAlbumRowsContainer dispatch={ignore}
+        <EditorAlbumRows dispatch={ignore}
             rows={rows}
             highlighted={highlighted}/>,
         container.element

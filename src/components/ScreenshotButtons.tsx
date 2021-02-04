@@ -1,5 +1,4 @@
 import type { FC, RefObject } from 'react'
-import { css } from 'emotion'
 
 import type { DispatchProps } from '@/reducer'
 import type { ScreenshotState } from '@/types'
@@ -7,32 +6,19 @@ import { MAX_SCREENSHOT_SCALE } from '@/constants'
 import { ControlledSlider } from '@/components/ControlledSlider'
 import { SidebarGroup } from '@/components/SidebarGroup'
 import { Button } from '@/components/Button'
-import { LoadStateButton } from '@/components/LoadStateButton'
-import { SaveStateButton } from '@/components/SaveStateButton'
 
 
 export const sliderID = 'screenshotScale'
 export const buttonID = 'screenshot'
 
 
-export type ImportExportScreenshotButtonsProps = DispatchProps & {
+export type ScreenshotButtonsProps = DispatchProps & {
     screenshotState: ScreenshotState
     chartRef: RefObject<HTMLElement>
 }
 
 
-const stateButtonsContainerStyle = css({
-    display: 'flex'
-})
-
-
-const buttonContainerStyle = css({
-    display: 'flex',
-    justifyContent: 'space-between'
-})
-
-
-export const ImportExportScreenshotButtons: FC<ImportExportScreenshotButtonsProps> = ({
+export const ScreenshotButtons: FC<ScreenshotButtonsProps> = ({
     dispatch,
     screenshotState: { loading, scale },
     chartRef
@@ -42,7 +28,7 @@ export const ImportExportScreenshotButtons: FC<ImportExportScreenshotButtonsProp
     }
 
     function takeScreenshot() {
-        if (chartRef.current == null) {
+        if (chartRef.current === null) {
             return
         }
         dispatch({
@@ -62,15 +48,9 @@ export const ImportExportScreenshotButtons: FC<ImportExportScreenshotButtonsProp
                     step={1}>
                 Scale
             </ControlledSlider>
-            <div className={buttonContainerStyle}>
-                <Button id={buttonID} onClick={takeScreenshot} disabled={loading}>
-                    Screenshot
-                </Button>
-                <div className={stateButtonsContainerStyle}>
-                    <LoadStateButton dispatch={dispatch}/>
-                    <SaveStateButton dispatch={dispatch}/>
-                </div>
-            </div>
+            <Button id={buttonID} onClick={takeScreenshot} disabled={loading}>
+                Screenshot
+            </Button>
         </SidebarGroup>
     )
 }

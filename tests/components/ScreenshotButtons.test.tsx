@@ -3,10 +3,10 @@ import { render } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 import {
-    ImportExportScreenshotButtons,
+    ScreenshotButtons,
     sliderID,
     buttonID
-} from '@/components/ImportExportScreenshotButtons'
+} from '@/components/ScreenshotButtons'
 import type { ScreenshotState } from '@/types'
 import type { Action } from '@/reducer'
 
@@ -15,8 +15,6 @@ import { RenderContainer, ignore, fireEvent } from '../utils'
 
 jest.mock('@/components/Button')
 jest.mock('@/components/ControlledSlider')
-jest.mock('@/components/LoadStateButton')
-jest.mock('@/components/SaveStateButton')
 jest.mock('@/components/SidebarGroup')
 
 
@@ -28,7 +26,7 @@ test.each<ScreenshotState>([
     { loading: false, scale: 2 },
 ])('renders slider and buttons', screenshotState => {
     render(
-        <ImportExportScreenshotButtons dispatch={ignore}
+        <ScreenshotButtons dispatch={ignore}
             chartRef={{ current: null }}
             screenshotState={screenshotState}/>,
         container.element
@@ -42,7 +40,7 @@ test('dispatches action when slider moved', () => {
     const mock = jest.fn<void, [ Action ]>()
 
     render(
-        <ImportExportScreenshotButtons dispatch={mock}
+        <ScreenshotButtons dispatch={mock}
             chartRef={{ current: null }}
             screenshotState={{ loading: false, scale: 1 }}/>,
         container.element
@@ -71,7 +69,7 @@ test('dispatches action when screenshot button clicked', () => {
     }
 
     render(
-        <ImportExportScreenshotButtons dispatch={mock}
+        <ScreenshotButtons dispatch={mock}
             chartRef={ref}
             screenshotState={{ loading: false, scale: 1 }}/>,
         container.element

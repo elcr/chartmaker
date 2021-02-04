@@ -15,6 +15,7 @@ import {
     CONTAINER_PADDING_SIZE
 } from '@/style'
 import { Editor } from '@/pages/Editor'
+import { Viewer } from '@/pages/Viewer'
 
 
 const rootStyle = css({
@@ -40,9 +41,17 @@ export const App: FC = () => {
         [ state ]
     )
 
+    const page = state.viewing === undefined
+        ? <Editor {...state} dispatch={dispatch} chartRef={chartRef}/>
+        : <Viewer dispatch={dispatch}
+            chart={state.viewing}
+            chartRef={chartRef}
+            highlighted={state.highlightedID}
+            screenshotState={state.screenshot}/>
+
     return (
         <div className={rootStyle}>
-            <Editor {...state} dispatch={dispatch} chartRef={chartRef}/>
+            {page}
         </div>
     )
 }

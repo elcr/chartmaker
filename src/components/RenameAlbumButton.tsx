@@ -11,10 +11,7 @@ export type RenameAlbumButtonProps = DispatchProps & {
 
 export const RenameAlbumButton: FC<RenameAlbumButtonProps> = ({ dispatch, id }) => {
     function rename() {
-        dispatch({
-            tag: 'PromptToRenameAlbum',
-            id
-        })
+        dispatch({ tag: 'PromptToRenameAlbum', id })
     }
 
     return (

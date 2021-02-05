@@ -4,7 +4,7 @@ import { cx } from 'emotion'
 import type { Action, DispatchProps } from '@/reducer'
 import { buttonStyle } from '@/style'
 import type { Route } from '@/types'
-import { routeToURL } from '@/utils'
+import { routeToHash } from '@/utils'
 
 
 const route: Route = { tag: 'Editor' }
@@ -13,7 +13,7 @@ const action: Action = {
     route,
     replace: false
 }
-const url = routeToURL(route)
+const hash = routeToHash(route)
 
 
 export type ViewerNavigationLinkProps = DispatchProps & {
@@ -37,7 +37,7 @@ export const ViewerNavigationLink: FC<ViewerNavigationLinkProps> = ({
     return (
         <a className={cx(buttonStyle, className)}
                 onClick={routeToEditor}
-                href={url}>
+                href={location.pathname + hash}>
             {children}
         </a>
     )

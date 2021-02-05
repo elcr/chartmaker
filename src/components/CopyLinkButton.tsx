@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import { Button } from '@/components/Button'
 import type { Chart } from '@/types'
-import { routeToURL } from '@/utils'
+import { routeToHash } from '@/utils'
 
 
 export type CopyLinkButtonProps = {
@@ -12,8 +12,8 @@ export type CopyLinkButtonProps = {
 
 export const CopyLinkButton: FC<CopyLinkButtonProps> = ({ chart }) => {
     function copyLink() {
-        const url = routeToURL({ tag: 'Viewer', chart })
-        navigator.clipboard.writeText(location.origin + url)
+        const hash = routeToHash({ tag: 'Viewer', chart })
+        navigator.clipboard.writeText(location.origin + location.pathname + hash)
     }
 
     return (

@@ -15,7 +15,7 @@ import {
     findAlbumIndexWithID,
     getAlbumID,
     identifiedAlbumIsPlaceholder,
-    routeToURL
+    routeToHash
 } from '@/utils'
 import {
     elementToDataURI,
@@ -95,7 +95,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                     route: action.route
                 },
                 () => {
-                    const url = routeToURL(action.route)
+                    const url = location.pathname + routeToHash(action.route)
                     if (action.replace) {
                         history.replaceState(null, '', url)
                     }

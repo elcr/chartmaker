@@ -523,30 +523,26 @@ export function splitAlbumsAccordingToShape(
 }
 
 
-export function routeToURL(route: Route): string {
+export function routeToHash(route: Route): string {
     switch (route.tag) {
         case 'Editor':
-            return '/'
+            return ''
         case 'Viewer': {
             if (route.chart === null) {
-                return '/'
+                return ''
             }
             const encoded = encodeViewerChart(route.chart)
-            return `/#${encoded}`
+            return `#${encoded}`
         }
     }
 }
 
 
-export function routeFromLocation(path: string, hash: string): Route | null {
-    if (path === '/') {
-        if (hash.length === 0) {
-            return { tag: 'Editor' }
-        }
-        return {
+export function routeFromHash(hash: string): Route {
+    return hash.length === 0
+        ? { tag: 'Editor' }
+        : {
             tag: 'Viewer',
             chart: decodeViewerChart(location.hash.slice(1))
         }
-    }
-    return null
 }

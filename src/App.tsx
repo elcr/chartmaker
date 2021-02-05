@@ -6,7 +6,7 @@ import { reducer } from '@/reducer'
 import {
     createInitialState,
     loadStateFromLocalStorage,
-    routeFromLocation,
+    routeFromHash,
     saveStateToLocalStorage
 } from '@/utils'
 import {
@@ -46,7 +46,7 @@ export const App: FC = () => {
             function popRoute() {
                 dispatch({
                     tag: 'PopRoute',
-                    route: routeFromLocation(location.pathname, location.hash)
+                    route: routeFromHash(location.hash)
                 })
             }
 

@@ -95,9 +95,7 @@ export function createInitialState(): State {
             loading: false,
             scale: 1
         },
-        routeState: {
-            loading: true
-        },
+        route: null,
         highlightedID: null
     }
 }
@@ -140,7 +138,7 @@ function createStateFromV1ExportState(state: V1ExportState): State {
             )
         })),
         highlightedID: null,
-        routeState: { loading: true }
+        route: null
     }
 }
 
@@ -168,7 +166,7 @@ function createStateFromV2ExportState(state: V2ExportState): State {
             )
         })),
         highlightedID: null,
-        routeState: { loading: true }
+        route: null
     }
 }
 
@@ -200,7 +198,7 @@ function createStateFromV3ExportState(state: V3ExportState): State {
             )
         })),
         highlightedID: null,
-        routeState: { loading: true }
+        route: null
     }
 }
 

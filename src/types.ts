@@ -162,7 +162,7 @@ export type State = {
     activeChartIndex: number
     searchState: SearchState
     screenshotState: ScreenshotState
-    routeState: RouteState
+    route: Route | null
     highlightedID: number | null
 }
 
@@ -179,10 +179,6 @@ export type SearchState = (
 export type Route =
     | { tag: 'Editor' }
     | { tag: 'Viewer', chart: Chart | null }
-
-type RouteState =
-    | { loading: true }
-    | { loading: false, route: Route | null }
 
 
 export type UnidentifiedNamedAlbum = Static<typeof UnidentifiedNamedAlbum>

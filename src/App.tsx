@@ -57,41 +57,25 @@ export const App: FC = () => {
         },
         []
     )
-    useEffect(
-        () => {
-            if (!state.routeState.loading && state.routeState.route === null) {
-                dispatch({
-                    tag: 'PushRoute',
-                    route: { tag: 'Editor' },
-                    replace: true
-                })
-            }
-        },
-        [ state.routeState ]
-    )
 
     let page: JSX.Element | null
-    if (state.routeState.loading) {
-        page = null
+    switch (state.route?.tag) {
+        case 'Editor':
+            page = <Editor {...state} dispatch={dispatch} chartRef={chartRef}/>
+            break
+        case 'Viewer':
+            page = (
+                <Viewer dispatch={dispatch}
+                    chart={state.route.chart}
+                    chartRef={chartRef}
+                    highlighted={state.highlightedID}
+                    screenshotState={state.screenshotState}/>
+            )
+            break
+        case undefined:
+            page = null
     }
-    else {
-        switch (state.routeState.route?.tag) {
-            case 'Editor':
-                page = <Editor {...state} dispatch={dispatch} chartRef={chartRef}/>
-                break
-            case 'Viewer':
-                page = (
-                    <Viewer dispatch={dispatch}
-                        chart={state.routeState.route.chart}
-                        chartRef={chartRef}
-                        highlighted={state.highlightedID}
-                        screenshotState={state.screenshotState}/>
-                )
-                break
-            case undefined:
-                page = null
-        }
-    }
+
 
     return (
         <div className={rootStyle}>

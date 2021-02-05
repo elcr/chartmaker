@@ -82,24 +82,17 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         case 'PopRoute':
             return update({
                 ...state,
-                routeState: {
-                    loading: false,
-                    route: action.route
-                }
+                route: action.route
             })
 
         case 'PushRoute': {
-            if (state.routeState.loading
-                    || state.routeState.route?.tag === action.route.tag) {
+            if (state.route?.tag === action.route.tag) {
                 return noUpdate
             }
             return updateWithSideEffect<State, Action>(
                 {
                     ...state,
-                    routeState: {
-                        loading: false,
-                        route: action.route
-                    }
+                    route: action.route
                 },
                 () => {
                     const url = routeToURL(action.route)
@@ -271,12 +264,12 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             )
 
         case 'LoadState': {
-            if (state.routeState.loading || state.routeState.route?.tag !== 'Editor') {
+            if (state.route?.tag !== 'Editor') {
                 return noUpdate
             }
             return update({
                 ...action.state,
-                routeState: state.routeState
+                route: state.route
             })
         }
 
@@ -647,12 +640,10 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             )
 
         case 'ImportViewerChart': {
-            if (state.routeState.loading
-                    || state.routeState.route?.tag !== 'Viewer'
-                    || state.routeState.route.chart === null) {
+            if (state.route?.tag !== 'Viewer' || state.route.chart === null) {
                 return noUpdate
             }
-            const { chart } = state.routeState.route
+            const { chart } = state.route
             return update(
                 produce(state, state => {
                     state.charts.push(chart)

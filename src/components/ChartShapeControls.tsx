@@ -2,17 +2,15 @@ import type { FC } from 'react'
 import { css } from 'emotion'
 
 import type { DispatchProps } from '@/reducer'
-import type { ChartShape } from '@/types'
-import { MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
+import { CollageDimension, CollageSize, TopSize } from '@/types'
 import { ControlledSlider } from '@/components/ControlledSlider'
 import { ControlledRadioButton } from '@/components/ControlledRadioButton'
 import { SidebarGroup } from '@/components/SidebarGroup'
 
 
 export type ChartShapeControlsProps = DispatchProps & {
-    shape: ChartShape
-    rowsX: number
-    rowsY: number
+    shape: CollageSize
+    size: TopSize | null
 }
 
 
@@ -23,57 +21,61 @@ const style = css({
 
 export const ChartShapeControls: FC<ChartShapeControlsProps> = ({
     dispatch,
-    shape,
-    rowsX,
-    rowsY
+    shape: [ rowsX, rowsY ],
+    size
 }) => {
-    function changeShape(shape: ChartShape) {
+    function changeShape(shape: CollageSize, size: TopSize | null) {
         dispatch({
             tag: 'UpdateChartShape',
             shape,
-            rowsX,
-            rowsY
+            size
         })
     }
 
     function switchToTop40() {
-        changeShape({ tag: 'Top', size: 40 })
+        changeShape([ rowsX, rowsY ], 40)
     }
 
     function switchToTop42() {
-        changeShape({ tag: 'Top', size: 42 })
+        changeShape([ rowsX, rowsY ], 42)
     }
 
     function switchToTop100() {
-        changeShape({ tag: 'Top', size: 100 })
+        changeShape([ rowsX, rowsY ], 100)
     }
 
     function switchToCollage() {
-        changeShape({ tag: 'Collage' })
+        changeShape([ rowsX, rowsY ], null)
     }
 
     let rowsXSlider: JSX.Element | undefined
     let rowsYSlider: JSX.Element | undefined
-    if (shape.tag === 'Collage') {
-        const updateRowsX = (rowsX: number) =>
+    if (size === null) {
+        const updateRowsX = (rowsX: number) => {
+            if (!CollageDimension.guard(rowsX)) {
+                return
+            }
             dispatch({
                 tag: 'UpdateChartShape',
-                shape: { tag: 'Collage' },
-                rowsX,
-                rowsY
+                shape: [ rowsX, rowsY ],
+                size
             })
-        const updateRowsY = (rowsY: number) =>
+        }
+        const updateRowsY = (rowsY: number) => {
+            if (!CollageDimension.guard(rowsY)) {
+                return
+            }
             dispatch({
                 tag: 'UpdateChartShape',
-                shape: { tag: 'Collage' },
-                rowsX,
-                rowsY
+                shape: [ rowsX, rowsY ],
+                size
             })
+        }
 
         rowsXSlider = (
             <ControlledSlider id='rows-x'
-                    min={1}
-                    max={MAX_COLLAGE_ROWS_X}
+                    min={CollageDimension.alternatives[0].value}
+                    max={CollageDimension.alternatives[CollageDimension.alternatives.length - 1]!.value}
                     step={1}
                     value={rowsX}
                     onChange={updateRowsX}>
@@ -82,8 +84,8 @@ export const ChartShapeControls: FC<ChartShapeControlsProps> = ({
         )
         rowsYSlider = (
             <ControlledSlider id='rows-y'
-                    min={1}
-                    max={MAX_COLLAGE_ROWS_Y}
+                    min={CollageDimension.alternatives[0].value}
+                    max={CollageDimension.alternatives[CollageDimension.alternatives.length - 1]!.value}
                     step={1}
                     value={rowsY}
                     onChange={updateRowsY}>
@@ -96,22 +98,22 @@ export const ChartShapeControls: FC<ChartShapeControlsProps> = ({
         <SidebarGroup>
             <div className={style}>
                 <ControlledRadioButton id='top40'
-                        checked={shape.tag === 'Top' && shape.size === 40}
+                        checked={size === 40}
                         onCheck={switchToTop40}>
                     Top 40
                 </ControlledRadioButton>
                 <ControlledRadioButton id='top42'
-                        checked={shape.tag === 'Top' && shape.size === 42}
+                        checked={size === 42}
                         onCheck={switchToTop42}>
                     Top 42
                 </ControlledRadioButton>
                 <ControlledRadioButton id='top100'
-                        checked={shape.tag === 'Top' && shape.size === 100}
+                        checked={size === 100}
                         onCheck={switchToTop100}>
                     Top 100
                 </ControlledRadioButton>
                 <ControlledRadioButton id='collage'
-                        checked={shape.tag === 'Collage'}
+                        checked={size === null}
                         onCheck={switchToCollage}>
                     Collage
                 </ControlledRadioButton>

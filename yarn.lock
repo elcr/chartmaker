@@ -4342,6 +4342,10 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+"lz-string@https://github.com/elcr/lz-string.git#feature/rollup-build-process":
+  version "1.5.0"
+  resolved "https://github.com/elcr/lz-string.git#956752d6fb1061ce51a9a0efeff3056f527fa3aa"
+
 make-dir@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-2.1.0.tgz#5f0310e18b8be898cc07009295a30ae41e91e6f5"

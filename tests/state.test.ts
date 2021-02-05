@@ -10,7 +10,7 @@ import {
     getAlbumID,
     findAlbumIndexWithID,
     createViewerChart
-} from '@/state'
+} from '@/utils'
 import { LOCAL_STORAGE_KEY } from '@/constants'
 import type { Album, State } from '@/types'
 

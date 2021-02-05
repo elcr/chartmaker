@@ -41,7 +41,8 @@
     "tsconfig-paths-webpack-plugin": "^3.3.0",
     "typescript": "^4.1.3",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "lz-string": "https://github.com/elcr/lz-string.git#feature/rollup-build-process"
   },
   "scripts": {
     "build": "webpack -p",

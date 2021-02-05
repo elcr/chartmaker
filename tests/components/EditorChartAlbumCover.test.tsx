@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils'
 import type { Album } from '@/types'
 import { EditorChartAlbumCover } from '@/components/EditorChartAlbumCover'
 import type { Action } from '@/reducer'
-import { getAlbumID } from '@/state'
+import { getAlbumID } from '@/utils'
 
 import {
     RenderContainer,

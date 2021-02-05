@@ -4,7 +4,7 @@ import type { Album } from '@/types'
 import type { DispatchProps } from '@/reducer'
 import { RenameAlbumButton } from '@/components/RenameAlbumButton'
 import { DeleteAlbumButton } from '@/components/DeleteAlbumButton'
-import { getAlbumID, identifiedAlbumIsPlaceholder } from '@/state'
+import { getAlbumID, identifiedAlbumIsPlaceholder } from '@/utils'
 import { ChartAlbumCover } from '@/components/ChartAlbumCover'
 
 
@@ -45,7 +45,7 @@ function dragOver(event: DragEvent<HTMLDivElement>) {
 export type EditorChartAlbumCoverProps = DispatchProps & {
     album: Album
     size: string
-    highlighted: boolean | undefined
+    highlighted: number | null
 }
 
 

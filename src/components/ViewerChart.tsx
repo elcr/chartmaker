@@ -2,7 +2,7 @@ import type { FC, Ref } from 'react'
 
 import type { DispatchProps } from '@/reducer'
 import type { Chart as ChartState } from '@/types'
-import { splitAlbumsAccordingToShape } from '@/state'
+import { splitAlbumsAccordingToShape } from '@/utils'
 import { Chart } from '@/components/Chart'
 import { ViewerAlbumRows } from '@/components/ViewerAlbumRows'
 import { ViewerAlbumTitles } from '@/components/ViewerAlbumTitles'
@@ -13,7 +13,7 @@ export type ViewerChartProps =
     & ChartState
     & {
         innerRef: Ref<HTMLElement>
-        highlighted: number | undefined
+        highlighted: number | null
     }
 
 
@@ -24,14 +24,12 @@ export const ViewerChart: FC<ViewerChartProps> = ({
     innerRef,
     name,
     shape,
-    rowsX,
-    rowsY
+    size
 }) => {
     const [ rows, groups ] = splitAlbumsAccordingToShape(
         albums,
         shape,
-        rowsX,
-        rowsY
+        size
     )
 
     return (

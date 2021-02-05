@@ -38,7 +38,8 @@ export const EditorSidebar: FC<EditorSidebarProps> = ({
 
     return (
         <Sidebar>
-            <LoadSaveButtons dispatch={dispatch}/>
+            <LoadSaveButtons dispatch={dispatch}
+                chart={charts[activeChartIndex]!}/>
             <ChartManager dispatch={dispatch}
                 charts={charts}
                 activeChartIndex={activeChartIndex}/>

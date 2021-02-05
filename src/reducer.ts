@@ -8,7 +8,15 @@ import {
 } from 'react-use-side-effect-reducer'
 import { produce } from 'immer'
 
-import { createChart, escapeStateForSave, findAlbumIndexWithID, getAlbumID, identifiedAlbumIsPlaceholder, validateState, } from '@/state'
+import {
+    createChart,
+    createExportState,
+    validateUnknownState,
+    findAlbumIndexWithID,
+    getAlbumID,
+    identifiedAlbumIsPlaceholder,
+    routeToURL
+} from '@/utils'
 import {
     elementToDataURI,
     downloadURI,
@@ -16,15 +24,19 @@ import {
     fileToDataURI
 } from '@/utils'
 import { search } from '@/api'
-import type { State, SearchState, ChartShape, ViewerChart } from '@/types'
-import {
-    MAX_SCREENSHOT_SCALE,
-    MAX_COLLAGE_ROWS_X,
-    MAX_COLLAGE_ROWS_Y
-} from '@/constants'
+import type {
+    State,
+    SearchState,
+    Route,
+    CollageSize,
+    TopSize,
+    ScreenshotScale
+} from '@/types'
 
 
 export type Action =
+    | { tag: 'PopRoute', route: Route | null }
+    | { tag: 'PushRoute', route: Route, replace: boolean }
     | { tag: 'UpdateAPIKey', apiKey: string }
     | { tag: 'UpdateActiveChart', index: number }
     | { tag: 'PromptForNewChart' }
@@ -49,16 +61,13 @@ export type Action =
     | { tag: 'RenameAlbum', id: number, name: string }
     | { tag: 'DeleteAlbum', id: number }
     | { tag: 'UpdateScreenshotLoading', loading: boolean }
-    | { tag: 'UpdateScreenshotScale', scale: number }
+    | { tag: 'UpdateScreenshotScale', scale: ScreenshotScale }
     | { tag: 'TakeScreenshot', element: HTMLElement }
-    | { tag: 'UpdateChartShape', shape: ChartShape, rowsX: number, rowsY: number }
+    | { tag: 'UpdateChartShape', shape: CollageSize, size: TopSize | null }
     | { tag: 'DropExternalFile', file: File, targetID: number }
     | { tag: 'LoadExternalFile', uri: string, name: string, targetID: number }
     | { tag: 'HighlightAlbum', targetID: number }
     | { tag: 'UnhighlightAlbum' }
-    | { tag: 'CopyActiveChartLink' }
-    | { tag: 'RouteToEditor' }
-    | { tag: 'RouteToViewer', chart: ViewerChart }
     | { tag: 'ImportViewerChart' }
 
 
@@ -70,6 +79,40 @@ export type DispatchProps = {
 
 export const reducer: SideEffectReducer<State, Action> = (state, action) => {
     switch (action.tag) {
+        case 'PopRoute':
+            return update({
+                ...state,
+                routeState: {
+                    loading: false,
+                    route: action.route
+                }
+            })
+
+        case 'PushRoute': {
+            if (state.routeState.loading
+                    || state.routeState.route?.tag === action.route.tag) {
+                return noUpdate
+            }
+            return updateWithSideEffect<State, Action>(
+                {
+                    ...state,
+                    routeState: {
+                        loading: false,
+                        route: action.route
+                    }
+                },
+                () => {
+                    const url = routeToURL(action.route)
+                    if (action.replace) {
+                        history.replaceState(null, '', url)
+                    }
+                    else {
+                        history.pushState(null, '', url)
+                    }
+                }
+            )
+        }
+
         case 'UpdateAPIKey':
             return update(
                 produce(state, state => {
@@ -81,7 +124,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             return update(
                 produce(state, state => {
                     state.activeChartIndex = action.index
-                    state.highlightedID = undefined
+                    state.highlightedID = null
                 })
             )
 
@@ -110,7 +153,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                 produce(state, state => {
                     state.charts.push(chart)
                     state.activeChartIndex = state.charts.length - 1
-                    state.highlightedID = undefined
+                    state.highlightedID = null
                 })
             )
         }
@@ -154,7 +197,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                     produce(state, state => {
                         state.charts = [ createChart() ]
                         state.activeChartIndex = 0
-                        state.highlightedID = undefined
+                        state.highlightedID = null
                     })
                 )
             }
@@ -165,7 +208,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                     state.activeChartIndex = state.activeChartIndex - 1 < 0
                         ? state.charts.length - 1
                         : state.activeChartIndex - 1
-                    state.highlightedID = undefined
+                    state.highlightedID = null
                 })
             )
         }
@@ -205,16 +248,16 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
 
         case 'LoadStateFile':
             return sideEffect(async dispatch => {
-                let state: State | null
+                let parsed: unknown
                 try {
                     const json = await action.file.text()
-                    const parsed: unknown = JSON.parse(json)
-                    state = validateState(parsed)
+                    parsed = JSON.parse(json)
                 }
                 catch {
                     dispatch({ tag: 'ShowInvalidStateImportMessage' })
                     return
                 }
+                const state = validateUnknownState(parsed)
                 if (state === null) {
                     dispatch({ tag: 'ShowInvalidStateImportMessage' })
                     return
@@ -227,26 +270,33 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                 alert('Selected file is invalid')
             )
 
-        case 'LoadState':
-            return update(action.state)
+        case 'LoadState': {
+            if (state.routeState.loading || state.routeState.route?.tag !== 'Editor') {
+                return noUpdate
+            }
+            return update({
+                ...action.state,
+                routeState: state.routeState
+            })
+        }
 
         case 'PromptToSaveState':
             return sideEffect((_dispatch, state) => {
-                const json = JSON.stringify(escapeStateForSave(state))
+                const json = JSON.stringify(createExportState(state))
                 const uri = jsonToDataURI(json)
                 downloadURI(uri, 'state.json')
             })
 
         case 'CancelSearchRequest': {
-            if (state.search.tag !== 'Loading') {
+            if (state.searchState.tag !== 'Loading') {
                 return noUpdate
             }
-            const controller = state.search.controller
+            const controller = state.searchState.controller
             return updateWithSideEffect<State, Action>(
                 produce(state, state => {
-                    state.search = {
+                    state.searchState = {
                         tag: 'Waiting',
-                        query: state.search.query
+                        query: state.searchState.query
                     }
                 }),
                 () => controller.abort()
@@ -254,17 +304,17 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         }
 
         case 'SendSearchRequest': {
-            if (state.search.tag === 'Loading'
-                    || state.search.query.trim().length === 0) {
+            if (state.searchState.tag === 'Loading'
+                    || state.searchState.query.trim().length === 0) {
                 return noUpdate
             }
 
             if (state.apiKey.trim().length === 0) {
                 return update(
                     produce(state, state => {
-                        state.search = {
+                        state.searchState = {
                             tag: 'Error',
-                            query: state.search.query,
+                            query: state.searchState.query,
                             message: 'Last.fm API key required'
                         }
                     })
@@ -274,16 +324,16 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             const controller = new AbortController()
             return updateWithSideEffect<State, Action>(
                 produce(state, state => {
-                    state.search = {
+                    state.searchState = {
                         tag: 'Loading',
-                        query: state.search.query,
+                        query: state.searchState.query,
                         controller
                     }
                 }),
                 async (dispatch, state) => {
                     const result = await search({
                         key: state.apiKey,
-                        query: state.search.query,
+                        query: state.searchState.query,
                         signal: controller.signal
                     })
                     switch (result.tag) {
@@ -291,9 +341,9 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                             dispatch({
                                 tag: 'LoadState',
                                 state: produce(state, state => {
-                                    state.search = {
+                                    state.searchState = {
                                         tag: 'Complete',
-                                        query: state.search.query,
+                                        query: state.searchState.query,
                                         albums: result.albums
                                     }
                                 })
@@ -305,7 +355,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                                 tag: 'UpdateSearchState',
                                 state: {
                                     tag: 'Error',
-                                    query: state.search.query,
+                                    query: state.searchState.query,
                                     message: `Last.fm request returned ${result.status}`
                                 }
                             })
@@ -317,7 +367,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                                 tag: 'UpdateSearchState',
                                 state: {
                                     tag: 'Error',
-                                    query: state.search.query,
+                                    query: state.searchState.query,
                                     message: 'Invalid data returned from Last.fm'
                                 }
                             })
@@ -328,7 +378,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
                                 tag: 'UpdateSearchState',
                                 state: {
                                     tag: 'Error',
-                                    query: state.search.query,
+                                    query: state.searchState.query,
                                     message: 'Network error sending request to Last.fm'
                                 }
                             })
@@ -344,17 +394,17 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         case 'UpdateSearchState':
             return update(
                 produce(state, state => {
-                    state.search = action.state
+                    state.searchState = action.state
                 })
             )
 
         case 'UpdateSearchQuery': {
-            if (state.search.tag === 'Loading') {
+            if (state.searchState.tag === 'Loading') {
                 return noUpdate
             }
             return update(
                 produce(state, state => {
-                    state.search.query = action.query
+                    state.searchState.query = action.query
                 })
             )
         }
@@ -402,11 +452,11 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         }
 
         case 'DropSearchAlbum': {
-            if (state.search.tag !== 'Complete') {
+            if (state.searchState.tag !== 'Complete') {
                 return noUpdate
             }
 
-            const source = state.search.albums[action.sourceIndex]
+            const source = state.searchState.albums[action.sourceIndex]
             if (source === undefined) {
                 return noUpdate
             }
@@ -490,35 +540,29 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         case 'UpdateScreenshotLoading':
             return update(
                 produce(state, state => {
-                    state.screenshot.loading = action.loading
+                    state.screenshotState.loading = action.loading
                 })
             )
 
-        case 'UpdateScreenshotScale': {
-            if (state.screenshot.loading
-                    || action.scale < 1
-                    || action.scale > MAX_SCREENSHOT_SCALE) {
-                return noUpdate
-            }
+        case 'UpdateScreenshotScale':
             return update(
                 produce(state, state => {
-                    state.screenshot.scale = action.scale
+                    state.screenshotState.scale = action.scale
                 })
             )
-        }
 
         case 'TakeScreenshot': {
-            if (state.screenshot.loading) {
+            if (state.screenshotState.loading) {
                 return noUpdate
             }
             return updateWithSideEffect<State, Action>(
                 produce(state, state => {
-                    state.screenshot.loading = true
+                    state.screenshotState.loading = true
                 }),
                 async (dispatch, state) => {
                     const uri = await elementToDataURI(
                         action.element,
-                        state.screenshot.scale
+                        state.screenshotState.scale
                     )
                     downloadURI(uri, 'chart.png')
                     dispatch({
@@ -529,22 +573,14 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             )
         }
 
-        case 'UpdateChartShape': {
-            if (action.rowsX < 1
-                    || action.rowsX > MAX_COLLAGE_ROWS_X
-                    || action.rowsY < 1
-                    || action.rowsY > MAX_COLLAGE_ROWS_Y) {
-                return noUpdate
-            }
+        case 'UpdateChartShape':
             return update(
                 produce(state, state => {
                     const chart = state.charts[state.activeChartIndex]!
                     chart.shape = action.shape
-                    chart.rowsX = action.rowsX
-                    chart.rowsY = action.rowsY
+                    chart.size = action.size
                 })
             )
-        }
 
         case 'DropExternalFile': {
             const exists = state.charts[state.activeChartIndex]!.albums.some(album =>
@@ -591,7 +627,7 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
             if (target === undefined) {
                 return update(
                     produce(state, state => {
-                        state.highlightedID = undefined
+                        state.highlightedID = null
                     })
                 )
             }
@@ -606,20 +642,24 @@ export const reducer: SideEffectReducer<State, Action> = (state, action) => {
         case 'UnhighlightAlbum':
             return update(
                 produce(state, state => {
-                    state.highlightedID = undefined
+                    state.highlightedID = null
                 })
             )
 
-        case 'CopyActiveChartLink':
-            return noUpdate
-
-        case 'RouteToEditor':
-            return noUpdate
-
-        case 'RouteToViewer':
-            return noUpdate
-
-        case 'ImportViewerChart':
-            return noUpdate
+        case 'ImportViewerChart': {
+            if (state.routeState.loading
+                    || state.routeState.route?.tag !== 'Viewer'
+                    || state.routeState.route.chart === null) {
+                return noUpdate
+            }
+            const { chart } = state.routeState.route
+            return update(
+                produce(state, state => {
+                    state.charts.push(chart)
+                    state.activeChartIndex = state.charts.length - 1
+                    state.highlightedID = null
+                })
+            )
+        }
     }
 }

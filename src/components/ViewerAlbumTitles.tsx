@@ -9,7 +9,7 @@ import { AlbumTitlesContainer } from '@/components/AlbumTitlesContainer'
 
 export type ViewerAlbumTitlesProps = DispatchProps & {
     groups: NamedAlbum[][]
-    highlighted: number | undefined
+    highlighted: number | null
 }
 
 

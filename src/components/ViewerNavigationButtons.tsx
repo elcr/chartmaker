@@ -8,16 +8,27 @@ import { ViewerEditButton } from '@/components/ViewerEditButton'
 
 
 const style = css({
-    display: 'flex',
-    justifyContent: 'space-between'
+    display: 'flex'
 })
 
 
-export type ViewerNavigationButtonsProps = DispatchProps
+export type ViewerNavigationButtonsProps = DispatchProps & {
+    importDisabled: boolean
+}
 
 
-export const ViewerNavigationButtons: FC<ViewerNavigationButtonsProps> = ({ dispatch }) =>
-    <SidebarGroup className={style}>
-        <ViewerBackButton dispatch={dispatch}/>
-        <ViewerEditButton dispatch={dispatch}/>
-    </SidebarGroup>
+export const ViewerNavigationButtons: FC<ViewerNavigationButtonsProps> = ({
+    dispatch,
+    importDisabled
+}) => {
+    let editButton: JSX.Element | undefined
+    if (!importDisabled) {
+        editButton = <ViewerEditButton dispatch={dispatch}/>
+    }
+    return (
+        <SidebarGroup className={style}>
+            <ViewerBackButton dispatch={dispatch}/>
+            {editButton}
+        </SidebarGroup>
+    )
+}

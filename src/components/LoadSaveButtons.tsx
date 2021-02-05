@@ -6,6 +6,7 @@ import type { DispatchProps } from '@/reducer'
 import { LoadStateButton } from '@/components/LoadStateButton'
 import { SaveStateButton } from '@/components/SaveStateButton'
 import { CopyLinkButton } from '@/components/CopyLinkButton'
+import type { Chart } from '@/types'
 
 
 const outerStyle = css({
@@ -19,14 +20,16 @@ const innerStyle = css({
 })
 
 
-export type LoadSaveButtonsProps = DispatchProps
+export type LoadSaveButtonsProps = DispatchProps & {
+    chart: Chart
+}
 
 
-export const LoadSaveButtons: FC<LoadSaveButtonsProps> = ({ dispatch }) =>
+export const LoadSaveButtons: FC<LoadSaveButtonsProps> = ({ dispatch, chart }) =>
     <SidebarGroup className={outerStyle}>
         <div className={innerStyle}>
             <LoadStateButton dispatch={dispatch}/>
             <SaveStateButton dispatch={dispatch}/>
         </div>
-        <CopyLinkButton dispatch={dispatch}/>
+        <CopyLinkButton chart={chart}/>
     </SidebarGroup>

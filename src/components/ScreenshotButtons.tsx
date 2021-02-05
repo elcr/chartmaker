@@ -1,8 +1,7 @@
 import type { FC, RefObject } from 'react'
 
 import type { DispatchProps } from '@/reducer'
-import type { ScreenshotState } from '@/types'
-import { MAX_SCREENSHOT_SCALE } from '@/constants'
+import { ScreenshotState, ScreenshotScale } from '@/types'
 import { ControlledSlider } from '@/components/ControlledSlider'
 import { SidebarGroup } from '@/components/SidebarGroup'
 import { Button } from '@/components/Button'
@@ -24,6 +23,9 @@ export const ScreenshotButtons: FC<ScreenshotButtonsProps> = ({
     chartRef
 }) => {
     function updateScreenshotScale(scale: number) {
+        if (!ScreenshotScale.guard(scale)) {
+            return
+        }
         dispatch({ tag: 'UpdateScreenshotScale', scale })
     }
 
@@ -43,8 +45,8 @@ export const ScreenshotButtons: FC<ScreenshotButtonsProps> = ({
                     disabled={loading}
                     value={scale}
                     onChange={updateScreenshotScale}
-                    min={1}
-                    max={MAX_SCREENSHOT_SCALE}
+                    min={ScreenshotScale.alternatives[0].value}
+                    max={ScreenshotScale.alternatives[ScreenshotScale.alternatives.length - 1]!.value}
                     step={1}>
                 Scale
             </ControlledSlider>

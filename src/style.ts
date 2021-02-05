@@ -26,7 +26,10 @@ export const buttonStyle = css({
     background: BACKGROUND_COLOUR,
     color: TEXT_COLOUR,
     border: BORDER,
-    padding: SIDEBAR_LABEL_PADDING_SIZE
+    padding: SIDEBAR_LABEL_PADDING_SIZE,
+    ':hover': {
+        color: TEXT_COLOUR
+    }
 })
 
 

@@ -1,15 +1,19 @@
 import type { FC } from 'react'
 
-import type { DispatchProps } from '@/reducer'
 import { Button } from '@/components/Button'
+import type { Chart } from '@/types'
+import { routeToURL } from '@/utils'
 
 
-export type CopyLinkButtonProps = DispatchProps
+export type CopyLinkButtonProps = {
+    chart: Chart
+}
 
 
-export const CopyLinkButton: FC<CopyLinkButtonProps> = ({ dispatch }) => {
+export const CopyLinkButton: FC<CopyLinkButtonProps> = ({ chart }) => {
     function copyLink() {
-        dispatch({ tag: 'CopyActiveChartLink' })
+        const url = routeToURL({ tag: 'Viewer', chart })
+        navigator.clipboard.writeText(location.origin + url)
     }
 
     return (

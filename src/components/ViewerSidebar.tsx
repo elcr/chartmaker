@@ -10,16 +10,19 @@ import { ViewerNavigationButtons } from '@/components/ViewerNavigationButtons'
 export type ViewerSidebarProps = DispatchProps & {
     screenshotState: ScreenshotState
     chartRef: RefObject<HTMLElement>
+    importDisabled: boolean
 }
 
 
 export const ViewerSidebar: FC<ViewerSidebarProps> = ({
     dispatch,
     chartRef,
-    screenshotState
+    screenshotState,
+    importDisabled
 }) =>
     <Sidebar>
-        <ViewerNavigationButtons dispatch={dispatch}/>
+        <ViewerNavigationButtons dispatch={dispatch}
+            importDisabled={importDisabled}/>
         <ScreenshotButtons dispatch={dispatch}
             chartRef={chartRef}
             screenshotState={screenshotState}/>

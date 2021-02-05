@@ -5,7 +5,7 @@ import { ALBUM_BUTTONS_PADDING_SIZE } from '@/style'
 import { AlbumCover, AlbumCoverProps } from '@/components/AlbumCover'
 import type { Album } from '@/types'
 import type { DispatchProps } from '@/reducer'
-import { getAlbumID, identifiedAlbumIsPlaceholder } from '@/state'
+import { getAlbumID, identifiedAlbumIsPlaceholder } from '@/utils'
 
 
 const overlayStyle = css({
@@ -18,22 +18,33 @@ const overlayStyle = css({
 
 export type ChartAlbumCoverProps =
     & DispatchProps
-    & Omit<AlbumCoverProps, 'overlayClass' | 'album' | 'onMouseEnter'>
+    & Omit<AlbumCoverProps, 'overlayClass' | 'album' | 'onMouseEnter' | 'highlighted'>
     & {
         album: Album
+        highlighted: number | null
     }
 
 
-export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({ dispatch, album, ...props }) => {
+export const ChartAlbumCover: FC<ChartAlbumCoverProps> = ({
+    dispatch,
+    album,
+    highlighted,
+    ...props
+}) => {
+    const id = getAlbumID(album)
+
     function mouseEnter() {
         dispatch({
             tag: 'HighlightAlbum',
-            targetID: getAlbumID(album)
+            targetID: id
         })
     }
 
     return (
         <AlbumCover {...props}
+            highlighted={highlighted === null
+                ? undefined
+                : id === highlighted}
             album={identifiedAlbumIsPlaceholder(album) ? null : album}
             overlayClass={overlayStyle}
             onMouseEnter={mouseEnter}/>

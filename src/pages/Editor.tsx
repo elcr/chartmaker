@@ -19,8 +19,8 @@ export const Editor: FC<EditorProps> = ({
     charts,
     activeChartIndex,
     apiKey,
-    search,
-    screenshot,
+    searchState,
+    screenshotState,
     highlightedID,
     chartRef
 }) =>
@@ -29,8 +29,8 @@ export const Editor: FC<EditorProps> = ({
             charts={charts}
             activeChartIndex={activeChartIndex}
             apiKey={apiKey}
-            searchState={search}
-            screenshotState={screenshot}
+            searchState={searchState}
+            screenshotState={screenshotState}
             chartRef={chartRef}/>
         <EditorChart {...charts[activeChartIndex]!}
             innerRef={chartRef}

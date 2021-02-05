@@ -3,7 +3,7 @@ import type { FC, Ref } from 'react'
 import type { Chart as ChartState } from '@/types'
 import type { DispatchProps } from '@/reducer'
 import { Chart } from '@/components/Chart'
-import { splitAlbumsAccordingToShape } from '@/state'
+import { splitAlbumsAccordingToShape } from '@/utils'
 import { EditorAlbumRows } from '@/components/EditorAlbumRows'
 import { EditorAlbumTitles } from '@/components/EditorAlbumTitles'
 
@@ -13,7 +13,7 @@ export type EditorChartProps =
     & ChartState
     & {
         innerRef: Ref<HTMLElement>
-        highlighted: number | undefined
+        highlighted: number | null
     }
 
 
@@ -23,15 +23,13 @@ export const EditorChart: FC<EditorChartProps> = ({
     highlighted,
     innerRef,
     name,
-    rowsX,
-    rowsY,
-    shape
+    shape,
+    size
 }) => {
     const [ rows, groups ] = splitAlbumsAccordingToShape(
         albums,
         shape,
-        rowsX,
-        rowsY
+        size
     )
 
     return (

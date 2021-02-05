@@ -6,8 +6,9 @@ import { reducer } from '@/reducer'
 import {
     createInitialState,
     loadStateFromLocalStorage,
+    routeFromLocation,
     saveStateToLocalStorage
-} from '@/state'
+} from '@/utils'
 import {
     BACKGROUND_COLOUR,
     TEXT_COLOUR,
@@ -40,14 +41,57 @@ export const App: FC = () => {
         () => saveStateToLocalStorage(state),
         [ state ]
     )
+    useEffect(
+        () => {
+            function popRoute() {
+                dispatch({
+                    tag: 'PopRoute',
+                    route: routeFromLocation(location.pathname, location.hash)
+                })
+            }
 
-    const page = state.viewing === undefined
-        ? <Editor {...state} dispatch={dispatch} chartRef={chartRef}/>
-        : <Viewer dispatch={dispatch}
-            chart={state.viewing}
-            chartRef={chartRef}
-            highlighted={state.highlightedID}
-            screenshotState={state.screenshot}/>
+            popRoute()
+            window.addEventListener('popstate', popRoute)
+
+            return () => window.removeEventListener('popstate', popRoute)
+        },
+        []
+    )
+    useEffect(
+        () => {
+            if (!state.routeState.loading && state.routeState.route === null) {
+                dispatch({
+                    tag: 'PushRoute',
+                    route: { tag: 'Editor' },
+                    replace: true
+                })
+            }
+        },
+        [ state.routeState ]
+    )
+
+    let page: JSX.Element | null
+    if (state.routeState.loading) {
+        page = null
+    }
+    else {
+        switch (state.routeState.route?.tag) {
+            case 'Editor':
+                page = <Editor {...state} dispatch={dispatch} chartRef={chartRef}/>
+                break
+            case 'Viewer':
+                page = (
+                    <Viewer dispatch={dispatch}
+                        chart={state.routeState.route.chart}
+                        chartRef={chartRef}
+                        highlighted={state.highlightedID}
+                        screenshotState={state.screenshotState}/>
+                )
+                break
+            case undefined:
+                page = null
+        }
+    }
 
     return (
         <div className={rootStyle}>

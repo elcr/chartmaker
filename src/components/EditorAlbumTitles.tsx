@@ -11,7 +11,7 @@ import { AlbumTitleGroup } from '@/components/AlbumTitleGroup'
 
 export type EditorAlbumTitlesProps = DispatchProps & {
     groups: NamedAlbum[][]
-    highlighted: number | undefined
+    highlighted: number | null
 }
 
 

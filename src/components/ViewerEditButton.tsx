@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import type { DispatchProps } from '@/reducer'
-import { Button } from '@/components/Button'
+import { ViewerNavigationLink } from '@/components/ViewerNavigationLink'
 
 
 export type ViewerEditButtonProps = DispatchProps
@@ -13,8 +13,8 @@ export const ViewerEditButton: FC<ViewerEditButtonProps> = ({ dispatch }) => {
     }
 
     return (
-        <Button onClick={importChart}>
+        <ViewerNavigationLink dispatch={dispatch} onClick={importChart}>
             Edit
-        </Button>
+        </ViewerNavigationLink>
     )
 }

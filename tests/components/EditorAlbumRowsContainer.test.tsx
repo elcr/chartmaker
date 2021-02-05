@@ -1,6 +1,6 @@
 import { render } from 'react-dom'
 
-import type { AlbumRow } from '@/state'
+import type { AlbumRow } from '@/utils'
 import type { Album } from '@/types'
 import { EditorAlbumRows } from '@/components/EditorAlbumRows'
 

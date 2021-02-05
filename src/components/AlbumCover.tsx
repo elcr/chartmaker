@@ -3,7 +3,7 @@ import { css, cx } from 'emotion'
 
 import { TEXT_COLOUR, ALBUM_PADDING_SIZE, highlightBackgroundStyle } from '@/style'
 import type { UnidentifiedAlbum } from '@/types'
-import { unidentifiedAlbumIsPlaceholder } from '@/state'
+import { unidentifiedAlbumIsPlaceholder } from '@/utils'
 
 
 export type AlbumCoverProps = {

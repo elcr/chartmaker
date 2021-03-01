@@ -2,7 +2,7 @@ import { render } from 'react-dom'
 
 import { AlbumTitleGroup } from '@/components/AlbumTitleGroup'
 
-import { RenderContainer } from '../utils'
+import { RenderContainer } from '../../src/test-utils/utils'
 
 
 jest.mock('@/components/AlbumTitle')

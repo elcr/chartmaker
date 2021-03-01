@@ -1,7 +1,7 @@
 {
   "name": "chartmaker",
   "version": "0.1.0",
-  "main": "src/index.tsx",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/elcr/chartmaker.git"
@@ -9,10 +9,14 @@
   "author": "elcr",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^26.0.8",
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.8",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.20",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "autoprefixer": "^9.8.6",
+    "babel-jest": "^26.6.3",
     "bootstrap": "^4.4.1",
     "css-loader": "^4.2.0",
     "emotion": "^10.0.27",
@@ -24,28 +28,28 @@
     "jest-emotion": "^10.0.32",
     "jest-webpack-resolver": "^0.3.0",
     "js-base64": "^3.4.5",
+    "lz-string": "https://github.com/elcr/lz-string.git#feature/rollup-build-process",
     "mini-css-extract-plugin": "^0.9.0",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-use-side-effect-reducer": "https://github.com/elcr/react-use-side-effect-reducer.git#580b8ba",
-    "runtypes": "^5.0.1",
+    "react-use-side-effect-reducer": "https://github.com/elcr/react-use-side-effect-reducer.git",
+    "runtypes": "https://github.com/elcr/runtypes.git",
     "sass": "^1.32.5",
     "sass-loader": "^9.0.2",
     "source-map-loader": "^1.0.1",
     "string-replace-loader": "^2.3.0",
     "style-loader": "^1.2.1",
-    "ts-jest": "^26.1.4",
     "ts-loader": "^8.0.2",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
-    "typescript": "^4.1.3",
+    "typescript": "^4.2.2",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12",
-    "lz-string": "https://github.com/elcr/lz-string.git#feature/rollup-build-process"
+    "webpack-cli": "^3.3.12"
   },
   "scripts": {
     "build": "webpack -p",
+    "check-tests": "tsc -p tsconfig.tests.json",
     "test": "jest"
   },
   "resolutions": {

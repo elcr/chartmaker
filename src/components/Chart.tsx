@@ -1,4 +1,4 @@
-import type { FC, Ref } from 'react'
+import { forwardRef, PropsWithChildren } from 'react'
 import { css } from 'emotion'
 
 import { CONTAINER_PADDING_SIZE, BORDER } from '@/style'
@@ -20,14 +20,15 @@ const innerContainerStyle = css({
 
 export type ChartProps = {
     name: string
-    innerRef: Ref<HTMLElement>
 }
 
 
-export const Chart: FC<ChartProps> = ({ name, innerRef, children }) =>
-    <main ref={innerRef} className={outContainerStyle}>
-        <h1>{name}</h1>
-        <div className={innerContainerStyle}>
-            {children}
-        </div>
-    </main>
+export const Chart = forwardRef<HTMLElement, PropsWithChildren<ChartProps>>(
+    ({ name, children }, ref) =>
+        <main ref={ref} className={outContainerStyle}>
+            <h1>{name}</h1>
+            <div className={innerContainerStyle}>
+                {children}
+            </div>
+        </main>
+)

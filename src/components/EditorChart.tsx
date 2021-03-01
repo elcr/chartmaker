@@ -1,4 +1,4 @@
-import type { FC, Ref } from 'react'
+import { forwardRef, PropsWithChildren } from 'react'
 
 import type { Chart as ChartState } from '@/types'
 import type { DispatchProps } from '@/reducer'
@@ -12,34 +12,27 @@ export type EditorChartProps =
     & DispatchProps
     & ChartState
     & {
-        innerRef: Ref<HTMLElement>
         highlighted: number | null
     }
 
 
-export const EditorChart: FC<EditorChartProps> = ({
-    dispatch,
-    albums,
-    highlighted,
-    innerRef,
-    name,
-    shape,
-    size
-}) => {
-    const [ rows, groups ] = splitAlbumsAccordingToShape(
-        albums,
-        shape,
-        size
-    )
+export const EditorChart = forwardRef<HTMLElement, PropsWithChildren<EditorChartProps>>(
+    ({ dispatch, albums, highlighted, name, shape, size }, ref) => {
+        const [ rows, groups ] = splitAlbumsAccordingToShape(
+            albums,
+            shape,
+            size
+        )
 
-    return (
-        <Chart innerRef={innerRef} name={name}>
-            <EditorAlbumRows dispatch={dispatch}
-                rows={rows}
-                highlighted={highlighted}/>
-            <EditorAlbumTitles dispatch={dispatch}
-                groups={groups}
-                highlighted={highlighted}/>
-        </Chart>
-    )
-}
+        return (
+            <Chart ref={ref} name={name}>
+                <EditorAlbumRows dispatch={dispatch}
+                    rows={rows}
+                    highlighted={highlighted}/>
+                <EditorAlbumTitles dispatch={dispatch}
+                    groups={groups}
+                    highlighted={highlighted}/>
+            </Chart>
+        )
+    }
+)

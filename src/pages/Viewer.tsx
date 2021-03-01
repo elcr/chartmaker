@@ -43,8 +43,8 @@ export const Viewer: FC<ViewerProps> = ({
     else {
         content = (
             <ViewerChart {...chart}
+                ref={chartRef}
                 dispatch={dispatch}
-                innerRef={chartRef}
                 highlighted={highlighted}/>
         )
     }

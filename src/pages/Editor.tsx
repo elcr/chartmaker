@@ -33,7 +33,7 @@ export const Editor: FC<EditorProps> = ({
             screenshotState={screenshotState}
             chartRef={chartRef}/>
         <EditorChart {...charts[activeChartIndex]!}
-            innerRef={chartRef}
+            ref={chartRef}
             dispatch={dispatch}
             highlighted={highlightedID}/>
     </>

@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils'
 import { APIKeyInput, id } from '@/components/APIKeyInput'
 import type { Action } from '@/reducer'
 
-import { RenderContainer, ignore, fireEvent } from '../utils'
+import { RenderContainer, ignore, fireEvent } from '@/test-utils/utils'
 
 
 jest.mock('@/components/SidebarGroup')

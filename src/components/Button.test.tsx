@@ -3,7 +3,7 @@ import { act } from 'react-dom/test-utils'
 
 import { Button } from '@/components/Button'
 
-import { RenderContainer, fireEvent } from '../utils'
+import { RenderContainer, fireEvent } from '@/test-utils/utils'
 
 
 const container = new RenderContainer()

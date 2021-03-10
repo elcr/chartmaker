@@ -8,7 +8,7 @@ import {
     RenderContainer,
     DragEventDataTransferMock,
     fireEvent
-} from '../utils'
+} from '@/test-utils/utils'
 
 
 jest.mock('@/components/AlbumCover')

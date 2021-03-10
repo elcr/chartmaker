@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { ChartManager } from '@/components/ChartManager'
 import type { Chart } from '@/types'
 
-import { RenderContainer, ignore } from '../utils'
+import { RenderContainer, ignore } from '@/test-utils/utils'
 
 
 jest.mock('@/components/ChartSelector')

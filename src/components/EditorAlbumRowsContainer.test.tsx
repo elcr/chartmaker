@@ -4,7 +4,7 @@ import type { AlbumRow } from '@/utils'
 import type { Album } from '@/types'
 import { EditorAlbumRows } from '@/components/EditorAlbumRows'
 
-import { createTestNamedAlbums, createTestPlaceholderAlbums, ignore, RenderContainer } from '../utils'
+import { createTestNamedAlbums, createTestPlaceholderAlbums, ignore, RenderContainer } from '@/test-utils/utils'
 
 
 jest.mock('@/components/EditorAlbumRow')

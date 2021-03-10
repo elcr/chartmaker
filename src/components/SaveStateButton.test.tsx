@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils'
 import { SaveStateButton } from '@/components/SaveStateButton'
 import type { Action } from '@/reducer'
 
-import { RenderContainer, ignore, fireEvent } from '../utils'
+import { RenderContainer, ignore, fireEvent } from '@/test-utils/utils'
 
 
 jest.mock('@/components/Button')

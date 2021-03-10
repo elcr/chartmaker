@@ -1,7 +1,9 @@
-import type { FC } from 'react'
+const mock: typeof import('@/components/AlbumTitleGroup') = {
+    AlbumTitleGroup: ({ children }) =>
+        <div className='mock-album-title-group'>
+            {children}
+        </div>
+}
 
 
-export const AlbumTitleGroup: FC = ({ children }) =>
-    <div className='mock-album-title-group'>
-        {children}
-    </div>
+export const AlbumTitleGroup = mock.AlbumTitleGroup

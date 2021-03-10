@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect } from 'react'
+import { FC, useRef, useEffect } from 'react'
 import { css } from 'emotion'
 import { useSideEffectReducer } from 'react-use-side-effect-reducer'
 
@@ -17,6 +17,12 @@ import {
 } from '@/style'
 import { Editor } from '@/pages/Editor'
 import { Viewer } from '@/pages/Viewer'
+import type { State } from '@/types'
+
+
+function loadState(): State {
+    return loadStateFromLocalStorage() ?? createInitialState()
+}
 
 
 const rootStyle = css({
@@ -33,10 +39,7 @@ const rootStyle = css({
 
 export const App: FC = () => {
     const chartRef = useRef<HTMLElement>(null)
-    const [ state, dispatch ] = useSideEffectReducer(
-        () => loadStateFromLocalStorage() ?? createInitialState(),
-        reducer
-    )
+    const [ state, dispatch ] = useSideEffectReducer(loadState, reducer)
     useEffect(
         () => saveStateToLocalStorage(state),
         [ state ]
@@ -51,9 +54,9 @@ export const App: FC = () => {
             }
 
             popRoute()
-            window.addEventListener('popstate', popRoute)
+            addEventListener('popstate', popRoute)
 
-            return () => window.removeEventListener('popstate', popRoute)
+            return () => removeEventListener('popstate', popRoute)
         },
         []
     )
@@ -75,7 +78,6 @@ export const App: FC = () => {
         case undefined:
             page = null
     }
-
 
     return (
         <div className={rootStyle}>

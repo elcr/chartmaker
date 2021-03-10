@@ -9,7 +9,7 @@ import {
     RenderContainer,
     ignore,
     fireEvent
-} from '../utils'
+} from '@/test-utils/utils'
 
 
 jest.mock('@/components/Label')

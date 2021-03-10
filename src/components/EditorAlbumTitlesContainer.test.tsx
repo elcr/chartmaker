@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import type { NamedAlbum } from '@/types'
 import { EditorAlbumTitles } from '@/components/EditorAlbumTitles'
 
-import { createTestNamedAlbums, ignore, RenderContainer } from '../utils'
+import { createTestNamedAlbums, ignore, RenderContainer } from '@/test-utils/utils'
 
 
 jest.mock('@/components/EditorAlbumTitleGroup')

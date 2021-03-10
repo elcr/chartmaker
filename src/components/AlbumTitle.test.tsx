@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils'
 import { AlbumTitle } from '@/components/AlbumTitle'
 import type { Action } from '@/reducer'
 
-import { RenderContainer, ignore, fireEvent } from '../utils'
+import { RenderContainer, ignore, fireEvent } from '@/test-utils/utils'
 
 
 const container = new RenderContainer()
@@ -12,7 +12,7 @@ const container = new RenderContainer()
 
 test('renders title and children', () => {
     render(
-        <AlbumTitle dispatch={ignore} id={123} name='Test name' highlighted={undefined}>
+        <AlbumTitle dispatch={ignore} id={123} name='Test name' highlighted={null}>
             Test children
         </AlbumTitle>,
         container.element
@@ -22,9 +22,9 @@ test('renders title and children', () => {
 })
 
 
-test.each([ true, false ])('has reduced opacity when highlighted is false', highlighted => {
+test.each([ 123, 456 ])('has reduced opacity when highlighted is not id', highlighted => {
     render(
-        <AlbumTitle dispatch={ignore} id={456} name='Test name' highlighted={highlighted}>
+        <AlbumTitle dispatch={ignore} id={123} name='Test name' highlighted={highlighted}>
             Test children
         </AlbumTitle>,
         container.element
@@ -34,11 +34,11 @@ test.each([ true, false ])('has reduced opacity when highlighted is false', high
 })
 
 
-test('dispatches highlight action on mouse enter', () => {
+test.each([ 123, 456, null ])('dispatches highlight action on mouse enter', highlighted => {
     const mock = jest.fn<[], [ Action ]>()
 
     render(
-        <AlbumTitle dispatch={mock} id={123} name='Test name' highlighted={undefined}>
+        <AlbumTitle dispatch={mock} id={123} name='Test name' highlighted={highlighted}>
             Test children
         </AlbumTitle>,
         container.element

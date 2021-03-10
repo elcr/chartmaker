@@ -1,10 +1,11 @@
-import type { FC } from 'react'
+const mock: typeof import('@/components/AlbumTitlesContainer') = {
+    id: 'titles',
+
+    AlbumTitlesContainer: ({ children }) =>
+        <div className='mock-album-titles-container'>
+            {children}
+        </div>
+}
 
 
-import type { AlbumTitlesContainerProps } from '@/components/AlbumTitlesContainer'
-
-
-export const AlbumTitlesContainer: FC<AlbumTitlesContainerProps> = ({ children }) =>
-    <div className='mock-album-titles-container'>
-        {children}
-    </div>
+export const AlbumTitlesContainer = mock.AlbumTitlesContainer

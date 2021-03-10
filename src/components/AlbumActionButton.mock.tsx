@@ -1,7 +1,7 @@
-import type { FC } from 'react'
+const mock: typeof import('@/components/AlbumActionButton') = {
+    AlbumActionButton: props =>
+        <div {...props} className='mock-album-action-button'/>
+}
 
-import type { AlbumActionButtonProps } from '@/components/AlbumActionButton'
 
-
-export const AlbumActionButton: FC<AlbumActionButtonProps> = props =>
-    <div {...props} className='mock-album-action-button'/>
+export const AlbumActionButton = mock.AlbumActionButton

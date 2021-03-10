@@ -3,7 +3,7 @@ import { act } from 'react-dom/test-utils'
 
 import { ControlledRadioButton } from '@/components/ControlledRadioButton'
 
-import { RenderContainer, ignore, fireEvent } from '../utils'
+import { RenderContainer, ignore, fireEvent } from '@/test-utils/utils'
 
 
 jest.mock('@/components/Label')

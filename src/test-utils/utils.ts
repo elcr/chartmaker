@@ -2,7 +2,6 @@ import { unmountComponentAtNode } from 'react-dom'
 import { Simulate } from 'react-dom/test-utils'
 
 import type { NamedAlbum, State, Chart } from '@/types'
-import { STATE_VERSION } from '@/constants'
 
 
 export function fireEvent(
@@ -111,7 +110,6 @@ export function createTestState({ albums = 3, charts: chartsCount = 1 } = {}): S
         charts.push(chart)
     }
     return {
-        version: STATE_VERSION,
         charts,
         activeChartIndex: 0,
         apiKey: 'Test API key',

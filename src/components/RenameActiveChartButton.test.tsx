@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils'
 import { RenameActiveChartButton } from '@/components/RenameActiveChartButton'
 import type { Action } from '@/reducer'
 
-import { RenderContainer, ignore, fireEvent } from '../utils'
+import { RenderContainer, ignore, fireEvent } from '@/test-utils/utils'
 
 
 jest.mock('@/components/Button')

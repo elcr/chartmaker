@@ -2,7 +2,7 @@ import { render } from 'react-dom'
 
 import { EditorAlbumRow } from '@/components/EditorAlbumRow'
 
-import { RenderContainer, ignore, createTestPlaceholderAlbums } from '../utils'
+import { RenderContainer, ignore, createTestPlaceholderAlbums } from '@/test-utils/utils'
 
 
 jest.mock('@/components/EditorChartAlbumCover')

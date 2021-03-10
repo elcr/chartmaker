@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import type { ChartShape } from '@/types'
 import { EditorChart } from '@/components/EditorChart'
 
-import { RenderContainer, ignore, createTestNamedAlbums } from '../utils'
+import { RenderContainer, ignore, createTestNamedAlbums } from '@/test-utils/utils'
 
 
 jest.mock('@/components/EditorAlbumRowsContainer')

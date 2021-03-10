@@ -2,7 +2,7 @@ import { render } from 'react-dom'
 
 import { ChartAlbumCover } from '@/components/ChartAlbumCover'
 
-import { RenderContainer } from '../utils'
+import { RenderContainer } from '@/test-utils/utils'
 import type { UnidentifiedAlbum } from '@/types'
 
 

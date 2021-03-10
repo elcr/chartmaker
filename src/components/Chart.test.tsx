@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 
 import { Chart } from '@/components/Chart'
 
-import { RenderContainer } from '../utils'
+import { RenderContainer } from '@/test-utils/utils'
 
 
 const container = new RenderContainer()

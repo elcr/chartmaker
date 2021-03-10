@@ -5,7 +5,7 @@ import type { SearchState } from '@/types'
 import { SearchBox, id } from '@/components/SearchBox'
 import type { Action } from '@/reducer'
 
-import { RenderContainer, ignore, fireEvent } from '../utils'
+import { RenderContainer, ignore, fireEvent } from '@/test-utils/utils'
 
 
 // no need to mock the ControlledForm because it has no styles or anything,

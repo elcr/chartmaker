@@ -1,61 +1,36 @@
-import { render } from 'react-dom'
+// import { render } from 'react-dom'
 
-import type { State } from '@/types'
-import { App } from '@/App'
-import { STATE_VERSION } from '@/constants'
+// import { App } from '@/App'
 
-import { RenderContainer, createTestPlaceholderAlbums, createTestNamedAlbums } from './utils'
+// import { RenderContainer } from '@/test-utils/utils'
 
 
-jest.mock('@/pages/Editor')
+jest.mock('@/pages/Editor', () => require('@/pages/Editor.mock'))
+jest.mock('@/pages/Viewer', () => require('@/pages/Viewer.mock'))
 
 
-const localStorageMock = jest.spyOn(Storage.prototype, 'getItem')
-    .mockImplementation(() => {
-        const state: State = {
-            version: STATE_VERSION,
-            charts: [
-                {
-                    name: 'Test chart 1',
-                    rowsX: 10,
-                    rowsY: 10,
-                    shape: { tag: 'Top', size: 40 },
-                    albums: createTestPlaceholderAlbums(10)
-                },
-                {
-                    name: 'Test chart 2',
-                    rowsX: 3,
-                    rowsY: 3,
-                    shape: { tag: 'Collage' },
-                    albums: createTestPlaceholderAlbums(10, 10)
-                }
-            ],
-            apiKey: 'Test api key',
-            screenshot: {
-                loading: false,
-                scale: 2
-            },
-            search: {
-                tag: 'Complete',
-                query: 'Test search query',
-                albums: createTestNamedAlbums(5, 20)
-            },
-            activeChartIndex: 1,
-            highlightedID: 5
-        }
-        return JSON.stringify(state)
-    })
-afterEach(() => localStorageMock.mockReset())
+// const container = new RenderContainer()
 
 
-const container = new RenderContainer()
+test.todo('loads state from local storage')
 
 
-test('renders editor page', () => {
-    render(
-        <App/>,
-        container.element
-    )
+test.todo('falls back to default state if none in local storage')
 
-    expect(container.element).toMatchSnapshot()
-})
+
+test.todo('immediately dispatches action with route')
+
+
+test.todo('popstate events dispatch action')
+
+
+test.todo('no longer dispatches action on popstate events after unmount')
+
+
+test.todo('renders editor page for editor route')
+
+
+test.todo('renders viewer page for viewer route')
+
+
+test.todo('renders nothing while route still pending')

@@ -20,7 +20,7 @@ import {
     createTestState,
     createTestStateForEscaping,
     ignore
-} from './utils'
+} from '@/test-utils/utils'
 
 
 describe('createChart', () => {

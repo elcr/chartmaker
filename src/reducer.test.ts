@@ -6,7 +6,7 @@ import { search } from '@/api'
 import type { State, SearchState, ChartShape, UnidentifiedNamedAlbum } from '@/types'
 import { MAX_SCREENSHOT_SCALE, MAX_COLLAGE_ROWS_X, MAX_COLLAGE_ROWS_Y } from '@/constants'
 
-import { createTestState, createTestNamedAlbums } from './utils'
+import { createTestState, createTestNamedAlbums } from '@/test-utils/utils'
 
 
 jest.mock('@/api')

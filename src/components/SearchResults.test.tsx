@@ -2,7 +2,7 @@ import { render } from 'react-dom'
 
 import { SearchResults } from '@/components/SearchResults'
 
-import { RenderContainer, createTestNamedAlbums } from '../utils'
+import { RenderContainer, createTestNamedAlbums } from '@/test-utils/utils'
 
 
 jest.mock('@/components/SidebarGroup')

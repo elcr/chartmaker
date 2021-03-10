@@ -8,7 +8,7 @@ import {
     ignore,
     createTestPlaceholderAlbums,
     createTestNamedAlbums
-} from '../utils'
+} from '@/test-utils/utils'
 
 
 jest.mock('@/components/EditorSidebar')

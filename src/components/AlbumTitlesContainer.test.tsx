@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils'
 import { AlbumTitlesContainer, id } from '@/components/AlbumTitlesContainer'
 import type { Action } from '@/reducer'
 
-import { fireEvent, RenderContainer } from '../utils'
+import { fireEvent, RenderContainer } from '@/test-utils/utils'
 
 
 const container = new RenderContainer()
@@ -20,9 +20,10 @@ test('renders children and dispatches on mouse leave', () => {
         container.element
     )
 
+    expect(container.element).toMatchSnapshot()
+
     act(() => fireEvent('mouseLeave', container.element?.querySelector(`#${id}`)))
 
-    expect(container.element).toMatchSnapshot()
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'UnhighlightAlbum'

@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import type { SearchState, Chart } from '@/types'
 import { EditorSidebar } from '@/components/EditorSidebar'
 
-import { RenderContainer, ignore, createTestNamedAlbums } from '../utils'
+import { RenderContainer, ignore, createTestNamedAlbums } from '@/test-utils/utils'
 
 
 jest.mock('@/components/ChartManager')

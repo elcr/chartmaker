@@ -11,7 +11,7 @@ import {
     ignore,
     fireEvent,
     DragEventDataTransferMock
-} from '../utils'
+} from '@/test-utils/utils'
 
 
 jest.mock('@/components/ChartAlbumCover')

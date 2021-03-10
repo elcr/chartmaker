@@ -1,6 +1,6 @@
 import { LastFMAlbum, LastFMResult, search, SearchResult } from '@/api'
 
-import { ignore } from './utils'
+import { ignore } from '@/test-utils/utils'
 
 
 // jsdom doesn't polyfill fetch so jest.spyOn can't be used here

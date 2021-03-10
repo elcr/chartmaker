@@ -3,7 +3,7 @@ import { act } from 'react-dom/test-utils'
 
 import { ControlledSelect } from '@/components/ControlledSelect'
 
-import { RenderContainer, ignore, fireEvent } from '../utils'
+import { RenderContainer, ignore, fireEvent } from '@/test-utils/utils'
 
 
 const container = new RenderContainer()

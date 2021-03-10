@@ -62,7 +62,7 @@ const UnidentifiedNamedAlbum = Record_({
     url: NonEmptyString
 })
 const UnidentifiedAlbum = UnidentifiedNamedAlbum.Or(Null)
-const UnidentifiedAlbumArray = FixedSizeArray(UnidentifiedAlbum, CHART_ALBUMS_COUNT)
+const UnidentifiedAlbumArray = Array_(UnidentifiedAlbum)
 const NamedAlbum = UnidentifiedNamedAlbum.And(
     Record_({
         id: PositiveInteger

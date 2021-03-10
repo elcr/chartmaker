@@ -38,7 +38,7 @@ import {
 } from '@/types'
 
 
-export async function elementToDataURI(element: HTMLElement, scale: number) {
+export async function elementToDataURI(element: HTMLElement, scale: number): Promise<string> {
     const canvas = await html2canvas(element, {
         allowTaint: true,
         scale,
@@ -63,7 +63,7 @@ export async function fileToDataURI(file: File): Promise<string> {
 }
 
 
-export function downloadURI(uri: string, filename: string) {
+export function downloadURI(uri: string, filename: string): void {
     const link = document.createElement('a')
     link.href = uri
     link.download = filename
@@ -112,6 +112,47 @@ export function validateUnknownState(state: unknown): State | null {
         return createStateFromV1ExportState(state)
     }
     return null
+}
+
+
+function decodeExportAlbums(exportAlbums: UnidentifiedAlbum[]): Album[] {
+    const albums: Album[] = []
+    for (let index = 0; index < CHART_ALBUMS_COUNT; index++) {
+        const album = exportAlbums[index]
+        albums.push(
+            album === undefined || unidentifiedAlbumIsPlaceholder(album)
+                ? index
+                : {
+                    id: index,
+                    name: album.name,
+                    url: album.url
+                }
+        )
+    }
+    return albums
+}
+
+
+function encodeExportAlbums(albums: Album[]): UnidentifiedAlbum[] {
+    const exportAlbums: UnidentifiedAlbum[] = []
+    let sliceIndex: number | undefined
+    for (let index = 0; index < albums.length; index++) {
+        const album = albums[index]!
+        if (identifiedAlbumIsPlaceholder(album)) {
+            exportAlbums.push(null)
+            sliceIndex ??= index
+        }
+        else {
+            exportAlbums.push({
+                name: album.name,
+                url: album.url
+            })
+            sliceIndex = undefined
+        }
+    }
+    return sliceIndex === undefined
+        ? exportAlbums
+        : exportAlbums.slice(0, sliceIndex)
 }
 
 
@@ -187,15 +228,7 @@ function createStateFromV3ExportState(state: V3ExportState): State {
             name: chart.name,
             shape: chart.shape,
             size: chart.size,
-            albums: chart.albums.map((album, index) =>
-                unidentifiedAlbumIsPlaceholder(album)
-                    ? index
-                    : {
-                        id: index,
-                        name: album.name,
-                        url: album.url
-                    }
-            )
+            albums: decodeExportAlbums(chart.albums)
         })),
         highlightedID: null,
         route: null
@@ -213,14 +246,7 @@ export function createExportState(state: State): V3ExportState {
             name: chart.name,
             size: chart.size,
             shape: chart.shape,
-            albums: chart.albums.map(album =>
-                identifiedAlbumIsPlaceholder(album)
-                    ? null
-                    : {
-                        name: album.name,
-                        url: album.url
-                    }
-            )
+            albums: encodeExportAlbums(chart.albums)
         }))
     }
 }
@@ -281,14 +307,7 @@ function encodeViewerChart(chart: Chart): string {
     const viewerChart: ViewerChart = {
         name: chart.name,
         size: chart.size ?? chart.shape,
-        albums: chart.albums.map(album =>
-            identifiedAlbumIsPlaceholder(album)
-                ? null
-                : {
-                    name: album.name,
-                    url: album.url
-                }
-        )
+        albums: encodeExportAlbums(chart.albums)
     }
     const json = JSON.stringify(viewerChart)
     return compressToEncodedURIComponent(json)
@@ -326,15 +345,7 @@ function decodeViewerChart(encoded: string): Chart | null {
         size: typeof chart.size === 'number'
             ? chart.size
             : null,
-        albums: chart.albums.map((album, index) =>
-            unidentifiedAlbumIsPlaceholder(album)
-                ? index
-                : {
-                    id: index,
-                    name: album.name,
-                    url: album.url
-                }
-        )
+        albums: decodeExportAlbums(chart.albums)
     }
 }
 

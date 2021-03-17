@@ -6,44 +6,42 @@ import type { Chart } from '@/types'
 import { RenderContainer, ignore } from '@/test-utils/utils'
 
 
-jest.mock('@/components/ChartSelector')
-jest.mock('@/components/NewChartButton')
-jest.mock('@/components/RenameActiveChartButton')
-jest.mock('@/components/DeleteActiveChartButton')
-jest.mock('@/components/SidebarGroup')
-jest.mock('@/components/MoveChartButton')
+jest.mock('@/components/SidebarGroup', () => require('@/components/SidebarGroup.mock'))
+jest.mock('@/components/ChartSelector', () => require('@/components/ChartSelector.mock'))
+jest.mock('@/components/NewChartButton', () => require('@/components/NewChartButton.mock'))
+jest.mock('@/components/RenameActiveChartButton', () => require('@/components/RenameActiveChartButton.mock'))
+jest.mock('@/components/DeleteActiveChartButton', () => require('@/components/DeleteActiveChartButton.mock'))
+jest.mock('@/components/MoveChartButton', () => require('@/components/MoveChartButton.mock'))
 
 
 const container = new RenderContainer()
 
 
-test.each([ 0, 1, 2 ])('renders chart selector and buttons', activeChartIndex => {
-    const charts: Chart[] = [
-        {
-            name: 'test chart 1',
-            rowsX: 5,
-            rowsY: 5,
-            shape: { tag: 'Collage' },
-            // this component doesn't touch the albums at all so no need to
-            // actually pass any
-            albums: []
-        },
-        {
-            name: 'test chart 2',
-            rowsX: 10,
-            rowsY: 10,
-            shape: { tag: 'Top', size: 100 },
-            albums: []
-        },
-        {
-            name: 'test chart 3',
-            rowsX: 10,
-            rowsY: 10,
-            shape: { tag: 'Top', size: 42 },
-            albums: []
-        }
-    ]
+const charts: Chart[] = [
+    {
+        name: 'test chart 1',
+        shape: [ 5, 5 ],
+        size: null,
+        // this component doesn't touch the albums at all so no need to
+        // actually pass any
+        albums: []
+    },
+    {
+        name: 'test chart 2',
+        shape: [ 10, 10 ],
+        size: 100,
+        albums: []
+    },
+    {
+        name: 'test chart 3',
+        shape: [ 7, 7 ],
+        size: 42,
+        albums: []
+    }
+]
 
+
+test.each([ 0, 1, 2 ])('renders chart selector and buttons', activeChartIndex => {
     render(
         <ChartManager dispatch={ignore}
             activeChartIndex={activeChartIndex}

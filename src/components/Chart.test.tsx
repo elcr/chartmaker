@@ -14,7 +14,7 @@ test('renders header and children, passes ref', () => {
     const ref = createRef<HTMLElement>()
 
     render(
-        <Chart innerRef={ref} name='Test chart'>
+        <Chart ref={ref} name='Test chart'>
             Test children
         </Chart>,
         container.element
@@ -22,6 +22,7 @@ test('renders header and children, passes ref', () => {
 
     expect(container.element).toMatchSnapshot()
     expect(ref.current).toBeInstanceOf(Element)
+    expect(ref.current).toBe(container.element?.firstChild)
 })
 
 

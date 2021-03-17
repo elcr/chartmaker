@@ -1,9 +1,11 @@
-import type { FC } from 'react'
+const mock: typeof import('@/components/APIKeyInput') = {
+    id: 'apiKeyInput',
 
-import type { APIKeyInputProps } from '@/components/APIKeyInput'
+    APIKeyInput: ({ apiKey }) =>
+        <div className='mock-api-key-input'>
+            {`API Key: ${apiKey}`}
+        </div>
+}
 
 
-export const APIKeyInput: FC<APIKeyInputProps> = ({ apiKey }) =>
-    <div className='mock-api-key-input'>
-        {`API Key: ${apiKey}`}
-    </div>
+export const APIKeyInput = mock.APIKeyInput

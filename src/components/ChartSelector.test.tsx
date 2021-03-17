@@ -5,15 +5,11 @@ import type { Chart } from '@/types'
 import { ChartSelector, id } from '@/components/ChartSelector'
 import type { Action } from '@/reducer'
 
-import {
-    RenderContainer,
-    ignore,
-    fireEvent
-} from '@/test-utils/utils'
+import { RenderContainer, fireEvent } from '@/test-utils/utils'
 
 
-jest.mock('@/components/Label')
-jest.mock('@/components/ControlledSelect')
+jest.mock('@/components/Label', () => require('@/components/Label.mock'))
+jest.mock('@/components/ControlledSelect', () => require('@/components/ControlledSelect.mock'))
 
 
 const container = new RenderContainer()
@@ -21,63 +17,50 @@ const container = new RenderContainer()
 const charts: Chart[] = [
     {
         name: 'test chart 1',
-        rowsX: 5,
-        rowsY: 5,
-        shape: { tag: 'Collage' },
+        shape: [ 5, 5 ],
+        size: null,
         // this component doesn't touch the albums at all so no need to
         // actually pass any
         albums: []
     },
     {
         name: 'test chart 2',
-        rowsX: 10,
-        rowsY: 10,
-        shape: { tag: 'Top', size: 100 },
+        shape: [ 10, 10 ],
+        size: 100,
         albums: []
     },
     {
         name: 'test chart 3',
-        rowsX: 10,
-        rowsY: 10,
-        shape: { tag: 'Top', size: 42 },
+        shape: [ 7, 7 ],
+        size: 42,
         albums: []
     }
 ]
 
 
-test('renders labelled select', () => {
-    render(
-        <ChartSelector dispatch={ignore}
-            charts={charts}
-            activeChartIndex={1}/>,
-        container.element
-    )
-
-    expect(container.element).toMatchSnapshot()
-})
-
-
-test('changing selected chart dispatches action', () => {
+test.each([ 0, 1 ])('renders labelled select, change event dispatches action', index => {
     const mock = jest.fn<void, [ Action ]>()
 
     render(
         <ChartSelector dispatch={mock}
             charts={charts}
-            activeChartIndex={0}/>,
+            activeChartIndex={123}/>,
         container.element
     )
+
+    expect(container.element).toMatchSnapshot()
 
     act(() =>
         fireEvent(
             'change',
             container.element?.querySelector(`#${id}`),
-            { target: { value: '1' } }
+            { target: { value: String(index) } }
         )
     )
 
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith<[ Action ]>({
         tag: 'UpdateActiveChart',
-        index: 1
+        index
     })
 })

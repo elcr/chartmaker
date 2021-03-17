@@ -1,21 +1,24 @@
-import type { FC } from 'react'
-
-import type { ButtonProps } from '@/components/Button'
 import { cx } from 'emotion'
 
 
-export const Button: FC<ButtonProps> = ({
-    children,
-    id,
-    className,
-    disabled,
-    onClick
-}) => {
-    className = cx('mock-button', className)
-    return (
-        <div id={id} className={className} onClick={onClick}>
-            {`Disabled: ${disabled}`}
-            {children}
-        </div>
-    )
+const mock: typeof import('@/components/Button') = {
+    Button: ({
+        children,
+        id,
+        className,
+        disabled,
+        title,
+        onClick
+    }) => {
+        className = cx('mock-button', className)
+        return (
+            <div id={id} className={className} onClick={onClick} title={title}>
+                {`Disabled: ${disabled}`}
+                {children}
+            </div>
+        )
+    }
 }
+
+
+export const Button = mock.Button

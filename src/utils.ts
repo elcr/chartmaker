@@ -1,6 +1,5 @@
 import html2canvas from 'html2canvas'
 import { fromUint8Array as base64FromUint8Array } from 'js-base64'
-
 import {
     compressToEncodedURIComponent,
     decompressFromEncodedURIComponent

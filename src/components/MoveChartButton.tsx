@@ -21,7 +21,7 @@ export const MoveChartButton: FC<MoveChartButtonProps> = ({
     }
 
     return (
-        <Button disabled={disabled} onClick={moveChart}>
+        <Button disabled={disabled} onClick={moveChart} title={direction}>
             {children}
         </Button>
     )

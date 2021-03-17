@@ -34,6 +34,3 @@ export const APIKeyInput: FC<APIKeyInputProps> = ({ dispatch, apiKey }) => {
         </SidebarGroup>
     )
 }
-
-
-export default APIKeyInput
